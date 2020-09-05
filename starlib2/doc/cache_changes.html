@@ -1,0 +1,237 @@
+<html>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+<HEAD>
+    <TITLE>Changes for the data value node cache in starlib2</TITLE>
+    <META NAME='generator'
+          VALUE='Vim 5.06'>
+    <META NAME='author'
+          VALUE='Steve Mading'>
+</HEAD>
+<BODY BGCOLOR='white' TEXT='black' LINK='green' VLINK='cyan'>
+<H1><CENTER>Changes for the data value node cache in starlib2</CENTER></H1>
+<H4><CENTER>Steve Mading</CENTER></H4>
+
+<P>
+<FONT SIZE=+1>
+    This document covers changes from the old starlib (starlib1) to the new
+    starlib (starlib2), as they relate to the new data value node cache.
+    These changes now allow starlib to handle much larger files than it
+    could previously.
+</FONT>
+<P>
+<STRONG>These changes WILL require some small alterations to code that
+uses the library.  </STRONG> It is essential that any programmer using
+starlib2 read this page first before making the change from starlib1
+to starlib2.  These changes affect the C++ programs using starlib,
+not the Java programs using starlibj.
+<P>
+<H3>Why the change?</H3>
+The reason this change was made was that the old starlib could not
+handle files with large tables in them without using an impractically
+large amount of memory that won't fit in most machines.  Sometimes
+values that only took 2 bytes to express in the star file took 56
+bytes to express in memory.  This was for each and every value in
+a loop_ in a star file.
+<P>
+<H3>Why a new version number?</H3>
+The reason this is now called starlib2 instead of starlib1 is that
+the change is large enough that it would be a bad idea for programmers
+to upgrade to starlib2 without first reading this document and
+understanding what it means.
+<P>
+<H3>Okay, what was changed?</H3>
+The new starlib now stores each row of a loop_ as a single object in
+memory.  Whenever your application program uses one of the methods
+of LoopRowNode to get a DataValueNode, what is really happening is
+that a shadow DataValueNode is being created and put into a cache.
+Until your application tries to access a DataValueNode, that
+DataValueNode doesn't really exist as an independant object yet.
+It is merely a substring embedded inside a LoopRowNode object.
+When you are done using the DataValueNodes, then the cache is
+flushed and the memory it was taking up goes away.  When you make
+changes to a DataValueNode, the change actually takes effect in
+the cache and won't get copied back into the LoopRowNode until you
+flush the cache.  If you try to access a DataValueNode that has
+already been brought into the cache, you simply get a pointer to
+the value that is already in the cache.
+<P>
+<H3>Great, so how does this affect my program?</H3>
+Well, for the most part, it doesn't.  Your program still works the
+same way it did before, except for the following new things you need
+to add to it:
+<OL>
+    <LI> - At reasonable points in your code (explained below),
+    you should make a call to a new routine called <A HREF="#flush">
+    <CODE>ValCache::flushValCache()</CODE></A> to clear out the cache
+    of any DataValueNodes there may be.</LI>
+    <LI> - You must not try to use any DataValueNode pointers or
+    references that were created before the call to
+    <CODE>flushValCache()</CODE> in code that is executed after the call to
+    <CODE>flushValCache()</CODE>.</LI>
+    <LI> - Do not attempt to use the <CODE>myParallelCopy()</CODE>
+    method on the level of a DataValueNode.  It might still work, but
+    not reliably so.  This is because DataValueNode objects no longer have
+    persistance within the run of the program and so the parallel
+    references don't have anywhere permanent to point to at this level.</LI>
+    <LI> - Be aware that every call to Unparse() will also result in
+    a call to ValCache::flushValCache() and therefore invalidate your
+    DataValueNode pointers.
+</OL>
+<P>
+Let's explain those in detail below:
+<A NAME="flush"></A>
+<H3>flushValCache()</H3>
+There is now a public static method called
+<CODE>void ValCache::flushValCache(void)</CODE>.  Whenever your
+program is finished using any DataValueNode pointers it may be
+holding on to, it should call this method.  It is safe to call the
+method as many times as you wish, so long as you never use
+DataValueNode pointers you created before the flush once the flush
+has occurred.  Here is an example of okay usage, and bad usage:
+<TABLE BORDER=2 BGCOLOR="yellow" TEXT=black LINK=blue VLINK=red>
+    <TR>
+        <TH><P ALIGN=CENTER>GOOD</P></TH>
+    </TR>
+    <TR>
+	<TD>
+	    <PRE>
+LoopRowNode *lrn;
+int idx, numVals;
+DataValueNode *dvn;
+
+...For this example, assume lrn is
+      already set to something valid...
+
+numVals = lrn-&gt;size();
+for( idx = 0 ; idx &lt; numVals ; idx++ )
+{
+    dvn = (*lrn)[idx];
+    cout &lt;&lt; "val " &lt;&lt; idx &lt;&lt; 
+        " is " &lt;&lt; dvn-&gt;myValue();
+    ...perhaps do other things with dvn as well...
+}
+ValCache::flushValCache();
+
+	    </PRE>
+        </TD>
+    </TR>
+    <TR>
+        <TH><P ALIGN=CENTER>ALSO WORKS, BUT MAYBE FLUSHING TOO OFTEN</P></TH>
+    </TR>
+    <TR>
+	<TD>
+	    <PRE>
+LoopRowNode *lrn;
+int idx, numVals;
+DataValueNode *dvn;
+
+...For this example, assume lrn is
+      already set to something valid...
+
+numVals = lrn-&gt;size();
+for( idx = 0 ; idx &lt; numVals ; idx++ )
+{
+    dvn = (*lrn)[idx];
+    cout &lt;&lt; "val " &lt;&lt; idx &lt;&lt; 
+        " is " &lt;&lt; dvn-&gt;myValue();
+    ...perhaps do other things with dvn as well...
+    ValCache::flushValCache();
+}
+
+	    </PRE>
+        </TD>
+    </TR>
+    <TR>
+        <TH><P ALIGN=CENTER>BAD, WILL CAUSE CRASHES</P></TH>
+    </TR>
+    <TR>
+	<TD>
+	    <PRE>
+LoopRowNode *lrn;
+int idx, numVals;
+DataValueNode *dvn;
+
+...For this example, assume lrn is
+      already set to something valid...
+
+numVals = lrn-&gt;size();
+for( idx = 0 ; idx &lt; numVals ; idx++ )
+{
+    dvn = (*lrn)[idx];
+    ValCache::flushValCache();
+    cout &lt;&lt; "val " &lt;&lt; idx &lt;&lt; 
+        " is " &lt;&lt; dvn-&gt;myValue();
+    ...perhaps do other things with dvn as well...
+}
+	    </PRE>
+        </TD>
+    </TR>
+    <TR>
+        <TH><P ALIGN=CENTER>OKAY</P></TH>
+    </TR>
+    <TR>
+	<TD>
+	    <PRE>
+LoopRowNode *lrn;
+int idx, numVals;
+DataValueNode *dvn;
+
+...For this example, assume lrn is
+      already set to something valid...
+
+numVals = lrn-&gt;size();
+for( idx = 0 ; idx &lt; numVals ; idx++ )
+{
+    dvn = (*lrn)[idx];
+    ...perhaps do other things with dvn as well...
+    ValCache::flushValCache();
+    cout &lt;&lt; "val " &lt;&lt; idx &lt;&lt; 
+        " is " &lt;&lt; (*lrn)[idx]-&gt;myValue();
+	// NOTE THE DIFFERENCE BETWEEN THIS AND THE
+	// BAD EXAMPLE ABOVE.  Here, the dvn pointer
+	// is not being used after the flush.  Instead,
+	// a new pointer is being generated with the
+	// syntax: (*lrn)[idx]
+}
+	    </PRE>
+        </TD>
+    </TR>
+</TABLE>
+<P>
+In general, memory size usage vs CPU usage is a tradeoff.  If you flush
+too often, then you are wasting too much CPU time, but if you flush
+not often enough, then your program might end up using entirely too
+much memory on larger files.  As a general rule of thumb, it's a
+good idea to flush at the bottom of major code loops, especially if you
+know the code loop will be iterating over a column in a very large STAR
+loop.
+<P>
+<H3>Loop Flushing</H3>
+<P>
+There also exists a <CODE>flushValCache()</CODE> at the LoopTableNode
+level.  You may use this to flush just the values in that one loop,
+rather than all the ones that exist in the entire program.
+<P>
+<H3>Why all this work?</H3>
+It might seem like the library is offloading work onto you, the
+application programmer, that really belongs in the library.  This
+I can sympathize with.  However, this is caused by a limitation in
+the C++ language, and I haven't thought of a way to get around it.
+C++ pointers and references do not notify the library when they
+go out of scope.  C++ does not do native garbage collection.  Becasue
+of this, the library can't tell when you are done using a pointer or
+reference it has handed to you.  This is why you need to call
+the flush routine yourself.  When you call flushValCache, you are 
+essentially telling the library, "I am now done with all those
+DataValueNode pointers I was holding on to.  You may act as if
+they just went out of scope and I won't be using them again."
+<HR>
+<H3>HOW TO LINK</H3>
+Simple.  Just alter your makefile's -I and -L statements to
+link to a starlib2 directory instead of starlib, and check out
+starlib2 to a directory at a peer level to where you checked out
+starlib.  Remember to make sure you do a make clean first, so
+you don't get object mismatches during linking.
+</BODY>
+</html>

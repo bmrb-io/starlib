@@ -1,0 +1,904 @@
+<html><head><TITLE>ASTnode</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  ASTnode  </H2><BLOCKQUOTE>
+ASTnode class (base class for all other kinds of nodes)
+</BLOCKQUOTE>
+<hr>
+
+<DL>
+<TABLE BORDER>
+<DT><h3>Public Classes</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.77.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum </TD><TD><B>ASTtype</B> <br>
+<I>Whenever a new class derived from ASTnode is
+added to ast</I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.1.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ASTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>BLOCKNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATABLOCKNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATAFILENODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATAHEADINGNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.6"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATAITEMNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.7"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATALISTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.8"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATALOOPNAMELISTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.9"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATALOOPDEFLISTNODE</B> <br>
+<I> <em>DEPRECIATED</em> - Do not use:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.10"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATALOOPNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.11"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATALOOPVALLISTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.12"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATANAMENODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.13"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATANODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.14"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DATAVALUENODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.15"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>GLOBALBLOCKNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.16"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>GLOBALHEADINGNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.17"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>HEADINGNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.18"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>LOOPROWNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.19"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ITERNODE</B> <br>
+<I> <em>DEPRECIATED</em> - Do not use:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.20"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>LOOPNAMELISTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.21"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>LOOPDEFLISTNODE</B> <br>
+<I> <em>DEPRECIATED</em> - Do not use:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.22"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>LOOPTABLENODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.23"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>LOOPITER</B> <br>
+<I> <em>DEPRECIATED</em> - Do not use:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.24"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>LOOPVALLISTNODE</B> <br>
+<I> <em>DEPRECIATED</em> - Do not use:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.25"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SAVEFRAMELISTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.26"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SAVEFRAMENODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.27"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SAVEHEADINGNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.28"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>STARLISTNODE</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.1.29"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>STARFILENODE</B> <br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public Methods</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.77.23"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ASTnode</B> ( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> &copyFromMe )<br>
+<I> The copy constructor:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.22"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ASTnode</B> ( void )<br>
+<I>Sets the parent pointer to be null by default</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>copyFrom</B> ( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> &copyFromMe )<br>
+<I>The routine that copies low-level values from one
+ASTnode to another - used by the copy constructor</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.26"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>isOfType</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> T )<br>
+<I>Call this function when you want to know whether or not a
+particular ASTnode object is of a certain type</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>* </TD><TD><B>myParent</B> (void)<br>
+<I>Return the parent of this ASTnode</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> </TD><TD><B>myType</B> (void)<br>
+<I>Return the type of this ASTnode</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.17"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>NotVirtualIsOfType</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> T )<br>
+<I>This function should always be identical to isOfType except that
+it is not a virtual function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>removeChild</B> ( <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *child )<br>
+<I>Removes the given ASTnode from this ASTnode, assuming that the
+given ASTnode is an immediate child of this ASTnode</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.14"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>removeMe</B> ( void )<br>
+<I>Remove me from my parent ASTnode by calling my parent's
+removeChild() on me</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchByTag</B> ( char *searchFor)<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchByTag</B> ( const string &searchFor)<br>
+<I>Given a tag name, find the AST object it resides in</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForType</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, int delim = -1)<br>
+<I>This method returns a list of all the nodes of the given type</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>setParent</B> ( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *p )<br>
+<I>Set the parent of this node to a new value</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.13"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>unlinkChild</B> ( <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *child )<br>
+<I>unlinks the given ASTnode from this ASTnode, assuming that
+the given ASTnode is a child of this ASTnode</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.15"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>unlinkMe</B> ( void )<br>
+<I>Remove me from my parent ASTnode, but do not delete me
+from the universe</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>Unparse</B> (int indent)<br>
+<I>Every subtype must provide an unparse operation that
+outputs the node to a global output stream called "os"</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.25"> <IMG BORDER=0 SRC=icon1.gif></A> virtual </TD><TD><B>~ASTnode</B> ( void )<br>
+<I> The destructor:</I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.77.18"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.18.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int </TD><TD><B>getLineNum</B> ( void ) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.18.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>setLineNum</B> ( const int num )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.18.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>These functions return the line number and set the line
+number on which this node was found in the STAR file</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.21"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.21.1"> <IMG BORDER=0 SRC=icon1.gif></A> const  bool& </TD><TD><B>getIsCache</B> ( void )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.21.2"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>setIsCache</B> ( bool isIt )<br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.10"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.10.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForTypeByTag</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, const string &tag)<br>
+<I><u>Overloaded Version</u> </I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.10.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForTypeByTag</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, char *tag)<br>
+<I><u>Overloaded Version</u> </I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.10.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>This method is exactly the same as 'searchByTag()', except that
+it tries to return an object of the type given</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.11"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.11.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForTypeByTagValue</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, const string &tag, const string &value)<br>
+<I><u>Overloaded Version</u> </I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.11.1"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForTypeByTagValue</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, const string &tag, char *value )<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.11.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForTypeByTagValue</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, char *tag, const string &value)<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.11.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchForTypeByTagValue</B> ( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, char *tag, char *value )<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.11.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>This method is exactly like 'searchByTag()', except that
+it tries to return an object of the type given</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.16"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.16.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>* </TD><TD><B>myParallelCopy</B> ( void )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.16.3"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>setPeer</B> ( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.16.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>This method returns a pointer to an ASTnode</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.8"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.8.1"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchByTagValue</B> ( const string &tag, const string &value)<br>
+<I>Given a tag name and a value, find the AST object that that
+particular tag and value pair resides in</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.8.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchByTagValue</B> ( const string &tag, char *value)<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.8.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchByTagValue</B> ( char *tag, const string &value)<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.8.4"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> * </TD><TD><B>searchByTagValue</B> ( char *tag, char *value)<br>
+<I><u>Overloaded Version</u>
+Just calls the above version of this function</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.19"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.19.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int </TD><TD><B>getColNum</B> ( void ) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.19.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>setColNum</B> ( const int num )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.19.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>These functions return the column number and set the
+column number on which this node was found in the STAR
+file</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.20"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.77.20.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  string& </TD><TD><B>getPreComment</B> ( void )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.20.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>setPreComment</B> ( const string &cmt )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.77.20.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>These functions are used to some nodes in the
+AST tree the ability to remember a comment to be
+pasted into the file in front of that node</I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+ASTnode class (base class for all other kinds of nodes).
+--------------------------------------------------------
+This class defines nothing but the Unparse function, which all AST types
+must have.  When the root of the AST tree has its Unparse() function
+called, it will cause a percolation through all the Unparse() functions
+of all the nodes in the tree.<br>
+Unparse simply writes the tree out in star format to a file.  The
+file is hardcoded to be the stream called (*os).
+
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="ASTtype">
+<A NAME ="DOC.77.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  ASTtype</B></TT>
+<DD>Whenever a new class derived from ASTnode is
+added to ast.h, it needs to have a name for
+it added to this enumerated type.
+<DL></DL><P><DL>
+
+<A NAME="ASTNODE">
+<A NAME ="DOC.77.1.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ASTNODE</B></TT>
+<DL></DL><P>
+<A NAME="BLOCKNODE">
+<A NAME ="DOC.77.1.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  BLOCKNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATABLOCKNODE">
+<A NAME ="DOC.77.1.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATABLOCKNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATAFILENODE">
+<A NAME ="DOC.77.1.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATAFILENODE</B></TT>
+<DL></DL><P>
+<A NAME="DATAHEADINGNODE">
+<A NAME ="DOC.77.1.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATAHEADINGNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATAITEMNODE">
+<A NAME ="DOC.77.1.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATAITEMNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATALISTNODE">
+<A NAME ="DOC.77.1.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATALISTNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATALOOPNAMELISTNODE">
+<A NAME ="DOC.77.1.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATALOOPNAMELISTNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATALOOPDEFLISTNODE">
+<A NAME ="DOC.77.1.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATALOOPDEFLISTNODE</B></TT>
+<DD> <em>DEPRECIATED</em> - Do not use:
+<DL></DL><P>
+<A NAME="DATALOOPNODE">
+<A NAME ="DOC.77.1.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATALOOPNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATALOOPVALLISTNODE">
+<A NAME ="DOC.77.1.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATALOOPVALLISTNODE</B></TT>
+<DL></DL><P>
+<A NAME="DATANAMENODE">
+<A NAME ="DOC.77.1.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATANAMENODE</B></TT>
+<DL></DL><P>
+<A NAME="DATANODE">
+<A NAME ="DOC.77.1.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATANODE</B></TT>
+<DL></DL><P>
+<A NAME="DATAVALUENODE">
+<A NAME ="DOC.77.1.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DATAVALUENODE</B></TT>
+<DL></DL><P>
+<A NAME="GLOBALBLOCKNODE">
+<A NAME ="DOC.77.1.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  GLOBALBLOCKNODE</B></TT>
+<DL></DL><P>
+<A NAME="GLOBALHEADINGNODE">
+<A NAME ="DOC.77.1.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  GLOBALHEADINGNODE</B></TT>
+<DL></DL><P>
+<A NAME="HEADINGNODE">
+<A NAME ="DOC.77.1.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  HEADINGNODE</B></TT>
+<DL></DL><P>
+<A NAME="LOOPROWNODE">
+<A NAME ="DOC.77.1.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  LOOPROWNODE</B></TT>
+<DL></DL><P>
+<A NAME="ITERNODE">
+<A NAME ="DOC.77.1.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ITERNODE</B></TT>
+<DD> <em>DEPRECIATED</em> - Do not use:
+<DL></DL><P>
+<A NAME="LOOPNAMELISTNODE">
+<A NAME ="DOC.77.1.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  LOOPNAMELISTNODE</B></TT>
+<DL></DL><P>
+<A NAME="LOOPDEFLISTNODE">
+<A NAME ="DOC.77.1.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  LOOPDEFLISTNODE</B></TT>
+<DD> <em>DEPRECIATED</em> - Do not use:
+<DL></DL><P>
+<A NAME="LOOPTABLENODE">
+<A NAME ="DOC.77.1.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  LOOPTABLENODE</B></TT>
+<DL></DL><P>
+<A NAME="LOOPITER">
+<A NAME ="DOC.77.1.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  LOOPITER</B></TT>
+<DD> <em>DEPRECIATED</em> - Do not use:
+<DL></DL><P>
+<A NAME="LOOPVALLISTNODE">
+<A NAME ="DOC.77.1.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  LOOPVALLISTNODE</B></TT>
+<DD> <em>DEPRECIATED</em> - Do not use:
+<DL></DL><P>
+<A NAME="SAVEFRAMELISTNODE">
+<A NAME ="DOC.77.1.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SAVEFRAMELISTNODE</B></TT>
+<DL></DL><P>
+<A NAME="SAVEFRAMENODE">
+<A NAME ="DOC.77.1.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SAVEFRAMENODE</B></TT>
+<DL></DL><P>
+<A NAME="SAVEHEADINGNODE">
+<A NAME ="DOC.77.1.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SAVEHEADINGNODE</B></TT>
+<DL></DL><P>
+<A NAME="STARLISTNODE">
+<A NAME ="DOC.77.1.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  STARLISTNODE</B></TT>
+<DL></DL><P>
+<A NAME="STARFILENODE">
+<A NAME ="DOC.77.1.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  STARFILENODE</B></TT>
+<DL></DL><P></DL>
+
+<A NAME="ASTnode">
+<A NAME ="DOC.77.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ASTnode( void )</B></TT>
+<DD>Sets the parent pointer to be null by default
+<DL></DL><P>
+<A NAME="ASTnode">
+<A NAME ="DOC.77.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ASTnode( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> &copyFromMe )</B></TT>
+<DD> The copy constructor:
+<DL></DL><P>
+<A NAME="copyFrom">
+<A NAME ="DOC.77.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  copyFrom( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> &copyFromMe )</B></TT>
+<DD>The routine that copies low-level values from one
+ASTnode to another - used by the copy constructor
+<DL></DL><P>
+<A NAME="~ASTnode">
+<A NAME ="DOC.77.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~ASTnode( void )</B></TT>
+<DD> The destructor:
+<DL></DL><P>
+<A NAME="Unparse">
+<A NAME ="DOC.77.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  Unparse(int indent)</B></TT>
+<DD>Every subtype must provide an unparse operation that
+outputs the node to a global output stream called "os".
+The collection of all the unparses of all the nodes is
+used to print the star file.  If you call the Unparse() of
+a particular level of nesting, it is supposed to in turn
+call the Unparse()'s of its children, and thus you can print
+the entire star file by calling the StarFileNode's Unparse(),
+or you can print out just one saveframe by calling the
+saveframe's Unparse(), or you can print out just one loop
+by calling the DataLoopNode's Unparse(), and so on.
+
+
+<DL><DT><B>Parameters:</B><DD><B>indent</B> -  - the Indent level to start printing at. Zero
+means up agaisnt the left margin.<br></DL><P>
+<A NAME="myType">
+<A NAME ="DOC.77.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A>  myType(void)</B></TT>
+<DD>Return the type of this ASTnode.  (this function is overridden
+for each type derived from ASTnode)
+<DL></DL><P>
+<A NAME="myParent">
+<A NAME ="DOC.77.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*  myParent(void)</B></TT>
+<DD>Return the parent of this ASTnode.  In other words, return the
+ASTnode object in which this ASTnode is inserted.  The exact
+type of this object can then be determined by calling its
+myType() function, at which point it can be casted to the
+proper type.
+<DL></DL><P>
+<A NAME="setParent">
+<A NAME ="DOC.77.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setParent( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *p )</B></TT>
+<DD>Set the parent of this node to a new value.  Needed when you move
+this node into a new structure elsewhere.
+<DL></DL><P>
+<A NAME="isOfType">
+<A NAME ="DOC.77.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  isOfType( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> T )</B></TT>
+<DD>Call this function when you want to know whether or not a
+particular ASTnode object is of a certain type
+<DL></DL><P>
+<A NAME="searchByTag">
+<A NAME ="DOC.77.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchByTag( const string &searchFor)</B></TT>
+<DD>Given a tag name, find the AST object it resides in.  It returns
+a list of pointers to the lowest level AST objects that the tag
+resides in.<br>
+<P>
+This search is case-insensitive.  The names of things, according
+to the STAR specification, are supposed to be case-insensitive.
+This is being applied not only to tag names but also to
+saveframe names and datablock names.
+<P>
+The caller of this function needs to use the isOfType() and/or
+myType() methods to determine what type to cst the object.
+Returns a NULL if nothing was found.
+
+<DL><DT><B>Parameters:</B><DD><B>searchFor</B> -  - Look for this string as the tag name<br></DL><P>
+<A NAME="searchByTag">
+<A NAME ="DOC.77.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchByTag( char *searchFor)</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+
+<DL><DT><B>Parameters:</B><DD><B>searchFor</B> -  - Look for this string as the tag name.<br></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="searchByTagValue">
+<A NAME ="DOC.77.8.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchByTagValue( const string &tag, const string &value)</B></TT>
+<DD>Given a tag name and a value, find the AST object that that
+particular tag and value pair resides in.  This is like
+performing an SQL search: WHERE tag = value.
+<p>
+Only searches starting at the node it was called from, and
+its children.  Recurses downward, but does not recurse upward.
+This function is only capable of returning one answer, so it
+cannot be called at the same levels where searchByTag() can
+be called (see above).
+<P>
+This search is case-insensitive.  The names of things, according
+to the STAR specification, are supposed to be case-insensitive.
+This is being applied not only to tag names but also to
+saveframe names and datablock names.
+<P>
+(However, the values are case-sensitive.  A search for a
+tag of <TT>_t1</TT> is identical to a search for a tag of <TT>_T1</TT>,
+but a search for a <b>value</b> of "V1" is different from a search for
+a value of "v1".)
+<p>
+WARNING: The list returned is allocated in heap space.  It is
+the caller's responsibility to delete the list after it is no
+longer needed.
+
+<DL><DT><B>Parameters:</B><DD><B>tag</B> -  - Look for this tag...
+<br><B>value</B> -  - Where it has this value.<br></DL><P>
+<A NAME="searchByTagValue">
+<A NAME ="DOC.77.8.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchByTagValue( const string &tag, char *value)</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+<p>
+WARNING: The list returned is allocated in heap space.  It is
+the caller's responsibility to delete the list after it is no
+longer needed.
+<DL></DL><P>
+<A NAME="searchByTagValue">
+<A NAME ="DOC.77.8.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchByTagValue( char *tag, const string &value)</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+<DL></DL><P>
+<A NAME="searchByTagValue">
+<A NAME ="DOC.77.8.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchByTagValue( char *tag, char *value)</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+<DL></DL><P></DL>
+
+<A NAME="searchForType">
+<A NAME ="DOC.77.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForType( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, int delim = -1)</B></TT>
+<DD>This method returns a list of all the nodes of the given type.
+It is much like searchByTag() in that it heirarchically walks
+the STAR tree and calls the searchForType() functions of the subtrees
+within the tree.  In this way it is possible to call this function
+at any level of the STAR file.
+<p>
+The second parameter is optional and is only useful when you are
+searching for DATAVALUENODEs.  It determines the kind of
+DATAVALUENODE you are searching for, by delimiter type.  For
+example, you could search for only those DATAVALUENODEs that
+are semicolon-delimited by passing DataValueNode::SEMICOLON
+as the second argument.  Or you could look for just framecodes
+by passing DataValueNode::FRAMECODE as the second parameter.
+Passing a negative number says you want all the DataValueNodes,
+regardless of their delimiter type.
+<p>
+Although the second parameter is an integer, think of it as
+the enum DataValueNode::ValType.  The only reason it is shown
+as an integer in the prototype here is that this class (ASTnode)
+needs to be defined before the class "DataValueNode" can be defined,
+and thus at this point the compiler has no clue what
+"DataValueNode::ValType" means yet.
+<p>
+If the search is for some ASTtype other than DATAVALUENODE, then
+it is irrelevant what the second parameter of this function is, as
+it will never be used - You can just leave it off and accept the
+default.
+
+<DL><DT><B>Parameters:</B><DD><B>type</B> -  - type to search for 
+<br><B>delim</B> -  - DataValueNode::ValType to look for.  Default = "dont-care".<br></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="searchForTypeByTag">
+<A NAME ="DOC.77.10.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForTypeByTag( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, const string &tag)</B></TT>
+<DD><u>Overloaded Version</u> 
+<DL></DL><P>
+<A NAME="searchForTypeByTag">
+<A NAME ="DOC.77.10.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForTypeByTag( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, char *tag)</B></TT>
+<DD><u>Overloaded Version</u> 
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.10.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>This method is exactly the same as 'searchByTag()', except that
+it tries to return an object of the type given.  What it does
+is this: it calls searchByTag(), then it 'walks' up the parent
+list until it finds an ASTnode-derived object that is of the
+type given.  Thus if you search for a ASTnode::SAVEFRAMENODE
+type of object with this function, it will return the save frame
+in which the match was found, rather than the match itself.
+Also note that this method will consider derived subtypes of
+a class as valid 'hits' as well.  For example, you could
+search for an ASTnode::DATANODE and if a DATAITEMNODE or
+DATALOOPNODE or SAVEFRAMENODE were found, they would be
+returned as valid hits.
+If an empty list is returned, that could be either because
+no matching tags were found OR because there were matches
+found, but they were not inside any objects of the requested
+type.
+<p>
+<P>
+This search is case-insensitive.  The names of things, according
+to the STAR specification, are supposed to be case-insensitive.
+This is being applied not only to tag names but also to
+saveframe names and datablock names.
+<P>
+(However, the values are case-sensitive.  A search for a
+tag of <TT>_t1</TT> is identical to a search for a tag of <TT>_T1</TT>,
+but a search for a <b>value</b> of "V1" is different from a search for
+a value of "v1".)
+<P>
+<em>
+YOU NEVER NEED TO OVERRIDE THESE FUNCTIONS IN ANY OF THE
+SUBCLASSES OF ASTNODE!  THEY OPERATE THE SAME WAY IN ALL
+THE SUBCLASSES.  THEY MAKE ALL THEIR CALLS THROUGH THE
+EXISTING searchByTag() calls.
+</em>
+
+<DL><DT><B>Parameters:</B><DD><B>type</B> -  - the type to search for.
+<br><B>tab</B> -  - the tag (name) to search for.<br></DL><P></DL>
+
+<A NAME="">
+<A NAME ="DOC.77.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="searchForTypeByTagValue">
+<A NAME ="DOC.77.11.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForTypeByTagValue( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, const string &tag, const string &value)</B></TT>
+<DD><u>Overloaded Version</u> 
+<DL></DL><P>
+<A NAME="searchForTypeByTagValue">
+<A NAME ="DOC.77.11.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForTypeByTagValue( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, const string &tag, char *value )</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+<p>
+WARNING: The list returned is allocated in heap space.  It is
+the caller's responsibility to delete the list after it is no
+longer needed.
+<DL></DL><P>
+<A NAME="searchForTypeByTagValue">
+<A NAME ="DOC.77.11.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForTypeByTagValue( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, char *tag, const string &value)</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+<DL></DL><P>
+<A NAME="searchForTypeByTagValue">
+<A NAME ="DOC.77.11.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*> *  searchForTypeByTagValue( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> type, char *tag, char *value )</B></TT>
+<DD><u>Overloaded Version</u>
+Just calls the above version of this function.  There is no
+need to override this function in subclasses of ASTnode.
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.11.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>This method is exactly like 'searchByTag()', except that
+it tries to return an object of the type given.  Other
+than the fact that it calls searchByTagValue() instead
+of searchByTag(), it behaves exactly as searchForTypeByTag()
+(see above).
+<p>
+<em>
+YOU NEVER NEED TO OVERRIDE THESE FUNCTIONS IN ANY OF THE
+SUBCLASSES OF ASTNODE!  THEY OPERATE THE SAME WAY IN ALL
+THE SUBCLASSES.  THEY MAKE ALL THEIR CALLS THROUGH THE
+EXISTING searchByTag() calls.
+</em>
+
+<DL><DT><B>Parameters:</B><DD><B>type</B> -  - type to search for
+<br><B>tag</B> -  - tag name to search for
+<br><B>value</B> -  - where it has this value<br></DL><P></DL>
+
+<A NAME="removeChild">
+<A NAME ="DOC.77.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  removeChild( <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *child )</B></TT>
+<DD>Removes the given ASTnode from this ASTnode, assuming that the
+given ASTnode is an immediate child of this ASTnode.  (Does not
+recurse down to grandchildren).  If the given ASTnode is not a
+child of this ASTnode, then nothing happens and no error is
+reported.  Also calls the destructor of the child node.
+This function does NOT need to be overridden for subclasses
+of ASTnode.  The default ASTnode removeChild() will call
+unlinkChild(), and if that is successful, it will delete
+the child pointer.  This should be correct behaviour most
+of the time for any subclass of ASTnode, assuming that the
+subclass has defined its unlinkChild() properly.
+
+<DL><DT><B>Returns:</B><DD>true if the child was removed.  false if the given
+ASTnode was not even in this class anywhere, and
+therefore nothing was done.
+</DL><P>
+<A NAME="unlinkChild">
+<A NAME ="DOC.77.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  unlinkChild( <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *child )</B></TT>
+<DD>unlinks the given ASTnode from this ASTnode, assuming that
+the given ASTnode is a child of this ASTnode.  Does NOT
+call the destructor of the child node!! Use this function to
+remove the child from this ASTnode but not free its space.
+<p>
+This function MUST be overridden for each subclass of ASTnode.
+<p>
+
+<DL><DT><B>Returns:</B><DD>true if the child was unlinked.  false if the given
+ASTnode was not even in this class anywhere, and
+therefore nothing was done.
+</DL><P>
+<A NAME="removeMe">
+<A NAME ="DOC.77.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  removeMe( void )</B></TT>
+<DD>Remove me from my parent ASTnode by calling my parent's
+removeChild() on me.  Deletes me as well, so I can't be
+used after this call anymore.  I am gone.
+This function does NOT need to be overridden for each
+ASTnode derivative.  It is very generic.
+
+<DL><DT><B>Returns:</B><DD>true if this ASTnode was successfully removed.
+false if this ASTnode was not removed, usually
+this is not fatal - it is just that this node's
+parent has disowned this node and has no idea
+what it is.  This usually happens when this ASTnode
+is a copy of another ASTnode such that it's parent
+pointer points at the same place as the original
+ASTnode's parent pointer.
+</DL><P>
+<A NAME="unlinkMe">
+<A NAME ="DOC.77.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  unlinkMe( void )</B></TT>
+<DD>Remove me from my parent ASTnode, but do not delete me
+from the universe.  I still exist after this call.
+This function does NOT need to be overridden for each
+ASTnode derivative.  It is very generic.
+#@return true if this ASTnode was successfully removed.
+false if this ASTnode was not removed, usually
+this is not fatal - it is just that this node's
+parent has disowned this node and has no idea
+what it is.  This usually happens when this ASTnode
+is a copy of another ASTnode such that it's parent
+pointer points at the same place as the original
+ASTnode's parent pointer.
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="myParallelCopy">
+<A NAME ="DOC.77.16.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A>*  myParallelCopy( void )</B></TT>
+<DL></DL><P>
+<A NAME="setPeer">
+<A NAME ="DOC.77.16.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setPeer( const <!2><A HREF="ASTnode.html#DOC.77.23">ASTnode</A> *)</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.16.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>This method returns a pointer to an ASTnode. The ASTnode
+returned is the parallel 'other' version of this node
+in the parallel tree. Incedentally, since the two parallel
+trees are aware of each other, the parallel copy of the
+parallel copy is the orginial node, so this function is
+self-inverting, like this:
+foo->myParallelCopy()->myParallelCopy() == foo
+If there is no parallel node corresponding to this node,
+then this method will return a NULL pointer. This can happen
+if a node in the parallel tree was deleted after the
+parallel copy was made.
+<DL></DL><P></DL>
+
+<A NAME="NotVirtualIsOfType">
+<A NAME ="DOC.77.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  NotVirtualIsOfType( <!2><A HREF="ASTnode.html#DOC.77.1">ASTtype</A> T )</B></TT>
+<DD>This function should always be identical to isOfType except that
+it is not a virtual function.  This means that you can call it
+by casting the ASTnode class to the specific type you want, and
+you will get a call that does not nessacerliy go down to the deepest
+level of descendency, like a virtual function would.
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="getLineNum">
+<A NAME ="DOC.77.18.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int  getLineNum( void ) const </B></TT>
+<DL></DL><P>
+<A NAME="setLineNum">
+<A NAME ="DOC.77.18.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setLineNum( const int num )</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.18.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>These functions return the line number and set the line
+number on which this node was found in the STAR file.
+Note that a negative number is an indicator that the
+node was not in the original file when it was parsed,
+and hence has no line number.
+<p>
+These functions start counting at 1, not zero.
+<p>
+These functions actually give the location where
+the particular part of speech ENDED, not where it
+started.  For example, with a DataLoopNode, the location
+given is the location of the closing "stop_" keyword,
+not the opening "loop_" keyword.  This is an unfortunate
+neccessity due to the way the parser reads the data.  It
+doesn't know whether or not it has encountered a complete
+grammatical construct until it reaches the end of the
+construct, at which point it has lost track of what the
+location was at the start of the grammatical construct.
+<DL></DL><P></DL>
+
+<A NAME="">
+<A NAME ="DOC.77.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="getColNum">
+<A NAME ="DOC.77.19.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int  getColNum( void ) const </B></TT>
+<DL></DL><P>
+<A NAME="setColNum">
+<A NAME ="DOC.77.19.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setColNum( const int num )</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.19.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>These functions return the column number and set the
+column number on which this node was found in the STAR
+file.  Note that a negative number is an indicator that
+the node was not in the original file when it was parsed,
+and hence has no column number.
+<p>
+These functions start counting at 1, not zero.
+<p>
+These functions actually give the location where
+the particular part of speech ENDED, not where it
+started.  For example, with a DataLoopNode, the location
+given is the location of the closing "stop_" keyword,
+not the opening "loop_" keyword.  This is an unfortunate
+neccessity due to the way the parser reads the data.  It
+doesn't know whether or not it has encountered a complete
+grammatical construct until it reaches the end of the
+construct, at which point it has lost track of what the
+location was at the start of the grammatical construct.
+<DL></DL><P></DL>
+
+<A NAME="">
+<A NAME ="DOC.77.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="getPreComment">
+<A NAME ="DOC.77.20.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  string&  getPreComment( void )</B></TT>
+<DL></DL><P>
+<A NAME="setPreComment">
+<A NAME ="DOC.77.20.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setPreComment( const string &cmt )</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.77.20.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>These functions are used to some nodes in the
+AST tree the ability to remember a comment to be
+pasted into the file in front of that node.
+<p>
+In the interest of saving memory, these functions are
+not implemented at all levels of the tree, although for
+orthogonality they exist in the generic ASTnode parent
+class, for most classes calling them will have no effect,
+or will always return an empty string.
+<DL></DL><P></DL>
+
+<A NAME="">
+<A NAME ="DOC.77.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="getIsCache">
+<A NAME ="DOC.77.21.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  bool&  getIsCache( void )</B></TT>
+<DL></DL><P>
+<A NAME="setIsCache">
+<A NAME ="DOC.77.21.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setIsCache( bool isIt )</B></TT>
+<DL></DL><P></DL>
+</DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

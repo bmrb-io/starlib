@@ -1,0 +1,138 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: example 1</TITLE>
+    <LINK HREF=example2.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>Starlib: example 1</H1>
+    <H2>(Finding something)</H2>
+    This example shows how to find a particular tag you are looking
+    for.  Let's say that you want to retrieve the data associated
+    with the tag called "_Author_name".
+    <P>
+    Let's assume that you have already read a STAR file into memory
+    using <CODE>yyparse()</CODE> as shown in the <A HREF=main.html>
+    main example</A>.  This star file is pointed to by the variable
+    called <CODE>AST</CODE>
+    <P>
+    To search for a tag, use the method <CODE>searchByTag()</CODE>.
+    This is a member function of <CODE>ASTnode</CODE>, so you can be
+    assured that it exists at all levels of the star file tree.
+    <PRE>
+	List&lt;ASTnode*&gt; *results;
+	results = AST-&gt;searchByTag( "_Author_name" );
+
+	<I>Write some code here to look at the </I>results<I> list
+	to see what's in it, and do whatever you wanted to do with
+	the matches that were found.</I>
+        <FONT COLOR=BLUE>
+	// You must always delete the list returned by the search
+	// function when you are done with it </FONT>
+	delete results;
+    </PRE>
+    At this point, <CODE>results</CODE> is a list of all the hits
+    that were returned by <CODE>searchByTag</CODE>.  All the
+    searching functions are designed to return a <CODE>List</CODE>
+    of hits rather than one single hit, since they could be used
+    in places where there are multiple matched items.  For example,
+    in this code it is perfectly possible to find multiple tags with
+    the name "_Author_name" in different save frames, since we are
+    searching the contents of the entire star file.
+    <P>
+    Now that we have a list of all the matches to "_Author_name",
+    we can walk through them all and do whatever it was that was
+    intended by this code.  (Note, see list.h for a list of all
+    the primitives that can be performed on the List template class):
+    <PRE>
+	List&lt;ASTnode*&gt; *results;
+	results = AST-&gt;searchByTag( "_Author_name" );
+
+	for( results-&gt;Reset() ; ! results-&gt;AtEnd() ; results-&gt;Next() )
+	{
+	    ASTnode *thisOne = results-&gt;Current();
+	    ...
+	    <I>Now do whatever you wanted to do with thisOne</I>
+	    ...
+	}
+        <FONT COLOR=BLUE>
+	// You must always delete the list returned by the search
+	// function when you are done with it </FONT>
+	delete results;
+    </PRE>
+    <P>
+    But we have a problem here, and that is that all we have in the
+    list of matches are pointers to the generic type <CODE>ASTnode</CODE>.
+    What if we were expecting to get a <CODE>DataItemNode</CODE> and we
+    wanted to only act on those hits that were <CODE>DataItemNode</CODE>s?
+    (In other words, we don't want to operate on any matches we found
+    inside a loop.)
+    <P>
+    This is where the self-awareness of the starlib classes comes in.
+    All the classes in starlib are aware of what their own types are.
+    (See the functions in <CODE>astnode.h</CODE> for explanations of
+    the functions used here.)  Therefore it is possible to query the
+    matched nodes and ask them what they are.  Also, each node is aware
+    of what STAR file element it is inside of.  (In other words, what
+    its parent is in the star file tree).  These two things combined
+    can be used to determine what kind of thing the match was found
+    inside of.  Going back to the example above, we might add these
+    lines:
+    <PRE>
+	List&lt;ASTnode*&gt; *results;
+	results = AST-&gt;searchByTag( "_Author_name" );
+
+	for( results-&gt;Reset() ; ! results-&gt;AtEnd() ; results-&gt;Next() )
+	{
+	    ASTnode *thisOne = results-&gt;Current();
+	    <FONT COLOR=BLUE>
+	    // Walk up the parent tree until something that is a
+	    // DATAITEMNODE is found, or the root of the tree is
+	    // passed up:</FONT>
+	    while(   thisOne != NULL  &amp;&amp;
+	             ! thisOne-&gt;isOfType( ASTnode::DATAITEMNODE )   )
+	    {
+		thisOne = thisOne-&gt;myParent();
+	    }
+	    if( thisOne != NULL )
+	    {
+	        <I>Now do whatever you wanted to do with thisOne</I>
+	    }
+	}
+        <FONT COLOR=BLUE>
+	// You must always delete the list returned by the search
+	// function when you are done with it </FONT>
+	delete results;
+    </PRE>
+    The methods shown above, <CODE>isOfType()</CODE> and
+    <CODE>myParent()</CODE>, as well as the possible types for
+    ASTtype (the argument to <CODE>isOfType()</CODE>) are described in
+    <CODE>astnode.h</CODE>
+    <P>
+    <B><I>NOTE</I></B>: Despite its name, <CODE>searchByTag()</CODE>
+    can be used to search for any sort of name, not just tags.  For
+    example, you could search for a save frame.
+    <P>
+    Other similar searching functions that might be of interest are:
+    <UL>
+	<LI><CODE>searchByTagValue()</CODE>
+	    <UL><LI>Searches for a tag that has a particular value.
+	    </UL>
+	<LI><CODE>searchForTypeByTag()</CODE>
+	    <UL><LI>Searches for a tag and returns the node(s) of the
+	            given type that contain the match.  For example,
+		    to return the entire <CODE>DataLoopNode</CODE> in
+		    which a tag appears, rather than the tag itself.
+	    </UL>
+	<LI></CODE>searchForTypeByTagValue()</CODE>
+	    <UL><LI>Searches for a tag that has a particular value,
+	            then returns the node(s) that are of the given type
+		    that contain the match.
+	    </UL>
+    </UL>
+
+    These are all described in detail in <CODE>astnode.h</CODE>.
+    <HR>
+    <A HREF=list.html> - previous topic - </A>
+    <A HREF=example2.html> - next topic - </A>
+</BODY>

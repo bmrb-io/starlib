@@ -1,0 +1,60 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: formatNMRSTAR</TITLE>
+</HEAD>
+<BODY>
+    <H1><CENTER>Starlib: formatNMRSTAR</CENTER></H1>
+    <HR>
+    There is a routine in starlib that will format NMRSTAR
+    files by setting appropriate comments and by spacing
+    the residue sequence codes with multiple iterations per
+    text line.  You call this routine just before doing an
+    <TT>Unparse()</TT>.
+    <P>
+    This routine has already been incorporated into a simple
+    program that can be called externally, so there are two
+    ways now that you can use this code:
+    <UL>
+	<LI> - As a standalone program:<BR>
+		The program is called 'formatNMRSTAR'.  it is
+		in the <TT>examples</TT> directory.  It works as a
+		simple 'filter', meaning it operates on standard input
+		and standard output so you need to use redirection
+		like so:
+		<PRE>
+		    formatNMRSTAR < inputfile > outputfile.
+		</PRE>
+		This program uses the file /bmrb/lib/comment.str as
+		a configuration file that describes the comments
+		to be added.  This file can be changed to add more
+		comments later.   If an argument is passed to formatNMRSTAR,
+		it is the filename to be used instead as the comment file,
+		<PRE>
+		for example:
+		    formatNMRSTAR comment.str < inputfile > outputfile.
+		</PRE>
+		Included in the examples directory are two such files:
+		"comment.str" and "nullcomment.str".  "comment.str" is the
+		file to be used for NMR-STAR files.
+		<P>
+	</LI>
+	<LI> - The routine can also be used by a program
+	       in the following fashion:
+		<OL>
+		    <LI> - parse the input StarFileNode into memory.
+		    <LI> - parse "comment.str" into memory as
+		    a StarFileNode also.
+		    <LI> - call this routine:
+		    <PRE>
+		        formatNMRSTAR( <I><B>StarFileNode to be formatted</B></I>,
+			               <I><B>StarFileNode holding the comment.str file</B></I> );
+		    </PRE>
+		    <LI> - call <TT>Unparse(..)</TT> to print it out.
+		</OL>
+		These steps are demonstrated as an example in the file
+		examples/formatNMRSTAR.cc, which is in the starlib
+		CVS project.
+	</LI>
+    </UL>
+</BODY>

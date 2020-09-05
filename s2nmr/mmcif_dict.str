@@ -1,0 +1,85 @@
+data_mmcif_testing_functions_star_map_file
+
+save_order_of_operations
+
+   loop_
+      _order_sequence
+      _rule_framecode
+
+    500    $test_17
+   stop_
+
+save_
+
+save_test_17
+   _Saveframe_category    values_to_saveframes_many_to_many
+
+
+    loop_
+	_input_key_tag        # look in the loop where this tag exists.
+
+	# Note, the following three tags define the input saveframe to pull
+	# the data from.  It can either be defined by its name or by a tag/value
+	# pair, but not both.  (If the name is given, it overrides the tag/value
+	# pair.)  For all three of these tags, if it is set to "*" it means
+	# "don't care".  A single dot (null) will have the same effect as setting it
+	# to asterisk, although the asterisk is preferred.
+	#
+	# If all three of these are set as don't care, then the input will be taken
+	# from anywhere where the tag name is found, even if it is not inside a saveframe.
+
+	_input_sf_name        # look in the saveframe where this is its name,
+			      #    Ignore if set to *.
+	_input_sf_key_tag     # look in the saveframe where this tag...
+	_input_sf_key_value   # ...has this value.
+
+
+	# The following fields define where in the output the copy will be placed.
+	# the saveframe's name is the base name plus the value of the "name tag" appended
+	# to it.  If such a saveframe already exists, then the output will be placed
+	# into it, else a new saveframe will be made with that name.  If a new saveframe
+	# has to be made, then the category given below will be used as the value to
+	# its Saveframe_category tag.  If the saveframe already exists, then the category
+	# given is a boolean check: if the saveframe found does not match the category
+	# given, then abort the operation.
+
+	_output_sf_category   # Saveframe_category for the output saveframe.
+	_output_sf_base_name  # base for the output saveframe's name
+	_output_sf_name_tag   # tag whose value appends to the output saveframe name.
+			      #    (set to null (.) to just take the base name as-is.)
+			      # This value will be appended with a preceeding underscore,
+			      # for readability.  (save_entry_citation_primary instead of
+			      # save_entry_citationprimary)
+
+	_copy_or_move_flag    # 'M' == move, anything else assumes "copy".
+	loop_
+	    _input_tag    # inner loop will be a list of tagnames to move or copy.
+
+
+	#######   Now the values:   #########
+
+	# This example maps the mmCIF citations into BMRB's entry_citation saveframe:
+	# (but it does not parse the names into separate values.  That will be a
+	# different rule.)
+	
+	"_citation_author.citation_id"  # _input_key_tag
+	*                               # _input_sf_name == don't care.
+	*                               # _input_sf_key_tag == don't care.
+	*                               # _input_sf_key_value == don't care.
+	"entry_citation"                # _output_sf_category
+	"save_entry_citation"           # _output_sf_base_name
+	"_citation_author.citation_id"  # _output_sf_name_tag
+	"M"                             # _copy_or_move_flag
+
+	    # List of _input_tag values:
+
+	    "_citation_author.citation_id"
+	    "_citation_author.name"  # If this list were longer, there would be
+				     # a loop created with several columns.
+	    stop_
+	
+	# next iteration of this rule would go here...
+
+    stop_
+save_   
+

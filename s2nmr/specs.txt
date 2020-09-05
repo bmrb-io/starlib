@@ -1,0 +1,1083 @@
+From dave@tagil.nmrfam.wisc.edu  Wed Jul  2 12:23:34 1997
+Received: from tagil.nmrfam.wisc.edu (tagil.nmrfam.wisc.edu [144.92.227.200]) by yola.nmrfam.wisc.edu (950413.SGI.8.6.12/950213.SGI.AUTOCF) via ESMTP id MAA22655 for <madings@yola.nmrfam.wisc.edu>; Wed, 2 Jul 1997 12:23:33 -0500
+Received: (from dave@localhost) by tagil.nmrfam.wisc.edu (940816.SGI.8.6.9/950213.SGI.AUTOCF) id MAA00835; Wed, 2 Jul 1997 12:23:32 -0500
+From: "dave argentar" <dave@tagil.nmrfam.wisc.edu>
+Message-Id: <9707021223.ZM833@tagil.nmrfam.wisc.edu>
+Date: Wed, 2 Jul 1997 12:23:30 -0500
+X-Mailer: Z-Mail (3.2.0 26oct94 MediaMail)
+To: elu@banyo.nmrfam.wisc.edu, madings
+Subject: new specs
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Status: ORf
+
+-----
+Part 1: Transforming generic STAR to NMR-STAR
+-----
+
+Kinds of data transformations needed to make generic STAR into NMR-STAR:
+
+1) One-to-one mappings of (tag, value) pairs
+ 1a) Renaming tags:
+     The tag is renamed, but the value is unchanged.  This also handles
+     the trivial case of writing out tags whose name doesn't change.  Renamed
+tags
+     that are moved between saveframes (the _old_saveframe and _new_saveframe
+     values are different) will not appear in loops;  there are other
+transformations
+     to do that.
+
+     syntax:
+     save_renamed_tags
+     loop_
+       _old_tag_name
+       _old_saveframe
+       _new_tag_name
+       _new_saveframe
+
+     "_author_name"
+     "save_citation"
+     "_submittor_name"
+     "save_primary_citation"
+     ...
+
+     effect:
+     generic STAR 		NMR-STAR
+
+     _author_name "bob jones"	_submittor_name "bob jones"
+
+ 1b) Replacing values with framecodes:
+     The users will often refer to a save frame just by giving its
+     name.  To make this into into a framecode, prepend a "$" to the
+     value, and replace whitespace with underscores.  It is not
+     necessary to verify that this framecode points to an existing
+     saveframe.
+
+     syntax:
+     save_tag_to_framecode
+     loop_
+       _old_tag_name
+       _old_saveframe
+
+     "_reporting_conditions"
+     "save_experiment"
+     ...
+
+     effect:
+     generic STAR 				NMR-STAR
+
+     _reporting_conditions "conditions 1"	_reporting_conditions
+$conditions_1
+
+ 1c) Renaming keyed tags:
+     A variation on 1a).  Sometimes, we do not know the name of the saveframe
+     to search for the tag (for instance, if the saveframe name was derived
+     from a tag value by 2).  Rather than altering the tag based on its
+     existance in a particular saveframe, the tag is altered if it is in
+     the same saveframe as another tag (the key) that takes a particular
+     value (the key value).
+
+
+     syntax:
+     save_keyed_renamed_tags
+     loop_
+       _key_tag
+       _key_value
+       _old_tag_name
+       _new_tag_name
+
+     "_saveframe_category"
+     "author"
+     "_author_name"
+     "_submittor_name"
+     ...
+
+     effect:
+     generic STAR 		NMR-STAR
+
+     _author_name "bob jones"	_submittor_name "bob jones"
+
+2) Mapping (tag, value) pairs to changes in scope
+   Creating save frames from values:  Often, users entering data into
+   AutoDep will need to create new save frames to be later referenced
+   with framecodes.  The only way to define these new save frames is to
+   read them in in data tags, however.
+
+   There are three cases in which the data tag appears:
+   I)   In a collection of free tags, possibly followed by tags in loops.
+   II)  In a loop, possibly preceeded by free tags.
+   III) In a saveframe containing several loops, each with its own
+        change-of-scope tag.
+
+
+   Case I:
+   In this case, the entire contents of the old saveframe containing
+   the tag is placed into the new saveframe, regardless of where the
+   tag appears.  The tag may appear anywhere before the first loop.
+
+   syntax:
+   save_tag_to_scope
+   loop_
+     _old_tag_name
+     _old_saveframe
+
+   "_new_molecule_code"
+   "save_new_molecules"
+
+
+   effect:
+   generic STAR 			  NMR-STAR
+
+   save_new_molecules			  save_hmgb
+   _new_molecule_type protein		  _new_molecule_type protein
+   _new_molecule_name "hemoglobin bombay" _new_molecule_name "hemoglobin
+bombay"
+   _new_molecule_code hmgb
+					  loop_
+   loop_				    _residue
+     _residue				    a s t r p m
+     a s t r p m			    stop_
+     stop_				    save_
+   save_
+
+
+   Case II:
+   In this case, any tags in the old saveframe before the loop are left
+   in the old saveframe, and a new saveframe is made with the data
+   items in each iteration of the loop.
+
+   syntax:
+   save_tag_to_scope
+   loop_
+     _old_tag_name
+     _old_saveframe
+
+   "_new_molecule_code"
+   "save_new_molecules"
+
+   effect:
+   generic STAR 			NMR-STAR
+
+   save_new_molecules			save_new_molecules
+   _creation_date "9 May 1997"		_creation_date "9 May 1997"
+   _created_by "evil dave"		_created_by "evil dave"
+                                        save_
+
+   loop_				save_hmgb
+     _new_molecule_code			_new_molecule_name "hemoglobin bombay"
+     _new_molecule_name			_new_molecule_type "heme protein"
+     _new_molecule_type
+					save_
+   "hmgb"  "hemoglobin bombay"
+   "heme protein"			save_pen
+   "pen"  "penicillin" "antibiotic"	_new_molecule_name "penicillin"
+   					_new_molecule_type "antibiotic"
+
+   save_				save_
+
+
+   Case III:
+   In this case, a new saveframe is made with the data for each loop
+   iteration. Each loop will have exactly one change-of-scope tag.
+
+   syntax:
+   save_tag_to_scope
+   loop_
+     _old_tag_name
+     _old_saveframe
+
+   "_new_molecule_code"
+   "save_new_molecules"
+   "_experimenter_last_name"
+   "save_new_molecules"
+
+
+   effect:
+   generic STAR 			NMR-STAR
+
+   save_new_molecules
+   loop_				save_hmgb
+     _new_molecule_code			_new_molecule_name "hemoglobin bombay"
+     _new_molecule_name			_new_molecule_type "heme protein"
+     _new_molecule_type
+					save_
+   "hmgb"  "hemoglobin bombay"
+   "heme protein"			save_pen
+   "pen"  "penicillin" "antibiotic"	_new_molecule_name "penicillin"
+   stop_				_new_molecule_type "antibiotic"
+
+   loop_				save_
+     _experimenter_first_name
+     _experimenter_initial		save_Jones
+     _experimenter_last_name		_experimenter_first_name Bob
+   Bob I Jones				_experimenter_initial I
+   Joe M Smith				save_
+   stop_
+   save_				save_Smith
+					_experimenter_first_name Joe
+					_experimenter_initial M
+					save_
+
+   Case IV:
+   In this case, the original saveframe contains at least one loop that isn't
+   made into a new saveframe.  Such saveframes should simply be left in the
+   original saveframe.  (This Case is included only for completeness.  It
+doesn't
+   require any new software or dictionary entries.)
+
+3) Mapping sets of (tag, value) pairs to loops
+ 3a) Mapping tag names into values:
+     To make the interface (that generates ZINC/generic STAR) easier to
+     understand, sets of items that are recorded as NMR-STAR loops are
+     read as unlooped tags.  Generally, one of the *tags* read into the
+     generic STAR is a *value* in the NMR-STAR loop.  In addition to
+     the tags being renamed, the name of a tag being used as a value is
+     inserted into the value of another in NMR-STAR, with the leading
+     underscore removed.
+
+     syntax:
+     save_tag_to_value
+     loop_
+       _old_tag_name
+       _old_saveframe
+       _new_tag_name
+       _tag_name_becomes_value
+
+     "_ph" 		"save_conditions" 	"_condition" 	"yes"
+     "_ph" 		"save_conditions" 	"_value"     	"no"
+     "_ph_error" 	"save_conditions" 	"_error" 	"no"
+     "_temperature" 	"save_conditions" 	"_condition" 	"yes"
+     "_temperature" 	"save_conditions" 	"_value" 	"no"
+     "_temperature_error" "save_conditions" 	"_error" 	"no"
+     ....
+
+     effect:
+
+     generic STAR 		NMR-STAR
+
+     save_conditions		save_conditions
+     _ph 7			loop_
+     _ph_error 0.1		  _condition
+     _temperature 25		  _value
+     _temperature_error 0.01	  _error
+     save_
+				ph 	7 	0.1
+				temperature	25	0.01
+
+				stop_
+				save_
+
+
+ 3b) Parsing values into loops
+
+     Occasionally, a single generic STAR tag holds a set of closely
+     related data that are represented in NMR-STAR as a loop.  The
+     value has to be read, and broken up in a loop based on a specified
+     delimitter or field width.
+
+     syntax:
+     save_value_to_loop
+     loop_
+       _old_tag_name
+       _old_saveframe
+       _new_tag_name
+       _delimitter
+       _width
+
+     "_sequence"
+     "save_molecule_description"
+     "_residue"
+     .
+     "1"
+     ...
+
+
+     effect:
+
+     generic STAR 	NMR-STAR
+
+     _sequence		loop_
+     acerytal 		  _residue
+
+			  a c e r
+    			  y t a l
+
+			stop_
+
+
+In practice this is a rare occurance, and would only be used in conjunction
+with other transformations (1b and 4a).
+
+3c) Mapping keyed tag names into values
+    A variation on 3a.  Sometimes, we do not know the name of the saveframe
+    to search for the tag (for instance, if the saveframe name was derived
+    from a tag value by 2).  Rather than altering the tag based on its
+    existance in a particular saveframe, the tag is altered if it is in
+    the same saveframe as another tag (the key) that takes a particular
+    value (the key value).
+
+     syntax:
+     save_keyed_tag_to_value
+     loop_
+       _old_tag_name
+       _key_tag
+       _key_value
+       _new_tag_name
+       _tag_name_becomes_value
+
+     "_ph" 		"_marker"   "best run"	"_condition" 	"yes"
+     "_ph" 		"_marker"   "best run"	"_value"     	"no"
+     "_ph_error" 	"_marker"   "best run"	"_error" 	"no"
+     "_temperature" 	"_marker"   "best run"	"_condition" 	"yes"
+     "_temperature" 	"_marker"   "best run"	"_value" 	"no"
+     "_temperature_error" "_marker" "best run"	"_error" 	"no"
+     ....
+
+     effect:
+
+     generic STAR 		NMR-STAR
+
+     save_conditions_1		save_conditions_1
+     _marker "best run"		_marker "best run"
+     _ph 7			loop_
+     _ph_error 0.1		  _condition
+     _temperature 25		  _value
+     _temperature_error 0.01	  _error
+     save_
+				ph 	7 	0.1
+				temperature	25	0.01
+
+				stop_
+				save_
+
+
+4) manipulating the generic STAR file based on its content
+ 4a) Retreiving text based on (tag, value) pairs
+     The generic STAR file contains special (tag, value) pairs that map
+     onto more complex, pre-defined NMR-STAR objects.  (This is done
+     for the convenience of AutoDep users.)  These objects need to be
+     inserted into the generic STAR file, replacing the (tag, value)
+     pair that reference them, being inserted into the current scope,
+     or being appended to the file.  Replacements of (tag, value) pairs
+     go into the current scope.
+
+     syntax:
+     save_tag_file_retrieval
+     loop_
+       _old_tag_name
+       _old_saveframe
+       _value
+       _replace_insert_append
+       _new_text
+
+     "_conditions"
+     "save_experiment"
+     "$conditions_1"
+     "append"
+     ;
+     save_conditions_1
+     [...rest of STAR definitions]
+     save_
+     ;
+
+     "_experiment_name"
+     "save_experiment"
+     "user defined"
+     "insert"
+     ;
+     _experiment_type .
+     ;
+
+     "_equipment_used"
+     "save_experiment"
+     "supergauss 400"
+     "replace"
+     ;
+     _instrument_type $wide_bore_spectrometer
+     _instrument_name "supergauss 400"
+     ;
+     _stop
+
+     generic STAR			NMR-STAR
+
+     save_experiment			save_experiment
+     _conditions  $conditions_1		_conditions  $conditions_1
+     _experiment_name "user defined"	_experiment_name "user defined"
+     _experimentor "bob jones"		_experiment_type .
+     _equipment_used "supergauss 400"	_instrument_type
+$wide_bore_spectrometer
+     _save				_instrument_name "supergauss 400"
+					_save
+                                        [...rest of NMR-STAR file]
+					save_conditions_1
+					[...rest of STAR definitions]
+					save_
+
+     Note:  This operation is often used with transformation 1b, so
+     that users can refer to objects already in BMRB very easily.  Also
+     note that in some cases, we will desire to operate on a tag
+     regardless of its value.  In those cases, the _value tag in the
+     loop will contain *.
+
+ 4b) File insertion based on (tag, value) pairs
+     Certain tags contain the name of a STAR file to be appended to the
+     generic STAR file.  The (tag, value) pair is deleted and the file
+     added to the in-memory generic STAR representation.
+
+     syntax:
+     save_value_to_filename
+     loop_
+       _old_tag_name
+       _old_saveframe
+
+
+     effect:
+     (depends on the contents of the file)
+
+5 Removing unneeded (tag, value) pairs
+  Some tags produced by the Autodep software are not needed for further
+  processing of the data.  This transformation deletes these (tag, value)
+  pairs.  If the tag is in a loop, all values associated with that tag
+  should be removed as well.
+
+  syntax:
+
+  save_remove_tag
+  loop_
+    _old_tag_name
+    _old_saveframe
+
+  '_dummy_citation_type'	'save_citation'
+  '_redunant_citation_code'	'save_citation'
+
+  effect:
+
+  generic STAR				NMR-STAR
+
+  save_citation				save_citation
+  _citation_type  	book		_citation_type	book
+  _dummy_citation_type	book		_date 		'97 July 1'
+  _date			'97 July 1'	loop_
+  loop_					_classification_type
+    _classification_type		_classification_code
+    _classification_code
+    _redundant_classification_code	  ISBN  0-13-110362-8
+					  LOC	QA76.73.C15K47
+    ISBN  0-13-110362-8   013B6		_stop
+    LOC	QA76.73.C15K47    QA76.97july	_save
+  _stop
+  _save
+
+------
+Part 2:  Re-ordering generic STAR to NMR-STAR
+------
+
+1) Order of save frames and tags
+   Save frames and tags in generic STAR occur in an arbitrary order.
+   They have to be re-ordered for NMR-STAR output.
+
+   syntax:
+   save_order
+   loop_
+     _saveframe_name
+     _key_tag
+     _key_value
+     _saveframe_number
+     loop_
+       _tag_name
+       _tag_number
+
+     "save_foo"
+     .
+     .
+     1
+     "_foo" 1
+     "_bar" 2
+     "_zot" 3
+    _stop
+    *
+    "_saveframe_category"
+    "bar"
+     2
+     "_foo" 1
+     "_bar" 2
+     "_zot" 3
+    _stop
+    _stop
+
+2) Grouping and printing loops
+   There are many ways that tags with multiple values within a save frame
+   could be arranged into loops.  For NMR-STAR files, a particular
+   association is desired.  In addition, the loops can be written out
+   either as tables, with all the values for one iteration of the loop
+   on one line, or simply with each value on a separate line.
+
+   syntax:
+   save_loops
+   loop_
+     _saveframe_name
+     _key_tag
+     _key_value
+     _tabulation_flag
+     loop_
+     _tag_name
+
+   "save_example"
+   .
+   .
+   tabulate
+   "_first_name" "_last_name" "_title"
+   _stop
+   *
+   "_saveframe_category"
+   "publication"
+   linear
+   "_publication_name" "_publication_date" "_publication_volume"
+   _stop
+   _stop
+
+
+Note:  the information for both of these items can be generated from
+the full NMR-STAR file Eldon created.
+
+-----
+Part 3:  Order of operations
+-----
+
+1)  5 Removing unneeded (tag, value) pairs
+2)  1b  Replacing Values with Framecodes
+3)  4 Manipulating The Generic Star File Based on Its Content
+4)  1a One-to-One Mappings of (tag, value) pairs
+5)  3a Mapping sets of (tag, value) pairs to loops
+6)  2 Mapping (tag, value) pairs to Changes in Scope
+7)  1c One-to-One Mappings of keyed (tag, value) pairs
+8)  3c Mapping sets of keyed (tag, value) pairs to loops
+9)  Operations in Part 2.
+
+-----
+Part 4:  Priority of Implementation
+-----
+
+These sections must be implemented for this project to be useful:
+
+Part 1:  2, 3a, 4a
+Part 2:  1 and 2
+
+These sections should be implemented as time permits:
+
+Part 1:  1a, 1b, 3b, 4b
+
+-- 
+
+
+
+( New rule:  This will be rule 6, when it is ready. )
+-----------------------------------------------------
+
+Rule 6:  Make new tag.
+    Creating a new tag by regular expression cut/paste.
+
+    This rule is used when a new tag needs to be created
+    by either inserting hardcoded new data, or by copying
+    parts of existing data.  This same rule is to be used
+    for both creating free tags and creating looped tags.
+    (When a looped tag is created, it will be created in its
+    own separate loop with just the one tagname.  If there are
+    supposed to be many tags collected into one loop, that can
+    be done later by the loop-ordering in transform II.)
+
+    The mapping rule for this is complex.  The map rule is a
+    nested loop.  The outermost level describes the new tag to
+    be created.  The levels inside that describe where to get the
+    string to use for its value.  The nesting level can be as
+    arbitrarily deep as is needed.  (This will be more obvious as
+    the rule is explained).
+
+    The outermost level of the loop describes where the new tag is
+    to be put, what it is to be called, and the replacement string
+    to use to paste the value into it.  In the simple degenerate
+    case, this is just a hardcoded string to fill the new value
+    with.  Here is an example:
+
+    simple case: value to paste is a hardcoded literal string:
+
+	save_make_new_tags
+	    loop_
+		_key_tag_to
+		_key_value_to
+		_new_tagname_to
+		_new_tag_loop_flag_to
+		_new_value_to
+		loop_
+		    ... Note that there will be more inner loop
+		    ... levels, but I have not described them yet.
+		    loop_
+			...etc...
+
+		"_Saveframe_category"
+		"entry_information"
+		"_NMR_revision_number"
+		"N"     # means "NO, this is not going to be a loop."
+		'2.1'
+		stop_
+	    stop_
+
+    The above entry says to find the saveframe where the tag called
+    "_Saveframe_category" has the value "entry_information" and
+    insert a new tag into it called "_NMR_revision_number" and fill it
+    with the simple value 2.1.  Note that whatever quotation delimiter
+    technique was used in the mapping file to describe the new value,
+    that will be the delimiter used in the new value.  (In the above
+    example, the value would be a single-quote delimited string '2.1')
+
+    But there is more to it than that.  The is also a need to be able
+    to paste the value from other strings.  To do this we use the
+    regular expression search/replace syntax, and add another loop
+    level that will define where the values are coming from.  This
+    is best explained with an example:
+
+	save_make_new_tags
+	    loop_
+		_key_tag_to
+		_key_value_to
+		_new_tagname_to
+		_new_tag_loop_flag_to
+		_new_value_to
+		loop_
+		    # The reson for these "_1" numbers will become
+		    # apparent later:
+		    # --------------------------------------------
+		    _key_tag_from_1
+		    _key_value_from_1
+		    _copy_from_tag_1
+		    _copy_from_regex_1
+		    loop_
+			# There will be even more tags here, but
+			# I have not described them yet.
+			....
+
+		# As before, the following four fields will define
+		# a specific saveframe and tag in that saveframe to
+		# create:
+		# -------------------------------------------------
+		"_Saveframe_category"
+		"entry_information"
+		"_Full_Author_Name"
+		"N"
+
+		# But this time, the _new_value_to field contains these
+		# strange backslashed numbers.  They refer to patterns
+		# that will be matched down below in the loops under
+		# this row.  \1 is the first memorized pattern, \2 is
+		# the second memorized pattern, \3 is the third memorized
+		# pattern and so on.  There cannot be more than 9
+		# memorized patterns \1 through \9.:
+		# Notice how this example shows that the same value can
+		# be pasted twice (the \1):
+		# -------------------------------------------------------
+		"Informal Name: \1, Full name: \3, \2 \1"
+
+		    # Now each sub-row of the inner loop contains another
+		    # definition of a tag, followed by a regular
+		    # expression to pick out parts of the value for that
+		    # tag.  Note that saying "SAME SAVEFRAME" for the
+		    # key tag and key value is a shorthand for saying that
+		    # the same saveframe as the new tag is being created in
+		    # is the saveframe to get the tag from.  This is not
+		    # 100% the same as simply repeating the same tag/value
+		    # keys, as will be explained down below:
+		    "SAME SAVEFRAME"
+		    "SAME SAVEFRAME"
+		    "_First_and_Middle"    # example value: "Steven L."
+
+		    # This is the expression to pull from the tag:
+		    # Note that there are two parenthesized expressions
+		    # in this example.  One becomes \1 and the other
+		    # becomes \2:
+		    '([^ \t])$1[ \t]+([A-ZÁ-Ý]\.)$2'
+		    stop_
+
+		    # Then more fields can be described as well:
+		    "SAME SAVEFRAME"
+		    "SAME SAVEFRAME"
+		    "_Last"                # example value: "Mading"
+
+		    # Note that the counting of parenthesis starts off
+		    # where the last one ended, so since the last
+		    # parenthesized expression was called \2,
+		    # this next one is going to be called \3:
+		    '\(.*\)'   # remember entire string.
+		    stop_
+	    stop_
+    
+    In the above example, we see an example of parsing out two
+    parts from one string and pasting them back independantly
+    (The first name and middle initial were parenthesized
+    subsets of the regular expression for parsing the value).
+
+    We also see an example of taking values from two different
+    tags and pasting them into one new tag.
+
+    Note the use of "SAME SAVEFRAME" in the above example.  This
+    is not just a shorthand for convienience.  It actually has
+    important meaning.  If instead of the phrase "SAME SAVEFRAME",
+    the actual tag value pair "_Saveframe_category", "entry_information"
+    were used, the meaning would have been slightly different.  Had there
+    been multiple saveframes in the file that happened to have that
+    particular tag/value combination, then giving the tag/value pair
+    would have matched *ALL* such saveframes, making it behave much
+    like a loop of multiple values (which I haven't explained yet).
+    Putting "SAME SAVEFRAME" in for the value indicates that the match
+    should be taken ONLY from the saveframe into which the new value is
+    being inserted.
+    
+    Well, there's one more slippery case to deal with: what about when
+    the data is supposed to come from many values for a loop, concatenated
+    together into one value?  For example, you want to take a loop like
+    this in the input file:
+
+	    save_nee
+		_Saveframe_category  example_cat
+
+		_people_type   "Inventors of Unix"
+		loop_
+		    _firstname_and_middle
+		    _lastname
+
+		    'Dennis M.'  Ritche
+		    'Ken J.'     Thompson
+		    'Brian R.'   Kernighan
+		stop_
+	    save_
+
+    And from that you want to make a tag called "_credits" and you
+    want to make it have the value:
+
+    'Inventors of Unix: Dennis Ritche, Ken Thompson, Brian Kernighan'
+
+    (Where the "Inventors of Unix" phrase came from the tag "_people_type"
+    and the authors' names came from the loop.)
+
+    Well, the way to do that is to include yet another level of nesting.
+    Again, it's easiest to explain with an example:
+
+	save_make_new_tags
+	    loop_
+		_key_tag_to
+		_key_value_to
+		_new_tagname_to
+		_new_loop_flag_to
+		_new_value_to
+		loop_
+		    _key_tag_from_1
+		    _key_value_from_1
+		    _copy_from_tag_1
+		    _copy_from_regex_1
+		    loop_
+			# Each level of nesting under this
+			# point looks the same, but with the
+			# numbers incremented to force the
+			# tag names to be unique
+			_key_tag_from_2
+			_key_value_from_2
+			_copy_from_tag_2
+			_copy_from_regex_2
+
+		"_Saveframe_category"
+		"example_cat"
+		"_credits"
+		"N"  # No, this is not a loop
+		'\1:\2'
+
+		    "SAME SAVEFRAME"
+		    "SAME SAVEFRAME"
+		    "_people_type"
+		    '\(.*\)'       # Remember the whole value as \1
+		    stop_
+
+		    "SAME SAVEFRAME"
+		    "SAME SAVEFRAME"
+		    "SUBPAT CONCAT"  # special flag explained below
+		    ' \1 \2,'  # repeat this per loop row, and call it \2
+
+			"SAME SAVEFRAME"
+			"SAME SAVEFRAME"
+			"_firstname_and_middle"
+			'\(.*\) [A-ZÁ-Ý]\.'  # Remember all but the initial.
+
+			"SAME SAVEFRAME"
+			"SAME SAVEFRAME"
+			"_lastname"
+			'\(.*\)'         # Remember the whole value.
+			stop_
+		    stop_
+		stop_
+    
+    In the above example, the free tag value is handled the same as
+    before, and the loop value is handled by creating an intermediate
+    level that pastes the loop's values into a pattern and repeats it
+    for each row of the loop it finds.  (The ' \1 \2,' pattern prints
+    the firstname, then the lastname, then a comma.  It repeats this
+    for each row of the loop of names that was found, and the whole
+    string itself becomes one of the memorized patterns to paste up
+    above.  (it is the \2 value). )  This behavior is activated by
+    putting the special keyword "SUBPAT CONCAT" in for the tagname.
+
+    Note that up above I said that if the "SAME SAVEFRAME" flag is
+    not used, and instead another keytag/keyvalue pair is given,
+    that this means that this *could* match multiple saveframes that
+    fit the criteria.  If that is actually the desired effect,
+    that you want to paste values from several seperate saveframes,
+    then this can be treated just like the loop was in the example
+    above.
+
+The above example only deals with how to combine things together
+into one value from many, or one value from one.  For cases where
+the new data to be created is a *loop* of values, the above
+rule is also used.
+
+Now, let's go into examples of what to do if the loop flag is set
+to "Y":
+
+    Given the following rule in the mapping file:
+
+	loop_
+	    _key_tag_to
+	    _key_value_to
+	    _new_tagname_to
+	    _new_loop_flag_to
+	    _new_value_to
+	    loop_
+		_key_tag_from_1
+		_key_value_from_1
+		_copy_from_tag_1
+		_copy_from_regex_1
+		loop_
+		    ... etc ...
+	    
+	    "_Saveframe_category"  "testcat"  "_new_tag1"  "Y" "\1"
+		'SAME SAVEFRAME'
+		"SAME SAVEFRAME"
+		"_orig_tag1"
+		'(.*)'  # remember the whole string
+		stop_
+	    stop_
+	stop_
+
+    If the input file had been like this:
+
+	save_tst1
+	    _Saveframe_category   testcat
+
+	    _orig_tag1   'original value'
+	save_
+    
+    Then the output file would be like this:
+
+	save_tst1
+	    _Saveframe_category   testcat
+
+	    _orig_tag1   'original value'
+
+	    loop_
+		_new_tag1
+		
+		'original value'
+	    stop_
+	save_
+    
+    Notice that even though the input only had one match,
+    it still put the output in a loop anyway.
+
+    However, if the original file had been like this:
+    
+	save_tst1
+	    _Saveframe_category   testcat
+
+	    loop_
+		_some_other_irrelevant_tag1
+		_orig_tag1
+		_some_other_irrelevant_tag2
+
+		val1	val2	val3
+		val4	val5	val6
+	    stop_
+	save_
+
+    Then the output file would have been like this:
+
+	save_tst1
+	    _Saveframe_category   testcat
+
+	    loop_
+		_some_other_irrelevant_tag1
+		_orig_tag1
+		_some_other_irrelevant_tag2
+
+		val1	val2	val3
+		val4	val5	val6
+	    stop_
+
+	    loop_
+		_new_tag1
+
+		val2
+		val5
+	    stop_
+	save_
+
+    Also, the same would be true if, instead of saying "SAME SAVEFRAME",
+    a keytag/keyvalue pair  had been used, and there were more than
+    one saveframe that matched, as in this example:
+
+	loop_
+	    _key_tag_to
+	    _key_value_to
+	    _new_tagname_to
+	    _new_loop_flag_to
+	    _new_value_to
+	    loop_
+		_key_tag_from_1
+		_key_value_from_1
+		_copy_from_tag_1
+		_copy_from_regex_1
+		loop_
+		    ... etc ...
+	    
+	    "_Saveframe_category"  "testcat"  "_new_tag1"  "Y" "\1"
+		"_Saveframe_category"
+		"someothercat"
+		"_orig_tag1"
+		'(.*)'  # remember the whole string
+		stop_
+	    stop_
+	stop_
+
+	# Given an Input file like this:
+	    save_tst1
+		_Saveframe_category   testcat
+
+		_dummy_tag 'foo'
+	    save_
+
+	    save_tst2
+		_Saveframe_category   someothercat
+
+		_orig_tag1   "hello"
+	    save_
+
+	    save_tst3
+		_Saveframe_category   someothercat
+
+		_orig_tag1   "goodbye"
+	    save_
+
+	# Then the output file would be this:
+	    save_tst1
+		_Saveframe_category   testcat
+
+		_dummy_tag 'foo'
+		loop_
+		    _new_tag1
+
+		    "hello"
+		    "goodbye"
+		stop_
+	    save_
+
+	    save_tst2
+		_Saveframe_category   someothercat
+
+		_orig_tag1   "hello"
+	    save_
+
+	    save_tst3
+		_Saveframe_category   someothercat
+
+		_orig_tag1   "goodbye"
+	    save_
+
+Note that if multiple hits are found, but the rule said the
+new tag was not supposed to be in a loop, then only the first
+hit will be used, and a warning error will be issued to the
+error log.
+
+One more situation to talk about is when there are *some*
+things in the replacements patterns that have multiple hits,
+and some that don't.  Here is an example:
+
+    The rule looks like this:
+	loop_
+	    _key_tag_to
+	    _key_value_to
+	    _new_tagname_to
+	    _new_loop_flag_to
+	    _new_value_to
+	    loop_
+		_key_tag_from_1
+		_key_value_from_1
+		_copy_from_tag_1
+		_copy_from_regex_1
+		loop_
+		    ... etc ...
+	    
+	    "_Saveframe_category"
+	    "testcat"
+	    "_new_tag1"
+	    "Y"
+	    "tag 1 is: \1 tag 2 is: \2"
+		"SAME SAVEFRAME"
+		"SAME SAVEFRAME"
+		"_orig_tag_1"
+		'(.*)'  # remember the whole string
+		stop_
+		"SAME SAVEFRAME"
+		"SAME SAVEFRAME"
+		"_orig_tag_2"
+		'(.*)'  # remember the whole string
+		stop_
+	    stop_
+	stop_
+    
+    If the input file has this:
+
+	save_tst1
+	    _Saveframe_category  testcat
+
+	    _orig_tag_1   "freevalue"
+	    loop_
+		_orig_tag_2
+		_orig_tag_3
+
+		"loopvalue1"	"loopvalue2"
+		"loopvalue3"	"loopvalue4"
+		"loopvalue5"	"loopvalue6"
+	    stop_
+	save_
+
+    Then the output file will have this:
+	save_tst1
+	    _Saveframe_category  testcat
+
+	    _orig_tag_1   "freevalue"
+	    loop_
+		_orig_tag_2
+		_orig_tag_3
+
+		"loopvalue1"	"loopvalue2"
+		"loopvalue3"	"loopvalue4"
+		"loopvalue5"	"loopvalue6"
+	    stop_
+
+	    loop_
+		_new_tag1
+
+		"tag 1 is: freevalue tag 2 is: loopvalue1"
+		"tag 1 is: freevalue tag 2 is: loopvalue3"
+		"tag 1 is: freevalue tag 2 is: loopvalue5"
+	save_
+
+    So, the rule is that if *SOME* of the values in the replacement
+    patterns are multiple values, but other ones are singular
+    values, then the singular values will be re-used as many times
+    as is needed to iterate over the multiple values.

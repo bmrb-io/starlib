@@ -1,0 +1,256 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>Changs from starlib1 to starlib2.</TITLE>
+    <LINK HREF=main.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H2>Changes from starlib1 to starlib2, that require
+    changes in the way it is used.</H2>
+    <P>
+    PLEASE NOTE:   PLEASE CONSULT <A HREF=cache_changes.html>
+    THE PAGE ABOUT THE NEW CACHE</A> IN ADDITION TO THIS PAGE.
+    The major change with this revision is that there is now
+    a cache used for all looped DataValueNodes, but due to the
+    fact that C++ has no garbage collection, the caller of this
+    library must tell the library when it is done using the
+    DataValueNode pointers that may have been cached.
+    <P>
+    Substantial changes were made in this release of the 
+    star library.  Because of these changes, some minor
+    alterations to the user code that calls this library
+    will be needed.  We tried avoiding this where we could,
+    but in some cases it was inevitable that the changes
+    to the library would end up exposing changes to the
+    users of the library.  We have our own code that relies
+    on this library, so rest assured that we are aware of
+    the hassle that a change to the interface creates.  We
+    would not have done these changes if we did not deem
+    them necessary.
+    <P>
+    <HR WIDTH=50%>
+    <H3>ofstream *os has become ostream *os</H3>
+    <H4>The change:</H4>
+    The external 'os' object was previously defined as
+    being of type <TT>ofstream *</TT> . It is now of type
+    <TT>ostream *</TT> .  Thus, for example, code needs
+    to be changed thusly:
+    <PRE>
+    // old code was:
+    //   ofstream *os; // in the global variable section.
+    //   ...
+    //   os = new ofstream(filedes(stdout));
+    //   ...
+    // NEW CODE:
+    ostream *os;  // in the global variable section.
+    ...
+    os = &amp;cout;
+    </PRE>
+    Also, in the past the <TT>os</TT> pointer was <TT>delete<TT>d
+    at the end of most programs.  In the case where <TT>os</TT> is
+    now being initialized by pointing it at cout (as in the example
+    above), it should never be deleted.  Instead it should merely
+    be flushed with <TT>os->flush()</TT>.  Deleting (and thus closing)
+    the standard output yields unpredictable results.
+    <H4>Justification for the change</H4>
+    Recent changes to the compiler exposed that ofstream is 
+    meant to be used only for files that are physically present
+    in some type of filesystem, with a filename.  It is not to be
+    used for things like pipes, or standard output.  Because the
+    user of this library is supposed to be able to use the os
+    pointer to point to any type of file object, including pipes
+    or standard output, this had to change.  The operation to
+    create an ofstream object out of a file descriptor has been
+    removed from the C++ language standard.
+
+    <HR WIDTH=50%>
+    <H3>iterators are no longer interchangable with pointers</H3>
+    <H4>The change:</H4>
+    In the past one was able to use pointers to objects and
+    iterators on those objects interchagably.  Thus the
+    following code would work:
+    <PRE>
+    LoopTableNode *table = ... ;
+    ...
+    table->erase( &amp;((*table)[N]) );
+    </PRE>
+    This no longer compiles, because it depended upon the ability to
+    pass a pointer to the object at (*table)[4] to a routine that
+    wanted an iterator on table.  Behind the scenes this was because
+    the table object was implemented as an array where a pointer is
+    the only thing one needs to know to find out where one is in the
+    array.  You can replace any array subscript notion code as in the
+    following example:
+    <PRE>
+    LoopTableNode *table = ... ;
+    ...
+    table->erase( table->begin() + N );  //where N = the index into the table
+    </PRE>
+    This uses iterator arithmetic to achieve the same effect as an array
+    subscript, but does it with iterators instead of pointers.
+    <H4>Justification for the change</H4>
+    There is no guarantee that the implementation behind the scenes will
+    remain as an array, and so there is no guarantee that passing a pointer
+    to some item in that array will actually continue to work as a
+    substitute for an iterator.  The STL data structure on which this
+    library is based, the <TT>vector</TT>, recently made this change and
+    we had no choice but to expose the change upward to users of the
+    library.  The only algorithm that would work to re-implement the
+    ability to use pointers as iterators would have changed the performance from constant
+    time to linear time, and this is not the sort of change that should be
+    made silently without the users of the library knowing.
+    <P>
+    <HR WIDTH=20%>
+    In those cases where it is not easy to switch to an array notation, there
+    is a workaround, explained below, that may be used to still operate by a
+    pointer, but be warned that it operates in linear (N) time, where N = number
+    of nodes in the list of things being deleted.  (For example to delete a
+    DataNameNode from a loop with 5 columns, N = 5, but to delete a row from a
+    loop of 5000 rows, N = 5000).
+    <P>
+    Essentially, this technique ends up scanning the list of nodes
+    sequentially to find the right iterator that goes with the pointer
+    passed in.
+    <P>
+    This workaround is as follows:
+    <PRE>
+	// (someNode is either a LoopTableNode, or a LoopRowNode, or a
+	// LoopNameListNode, or a DataLoopNameListNode, and ptr is a 
+	// pointer to the type of data node stored inside someNode.)
+
+	// If it used to say this:
+	someNode-&gt;erase( &amp;ptr  );
+	// Then change it to this:
+	someNode-&gt;erase( someNode-&gt;iteratorFor(ptr) );
+
+	// If it used to say this:
+	someNode-&gt;insert( &amp;ptr , newPtr );
+	// Then change it to this:
+	someNode-&gt;insert( someNode-&gt;iteratorFor( ptr ), newPtr );
+    </PRE>
+    Again, it cannot be emphasised enough that this is a slow method
+    not to be used repeatedly on large lists of things (like certain
+    loops).  This could have been implemented silently by making a
+    copy constructor that would transform pointer-to into an iterator
+    but I chose to deliberately not do that.  People using the
+    new starlib2 should be alerted to this change and make the decision
+    themselves as to whether to use this slower method or to rewrite
+    the code to not use pointers.)
+    <HR WIDTH=50%>
+    <H3>Using the ValCache</H3>
+    <H4>The change:</H4>
+    Data Value Node are now in a cache, that should periodically
+    be cleared.
+    <H4>Justification for the change</H4>
+    The amount of memory wasted with keeping a DataValueNode alive in
+    memory for each value in a loop was immense.  This change allows the
+    DataValueNodes inside loops to be stored in a more compact form internally,
+    to be converted out into DataValueNodes only when they are actually
+    being used by the caller.  But to make this work in a language like
+    C++ that has no garbage collection, the caller of the library must
+    tell the library when he is no longer using any of the live
+    DataValueNode pointers that have been passed to him.  This change is
+    detailed <A HREF=cache_changes.html>in a seperate page.</A>
+    <HR WIDTH=50%>
+    <H3>Ability to skip parsing</H3>
+    <H4>The change:</H4>
+    The ability now exists to let you insert a directive into the
+    input file to specify a section or sections to be "skipped" during
+    parsing.  The section skipped is stored in memory in a simple string,
+    without any parsing into nodes in the tree.  When writing the
+    file out using unparse(), the section will simply be dumped as-is
+    out to the output file, at same point.  In this way one could preserve
+    the majority of the file intact without actually parsing it - while
+    still parsing that portion of the file that contains the data of
+    interest.
+    <H4>Justification for the change</H4>
+    Some files are rather large, and some software is only concerned
+    with a very small portion of the file, such that if the entire file
+    is parsed into the node tree, time and RAM is wasted filling
+    the tree with data the program doesn't use.
+    <H4>How it works:</H4>
+    In the file, the following directives may be inserted:
+    <PRE>
+#&lt;START-SKIP&gt;
+#&lt;END-SKIP&gt;
+    </PRE>
+    These directives must be typed exactly as shown, and must appear
+    at the very start of a line, much like a C preprocessor directive.
+    The section of the file that is contained between the #&lt;START-SKIP&gt;
+    and the #&lt;END-SKIP&gt; directives will be stored as an inaccessable
+    string to be dumped out later when Unparse() is called.  There exist
+    no methods for getting access to these strings.  They are hidden from
+    the application program that is using starlib2.
+    <P>
+    To be legal, the remainder of the file after the skipped section has
+    been "removed" must still form valid star syntax.  For example,
+    the following would be illegal:
+    <PRE>
+    data_ex
+    save_example1
+        _tag1  value1
+	loop_
+	    _looptag1
+	    _looptag2
+
+	    lval1  lval2
+#&lt;START-SKIP&gt;
+	    lval3  lval4
+	    lval5  lval6
+	stop_
+
+    save_
+#&lt;END-SKIP&gt;
+    </PRE>
+
+    The above example is illegal because it cuts out the trailing save_ from
+    the saveframe called save_example1, leaving behind invalid STAR syntax.
+    <P>
+    This, however, would be perfectly legal, and is how this feature is
+    intended to be used - imagine that you had 5 saveframes in the file
+    and you were only interested in the one called "save_data4":
+    <P>
+    <PRE>
+    data_ex
+#&lt;START-SKIP&gt;
+    save_data1
+        <I>...assume there is a lot of data here...</I>
+    save_
+    save_data2
+        <I>...assume there is a lot of data here...</I>
+    save_
+    save_data3
+        <I>...assume there is a lot of data here...</I>
+    save_
+#&lt;END-SKIP&gt;
+    save_data4
+        <I>...assume there is data here that the program is interested in...</I>
+    save_
+#&lt;START-SKIP&gt;
+    save_data5
+        <I>...assume there is a lot of data here...</I>
+    save_
+#&lt;END-SKIP&gt;
+    </PRE>
+    <HR WIDTH=50%>
+    <H3>simple string get/set interface for loops</H3>
+    <H4>The change:</H4>
+    The ability now exists to let you get at the string values of
+    a loop from the level of the loop (instead of getting the
+    loop row, and then getting the value from the row).  The methods
+    that have been added to make this work are:
+    <UL>
+	<LI>LoopTableNode::getString()</LI>
+	<LI>LoopTableNode::setString()</LI>
+	<LI>LoopRowNode::stringAt()</LI>
+	<LI>LoopRowNode::setStringAt()</LI>
+    </UL>
+    The documenation in the doc/html directory contains further information
+    on the use of these methods, although their use should be fairly
+    intuitive.  The example program "simple_string.cc" in the examples
+    directory will probably provide a good enough idea of how the
+    methods work.
+    These methods completely avoid the value cache, and as such are faster
+    than the older methods.  When the extra complexity of LoopRowNodes
+    and DataValueNodes is not needed, these methods will be faster.
+</BODY>

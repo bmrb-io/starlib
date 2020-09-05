@@ -1,0 +1,57 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: basic design</TITLE>
+    <LINK HREF=install.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>Starlib's basic design</H1>
+    <P>
+    The starlib is a collection of C++ classes that are used to
+    build up a picture in memory of a star file on the disk.
+    This picture in memory of a star file is in a 'tree' format,
+    which follows a very close parallel to the BNF grammar of a
+    STAR file.
+    <P>
+    All the classes in a STAR file tree are derived from a base class
+    called <CODE><B>ASTnode</B></CODE>.  All the classes inherit some
+    basic behaviors from this base class.  Much of the useful
+    functionality of the STAR file can be found right in this base class.
+    <P>
+    At this point the out-of-line documentation is not 100% of
+    what you need to know to make use of starlib.  Much of the
+    functionality of the starlib is explained within the header files
+    themselves.
+    <P>
+    At minimum, you should read these header files, in the order shown:
+    <PRE>
+	astnode.h    // The base class - lots of useful methods
+	                 // are explained in here.
+	list.h       // A basic list primitive that is used in the code.
+	astlist.h    // A derivation of the basic list primitive that
+	                 // is almost identical to list.h in its
+			 // interface, but it does more 'behind the
+			 // scences'. than list.h
+	ast.h        // The file describing all the functions in all the
+	                 // classes of the starlib.
+			 // The really important methods will have
+			 // large comments explaining them.  Methods 
+			 // that are undocumented are probably not as
+			 // important for the user of the library.
+    </PRE>
+    <P>
+    One intended goal for the future is to create better documentation
+    of these functions, but when the code and the documentation are
+    maintained in seperate locations, this inevitably results in
+    discrepencies.  A program to create documentation from the header
+    files themselves (such as is done in Java) would be helpful, and
+    several such programs exist for C++, and I am considering them.
+    <P>
+    The remainder of the documentation files deal with examples and
+    code snippets demonstrating ways to use the library.
+    <P>
+    <HR>
+    <A HREF=intentions.html> - previous topic - </A>
+    <A HREF=install.html> - next topic - </A>
+
+</BODY>

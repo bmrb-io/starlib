@@ -1,0 +1,78 @@
+
+#   Passthru example - a badly formatted
+#   star file that looks better on the output
+#   after being read by the star library.
+
+data_passthru_example
+    loop_
+	_Looptag1
+	_loOPTAg2
+	loop_
+	    _Innertag
+
+	65161.32905 adios
+ 	    stop_
+ 	65.32 goodbye
+ 	    stop_
+ 	0.32525 "au revior"
+	    v1
+            v2
+	    stop_
+	91205 cat
+	    adslkfj
+	    adsflkjadf
+	    stop_
+    stop_
+
+    loop_
+	_vertical_tag1
+	_verticAL_TAG2
+	_vertical_tag3
+
+	vertical_val1
+	vertical_val2
+;
+vertical
+value
+3
+;
+	vertical_val1.1
+	vertical_val1.2
+	'vertical val 1.3'
+
+    stop_
+
+    save_BLOCk1
+        loop_
+	    _hAS_DEcimals  _all_integer    _all_text   _mixed
+	    139.141        193             hello       hello
+	    0.1            5               goodbye     9.1
+	    .              .               .           .
+	    98             -1              test        test
+	stop_
+	_freetag1 freeval
+	_freetag2 freeval2
+	_freeTag3 freeval3
+    save_
+    save_block2
+	loop_
+	    _single_nest1
+	    _single_nest2
+	    _single_nest3
+	    _single_nest4
+
+	    v1 v2 v3 vFour
+	    vFive vSix vSeven vEight
+	    vNine "v X" 'value X1' "value XII"
+	    "value 13"   "value 14"
+;
+(value 15)
+This is a very long string to test out how semicolon
+delimited strings get printed by the starlib
+program.  This very long string, because it is a semicolon
+delimited string, should be ignored in determining the 
+formatting of the columns.
+;
+"value 16"
+	stop_
+    save_

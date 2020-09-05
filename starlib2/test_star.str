@@ -1,0 +1,25 @@
+data_test
+#
+_XXX.freetagA  H2
+_XXX.freetagB  H2'
+_XXX.freetagC  "H2""
+_XXX.freetagD  'H2''
+_XXX.freetagE  H2"
+_XXX.freetagF  "H2"
+_XXX.freetagG  'H2'
+#
+loop_
+_YYY.tag_one
+_YYY.tag_two
+_YYY.tag_three
+H2'      A     B
+'H2''''  A     B
+'H'2'    A     B
+x        x     x
+x        x     'H2''
+x       'H2''  x
+x       'H2''  'H2''
+'H2''    x     x
+'H2''    x      'H2''
+'H2''   'H2''  x
+'H2''   'H2''  'H2''

@@ -1,0 +1,429 @@
+<html><head><TITLE>SaveFrameNode</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  SaveFrameNode : public <!1><A HREF="DataNode.html">DataNode</A> </H2><BLOCKQUOTE>
+This is a save frame from the STAR file
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=95>
+<param name=classes value="CASTnode,MASTnode.2.html,CDataNode,MDataNode.html,CSaveFrameNode,MSaveFrameNode.html">
+<param name=before value="M,M,M">
+<param name=after value="Md_SP,Md_,M">
+<param name=indent value="0,1,2">
+<param name=arrowdir value="up">
+</APPLET>
+<hr>
+
+<DL>
+<TABLE BORDER>
+<DT><h3>Public Methods</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.27.18"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>AddDataItem</B> (const string & name, const string & value, <!2><A HREF="DataValueNode.2.html#DOC.31.1">DataValueNode::ValType</A> type )<br>
+<I> <em>DEPRECIATED - use the STL vector operations instead.</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.17"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>AddItemToSaveFrame</B> (<!1><A HREF="DataNode.html">DataNode</A>* S)<br>
+<I> <em>DEPRECIATED - use the STL vector operations instead.</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.19"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>AddLoop</B> (const string &tflag = string("tabulate"))<br>
+<I> <em>DEPRECIATED - use the STL vector operations instead.</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.20"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>AddLoopDataName</B> (const string & name)<br>
+<I> <em>DEPRECIATED - use the STL vector operations instead.</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.21"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>AddLoopDataValue</B> ( const string & value, <!2><A HREF="DataValueNode.2.html#DOC.31.1">DataValueNode::ValType</A> type )<br>
+<I> <em>DEPRECIATED - use the STL vector operations instead.</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.2"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>changeName</B> (const string &name)<br>
+<I>Set the name of this saveframe</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.4"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="DataNode.html">DataNode</A>*> * </TD><TD><B>GiveMyDataList</B> ()<br>
+<I>Return the list (STL vector) of the DataItemNodes and DataLoopNodes
+in this saveframe</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.15"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>isOfType</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int </TD><TD><B>myLongestStr</B> ( void ) const <br>
+<I>Returns the length of the longest string in this object</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.10"> <IMG BORDER=0 SRC=icon1.gif></A> string </TD><TD><B>myName</B> () const <br>
+<I> Return the name of this saveframe.  (includes the "save_" prefix</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.14"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTnode::ASTtype</A> </TD><TD><B>myType</B> (void)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.16"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="DataValueNode.2.html">DataValueNode</A> *> * </TD><TD><B>returnLoopValues</B> (const string & tagName)<br>
+<I> <em>DEPRECIATED - use the STL vector operations instead.</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.11"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="DataNode.html">DataNode</A>* </TD><TD><B>ReturnSaveFrameDataNode</B> (string dataItemName)<br>
+<I> Given a name of a DataItem, return it (or NULL if it can't be found).</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.22"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="DataNode.html">DataNode</A>* </TD><TD><B>ReturnSaveFrameDeepLook</B> ( string dataItemName, int *nest, int *col )<br>
+<I> <em>DEPRECIATED - use searchByTag instead @see searchByTag</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.5"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> * </TD><TD><B>searchByTag</B> ( const string &searchFor )<br>
+<I>Given a tag name, find the AST object it resides in</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> * </TD><TD><B>searchByTagValue</B> ( const string &tag, const string &value )<br>
+<I>Given a tag name and a value, find the AST object that that
+particular tag and value pair resides in</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> * </TD><TD><B>searchForType</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> type, int delim = -1 )<br>
+<I>This method returns a list of all the nodes of the given type
+that are inside this node, or children of this node, or children
+of children of this node, etc all the way down to the leaf nodes</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.23"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>unlinkChild</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )<br>
+<I>  remove the child from this ASTnode but not free it's space.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>Unparse</B> (int indent)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.13"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>Unparse</B> (int indent, int padsize )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual </TD><TD><B>~SaveFrameNode</B> ()<br>
+<I> Destructor.</I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.27.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.27.3.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  const  string& </TD><TD><B>getPreComment</B> ( void )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.3.3"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>setPreComment</B> ( const string &cmt )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.3.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>These functions are used to give some nodes in the
+AST tree the ability to remember a comment to be
+pasted into the file in front of that node</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.27.1.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SaveFrameNode</B> (const string & name)<br>
+<I> Make a new empty save frame with the given name.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.1.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SaveFrameNode::SaveFrameNode</B> ( <!2><A HREF="SaveFrameNode.html#DOC.27.1.2">SaveFrameNode</A> &S )<br>
+<I> Copy constructor.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.1.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SaveFrameNode::SaveFrameNode</B> ( bool link, <!2><A HREF="SaveFrameNode.html#DOC.27.1.2">SaveFrameNode</A> &S )<br>
+<I>Copy with parallel link</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.27.1.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SaveFrameNode</B> (<!1><A HREF="SaveHeadingNode.2.html">SaveHeadingNode</A> *h, <!1><A HREF="SaveFrameListNode.html">SaveFrameListNode</A> *l)<br>
+<I> </I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE></DL>
+<hr><H3>Inherited from <A HREF="DataNode.html">DataNode:</A></h3>
+
+<DL>
+</DL>
+<hr><H3>Inherited from <A HREF = "ASTnode.2.html"> ASTnode:</A></h3>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><IMG SRC=icon2.gif>  enum  <B>ASTtype</B>
+
+<DL>
+<DT><A HREF="#DOC.81.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ASTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATABLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.4"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAFILENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.5"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.6"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAITEMNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.7"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.8"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPNAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.9"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPDEFLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.10"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.11"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPVALLISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.12"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATANAMENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.13"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATANODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.14"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAVALUENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.15"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>GLOBALBLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.16"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>GLOBALHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.17"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>HEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.18"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPROWNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.19"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ITERNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.20"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPNAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.21"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPDEFLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.22"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPTABLENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.23"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPITER</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.24"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPVALLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.25"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEFRAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.26"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEFRAMENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.27"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.28"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>STARLISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.29"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>STARFILENODE</B> </B>
+ <DD><I></I>
+
+</DL>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> virtual  void  <B>copyFrom</B>( const <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> &copyFromMe )
+<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*  <B>myParent</B>(void)
+<DT><IMG SRC=icon2.gif> bool  <B>NotVirtualIsOfType</B>( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>removeChild</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>removeMe</B>( void )
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setParent</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *p )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>unlinkMe</B>( void )
+</DL></DL>
+<hr><H3>Inherited from <A HREF = "ASTnodeWithPosBits.html"> ASTnodeWithPosBits:</A></h3>
+
+<DL>
+</DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+This is a save frame from the STAR file
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="">
+<A NAME ="DOC.27.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="SaveFrameNode">
+<A NAME ="DOC.27.1.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SaveFrameNode(const string & name)</B></TT>
+<DD> Make a new empty save frame with the given name.
+<DL></DL><P>
+<A NAME="SaveFrameNode::SaveFrameNode">
+<A NAME ="DOC.27.1.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SaveFrameNode::SaveFrameNode( <!2><A HREF="SaveFrameNode.html#DOC.27.1.2">SaveFrameNode</A> &S )</B></TT>
+<DD> Copy constructor.
+<DL></DL><P>
+<A NAME="SaveFrameNode::SaveFrameNode">
+<A NAME ="DOC.27.1.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SaveFrameNode::SaveFrameNode( bool link, <!2><A HREF="SaveFrameNode.html#DOC.27.1.2">SaveFrameNode</A> &S )</B></TT>
+<DD>Copy with parallel link.  Set "link" to true to create
+a copy with a parallel link, or set it to false to create
+a copy without a parallel link.  See the external documentation
+for more details on parallel copies.
+<DL></DL><P>
+<A NAME="SaveFrameNode">
+<A NAME ="DOC.27.1.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SaveFrameNode(<!1><A HREF="SaveHeadingNode.2.html">SaveHeadingNode</A> *h, <!1><A HREF="SaveFrameListNode.html">SaveFrameListNode</A> *l)</B></TT>
+<DD> 
+<DL></DL><P></DL>
+
+<A NAME="~SaveFrameNode">
+<A NAME ="DOC.27.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~SaveFrameNode()</B></TT>
+<DD> Destructor.
+<DL></DL><P>
+<A NAME="myName">
+<A NAME ="DOC.27.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> string  myName() const </B></TT>
+<DD> Return the name of this saveframe.  (includes the "save_" prefix
+<DL></DL><P>
+<A NAME="changeName">
+<A NAME ="DOC.27.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  changeName(const string &name)</B></TT>
+<DD>Set the name of this saveframe.  (Mus inculde the "save_" prefix
+manually.
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.27.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="getPreComment">
+<A NAME ="DOC.27.3.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  const  string&  getPreComment( void )</B></TT>
+<DL></DL><P>
+<A NAME="setPreComment">
+<A NAME ="DOC.27.3.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  setPreComment( const string &cmt )</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.27.3.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>These functions are used to give some nodes in the
+AST tree the ability to remember a comment to be
+pasted into the file in front of that node.  This
+is useful if you want to insert header comments of
+some sort into the output produced by Unparse().
+As of this writing, no provisions are being made
+to handle the parsing of comments from the original
+file and storing them via these functions.  The
+grammar to do that would be rather convoluted.
+These functions are only intended to be used by programs
+insterting their own comments after the file has
+been read.
+<p>
+In the interest of saving memory, the preComment ability
+only exists at the level of saveframenodes and blocknodes.
+If you attempt to use these functions at other levels,
+nothing will happen (the comment will always be empty).
+<p>
+The string must contain the comment characters embedded
+inside, like so: "# this is a\n# multiline comment.",
+not like this: "this is a\nmultiline comment."  This is
+so that the caller is allowed to have the comment contain
+blank lines like this:
+<pre>
+# This is an example comment.
+
+# The comment has some blank
+
+# lines in it.
+</pre>
+If the Unparse() function were designed to insert the comment
+characters (#) itself, then such a comment block would be impossible
+to create.
+<p>
+Note that the comment lines are not syntax-checked in any way, so
+using these functions it is entirely possible to create invalid
+STAR files, since these "comments" can really be strings with
+anything at all in them - so be careful.
+<p>
+To get rid of the preComment if you change your mind, set it to
+a zero-length string with setPreComment().
+<DL></DL><P></DL>
+
+<A NAME="ReturnSaveFrameDataNode">
+<A NAME ="DOC.27.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="DataNode.html">DataNode</A>*  ReturnSaveFrameDataNode(string dataItemName)</B></TT>
+<DD> Given a name of a DataItem, return it (or NULL if it can't be found).
+<DL></DL><P>
+<A NAME="GiveMyDataList">
+<A NAME ="DOC.27.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="DataNode.html">DataNode</A>*> *  GiveMyDataList()</B></TT>
+<DD>Return the list (STL vector) of the DataItemNodes and DataLoopNodes
+in this saveframe.  Manipulations such as insert() and erase()
+on this list will directly insert or delete things from the saveframe
+itself.
+<DL></DL><P>
+<A NAME="Unparse">
+<A NAME ="DOC.27.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  Unparse(int indent)</B></TT>
+<DL></DL><P>
+<A NAME="Unparse">
+<A NAME ="DOC.27.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  Unparse(int indent, int padsize )</B></TT>
+<DL></DL><P>
+<A NAME="myType">
+<A NAME ="DOC.27.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTnode::ASTtype</A>  myType(void)</B></TT>
+<DL></DL><P>
+<A NAME="isOfType">
+<A NAME ="DOC.27.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  isOfType( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )</B></TT>
+<DL></DL><P>
+<A NAME="returnLoopValues">
+<A NAME ="DOC.27.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="DataValueNode.2.html">DataValueNode</A> *> *  returnLoopValues(const string & tagName)</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector operations instead.</em>
+<DL></DL><P>
+<A NAME="AddItemToSaveFrame">
+<A NAME ="DOC.27.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  AddItemToSaveFrame(<!1><A HREF="DataNode.html">DataNode</A>* S)</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector operations instead.</em>
+<DL></DL><P>
+<A NAME="AddDataItem">
+<A NAME ="DOC.27.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  AddDataItem(const string & name, const string & value, <!2><A HREF="DataValueNode.2.html#DOC.31.1">DataValueNode::ValType</A> type )</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector operations instead.</em>
+<DL></DL><P>
+<A NAME="AddLoop">
+<A NAME ="DOC.27.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  AddLoop(const string &tflag = string("tabulate"))</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector operations instead.</em>
+<DL></DL><P>
+<A NAME="AddLoopDataName">
+<A NAME ="DOC.27.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  AddLoopDataName(const string & name)</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector operations instead.</em>
+<DL></DL><P>
+<A NAME="AddLoopDataValue">
+<A NAME ="DOC.27.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  AddLoopDataValue( const string & value, <!2><A HREF="DataValueNode.2.html#DOC.31.1">DataValueNode::ValType</A> type )</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector operations instead.</em>
+<DL></DL><P>
+<A NAME="ReturnSaveFrameDeepLook">
+<A NAME ="DOC.27.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="DataNode.html">DataNode</A>*  ReturnSaveFrameDeepLook( string dataItemName, int *nest, int *col )</B></TT>
+<DD> <em>DEPRECIATED - use searchByTag instead @see searchByTag</em>
+<DL></DL><P>
+<A NAME="searchByTag">
+<A NAME ="DOC.27.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  searchByTag( const string &searchFor )</B></TT>
+<DD>Given a tag name, find the AST object it resides in.  It returns
+a pointer to the lowest level AST object that the tag resides in.
+The caller of this function needs to use the isOfType() and/or
+myType() methods to determine what type to cst the object.
+Returns a NULL if nothing was found.
+<P>
+This search is case-insensitive.  The names of things, according
+to the STAR specification, are supposed to be case-insensitive.
+This is being applied not only to tag names but also to
+saveframe names and datablock names.
+<p>
+WARNING: The list returned is allocated in heap space.  It is
+the caller's responsibility to delete the list after it is no
+longer needed.
+
+<DL><DT><B>Parameters:</B><DD><B>searchFor</B> -  Look for this string as the tag name.<br></DL><P>
+<A NAME="searchForType">
+<A NAME ="DOC.27.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  searchForType( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> type, int delim = -1 )</B></TT>
+<DD>This method returns a list of all the nodes of the given type
+that are inside this node, or children of this node, or children
+of children of this node, etc all the way down to the leaf nodes
+<DL><DT><B>Parameters:</B><DD><B>type</B> -  the type to search for
+<br><B>delim</B> -  the delimiter to search for if searching for
+DataValueNodes.  The default is "dont-care".<br></DL><P>
+<A NAME="searchByTagValue">
+<A NAME ="DOC.27.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  searchByTagValue( const string &tag, const string &value )</B></TT>
+<DD>Given a tag name and a value, find the AST object that that
+particular tag and value pair resides in.  This is like
+performing an SQL search: WHERE tag = value.
+<P>
+This search is case-insensitive.  The names of things, according
+to the STAR specification, are supposed to be case-insensitive.
+This is being applied not only to tag names but also to
+saveframe names and datablock names.
+<P>
+(However, the values are case-sensitive.  A search for a
+tag of <TT>_t1</TT> is identical to a search for a tag of <TT>_T1</TT>,
+but a search for a <b>value</b> of "V1" is different from a search for
+a value of "v1".)
+<p>
+WARNING: The list returned is allocated in heap space.  It is
+the caller's responsibility to delete the list after it is no
+longer needed.
+
+<DL><DT><B>Parameters:</B><DD><B>tag</B> -  Look for this tag...
+<br><B>value</B> -  ...where it has this value.<br></DL><P>
+<A NAME="unlinkChild">
+<A NAME ="DOC.27.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  unlinkChild( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )</B></TT>
+<DD>  remove the child from this ASTnode but not free it's space.
+<DL></DL><P>
+<A NAME="myLongestStr">
+<A NAME ="DOC.27.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int  myLongestStr( void ) const </B></TT>
+<DD>Returns the length of the longest string in this object.
+Used by Unparse() at various levels of the AST tree.
+(In this case, it just returns the length of the heading of
+the heading of this saveframe: )
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

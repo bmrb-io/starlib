@@ -1,0 +1,439 @@
+=============================
+From: Jundong Lin <jundong@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>
+Cc: Hongyang Yao <hongyang@bmrb.wisc.edu>, Eldon Ulrich <elu@bmrb.wisc.edu>
+Date: Jul 27, 2005 9:28 AM
+Subject: v2.1 to v3 conversion
+
+I used the following commend to run the conversion.
+
+/bmrb/linux/bin/s2nmr /bmrb/etc/nmrstr3.0-nmrstr2.1_prod.str v3.file -o 2.1file
+
+There are few more problems with 2.1 output file.
+
+1. The tag and its value:
+
+_Entry.Release_request       "On publication"
+
+got carried to 2.1 file, but they are not valid in 2.1, for "On publication"
+release request, the corrosponding tags in 2.1 are:
+
+   _Release_immediately      no
+   _Release_on_publication   yes
+
+2. The three letter residue label in the polymer got repeated in the same loop.
+
+3. One polymer would only have one saveframe in the v2.1, but in the output file
+there were two saveframe generated.
+
+4. For system that contains more than one polymer, the shift table was not
+splitted in the 2.1 output file.
+
+I have a example entry reside in the following directory:
+
+/share/jundong/21to30
+
+Thanks,
+Jundong
+
+===========================
+From: Jundong Lin <jundong@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>
+Cc: Hongyang Yao <hongyang@bmrb.wisc.edu>, Eldon Ulrich <elu@bmrb.wisc.edu>
+Date: Aug 17, 2005 1:53 PM
+Subject: About NMR v3 to 2.1
+
+Hi, Steve,
+
+I just converted one entry from NMRStar v3 to 2.1, it is good to see the
+problems we had before were fixed. But there are few more problems:
+
+1. Since neither this tag or the value is valid in the 2.1 dictionary
+
+    _Release_request        "On publication"
+
+should be replaced by the following tags
+
+   _Release_immediately       no _Release_on_publication    yes
+
+2. For residual dipolar couplings the right value for  _Saveframe_category_type
+is residual_dipolar_couplings, the value I had in the file was "RDCs"
+
+3. The entry's study was a homo dimer(RNA), in this case there should be two
+components in the system, both point to one polymer saveframe. And there
+should  be a magnetic equivalent loop inserted for these two component. The
+converted file got two polymer saveframe for the same polymer, first saveframe
+inherited the polymer type correctly as "RNA", but the residue sequence was
+repeated. And the second polymer the polymer type was set as "protein", the
+validator will try convert these RNA residue name into three letter protein
+name according to this value. It might be hard to have the program to attend
+all these issue, but since the goal is the have automatic conversion with no
+human intervention, I should let you know all these challenges.
+
+4. In the residual dipolar couplings saveframe following tags and values were
+missing in 2.1 file
+
+   _Sample_conditions          $conditions_2 _Spectrometer_frequence_1H   600
+   _Mol_system_component_name  "GAAA tetraloop 11-nt receptor RNA strand 1"
+
+They are mandatory tags and they have corresponding values in the v3 file.
+
+The v3 file I converted was:
+
+/share/subedit/Third.Ed/bmr6652/bmr6652_3.str
+
+The command I ran the conversion was:
+
+/bmrb/linux/bin/s2nmr /bmrb/etc/nmrstr3.0-nmrstr2.1_prod.str bmr6652_3.str -o
+bmr6652_21.str
+
+Thanks,
+Jundong
+
+
+
+============================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>
+Cc: Jundong Lin <jundong@bmrb.wisc.edu>, Eldon Ulrich <elu@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Aug 17, 2005 1:24 PM
+Subject: About 3.0 to 2.1 conversion
+
+Hi Steve,
+
+There are a few issues that need to be fixed in the conversion of 3.0 to 2.1 format.
+
+1.  Missing tag:
+
+save_contact_persons
+
+2.  Missing values for the tag:
+
+      _Atom_isotope_number
+
+
+Thank you,
+Hongyang
+
+
+==========================
+From: Steve Mading <madings@gmail.com>	Mailed-By: gmail.com
+To: hongyang@bmrb.wisc.edu
+Cc: Steve Mading <madings@bmrb.wisc.edu>, Jundong Lin <jundong@bmrb.wisc.edu>, Eldon Ulrich <elu@bmrb.wisc.edu>
+Date: Aug 17, 2005 1:46 PM
+Subject: Re: About 3.0 to 2.1 conversion
+
+On 8/17/05, Hongyang Yao <hongyang@bmrb.wisc.edu> wrote:
+> Hi Steve,
+>
+> There are a few issues that need to be fixed in the conversion of 3.0 to 2.1 format.
+>
+> 1.  Missing tag:
+>
+> save_contact_persons
+
+I'm confused.  That's the name of a saveframe.  What is the missing
+tag inside the saveframe you are referring to?
+
+>
+> 2.  Missing values for the tag:
+>
+>        _Atom_isotope_number
+
+I'll look at this when I get back from the class.
+
+  ReplyReply to allForward
+		
+		
+==========================================
+From Hongyang Yao 	to me, Jundong
+
+Hi Steve,
+
+
+>>1.  Missing tag:
+>>
+>>save_contact_persons
+>
+>
+> I'm confused.  That's the name of a saveframe.  What is the missing
+> tag inside the saveframe you are referring to?
+>
+
+Sorry for the confusion.  I mean the name of this saveframe.
+
+Thanks,
+Hongyang
+
+======================================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>, Eldon Ulrich <elu@bmrb.wisc.edu>, Jundong Lin <jundong@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Cc: mdb <maildb@bmrb.wisc.edu>
+Date: Sep 1, 2005 10:41 AM
+Subject: Problem of conversion from 3.0 to 2.1 (BMRB entry 6516)
+
+Hi Steve,
+
+I encounter some problem of converting version 3.0 to 2.1 for entry 6516.  The
+saveframe of ligand PNS is missing.  Would you please check it out when you have
+time?
+
+Thanks,
+Hongyang
+======================================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>
+Cc: Eldon Ulrich <elu@bmrb.wisc.edu>, Jundong Lin <jundong@bmrb.wisc.edu>, mdb <maildb@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Sep 1, 2005 2:57 PM
+Subject: Problem of conversion from 3.0 to 2.1 (BMRB entry 6546)
+
+Hi,
+
+I used the production version to convert the entry 6546 from 3.0 to 2.1, and
+found some serious problem other than the format or comments.  Please make sure
+to consider them when you update the script.  The pre-edit version is
+"bmr6546_21.str-old-11".  It listed the residue sequence twice in the same loop,
+and the monomeric saveframe was listed twice (where the second one list the one
+letter code).
+
+Thank you for your help,
+Hongyang
+=====================================
+From: <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>
+Cc: Eldon Ulrich <elu@bmrb.wisc.edu>, Jundong Lin <jundong@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Oct 19, 2005 1:28 PM
+Subject: Comments for the 3.0 to 2.1 conversion (2)
+
+
+Hi Steve,
+
+When I convert entry 6860, I noticed another problem.  The whole saveframe of
+"NMR_applied_experiment" was missing.  It is more critical and urgent than
+previously reported problems.
+
+Hope you can modify the script when you have time.
+
+Thanks,
+Hongyang
+
+=====================================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>
+Cc: Jundong Lin <jundong@bmrb.wisc.edu>, Eldon Ulrich <elu@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Oct 18, 2005 9:58 AM
+Subject: Comments for the 3.0 to 2.1 conversion
+
+Hi Steve,
+
+Today, I used the 3.0 to 2.1 script to convert the entries (6732 -6735).
+Here are the comments:
+
+1.  The following tag is not valid:
+
+    _Release_request
+
+The correct one in 2.1 version should be:
+
+    _Release_date_request
+
+2.  The following tag and its value are missing:
+
+   _Mol_polymer_class      protein
+
+3.  For the saveframe of "crosslink_bonds", the following line is missing:
+
+    save_crosslink_bond_definitions
+
+4.  The value "protein" for the following tag is not right, and it should be
+"monomer", or "dimer", etc.
+
+    _System_oligomer_state
+
+
+Hope you can modify the script when you have time.
+
+Thanks,
+Hongyang
+
+
+
+==================================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Eldon Ulrich <elu@bmrb.wisc.edu>
+Cc: Steve Mading <madings@bmrb.wisc.edu>, David Tolmie <dtolmie@bmrb.wisc.edu>, Jundong Lin <jundong@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Nov 1, 2005 3:56 PM
+Subject: [Fwd: Comments for the 3.0 to 2.1 conversion]
+Hi,
+
+Here is the list of comments.
+
+Thanks,
+Hongyang
+
+
+-------Additional ones afterward-----------
+
+When I convert entry 6860, I noticed another problem.  The whole saveframe of
+"NMR_applied_experiment" was missing.  It is more critical and urgent than
+previously reported problems.
+
+-----------------------------------------
+
+Another thing about the conversion is that ligands or non-standard residues
+saveframe get converted into two saveframes. But only one is necessary.
+
+
+-----------------------------------------
+
+
+
+---------- Forwarded message ----------
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>
+To: Steve Mading <madings@bmrb.wisc.edu>
+Date: Tue, 18 Oct 2005 10:58:07 -0500
+Subject: Comments for the 3.0 to 2.1 conversion
+Hi Steve,
+
+Today, I used the 3.0 to 2.1 script to convert the entries (6732 -6735).
+Here are the comments:
+
+1.  The following tag is not valid:
+
+    _Release_request
+
+The correct one in 2.1 version should be:
+
+    _Release_date_request
+
+2.  The following tag and its value are missing:
+
+   _Mol_polymer_class      protein
+
+3.  For the saveframe of "crosslink_bonds", the following line is missing:
+
+    save_crosslink_bond_definitions
+
+4.  The value "protein" for the following tag is not right, and it should be
+"monomer", or "dimer", etc.
+
+    _System_oligomer_state
+
+
+Hope you can modify the script when you have time.
+
+Thanks,
+Hongyang
+
+======================
+From: Steve Mading <madings@gmail.com>	Mailed-By: gmail.com
+To: Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Nov 1, 2005 4:34 PM
+Subject: _T1.ID tags
+
+Try the run again.
+Are the _T1.ID values being inserted now?
+
+================================
+From: Steve Mading <madings@gmail.com>	Mailed-By: gmail.com
+To: hongyang@bmrb.wisc.edu
+Date: Nov 1, 2005 4:56 PM
+Subject: Re: _T1.ID tags
+
+On 11/1/05, Hongyang Yao <hongyang@bmrb.wisc.edu> wrote:
+
+    Hi,
+
+    Here is the directory:
+
+    /share/subedit/Third.Ed/bmr6577/upload/
+
+    and the file is:
+
+    Combined_21
+
+
+I have it working now on all the types in that file:
+ _Coupling_constant.ID
+_Heteronucl_NOE.ID
+_T1.ID
+_T2.ID
+_Order_param.ID
+
+===========================================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@gmail.com>
+Cc: Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Nov 2, 2005 4:05 PM
+Subject: Re: _T1.ID tags
+
+Hi,
+
+Thank you.  I used the new script and found that there are still something
+missing.  The following tags need to be addede to the T2 loop:
+
+        _T2.Entity_assembly_ID
+        _T2.Entity_ID
+
+Hope you can modify it again when you have time.  I have done this entry
+manually already.  This is not so urgent for today.
+
+Thanks,
+Hongyang
+
+
+
+
+=====================
+From: Hongyang Yao <hongyang@bmrb.wisc.edu>	Mailed-By: bmrb.wisc.edu
+Reply-To: hongyang@bmrb.wisc.edu
+To: Steve Mading <madings@bmrb.wisc.edu>, David Tolmie <dtolmie@bmrb.wisc.edu>
+Cc: Eldon Ulrich <elu@bmrb.wisc.edu>, Jundong Lin <jundong@bmrb.wisc.edu>, Hongyang Yao <hongyang@bmrb.wisc.edu>
+Date: Nov 2, 2005 4:50 PM
+Subject: About 3.0 to 2.1 conversion
+Hi,
+
+Please add the following to the list of comments of 3.0 to 2.1 comments.
+
+For entry 6577, the following are missing after conversion:
+
+1.  T1 data loop;
+2.  T2 saveframe;
+
+and there are too many tags in the data loop for S2 values.
+
+Thanks,
+Hongyang
+
+
+===================
+
+(This is in reference to the splitting and joining of the methyls in chemical shifts loops.
+There is still one issue unresolved)
+
+On 11/4/05, Hongyang Yao <hongyang@bmrb.wisc.edu> wrote:
+> Hi,
+>
+> It is pretty good.  The only issue is that there are some repitition of methyl
+> protons, such as:
+>
+> '860,860,860,861,861,861'
+
+Ah  - I see why that is happening.
+When the ambiguity list contains references to some of the collapsed
+methyls, in 3.0 it had to list all the parts seperately.  (In the
+above example, it used to point at a HD11, HD12, and HD13 that were on
+row 942, 943, and 944, but after collapsing it became just one row, on
+row 860.  The first instance of '860' in the comma-separated list is
+the one that used to point at 942. the second 860 is the one that used
+to point at 943, and the third 860 is the one that used to point at
+944.  I think I know an easy way to fix this, but eldon wants me to
+spend 100% of my time on pdbx/nmrif conversion right now, so I won't
+be able to get to it right away.)

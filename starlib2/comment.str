@@ -1,0 +1,418 @@
+data_1
+
+save_comment
+   _Saveframe_category  comment
+   loop_
+        _comment
+        _every_flag
+        _category
+
+        loop_
+            _tagname
+
+
+;
+#######################
+#  Entry information  #
+#######################
+
+
+;
+        N
+	entry_information .
+        stop_
+
+
+;
+#############################
+#  Citation for this entry  #
+#############################
+
+
+;
+	N
+	entry_citation 	.
+        stop_
+
+
+;
+##################################
+#  Molecular system description  #
+##################################
+
+
+;
+	N
+	molecular_system .
+        stop_
+
+
+;
+    ########################
+    #  Monomeric polymers  #
+    ########################
+
+
+;
+	N
+        monomeric_polymer .
+        stop_
+
+
+;
+
+
+	##############################
+	#  Polymer residue sequence  #
+	##############################
+
+
+;
+	N
+        monomeric_polymer 
+		'_Sequence_citation_label'     
+	        '_Ambiguous_sequence_features' 
+	        '_Residue_count'               
+	stop_
+
+
+;
+    ######################
+    #  Polymer residues  #
+    ######################
+
+
+;
+	N
+        polymer_residue .
+	stop_
+
+
+;
+    #############
+    #  Ligands  #
+    #############
+
+
+;
+	N
+        ligand 		.
+	stop_
+
+
+;
+    ########################################
+    #  Molecular bond linkage definitions  #
+    ########################################
+
+
+;
+	N
+        crosslink_bonds .
+	stop_
+
+
+;
+    ###################################################
+    #  Biologically functional molecule descriptions  #
+    ###################################################
+
+
+;
+	N
+        biol_func_molecular_system .
+	stop_
+
+
+;
+    ####################
+    #  Natural source  #
+    ####################
+
+
+;
+	N
+        natural_source 		.
+	stop_
+
+
+;
+    #########################
+    #  Experimental source  #
+    #########################
+
+
+;
+	N
+        experimental_source 	.
+	stop_
+
+
+;
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+
+
+;
+	N
+        sample 		.
+	stop_
+
+
+;
+    #############################
+    #  Purity of the molecules  #
+    #############################
+
+
+;
+	N
+        sample_mol_purity .
+	stop_
+
+
+;
+############################
+#  Computer software used  #
+############################
+
+
+;
+	N
+        software 	.
+	stop_
+
+
+;
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+
+
+;
+	N
+        NMR_spectrometer .
+	stop_
+
+
+;
+    #############################
+    #  NMR applied experiments  #
+    #############################
+
+
+;
+	N
+        NMR_applied_experiment 	.
+	stop_
+
+
+;
+#######################
+#  Sample conditions  #
+#######################
+
+
+;
+	N
+        sample_conditions 	.
+	stop_
+
+
+;
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+
+
+;
+	N
+        chemical_shift_reference 	.
+	stop_
+
+
+;
+	###################################
+	#  Assigned chemical shift lists  #
+	###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique                                       #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups                           #
+#      3             Aromatic atoms on opposite sides of the ring #
+#                        (e.g. Tyr HE1 and HE2 protons)           #
+#      4             Intraresidue ambiguities (e.g. Lys HG and    #
+#                         HD protons)                             #
+#      5             Interresidue ambiguities (Lys 12 vs. Lys 27) #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+
+
+;
+	N
+        assigned_chemical_shifts 	.
+	stop_
+
+
+;
+    ########################
+    #  Coupling constants  #
+    ########################
+
+
+;
+	N
+        coupling_constants .
+	stop_
+
+
+;
+#######################################
+#  Cited references within the entry  #
+#######################################
+
+
+;
+	N
+        citation 	.
+	stop_
+
+
+;
+###################################
+#  Author atom nomenclature maps  #
+###################################
+
+
+;
+	N
+        author_atom_nomenclature_maps 	.
+	stop_
+
+
+;
+##################################################################
+#  Residue sequence alignments between BMRB and other databases  #
+##################################################################
+
+
+;
+	N
+        sequence_alignments 	.
+	stop_
+
+
+;
+################################
+#  BMRB verification warnings  #
+################################
+
+
+;
+	N
+        BMRB_verification_warnings 	.
+	stop_
+
+
+;
+##############################
+#  Structure Coordinate Set  #
+##############################
+
+
+;
+	N
+        structure_coordinate_set 	.
+	stop_
+
+
+
+;
+##########################
+#  Protocol Information  #
+##########################
+
+
+;
+	N
+        protocol_information 	.
+	stop_
+
+
+
+;
+##############################################
+#  Distance Constraint Violation Statistics  #
+##############################################
+
+
+;
+	N
+        distance_constraint_violation_stats  .
+	stop_
+
+
+
+;
+###########################################
+#  Distance Constraint Number Statistics  #
+###########################################
+
+
+;
+	N
+        distance_constraint_number_stats  .
+	stop_
+
+
+
+;
+#################################################
+#  Distance Constraint Completeness Statistics  #
+#################################################
+
+
+;
+	N
+        distance_constraint_completeness_stats  .
+	stop_
+
+
+
+;
+##########################
+#  Distance Constraints  #
+##########################
+
+
+;
+	N
+        distance_constraints 	.
+	stop_
+
+     stop_
+save_
+

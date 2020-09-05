@@ -1,0 +1,34 @@
+data_data
+   save_test1
+      _Saveframe_category   sample
+
+      _Sample_type          solution
+      _Details             "shigemi tube"
+
+      loop_
+	 _Mol_label
+	 _Concentration_value
+	 _Concentration_min_value
+	 _Concentration_max_value
+	 _Concentration_value_units
+	 _Isotopic_labeling
+
+	 $synaptobrevinII  0.45  0.4  0.5  mM "13C, 15N" 
+
+      stop_
+
+      loop_
+	 _eraseme
+
+	  . 
+
+      stop_
+
+      loop_
+	 _Sample_label5*
+	 _Sample_type5*
+
+	  .  . 
+
+      stop_
+   save_

@@ -1,0 +1,2586 @@
+data_g2nmr_star_map_file
+       # 05-13-98 
+       #    (With additions by Steve Mading: 11-16-98)
+       #    (With additions by Eldon Ulrich: 12-10-98)
+       #    (With additions by Eldon Ulrich: 12-22-98)
+       #    (With additions by Steve Mading: 01-27-99 - redone for new order of operations paradigm)
+       #    (With additions by Eldon Ulrich: 03-03-99)
+       #    (With additions by Eldon Ulrich: 01-01-2001)
+
+save_order_of_operations
+
+   loop_
+      _order_sequence
+      _rule_framecode
+
+    1     $remove_tag
+    20     $tag_to_framecode
+##    30     $renamed_tags
+##    40     $tag_to_value
+    50     $tag_to_frame_loop_uniform
+    60     $tag_to_frame_loop_unique
+    70     $tag_to_frame_free
+    80     $keyed_renamed_tags
+    90     $make_new_saveframe
+    100    $tag_to_frame_free_2
+    110    $remove_null_tags_2
+    120    $keyed_renamed_tags_2
+    130    $keyed_tag_to_value
+    140    $free_all_category_tags
+    150    $make_citation_full_tag 
+    160    $explode_Mol_residue_sequence
+    180    $make_new_tag
+    200    $remove_null_tags
+    210    $tag_to_loop_one
+    220    $change_tag_value_one
+    300    $make_new_saveframe_two
+    320    $remove_null_tags_3
+##    340    $tag_to_framecode_two
+    350    $order
+    360    $loops
+    370    $insert_loop_defaults
+    380    $remove_tag_two
+    390    $remove_null_loop_rows
+    400    $remove_empty_frames
+
+   stop_
+
+save_
+
+save_explode_Mol_residue_sequence
+   _Saveframe_category    explode_Mol_residue_sequence
+save_
+
+save_remove_null_loop_rows
+    _Saveframe_category     remove_null_loop_rows
+
+   loop_
+      _key_tag
+      _key_value
+
+     loop_
+        _important_tagname
+
+      '_Saveframe_category'   chemical_shift_reference        
+                   '_Mol_common_name'
+
+
+     stop_
+
+      '_Saveframe_category'   sample_conditions
+                   '_Variable_value'
+                   '_Variable_value_error'
+                   '_Variable_value_units'
+
+     stop_
+
+   stop_
+
+save_
+
+
+save_tag_to_loop_one
+     _Saveframe_category   tag_to_loop
+
+    loop_
+       _key_tag
+       _key_value
+       _tag_to_put_in_loop
+
+   '_Saveframe_category'         'entry_information'                  '_Related_BMRB_accession_number'
+   '_Saveframe_category'         'entry_information'                  '_Relationship'
+
+   '_Saveframe_category'         'molecular_system'                   '_Biological_function' 
+   '_Saveframe_category'         'molecular_system'                   '_Mol_system_component_list*'
+   '_Saveframe_category'         'molecular_system'                   '_Mol_label'
+   '_Saveframe_category'         'molecular_system'                   '_Database_entry_mol_name'
+   '_Saveframe_category'         'molecular_system'                   '_Magnetic_equivalence'
+
+   '_Saveframe_category'         'coupling_constants'                 '_Sample_label'
+
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Sample_label'
+
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Atom_shift_assign_ID'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Residue_seq_code'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Residue_label'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Atom_name'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Atom_type'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Chem_shift_value'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Chem_shift_value_error'
+   '_Saveframe_category'         'assigned_chemical_shifts'           '_Chem_shift_ambiguity_code'
+
+
+   '_Saveframe_category'          monomeric_polymer                   '_Residue_seq_code' 
+   '_Saveframe_category'          monomeric_polymer                   '_Residue_author_seq_code'
+   '_Saveframe_category'          monomeric_polymer                   '_Residue_label'
+
+   "_Saveframe_category"          monomeric_polymer                   "_Database_name"                   
+   "_Saveframe_category"          monomeric_polymer                   "_Database_accession_code"         
+   "_Saveframe_category"          monomeric_polymer                   "_Database_entry_mol_name"         
+   "_Saveframe_category"          monomeric_polymer                   "_Sequence_alignment_details"      
+
+
+    stop_
+
+save_
+
+save_change_tag_value_one
+    _Saveframe_category  change_tag_value
+
+   loop_
+      _key_tag
+      _key_value
+      _tag_with_a_value_to_change
+      _tag_value
+      _new_tag_value
+
+   '_Saveframe_category'     'entry_citation'              '_Citation_type'                   'journal_entry'         journal
+   '_Saveframe_category'     'entry_citation'              '_Citation_status'                 'in_preparation'        'in preparation'
+   '_Saveframe_category'     'entry_citation'              '_Journal_volume'                  na                      ?
+   '_Saveframe_category'     'entry_citation'              '_Page_first'                      na                      ?
+   '_Saveframe_category'     'entry_citation'              '_Page_last'                       na                      ?
+   '_Saveframe_category'     'entry_citation'              '_Year'                            na                      ?
+
+
+   '_Saveframe_category'     'entry_information'           '_Entry_type'                      deposition_new          new
+
+   '_Saveframe_category'     monomeric_polymer             '_Mol_polymer_class'               protein_peptide         protein
+
+   '_Saveframe_category'     'natural_source'              '_Superkingdom'                    eucaryote               Eukaryota
+   '_Saveframe_category'     'natural_source'              '_Superkingdom'                    eubacteria              Eubacteria      
+   '_Saveframe_category'     'natural_source'              '_Kingdom'                         animalia                Metazoa
+   '_Saveframe_category'     'natural_source'              '_Kingdom'                         fungi                   Fungi
+   '_Saveframe_category'     'natural_source'              '_Kingdom'                         plantae                 .
+   '_Saveframe_category'     'natural_source'              '_Kingdom'                         protista                .
+
+   '_Saveframe_category'     'experimental_source'         '_Production_method'               recombinant_technology  'recombinant technology'
+   '_Saveframe_category'     'experimental_source'         '_Production_method'               es_natural_source       'purified from the natural source'
+   '_Saveframe_category'     'experimental_source'         '_Production_method'               chemically_synthesized  'chemical synthesis'
+   '_Saveframe_category'     'experimental_source'         '_Production_method'               cell_free_synthesis     'cell free synthesis'
+   '_Saveframe_category'     'experimental_source'         '_Production_method'               enzymatic_semisynthesis 'enzymatic semisynthesis'
+
+   '_Saveframe_category'     'sample'                      '_Sample_type'                     b_solution              solution
+   '_Saveframe_category'     'sample'                      '_Sample_type'                     c_solution              solution
+   '_Saveframe_category'     'sample'                      '_Sample_type'                     d_solution              solution
+
+   '_Saveframe_category'     'sample_conditions'           '_Variable_type'                   ionic_strength         'ionic strength'
+
+   '_Saveframe_category'     'assigned_chemical_shifts'    '_Sample_label'                    'sample 1'              $sample_1
+   '_Saveframe_category'     'assigned_chemical_shifts'    '_Sample_label'                    'sample 2'              $sample_2
+   '_Saveframe_category'     'assigned_chemical_shifts'    '_Sample_label'                    'sample 3'              $sample_3
+   '_Saveframe_category'     'assigned_chemical_shifts'    '_Sample_label'                    'sample 4'              $sample_4
+   '_Saveframe_category'     'assigned_chemical_shifts'    '_Sample_conditions_label'         'conditions 1'          $conditions_1
+   '_Saveframe_category'     'assigned_chemical_shifts'    '_Chem_shift_reference_set_label'  'csr 1'                 $chemical_shift_reference        
+
+   stop_
+
+save_
+
+
+save_remove_null_tags_3
+   _Saveframe_category    remove_null_tags
+
+   loop_
+      _key_tag
+      _key_value
+      _old_tagname
+
+  '_Saveframe_category'   sample                        '_Concentration_min_value'
+  '_Saveframe_category'   sample                        '_Concentration_max_value'
+
+  '_Saveframe_category'   chemical_shift_reference      '_Indirect_shift_ratio_citation_label'
+  '_Saveframe_category'   chemical_shift_reference      '_Reference_correction_type'
+  '_Saveframe_category'   chemical_shift_reference      '_Correction_value'
+  '_Saveframe_category'   chemical_shift_reference      '_Correction_value_citation_label'
+
+   stop_
+
+save_
+
+
+save_remove_null_tags_2
+   _Saveframe_category    remove_null_tags
+
+   loop_
+      _key_tag
+      _key_value
+      _old_tagname
+
+  '_Saveframe_category'      sample     '_Concentration_value2*'
+  '_Saveframe_category'      sample     '_Concentration_value3*'
+  '_Saveframe_category'      sample     '_Concentration_value4*'
+  '_Saveframe_category'      sample     '_Concentration_min_value2*'
+  '_Saveframe_category'      sample     '_Concentration_min_value3*'
+  '_Saveframe_category'      sample     '_Concentration_min_value4*'
+  '_Saveframe_category'      sample     '_Concentration_max_value2*'
+  '_Saveframe_category'      sample     '_Concentration_max_value3*'
+  '_Saveframe_category'      sample     '_Concentration_max_value4*'
+  '_Saveframe_category'      sample     '_Concentration_value_units2*'
+  '_Saveframe_category'      sample     '_Concentration_value_units3*'
+  '_Saveframe_category'      sample     '_Concentration_value_units4*'
+  '_Saveframe_category'      sample     '_Isotopic_labeling2*'
+  '_Saveframe_category'      sample     '_Isotopic_labeling3*'
+  '_Saveframe_category'      sample     '_Isotopic_labeling4*'
+  '_Saveframe_category'      sample     '_Mol_label2*'
+  '_Saveframe_category'      sample     '_Mol_label3*'
+  '_Saveframe_category'      sample     '_Mol_label4*'
+  '_Saveframe_category'      sample     '_Sample_label5*'
+  '_Saveframe_category'      sample     '_Sample_type2*'
+  '_Saveframe_category'      sample     '_Sample_type3*'
+  '_Saveframe_category'      sample     '_Sample_type4*'
+  '_Saveframe_category'      sample     '_Sample_type5*'
+  '_Saveframe_category'      sample     '_Details_sample2*'
+  '_Saveframe_category'      sample     '_Details_sample3*'
+  '_Saveframe_category'      sample     '_Details_sample4*'
+
+   stop_
+
+save_
+
+save_remove_null_tags
+   _Saveframe_category    remove_null_tags
+
+   loop_
+      _key_tag
+      _key_value
+      _old_tagname
+
+   '_Saveframe_category'           entry_information   '_Details'
+   '_Saveframe_category'           entry_information   '_Special_processing_instructions'
+   '_Saveframe_category'           entry_information   '_Related_BMRB_accession_number'
+   '_Saveframe_category'           entry_information   '_Relationship'
+   '_Saveframe_category'           entry_information   '_Revised_BMRB_accession_number'
+   '_Saveframe_category'           entry_information   '_Replace_BMRB_accession_number'
+   '_Saveframe_category'           entry_information   '_Revision_details' 
+   '_Saveframe_category'           entry_information   '_Replace_details*'
+   '_Saveframe_category'           entry_information   '_Release_on_publication'
+   '_Saveframe_category'           entry_information   '_Release_date_request'
+   '_Saveframe_category'           entry_information   '_Release_date_justification'
+
+   '_Saveframe_category'           'entry_citation'   '_Journal_issue'
+   '_Saveframe_category'           'entry_citation'   '_Book_title'
+   '_Saveframe_category'           'entry_citation'   '_Book_volume'
+   '_Saveframe_category'           'entry_citation'   '_Book_series'
+   '_Saveframe_category'           'entry_citation'   '_Book_publisher'
+   '_Saveframe_category'           'entry_citation'   '_Book_publisher_city'
+   '_Saveframe_category'           'entry_citation'   '_Conference_title'
+   '_Saveframe_category'           'entry_citation'   '_Conference_site'
+   '_Saveframe_category'           'entry_citation'   '_Conference_state_province'
+   '_Saveframe_category'           'entry_citation'   '_Conference_country'
+   '_Saveframe_category'           'entry_citation'   '_Conference_start_date'
+   '_Saveframe_category'           'entry_citation'   '_Conference_end_date'
+   '_Saveframe_category'           'entry_citation'   '_Conference_abstract_number'
+   '_Saveframe_category'           'entry_citation'   '_Thesis_institution'
+   '_Saveframe_category'           'entry_citation'   '_Thesis_institution_city'
+   '_Saveframe_category'           'entry_citation'   '_Thesis_institution_country'
+   '_Saveframe_category'           'entry_citation'   '_Details'
+   '_Saveframe_category'           'entry_citation'   '_Keyword'
+   '_Saveframe_category'           'entry_citation'   '_Editor_name_full*'
+   
+   '_Saveframe_category'   molecular_system      '_magnetic_equivalence*'
+   '_Saveframe_category'   molecular_system      '_Biological_function'     
+
+   '_Saveframe_category'   monomeric_polymer     '_Molecular_mass' 
+   '_Saveframe_category'   monomeric_polymer     '_Details'                  
+   '_Saveframe_category'   monomeric_polymer     '_Sequence_features'
+   '_Saveframe_category'   monomeric_polymer     '_Residue_author_seq_code'
+   '_Saveframe_category'   monomeric_polymer     '_Sequence_citation_label'
+
+   '_Saveframe_category'   polymer_residue       '_Atom_prochirality_list*'
+   '_Saveframe_category'   polymer_residue       '_Name_IUPAC'
+   '_Saveframe_category'   polymer_residue       '_Details'   
+                
+   '_Saveframe_category'   ligand                '_Name_IUPAC'
+   '_Saveframe_category'   ligand                '_Inter_mol_bond_table*' 
+   '_Saveframe_category'   ligand                '_Atom_oxidation_number*' 
+   '_Saveframe_category'   ligand                '_Details'
+   '_Saveframe_category'   ligand                '_Name_common'
+   '_Saveframe_category'   ligand                '_Abbreviation_common'
+   '_Saveframe_category'   ligand                '_PDB_code'
+   '_Saveframe_category'   ligand                '_Name_database_BMRB'
+   '_Saveframe_category'   ligand                '_Mol_paramagnetic'
+   '_Saveframe_category'   ligand                '_Mol_aromatic'
+
+   '_Saveframe_category'   polymer_residue       '_Name_common'
+   '_Saveframe_category'   polymer_residue       '_Abbreviation_common'
+   '_Saveframe_category'   polymer_residue       '_Residue_location*'
+   '_Saveframe_category'   polymer_residue       '_PDB_code'
+   '_Saveframe_category'   polymer_residue       '_Name_database_BMRB'
+   '_Saveframe_category'   polymer_residue       '_Mol_paramagnetic'
+
+   '_Saveframe_category'   crosslink_bonds      '_Bond_order'
+   '_Saveframe_category'   crosslink_bonds      '_Bond_type'
+   '_Saveframe_category'   crosslink_bonds      '_Atom_one_mol_system_component_name'
+   '_Saveframe_category'   crosslink_bonds      '_Atom_one_residue_seq_code'
+   '_Saveframe_category'   crosslink_bonds      '_Atom_one_atom_name'
+   '_Saveframe_category'   crosslink_bonds      '_Atom_two_mol_system_component_name'
+   '_Saveframe_category'   crosslink_bonds      '_Atom_two_residue_seq_code'
+   '_Saveframe_category'   crosslink_bonds      '_Atom_two_atom_name'
+   '_Saveframe_category'   crosslink_bonds      '_Details'
+
+
+   '_Saveframe_category'   biol_func_molecular_system       '_Name_common'
+   '_Saveframe_category'   biol_func_molecular_system       '_Enzyme_commission_number'
+   '_Saveframe_category'   biol_func_molecular_system       '_Details'
+   '_Saveframe_category'   biol_func_molecular_system       '_Mol_system_component_name'
+   '_Saveframe_category'   biol_func_molecular_system       '_Biological_function*'
+   '_Saveframe_category'   biol_func_molecular_system       '_Database_name'
+   '_Saveframe_category'   biol_func_molecular_system       '_Database_entry_details'
+   '_Saveframe_category'   biol_func_molecular_system       '_Abbreviation_common'
+
+   '_Saveframe_category'   natural_source        '_Strain'
+   '_Saveframe_category'   natural_source        '_Variant'
+   '_Saveframe_category'   natural_source        '_Organ'
+   '_Saveframe_category'   natural_source        '_Tissue'
+   '_Saveframe_category'   natural_source        '_Cell_line'
+   '_Saveframe_category'   natural_source        '_Cell_type'
+   '_Saveframe_category'   natural_source        '_ATCC_number'
+   '_Saveframe_category'   natural_source        '_Organelle'
+   '_Saveframe_category'   natural_source        '_Fraction'
+   '_Saveframe_category'   natural_source        '_Secretion'
+   '_Saveframe_category'   natural_source        '_Plasmid'
+   '_Saveframe_category'   natural_source        '_Gene_mnemonic'
+   '_Saveframe_category'   natural_source        '_Details'
+
+   '_Saveframe_category'   experimental_source     '_Variant'
+   '_Saveframe_category'   experimental_source     '_Organ'
+   '_Saveframe_category'   experimental_source     '_Tissue'
+   '_Saveframe_category'   experimental_source     '_Cell_line'
+   '_Saveframe_category'   experimental_source     '_Cell_type'
+   '_Saveframe_category'   experimental_source     '_ATCC_number'
+   '_Saveframe_category'   experimental_source     '_Vector_type'               
+   '_Saveframe_category'   experimental_source     '_Vendor_name'
+   '_Saveframe_category'   experimental_source     '_Details'
+
+   '_Saveframe_category'   NMR_applied_experiment  '_Details'
+   '_Saveframe_category'   NMR_applied_experiment  '_NMR_experiment_list*'
+   '_Saveframe_category'   NMR_applied_experiment  '_nmr_exp_Details*'
+
+   '_Saveframe_category'   software                '_Citation_label'  
+   '_Saveframe_category'   software                '_Details'
+   '_Saveframe_category'   software                '_Task'
+   '_Saveframe_category'   software                '_Version'
+   '_Saveframe_category'   software                '_Name'
+
+   '_Saveframe_category'   sample                  '_Details'
+
+   '_Saveframe_category'   sample_conditions       '_Details'
+
+   '_Saveframe_category'   chemical_shift_reference      '_Default_1*'
+   '_Saveframe_category'   chemical_shift_reference      '_Default_2*'
+   '_Saveframe_category'   chemical_shift_reference      '_Default_3*'
+   '_Saveframe_category'   chemical_shift_reference      '_Default_4*'
+   '_Saveframe_category'   chemical_shift_reference      '_Default_5*'
+   '_Saveframe_category'   chemical_shift_reference      '_Details'
+   '_Saveframe_category'   chemical_shift_reference      '_Indirect_shift_ratio_citation_label'
+   '_Saveframe_category'   chemical_shift_reference      '_Reference_correction_type'
+   '_Saveframe_category'   chemical_shift_reference      '_Correction_value'
+   '_Saveframe_category'   chemical_shift_reference      '_Correction_value_citation_label'
+   '_Saveframe_category'   chemical_shift_reference      '_External_reference_sample_geometry_other'
+
+   '_Saveframe_category'   assigned_chemical_shifts      '_Details'
+   '_Saveframe_category'   assigned_chemical_shifts      '_ambiguity_table*'
+   '_Saveframe_category'   assigned_chemical_shifts   '_H_shift_error'
+   '_Saveframe_category'   assigned_chemical_shifts   '_2H_shift_error'
+   '_Saveframe_category'   assigned_chemical_shifts   '_3H_shift_error'
+   '_Saveframe_category'   assigned_chemical_shifts   '_C_shift_error'
+   '_Saveframe_category'   assigned_chemical_shifts   '_N_shift_error'
+   '_Saveframe_category'   assigned_chemical_shifts   '_P_shift_error'
+   '_Saveframe_category'   assigned_chemical_shifts   '_F_shift_error'
+
+
+   '_Saveframe_category'   'coupling_constants'        '_j_coupling_constants'
+   '_Saveframe_category'   'coupling_constants'       '_Mol_system_component_name' 
+   '_Saveframe_category'   'coupling_constants'       '_Sample_label' 
+   '_Saveframe_category'   'coupling_constants'       '_Sample_conditions'
+   '_Saveframe_category'   'coupling_constants'       '_Spectrometer_frequency_1H'
+   '_Saveframe_category'   'coupling_constants'       '_Details'
+
+
+   '_Saveframe_category'   citation                '_MEDLINE_UI_code'
+   '_Saveframe_category'   citation                '_Citation_full'
+
+   stop_
+
+save_
+
+save_make_new_tag
+  _Saveframe_category   make_new_tag
+
+   loop_
+      _key_tag
+      _key_value
+      _new_tag
+      _new_value
+
+   '_Saveframe_category'    entry_information   '_BMRB_accession_number'    .
+   '_Saveframe_category'    entry_information   '_BMRB_flat_file_name'      .
+   '_Saveframe_category'    entry_information   '_Submission_date'          .
+   '_Saveframe_category'    entry_information   '_Accession_date'           .
+   '_Saveframe_category'    entry_information   '_Entry_origination'       author
+   '_Saveframe_category'    entry_information   '_NMR_STAR_version'        2.1.1
+   '_Saveframe_category'    entry_information   '_Experimental_method'     NMR
+   '_Saveframe_category'    entry_information   '_Relationship'             .
+
+   '_Saveframe_category'    entry_citation      '_MEDLINE_UI_code'          .
+
+   '_Saveframe_category'    molecular_system    '_System_paramagnetic'      ?
+   '_Saveframe_category'    molecular_system    '_System_thiol_state'       ?
+   '_Saveframe_category'    molecular_system    '_Mol_label'                ?
+   '_Saveframe_category'    molecular_system    '_Database_entry_mol_name'  ?
+
+   '_Saveframe_category'    monomeric_polymer   '_Residue_count'            ?
+   '_Saveframe_category'    monomeric_polymer   '_Mol_type'                polymer
+   '_Saveframe_category'    monomeric_polymer   '_Mol_thiol_state'          ?
+#   '_Saveframe_category'    monomeric_polymer   '_Residue_seq_code'           .
+#   '_Saveframe_category'    monomeric_polymer   '_Residue_author_seq_code'    .
+#   '_Saveframe_category'    monomeric_polymer   '_Residue_label'               .
+
+   "_Saveframe_category"          monomeric_polymer          "_Database_name"               .           
+   "_Saveframe_category"          monomeric_polymer      "_Database_accession_code"          .
+   "_Saveframe_category"          monomeric_polymer      "_Database_entry_mol_name"         .
+   "_Saveframe_category"          monomeric_polymer      "_Sequence_alignment_details"      .
+
+
+   '_Saveframe_category'    natural_source      '_NCBI_taxonomy_ID'         .
+
+   '_Spectrometer_list*'    .                   '_Saveframe_category'      NMR_spectrometer
+   '_Spectrometer_list*'    .                   '_Manufacturer'              .
+   '_Spectrometer_list*'    .                   '_Model'                     .
+   '_Spectrometer_list*'    .                   '_Field_strength'            .
+
+#   '_assigned_chemical_shfits'    .             '_Saveframe_category'      assigned_chemical_shifts
+ '_Saveframe_category'      assigned_chemical_shifts          '_Atom_shift_assign_ID'           .
+  '_Saveframe_category'      assigned_chemical_shifts        '_Residue_seq_code'               .
+  '_Saveframe_category'      assigned_chemical_shifts          '_Residue_label'                  .
+ '_Saveframe_category'      assigned_chemical_shifts          '_Atom_name'                      .
+  '_Saveframe_category'      assigned_chemical_shifts        '_Atom_type'                      .
+  '_Saveframe_category'      assigned_chemical_shifts           '_Chem_shift_value'               .
+ '_Saveframe_category'      assigned_chemical_shifts          '_Chem_shift_value_error'         .
+  '_Saveframe_category'      assigned_chemical_shifts          '_Chem_shift_ambiguity_code'      .
+
+   stop_
+
+save_
+
+
+save_make_new_saveframe_two               # Rule ID = 9
+   _Saveframe_category     make_new_saveframe
+
+   loop_
+      _new_frame_name
+     loop_
+        _from_key_tag
+        _from_key_value
+        _from_tagname
+        _copy_or_move_flag
+
+     'save_chemical_shift_reference'
+   '_Saveframe_category'   chemical_shift_reference      '_Saveframe_category'                             M
+
+   '_Saveframe_category'   chemical_shift_reference      '_Default_1*'                                     M
+   '_Saveframe_category'   chemical_shift_reference      '_Default_5*'                                     M
+   '_Saveframe_category'   chemical_shift_reference      '_Default_2*'                                     M
+   '_Saveframe_category'   chemical_shift_reference      '_Default_3*'                                     M
+   '_Saveframe_category'   chemical_shift_reference      '_Default_4*'                                     M
+   '_Saveframe_category'   chemical_shift_reference      '_external_to_the_sample'                         M
+   '_Saveframe_category'   chemical_shift_reference      '_indirect'                                       M
+   '_Saveframe_category'   chemical_shift_reference      '_cylindrical'                                    M
+   '_Saveframe_category'   chemical_shift_reference      '_perpendicular_to_Bo'                            M
+   
+   '_Saveframe_category'   chemical_shift_reference      '_Mol_common_name'                                M
+   '_Saveframe_category'   chemical_shift_reference      '_Atom_type'                                      M
+   '_Saveframe_category'   chemical_shift_reference      '_Atom_isotope_number'                            M
+   '_Saveframe_category'   chemical_shift_reference      '_Atom_group'                                     M
+   '_Saveframe_category'   chemical_shift_reference      '_Chem_shift_units'                               M
+   '_Saveframe_category'   chemical_shift_reference      '_Chem_shift_value'                               M
+   '_Saveframe_category'   chemical_shift_reference      '_Reference_method'                               M
+   '_Saveframe_category'   chemical_shift_reference      '_Reference_type'                                 M
+   '_Saveframe_category'   chemical_shift_reference      '_External_reference_sample_geometry'             M
+   '_Saveframe_category'   chemical_shift_reference      '_External_reference_location'                    M
+   '_Saveframe_category'   chemical_shift_reference      '_External_reference_sample_geometry_other'       M
+   '_Saveframe_category'   chemical_shift_reference      '_External_reference_axis'                        M
+   '_Saveframe_category'   chemical_shift_reference      '_Indirect_shift_ratio'                           M
+   '_Saveframe_category'   chemical_shift_reference      '_Indirect_shift_ratio_citation_label'            M
+   '_Saveframe_category'   chemical_shift_reference      '_Reference_correction_type'                      M
+   '_Saveframe_category'   chemical_shift_reference      '_Correction_value'                               M
+   '_Saveframe_category'   chemical_shift_reference      '_Correction_value_citation_label'                M
+
+     stop_
+
+   stop_
+
+save_
+
+save_make_new_saveframe               # Rule ID = 9
+   _Saveframe_category     make_new_saveframe
+
+   loop_
+      _new_frame_name
+     loop_
+        _from_key_tag
+        _from_key_value
+        _from_tagname
+        _copy_or_move_flag
+
+ 'save_NMR_spectrometer'
+   '_Saveframe_category'   NMR_applied_experiment   '_Spectrometer_list*'     M
+
+       stop_
+
+ 'save_sample_2'
+   '_Saveframe_category'    sample    '_Saveframe_category'            C
+   '_Saveframe_category'    sample    '_Sample_label2*'                M
+   '_Saveframe_category'    sample    '_Sample_type2*'                 M
+   '_Saveframe_category'    sample    '_Details_sample2*'              M
+   '_Saveframe_category'    sample    '_Mol_label2*'                   M
+   '_Saveframe_category'    sample    '_Concentration_value2*'         M
+   '_Saveframe_category'    sample    '_Concentration_min_value2*'     M
+   '_Saveframe_category'    sample    '_Concentration_max_value2*'     M
+   '_Saveframe_category'    sample    '_Concentration_value_units2*'   M
+   '_Saveframe_category'    sample    '_Isotopic_labeling2*'           M
+
+      stop_
+
+ 'save_sample_3'
+   '_Saveframe_category'    sample    '_Saveframe_category'            C
+   '_Saveframe_category'    sample    '_Sample_label3*'                M
+   '_Saveframe_category'    sample    '_Sample_type3*'                 M
+   '_Saveframe_category'    sample    '_Details_sample3*'              M
+   '_Saveframe_category'    sample    '_Mol_label3*'                   M
+   '_Saveframe_category'    sample    '_Concentration_value3*'         M
+   '_Saveframe_category'    sample    '_Concentration_min_value3*'     M
+   '_Saveframe_category'    sample    '_Concentration_max_value3*'     M
+   '_Saveframe_category'    sample    '_Concentration_value_units3*'   M
+   '_Saveframe_category'    sample    '_Isotopic_labeling3*'           M
+
+      stop_
+
+ 'save_sample_4'
+   '_Saveframe_category'    sample    '_Saveframe_category'            C
+   '_Saveframe_category'    sample    '_Sample_label4*'                M
+   '_Saveframe_category'    sample    '_Sample_type4*'                 M
+   '_Saveframe_category'    sample    '_Details_sample4*'              M
+   '_Saveframe_category'    sample    '_Mol_label4*'                   M
+   '_Saveframe_category'    sample    '_Concentration_value4*'         M
+   '_Saveframe_category'    sample    '_Concentration_min_value4*'     M
+   '_Saveframe_category'    sample    '_Concentration_max_value4*'     M
+   '_Saveframe_category'    sample    '_Concentration_value_units4*'   M
+   '_Saveframe_category'    sample    '_Isotopic_labeling4*'           M
+
+      stop_
+
+ 'save_sample_5'
+   '_Saveframe_category'    sample    '_Saveframe_category'            C
+   '_Saveframe_category'    sample    '_Sample_label5*'                M
+   '_Saveframe_category'    sample    '_Sample_type5*'                 M
+
+
+      stop_
+
+   stop_
+
+save_
+
+save_insert_loop_defaults
+   _Saveframe_category    insert_loop_defaults
+
+   loop_
+      _key_tag
+      _key_value
+      _trigger_tag
+      _trigger_value
+      _insert_framecode
+      _whichloop_tag
+
+   '_Saveframe_category'   chemical_shift_reference  '_Default_1*'  on   $insert_1H_reference_default      '_Mol_common_name'
+   '_Saveframe_category'   chemical_shift_reference  '_Default_3*'  on   $insert_15N_reference_default     '_Mol_common_name'
+   '_Saveframe_category'   chemical_shift_reference  '_Default_4*'  on   $insert_31P_reference_default     '_Mol_common_name'
+   '_Saveframe_category'   chemical_shift_reference  '_Default_2*'  on   $insert_13C_reference_default     '_Mol_common_name'
+   '_Saveframe_category'   chemical_shift_reference  '_Default_5*'  on   $insert_2H_reference_default      '_Mol_common_name'
+   stop_
+
+save_
+
+save_insert_1H_reference_default
+
+   loop_
+      _Mol_common_name
+      _Atom_type
+      _Atom_isotope_number
+      _Atom_group
+      _Chem_shift_units
+      _Chem_shift_value
+      _Reference_method
+      _Reference_type
+      _External_reference_sample_geometry
+      _External_reference_location
+      _External_reference_axis
+      _Indirect_shift_ratio
+
+
+DSS  H  1  "'methyl protons'"   ppm   0.0  internal  direct  .  .  .  1.0
+
+  stop_
+
+save_
+
+
+save_insert_13C_reference_default
+
+   loop_
+      _Mol_common_name
+      _Atom_type
+      _Atom_isotope_number
+      _Atom_group
+      _Chem_shift_units
+      _Chem_shift_value
+      _Reference_method
+      _Reference_type
+      _External_reference_sample_geometry
+      _External_reference_location
+      _External_reference_axis
+      _Indirect_shift_ratio
+
+
+DSS  C  13  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.251449530
+
+  stop_
+
+save_
+
+
+save_insert_15N_reference_default
+
+   loop_
+      _Mol_common_name
+      _Atom_type
+      _Atom_isotope_number
+      _Atom_group
+      _Chem_shift_units
+      _Chem_shift_value
+      _Reference_method
+      _Reference_type
+      _External_reference_sample_geometry
+      _External_reference_location
+      _External_reference_axis
+      _Indirect_shift_ratio
+
+
+DSS  N  15  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.101329118
+
+  stop_
+
+save_
+
+
+save_insert_2H_reference_default
+
+   loop_
+      _Mol_common_name
+      _Atom_type
+      _Atom_isotope_number
+      _Atom_group
+      _Chem_shift_units
+      _Chem_shift_value
+      _Reference_method
+      _Reference_type
+      _External_reference_sample_geometry
+      _External_reference_location
+      _External_reference_axis
+      _Indirect_shift_ratio
+
+
+DSS  H  2  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.153506088
+
+  stop_
+
+save_
+
+
+save_insert_31P_reference_default
+
+   loop_
+      _Mol_common_name
+      _Atom_type
+      _Atom_isotope_number
+      _Atom_group
+      _Chem_shift_units
+      _Chem_shift_value
+      _Reference_method
+      _Reference_type
+      _External_reference_sample_geometry
+      _External_reference_location
+      _External_reference_axis
+      _Indirect_shift_ratio
+
+
+DSS  P  31  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.404808636
+
+  stop_
+
+save_
+
+
+save_keyed_renamed_tags_2
+   _Saveframe_category    keyed_renamed_tags
+
+   loop_
+      _key_tag
+      _key_value
+      _old_tag_name
+      _new_tag_name
+
+   "_Saveframe_category"     contact_person   "_Initials"                 "_Middle_initials"
+
+   "_Saveframe_category"     sample     "_Sample_type2*"                  "_Sample_type"
+   "_Saveframe_category"     sample     "_Sample_type3*"                  "_Sample_type"
+   "_Saveframe_category"     sample     "_Sample_type4*"                  "_Sample_type"
+   "_Saveframe_category"     sample     "_Mol_label2*"                    "_Mol_label"
+   "_Saveframe_category"     sample     "_Mol_label3*"                    "_Mol_label"
+   "_Saveframe_category"     sample     "_Mol_label4*"                    "_Mol_label"
+
+   "_Saveframe_category"     sample     "_Concentration_value2*"          "_Concentration_value"
+   "_Saveframe_category"     sample     "_Concentration_value3*"          "_Concentration_value"
+   "_Saveframe_category"     sample     "_Concentration_value4*"          "_Concentration_value"
+   "_Saveframe_category"     sample     "_Concentration_value_units2*"    "_Concentration_value_units"
+   "_Saveframe_category"     sample     "_Concentration_value_units3*"    "_Concentration_value_units"
+   "_Saveframe_category"     sample     "_Concentration_value_units4*"    "_Concentration_value_units"
+   "_Saveframe_category"     sample     "_Concentration_min_value2*"      "_Concentration_min_value"
+   "_Saveframe_category"     sample     "_Concentration_min_value3*"      "_Concentration_min_value"
+   "_Saveframe_category"     sample     "_Concentration_min_value4*"      "_Concentration_min_value"
+   "_Saveframe_category"     sample     "_Concentration_max_value2*"      "_Concentration_max_value"
+   "_Saveframe_category"     sample     "_Concentration_max_value3*"      "_Concentration_max_value"
+   "_Saveframe_category"     sample     "_Concentration_max_value4*"      "_Concentration_max_value"
+   "_Saveframe_category"     sample     "_Isotopic_labeling2*"            "_Isotopic_labeling"
+   "_Saveframe_category"     sample     "_Isotopic_labeling3*"            "_Isotopic_labeling"
+   "_Saveframe_category"     sample     "_Isotopic_labeling4*"            "_Isotopic_labeling"
+
+   "_Saveframe_category"     molecular_system     "_Residue_author_seq_code*"    "_Residue_author_seq_code"
+   "_Saveframe_category"     molecular_system     "_Mol_system_component_list*"  "_Mol_system_component_name"
+   "_Saveframe_category"     molecular_system     "_Biological_function*"        "_Biological_function"
+
+   '_Saveframe_category'   chemical_shift_reference      '_Chemical_shift_units'    '_Chem_shift_units' 
+   '_Saveframe_category'   chemical_shift_reference      '_Chemical_shift_value'    '_Chem_shift_value'
+
+
+   stop_
+
+save_
+
+
+save_keyed_renamed_tags               #  Part 1 - section 1c
+   _Saveframe_category    keyed_renamed_tags
+
+   loop_
+      _key_tag
+      _key_value
+      _old_tag_name
+      _new_tag_name
+
+  *           *               "_a_contact_persons"                    "_Saveframe_category"
+
+  "_a_contact_persons"   contact_persons                   "_given_name"                     "_Given_name"
+  "_a_contact_persons"   contact_persons                   "_middle_initials"                "_Middle_initials"
+  "_a_contact_persons"   contact_persons                   "_Family_name"                    "_Family_name"
+  "_a_contact_persons"   contact_persons                   "_family_title"                   "_Family_title"
+  "_a_contact_persons"   contact_persons                   "_Department_and_Institution"     "_Department_and_Institution"
+  "_a_contact_persons"   contact_persons                   "_Mailing_address"                "_Mailing_address"
+  "_a_contact_persons"   contact_persons                   "_Phone_number"                   "_Phone_number"
+  "_a_contact_persons"   contact_persons                   "_Email_address"                  "_Email_address"
+  "_a_contact_persons"   contact_persons                   "_FAX_number"                     "_FAX_number"
+
+  *               *               "_entry_citation"                       "_Saveframe_category"
+
+  "_entry_citation"   entry_citation                    "_journal_entry"                     "_Citation_type"
+  "_entry_citation"   entry_citation                    "_published"                         "_Citation_status"
+  "_entry_citation"   entry_citation                    "_Citation_title"                    "_Citation_title"
+  "_entry_citation"   entry_citation                    "_Citation_keywords"                 "_Keyword"
+  "_entry_citation"   entry_citation                    "_Citation_details"                  "_Details"
+  "_entry_citation"   entry_citation                    "_Author_ordinal"                    "_Author_ordinal"
+  "_entry_citation"   entry_citation                    "_Author_given_name"                 "_Author_given_name"
+  "_entry_citation"   entry_citation                    "_Author_middle_initials"            "_Author_middle_initials"
+  "_entry_citation"   entry_citation                    "_Author_family_name"                "_Author_family_name"
+  "_entry_citation"   entry_citation                    "_Author_family_title"               "_Author_family_title"
+  "_entry_citation"   entry_citation                    "_page_first"                        "_Page_first"
+  "_entry_citation"   entry_citation                    "_page_last"                         "_Page_last"
+  "_entry_citation"   entry_citation                    "_year"                              "_Year"
+  "_entry_citation"   entry_citation                    "_Journal_abbreviation"              "_Journal_abbreviation"
+  "_entry_citation"   entry_citation                    "_Journal_name_full"                 "_Journal_name_full"
+  "_entry_citation"   entry_citation                    "_Journal_volume"                    "_Journal_volume"
+  "_entry_citation"   entry_citation                    "_Journal_issue"                     "_Journal_issue"
+  "_entry_citation"   entry_citation                    "_Book_title"                        "_Book_title"
+  "_entry_citation"   entry_citation                    "_Book_editor"                       "_Editor_name_full*"
+  "_entry_citation"   entry_citation                    "_Book_volume"                       "_Book_volume"
+  "_entry_citation"   entry_citation                    "_Book_series"                       "_Book_series"
+  "_entry_citation"   entry_citation                    "_Book_publisher"                    "_Book_publisher"
+  "_entry_citation"   entry_citation                    "_Book_publisher_city"               "_Book_publisher_city"
+  "_entry_citation"   entry_citation                    "_Conference_title"                  "_Conference_title"
+  "_entry_citation"   entry_citation                    "_Conference_site"                   "_Conference_site"
+  "_entry_citation"   entry_citation                    "_Conference_state_province"         "_Conference_state_province"
+  "_entry_citation"   entry_citation                    "_Conference_country"                "_Conference_country"
+  "_entry_citation"   entry_citation                    "_Conference_start_date"             "_Conference_start_date"
+  "_entry_citation"   entry_citation                    "_Conference_end_date"               "_Conference_end_date"
+  "_entry_citation"   entry_citation                    "_Conference_abstract_number"        "_Conference_abstract_number"
+  "_entry_citation"   entry_citation                    "_Thesis_institution"                "_Thesis_institution"
+  "_entry_citation"   entry_citation                    "_Thesis_institution_city"           "_Thesis_institution_city"
+  "_entry_citation"   entry_citation                    "_Thesis_institution_country"        "_Thesis_institution_country"
+
+  *               *               "_entry_information"                    "_Saveframe_category"
+
+  "_entry_information"   entry_information                 "_deposition_new"                      "_Entry_type"
+  "_entry_information"   entry_information                 "_Revised_BMRB_accession_number"       "_Revised_BMRB_accession_number"
+  "_entry_information"   entry_information                 "_Replace_BMRB_accession_number"       "_Replace_BMRB_accession_number"
+  "_entry_information"   entry_information                 "_Revision_details_1"                  "_Revision_details"
+  "_entry_information"   entry_information                 "_Revision_details_2"                  "_Replace_details*"
+  "_entry_information"   entry_information                 "_Deposition_title_2"                  "_Entry_title"
+  "_entry_information"   entry_information                 "_Author_ordinal"                      "_Author_ordinal"
+  "_entry_information"   entry_information                 "_Author_given_name"                   "_Author_given_name"
+  "_entry_information"   entry_information                 "_Author_middle_initials"              "_Author_middle_initials"
+  "_entry_information"   entry_information                 "_Author_family_name"                  "_Author_family_name"
+  "_entry_information"   entry_information                 "_Author_family_title"                 "_Author_family_title"
+  "_entry_information"   entry_information                 "_Details"                             "_Details"
+  "_entry_information"   entry_information                 "_Special_processing_instructions"     "_Special_processing_instructions"
+  "_entry_information"   entry_information                 "_Related_BMRB_accession_number"       "_Related_BMRB_accession_number"
+  "_entry_information"   entry_information                 "_Release_date_request"                "_Release_date_request"
+  "_entry_information"   entry_information                 "_Hold_justification"                  "_Release_date_justification"
+
+  *               *               "_system_sf_category"                   "_Saveframe_category"
+
+  "_system_sf_category"   molecular_system                  "_System_name"                        "_Mol_system_name"
+  "_system_sf_category"   molecular_system                  "_sys_Abbreviation_common"            "_Abbreviation_common"
+  "_system_sf_category"   molecular_system                  "_sys_biological_unit"                "_System_oligomer_state"
+  "_system_sf_category"   molecular_system                  "_system_components"                  "_Mol_system_component_name"
+  "_system_sf_category"   molecular_system                  "_sys_Enzyme_commission_number"       "_Enzyme_commission_number"
+  "_system_sf_category"   molecular_system                  "_native"                             "_System_physical_state"
+  "_system_sf_category"   molecular_system                  "_sys_Database_name"                  "_Database_name"
+  "_system_sf_category"   molecular_system                  "_sys_Database_accession_number"      "_Database_accession_code"
+  "_system_sf_category"   molecular_system                  "_sys_Database_entry_details"         "_Database_entry_details"
+  "_system_sf_category"   molecular_system                  "_sys_Details"                        "_Details"
+  "_system_sf_category"   molecular_system                  "_magnetic_equivalence"               "_Magnetic_equivalence"
+
+
+  *               *               "_polymer_residue"                      "_Saveframe_category"
+
+  "_polymer_residue"   polymer_residue                   "_ns_PDB_code"                         "_PDB_code"
+  "_polymer_residue"   polymer_residue                   "_ns_Name_database_BMRB"               "_Name_database_BMRB"
+  "_polymer_residue"   polymer_residue                   "_ns_Name_common"                      "_Name_common"
+  "_polymer_residue"   polymer_residue                   "_ns_Name_IUPAC"                       "_Name_IUPAC"
+  "_polymer_residue"   polymer_residue                   "_ns_Abbreviation_common"              "_Abbreviation_common"
+  "_polymer_residue"   polymer_residue                   "_ns_Residue_location"                 "_Residue_location*"
+  "_polymer_residue"   polymer_residue                   "_ns_Mol_paramagnetic"                 "_Mol_paramagnetic"
+  "_polymer_residue"   polymer_residue                   "_ns_Atom_prochirality"                "_Atom_prochirality_list*"
+  "_polymer_residue"   polymer_residue                   "_ns_Details"                          "_Details"
+
+  *               *               "_ligand"                               "_Saveframe_category"
+
+  "_ligand"   ligand                            "_ligand_framecode"                     "_Framecode"
+  "_ligand"   ligand                            "_lig_PDB_code"                         "_PDB_code"
+  "_ligand"   ligand                            "_lig_Name_database_BMRB"               "_Name_database_BMRB"
+  "_ligand"   ligand                            "_lig_Name_common"                      "_Name_common"
+  "_ligand"   ligand                            "_lig_Name_IUPAC"                       "_Name_IUPAC"
+  "_ligand"   ligand                            "_lig_Abbreviation_common"              "_Abbreviation_common"
+  "_ligand"   ligand                            "_lig_Mol_paramagnetic"                 "_Mol_paramagnetic"
+  "_ligand"   ligand                            "_lig_Mol_aromatic"                     "_Mol_aromatic"
+  "_ligand"   ligand                            "_lig_Bond_list_inter"                  "_Inter_mol_bond_table*"
+  "_ligand"   ligand                            "_lig_Atom_oxidation_number"            "_Atom_oxidation_number*"
+  "_ligand"   ligand                            "_lig_Details"                          "_Details"
+
+
+  *               *               "_monomeric_polymer"                    "_Saveframe_category"
+
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Name_common"                      "_Name_common"
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Name_variant"                     "_Name_variant"
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Abbreviation_common"              "_Abbreviation_common"
+  "_monomeric_polymer"   monomeric_polymer                 "_protein_peptide"                     "_Mol_polymer_class"  
+  "_monomeric_polymer"   monomeric_polymer                 "_Mol_residue_sequence"                "_Mol_residue_sequence"
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Residue_author_seq_code"          "_Residue_author_seq_code"
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Sequence_citation_label"          "_Sequence_citation_label"
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Sequence_features"                "_Sequence_features"
+  "_monomeric_polymer"   monomeric_polymer                 "_Molecular_mass"                      "_Molecular_mass"
+  "_monomeric_polymer"   monomeric_polymer                 "_mp_Details"                          "_Details"
+
+  *               *               "_crosslink_bonds_sf"                   "_Saveframe_category"
+
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_mol_1"               "_Atom_one_mol_system_component_name"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_res_1"               "_Atom_one_residue_seq_code"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_atom_1"              "_Atom_one_atom_name"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_mol_2"               "_Atom_two_mol_system_component_name"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_res_2"               "_Atom_two_residue_seq_code"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_atom_2"              "_Atom_two_atom_name"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_order"               "_Bond_order"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_Bond_type"                "_Bond_type"
+  "_crosslink_bonds_sf"   crosslink_bonds                   "_crosslink_details"                  "_Details"
+
+  *               *               "_biol_func_molecular_system"           "_Saveframe_category"
+
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Name_common"                    "_Name_common"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Abbreviation_common"            "_Abbreviation_common"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_components"                     "_Mol_system_component_name"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Biological_function"            "_Biological_function*"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Enzyme_commission_number"       "_Enzyme_commission_number"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Database_name"                  "_Database_name"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Database_accession_code"        "_Database_accession_number"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Database_entry_details"         "_Database_entry_details"
+  "_biol_func_molecular_system"   biol_func_molecular_system        "_bu_Details"                        "_Details"
+
+  *               *               "_natural_source_sf_category"           "_Saveframe_category"
+
+  "_natural_source_sf_category"   natural_source                    "_natural_source"                      "_Framecode"
+  "_natural_source_sf_category"   natural_source                    "_Mol_label"                           "_Mol_label"
+  "_natural_source_sf_category"   natural_source                    "_archaea"                             "_Superkingdom"
+  "_natural_source_sf_category"   natural_source                    "_animalia"                            "_Kingdom"
+  "_natural_source_sf_category"   natural_source                    "_Organism_common_name"                "_Organism_name_common"
+  "_natural_source_sf_category"   natural_source                    "_Genus"                               "_Genus"
+  "_natural_source_sf_category"   natural_source                    "_Species"                             "_Species"
+  "_natural_source_sf_category"   natural_source                    "_Strain"                              "_Strain"
+  "_natural_source_sf_category"   natural_source                    "_Variant"                             "_Variant"
+  "_natural_source_sf_category"   natural_source                    "_Organ"                               "_Organ"
+  "_natural_source_sf_category"   natural_source                    "_Tissue"                              "_Tissue"
+  "_natural_source_sf_category"   natural_source                    "_Cell_line"                           "_Cell_line"
+  "_natural_source_sf_category"   natural_source                    "_Cell_type"                           "_Cell_type"
+  "_natural_source_sf_category"   natural_source                    "_ATCC_number"                         "_ATCC_number"
+  "_natural_source_sf_category"   natural_source                    "_Organelle"                           "_Organelle"
+  "_natural_source_sf_category"   natural_source                    "_Secretion"                           "_Secretion"
+  "_natural_source_sf_category"   natural_source                    "_Fraction"                            "_Fraction"
+  "_natural_source_sf_category"   natural_source                    "_Plasmid"                             "_Plasmid"
+  "_natural_source_sf_category"   natural_source                    "_Gene_name"                           "_Gene_mnemonic"
+  "_natural_source_sf_category"   natural_source                    "_Details"                             "_Details"
+
+  *               *               "_expt_source_sf_category"              "_Saveframe_category"
+
+  "_expt_source_sf_category"   experimental_source               "_experimental_source"                 "_Framecode"
+  "_expt_source_sf_category"   experimental_source               "_es_Mol_label"                        "_Mol_label"
+  "_expt_source_sf_category"   experimental_source               "_recombinant_technology"              "_Production_method"
+  "_expt_source_sf_category"   experimental_source               "_es_Host_organism_name_common"        "_Host_organism_name_common"
+  "_expt_source_sf_category"   experimental_source               "_es_Genus"                            "_Genus"
+  "_expt_source_sf_category"   experimental_source               "_es_Species"                          "_Species"
+  "_expt_source_sf_category"   experimental_source               "_es_Strain"                           "_Strain"
+  "_expt_source_sf_category"   experimental_source               "_es_Variant"                          "_Variant"
+  "_expt_source_sf_category"   experimental_source               "_es_Organ"                            "_Organ"
+  "_expt_source_sf_category"   experimental_source               "_es_Tissue"                           "_Tissue"
+  "_expt_source_sf_category"   experimental_source               "_es_Cell_line"                        "_Cell_line"
+  "_expt_source_sf_category"   experimental_source               "_es_Cell_type"                        "_Cell_type"
+  "_expt_source_sf_category"   experimental_source               "_es_ATCC_number"                      "_ATCC_number"
+  "_expt_source_sf_category"   experimental_source               "_es_Vector_type"                      "_Vector_type"
+  "_expt_source_sf_category"   experimental_source               "_es_Vector_name"                      "_Vector_name"
+  "_expt_source_sf_category"   experimental_source               "_es_Vendor"                           "_Vendor_name"
+  "_expt_source_sf_category"   experimental_source               "_es_Details"                          "_Details"
+
+  *               *               "_sample"                               "_Saveframe_category"
+
+  "_sample"   sample                            "_solution"                             "_Sample_type"
+  "_sample"   sample                            "_Details"                              "_Details"
+  "_sample"   sample                            "_Mol_label"                            "_Mol_label"
+  "_sample"   sample                            "_Concentration_value"                  "_Concentration_value"
+  "_sample"   sample                            "_Concentration_min_value"              "_Concentration_min_value"
+  "_sample"   sample                            "_Concentration_max_value"              "_Concentration_max_value"
+  "_sample"   sample                            "_Concentration_value_units"            "_Concentration_value_units"
+  "_sample"   sample                            "_isotopic_labeling"                    "_Isotopic_labeling"
+
+  "_sample"   sample                            "_b_sample_framecode"                   "_Sample_label2*"
+  "_sample"   sample                            "_b_solution"                           "_Sample_type2*"
+  "_sample"   sample                            "_b_Details"                            "_Details_sample2*"
+  "_sample"   sample                            "_b_Mol_label"                          "_Mol_label2*"
+  "_sample"   sample                            "_b_Concentration_value"                "_Concentration_value2*"
+  "_sample"   sample                            "_b_Concentration_min_value"            "_Concentration_min_value2*"
+  "_sample"   sample                            "_b_Concentration_max_value"            "_Concentration_max_value2*"
+  "_sample"   sample                            "_b_Concentration_value_units"          "_Concentration_value_units2*"
+  "_sample"   sample                            "_b_Isotopic_labeling"                  "_Isotopic_labeling2*"
+
+  "_sample"   sample                            "_c_sample_framecode"                   "_Sample_label3*"
+  "_sample"   sample                            "_c_solution"                           "_Sample_type3*"
+  "_sample"   sample                            "_c_Details"                            "_Details_sample3*"
+  "_sample"   sample                            "_c_Mol_label"                          "_Mol_label3*"
+  "_sample"   sample                            "_c_Concentration_value"                "_Concentration_value3*"
+  "_sample"   sample                            "_c_Concentration_min_value"            "_Concentration_min_value3*"
+  "_sample"   sample                            "_c_Concentration_max_value"            "_Concentration_max_value3*"
+  "_sample"   sample                            "_c_Concentration_value_units"          "_Concentration_value_units3*"
+  "_sample"   sample                            "_c_Isotopic_labeling"                  "_Isotopic_labeling3*"
+
+  "_sample"   sample                            "_d_sample_framecode"                   "_Sample_label4*"
+  "_sample"   sample                            "_d_solution"                           "_Sample_type4*"
+  "_sample"   sample                            "_d_Details"                            "_Details_sample4*"
+  "_sample"   sample                            "_d_Mol_label"                          "_Mol_label4*"
+  "_sample"   sample                            "_d_Concentration_value"                "_Concentration_value4*"
+  "_sample"   sample                            "_d_Concentration_min_value"            "_Concentration_min_value4*"
+  "_sample"   sample                            "_d_Concentration_max_value"            "_Concentration_max_value4*"
+  "_sample"   sample                            "_d_Concentration_value_units"          "_Concentration_value_units4*"
+  "_sample"   sample                            "_d_Isotopic_labeling"                  "_Isotopic_labeling4*"
+  "_sample"   sample                            "_e_sample_framecode"                   "_Sample_label5*"
+  "_sample"   sample                            "_e_sample_contents"                    "_Sample_type5*"
+
+  *               *               "_sample_conditions"                    "_Saveframe_category"
+
+  "_sample_conditions"   sample_conditions                 "_reporting_conditions_framecode"       "_Framecode"
+  "_sample_conditions"   sample_conditions                 "_Details"                              "_Details"
+
+  *               *               "_NMR_applied_experiment"               "_Saveframe_category"
+
+  "_NMR_applied_experiment"   NMR_applied_experiment            "_nmr_experiments"                     "_NMR_experiment_list*"
+  "_NMR_applied_experiment"   NMR_applied_experiment            "_nmr_experiment_details"              "_nmr_exp_Details*"
+  "_NMR_applied_experiment"   NMR_applied_experiment            "_spectrometer"                        "_Spectrometer_list*"
+  "_NMR_applied_experiment"   NMR_applied_experiment            "_spectrometer_details"                "_Details"
+
+  *               *               "_software_sf"                          "_Saveframe_category"
+
+  "_software_sf"   software                          "_software_name"                        "_Name"
+  "_software_sf"   software                          "_software_version"                     "_Version"
+  "_software_sf"   software                          "_Software_task"                        "_Task"
+  "_software_sf"   software                          "_software_citation"                    "_Citation_label"
+  "_software_sf"   software                          "_soft_details"                         "_Details"
+
+  *               *               "_chem_shift_reference"                 "_Saveframe_category"
+
+  "_chem_shift_reference"   chemical_shift_reference          "_chem_shift_ref_1"                    "_Default_1*"
+  "_chem_shift_reference"   chemical_shift_reference          "_chem_shift_ref_5"                    "_Default_5*"
+  "_chem_shift_reference"   chemical_shift_reference          "_chem_shift_ref_2"                    "_Default_2*"
+  "_chem_shift_reference"   chemical_shift_reference          "_chem_shift_ref_3"                    "_Default_3*"
+  "_chem_shift_reference"   chemical_shift_reference          "_chem_shift_ref_4"                    "_Default_4*"
+  "_chem_shift_reference"   chemical_shift_reference          "_Atom_type"                           "_Atom_type"
+  "_chem_shift_reference"   chemical_shift_reference          "_Atom_isotope_number"                 "_Atom_isotope_number"
+  "_chem_shift_reference"   chemical_shift_reference          "_Mol_common_name"                     "_Mol_common_name"
+  "_chem_shift_reference"   chemical_shift_reference          "_Atom_group"                          "_Atom_group"
+  "_chem_shift_reference"   chemical_shift_reference          "_Chemical_shift_units"                "_Chem_shift_units"
+  "_chem_shift_reference"   chemical_shift_reference          "_Chemical_shift_value"                "_Chem_shift_value"
+  "_chem_shift_reference"   chemical_shift_reference          "_internal"                            "_Reference_method"
+  "_chem_shift_reference"   chemical_shift_reference          "_External_in_the_sample"              "_External_reference_location"
+  "_chem_shift_reference"   chemical_shift_reference          "_direct"                              "_Reference_type"
+  "_chem_shift_reference"   chemical_shift_reference          "_spherical"                           "_External_reference_sample_geometry"
+  "_chem_shift_reference"   chemical_shift_reference          "_other_orientation"                   "_External_reference_sample_geometry_other"
+  "_chem_shift_reference"   chemical_shift_reference          "_parallel_to_Bo"                      "_External_reference_axis"
+  "_chem_shift_reference"   chemical_shift_reference          "_Indirect_shift_ratio"                "_Indirect_shift_ratio"
+  "_chem_shift_reference"   chemical_shift_reference          "_Indirect_shift_ratio_citation_label" "_Indirect_shift_ratio_citation_label"
+  "_chem_shift_reference"   chemical_shift_reference          "_Reference_correction_type"           "_Reference_correction_type"
+  "_chem_shift_reference"   chemical_shift_reference          "_Correction_value"                    "_Correction_value"
+  "_chem_shift_reference"   chemical_shift_reference          "_Correction_value_citation_label"     "_Correction_value_citation_label"
+  "_chem_shift_reference"   chemical_shift_reference          "_Details"                             "_Details"
+
+  *               *               "_assigned_chemical_shifts"             "_Saveframe_category"
+
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_cs_file_path_name"                 "_FTP_chem_shifts*"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_cs_Mol_system_component_name"      "_Mol_system_component_name"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_cs_Sample_label"                   "_Sample_label"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_cs_Sample_conditions_label"        "_Sample_conditions_label"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_cs_reference_set_label"            "_Chem_shift_reference_set_label"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_h_chemshift_error"                 "_H_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_d_chemshift_error"                 "_2H_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_t_chemshift_error"                 "_3H_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_c_chemshift_error"                 "_C_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_n_chemshift_error"                 "_N_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_p_chemshift_error"                 "_P_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_f_chemshift_error"                 "_F_shift_error"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_cs_Details"                        "_Details"
+  "_assigned_chemical_shifts"   assigned_chemical_shifts          "_ambiguity_table"                   "_ambiguity_table*"
+
+  *               *               "_coupling_constants"                   "_Saveframe_category"
+
+  "_coupling_constants"   coupling_constants                "_j_file_path_name"                    "_FTP_coupling_constants*"
+  "_coupling_constants"   coupling_constants                "_j_Mol_system_component_name"         "_Mol_system_component_name"
+  "_coupling_constants"   coupling_constants                "_j_Sample_label"                      "_Sample_label"
+  "_coupling_constants"   coupling_constants                "_j_Sample_conditions_label"           "_Sample_conditions"
+  "_coupling_constants"   coupling_constants                "_j_Spectrometer_frequency_1H"         "_Spectrometer_frequency_1H"
+  "_coupling_constants"   coupling_constants                "_j_Details"                           "_Details"
+
+  *               *               "_citation"                             "_Saveframe_category"
+
+  "_citation"   citation                          "_Citation_framecode"                   "_Framecode"
+  "_citation"   citation                          "_medline_an"                           "_MEDLINE_UI_code"
+  "_citation"   citation                          "_Citation_full"                        "_Citation_full"
+
+   stop_
+
+save_
+
+
+save_tag_to_framecode                 #  Part 1 - section 1b
+   _Saveframe_category    tag_to_framecode
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+
+  "_mp_Sequence_citation_label"        "save_system_description"
+  "_Mol_label"                         "save_source"
+  "_es_Mol_label"                      "save_source"
+  "_Mol_label"                         "save_sample_description"
+  "_b_Mol_label"                       "save_sample_description"
+  "_c_Mol_label"                       "save_sample_description"
+  "_d_Mol_label"                       "save_sample_description"
+  "_cs_Sample_label"                   "save_nmr_kinetic_thermo"
+  "_cs_Sample_conditions_label"        "save_nmr_kinetic_thermo"
+  "_cs_reference_set_label"            "save_nmr_kinetic_thermo"
+
+   stop_
+
+save_
+
+
+#save_tag_to_framecode_two                 #  Part 1 - section 1b
+#   _Saveframe_category    tag_to_framecode
+#
+#   loop_
+#      _old_tag_name
+#      _old_saveframe
+#
+#
+#   stop_
+#
+#save_
+
+save_tag_to_frame_free               #  Part 1 - section 2
+   _Saveframe_category    tag_to_frame_free
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+      _delete_old_tag
+
+  "_g_entry_information"               "save_g_entry_information"   yes
+  "_sys_Abbreviation_common"           "save_system_description"    no
+
+  "_sample_framecode"                  "save_sample_description"    yes
+  "_NMR_experimental"                  "save_NMR_experimental"      yes 
+  "_chem_shift_ref_framecode"          "save_nmr_kinetic_thermo"    yes
+
+
+   stop_
+
+save_
+
+save_tag_to_frame_free_2               #  Part 1 - section 2
+   _Saveframe_category    tag_to_frame_free
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+      _delete_old_tag
+
+  "_Sample_label2*"                    "save_sample_2"               yes
+  "_Sample_label3*"                    "save_sample_3"               yes
+  "_Sample_label4*"                    "save_sample_4"               yes
+
+  "_Saveframe_category"                "save_primary_citation"       no
+
+   stop_
+
+save_
+
+save_tag_to_frame_loop_uniform          #  Part 1 - section 2a
+   _Saveframe_category    tag_to_frame_loop_uniform
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+      _delete_old_tag
+
+      "_natural_source"                       "save_source"               yes
+      "_experimental_source"                  "save_source"               yes
+#  "_reporting_conditions_framecode"    "save_expt_conditions"      yes    
+
+   stop_
+
+save_
+
+
+save_tag_to_frame_loop_unique          #  Part 1 - section 2b
+   _Saveframe_category    tag_to_frame_loop_unique
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+      _delete_old_tag
+
+  "_non_standard_residue_framecode"    "save_system_description"   yes
+  "_ligand_framecode"                  "save_system_description"   yes
+  "_crosslink_bonds"                   "save_system_description"   yes
+  "_mp_Abbreviation_common"            "save_system_description"   no
+  "_bu_Abbreviation_common"            "save_system_description"   no
+  "_reporting_conditions_framecode"    "save_expt_conditions"      yes
+  "_software_name"                     "save_NMR_experimental"     no
+  "_Citation_framecode"                "save_references"           yes
+  '_coupling_constants_framecode'      'save_nmr_parameters'       yes
+  '_chem_shift_framecode'              'save_nmr_parameters'       yes
+
+   stop_
+
+save_
+
+
+save_value_to_loop                    #  Part 1 - section 3b
+   _Saveframe_category    value_to_loop
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+      _new_tag_name
+      _delimitter
+      _width
+
+  "_Related_BMRB_accession_number"     "save_g_entry_information"         "_Related_BMRB_accession_number"    \n     .
+  "_ns_Residue_location"               "save_system_description"          "_Residue_location*"                \n     .
+  "_ns_Atom_prochirality"              "save_system_description"          "_Atom_prochirality_list*"          \n     .
+  "_lig_Bond_list_inter"               "save_system_description"          "_Inter_mol_bond_table*"            \n     .
+  "_lig_Atom_oxidation_number"         "save_system_description"          "_Atom_oxidation_number*"           \n     .
+
+   stop_
+
+save_
+
+
+save_keyed_tag_to_value               #  Part 1 - section 3c
+   _Saveframe_category    keyed_tag_to_value
+
+   loop_
+      _old_tag_name
+      _key_tag
+      _key_value
+      _new_tag_name
+      _tag_name_becomes_value
+
+  "_pH"                                     "_Saveframe_category"   sample_conditions  "_Variable_type"               no
+  "_Variable_value_pH"                      "_Saveframe_category"   sample_conditions  "_Variable_value"              no
+  "_Variable_value_error_pH"                "_Saveframe_category"   sample_conditions  "_Variable_value_error"        no
+  "_Variable_value_units_pH"                "_Saveframe_category"   sample_conditions  "_Variable_value_units"        no
+  "_temperature"                            "_Saveframe_category"   sample_conditions  "_Variable_type"               yes
+  "_temperature"                            "_Saveframe_category"   sample_conditions  "_Variable_value"              no
+  "_Variable_value_error_temp"              "_Saveframe_category"   sample_conditions  "_Variable_value_error"        no
+  "_Variable_value_units_temp"              "_Saveframe_category"   sample_conditions  "_Variable_value_units"        no
+  "_ionic_strength"                         "_Saveframe_category"   sample_conditions  "_Variable_type"               yes
+  "_ionic_strength"                         "_Saveframe_category"   sample_conditions  "_Variable_value"              no
+  "_Variable_value_error_ionic_strength"    "_Saveframe_category"   sample_conditions  "_Variable_value_error"        no
+  "_Variable_value_units_is"                "_Saveframe_category"   sample_conditions  "_Variable_value_units"        no
+  "_pressure"                               "_Saveframe_category"   sample_conditions  "_Variable_type"               yes
+  "_pressure"                               "_Saveframe_category"   sample_conditions  "_Variable_value"              no
+  "_Variable_value_error_pressure"          "_Saveframe_category"   sample_conditions  "_Variable_value_error"        no
+  "_Variable_value_units_pressure"          "_Saveframe_category"   sample_conditions  "_Variable_value_units"        no
+
+   stop_
+
+save_
+
+save_remove_tag_two
+   _Saveframe_category    remove_tag
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+
+    '_Default_1*'                             'save_chemical_shift_reference'
+    '_Default_2*'                             'save_chemical_shift_reference'
+    '_Default_3*'                             'save_chemical_shift_reference'
+    '_Default_4*'                             'save_chemical_shift_reference'
+    '_Default_5*'                             'save_chemical_shift_reference'
+
+   stop_
+
+save_
+
+save_remove_tag                       #  Part 1 - section 5
+   _Saveframe_category    remove_tag
+
+   loop_
+      _old_tag_name
+      _old_saveframe
+
+      "_*1contact_persons"                            "save_contact_persons"
+      "_dummy"                                        "save_contact_persons"
+      "_contact_persons"                              "save_contact_persons"
+      "_space_31"                                     "save_contact_persons"
+      "_primary_citation"                             "save_primary_citation"
+      "_dummy"                                        "save_primary_citation"
+      "_space_31"                                     "save_primary_citation"
+      "_entry_citation_label_0"                       "save_primary_citation"
+      "_space_8"                                      "save_primary_citation"
+      "_book_entry"                                   "save_primary_citation"
+      "_abstract_entry"                               "save_primary_citation"
+      "_thesis_entry"                                 "save_primary_citation"
+      "_BMRB_only"                                    "save_primary_citation"
+      "_publication_other"                            "save_primary_citation"
+      "_space_41"                                     "save_primary_citation"
+      "_entry_citation_label_10"                      "save_primary_citation"
+      "_space_19"                                     "save_primary_citation"
+      "_in_press"                                     "save_primary_citation"
+      "_submitted"                                    "save_primary_citation"
+      "_in_preparation"                               "save_primary_citation"
+      "_other_publication_status"                     "save_primary_citation"
+      "_space_42"                                     "save_primary_citation"
+      "_*1primary_citation"                           "save_primary_citation"
+      "_*1entry_citation"                             "save_primary_citation"
+      "_space_25"                                     "save_primary_citation"
+      "_Deposition_label_35"                          "save_primary_citation"
+      "_Deposition_label_38"                          "save_primary_citation"
+      "_space_37"                                     "save_primary_citation"
+      "_space_15"                                     "save_primary_citation"
+      "_space_35"                                     "save_primary_citation"
+      "_*2primary_citation"                           "save_primary_citation"
+      "_*3entry_citation"                             "save_primary_citation"
+      "_entry_citation_label_1"                       "save_primary_citation"
+      "_space_18"                                     "save_primary_citation"
+      "_space_29"                                     "save_primary_citation"
+      "_space_59"                                     "save_primary_citation"
+      "_entry_citation_label_5"                       "save_primary_citation"
+      "_Journal_page_first"                           "save_primary_citation"
+      "_Journal_page_last"                            "save_primary_citation"
+      "_Journal_year"                                 "save_primary_citation"
+      "_entry_citation_label_2"                       "save_primary_citation"
+      "_space_28"                                     "save_primary_citation"
+      "_space_31"                                     "save_primary_citation"
+      "_Book_page_first"                              "save_primary_citation"
+      "_Book_page_last"                               "save_primary_citation"
+      "_Book_year"                                    "save_primary_citation"
+      "_entry_citation_label_3"                       "save_primary_citation"
+      "_space_38"                                     "save_primary_citation"
+      "_entry_citation_label_4"                       "save_primary_citation"
+      "_space_48"                                     "save_primary_citation"
+      "_Thesis_year"                                  "save_primary_citation"
+      "_label_10"                                     "save_g_entry_information"
+      "_dummy"                                        "save_g_entry_information"
+      "_space_15"                                     "save_g_entry_information"
+      "_space_20"                                     "save_g_entry_information"
+      "_deposition_type_0"                            "save_g_entry_information"
+      "_label_25"                                     "save_g_entry_information"
+      "_space_30"                                     "save_g_entry_information"
+      "_deposition_revision"                          "save_g_entry_information"
+      "_deposition_replacement"                       "save_g_entry_information"
+      "_space_35"                                     "save_g_entry_information"
+      "_space_36"                                     "save_g_entry_information"
+      "_space_37"                                     "save_g_entry_information"
+      "_label_50"                                     "save_g_entry_information"
+      "_label_55"                                     "save_g_entry_information"
+      "_*1g_entry_information"                        "save_g_entry_information"
+      "_*1entry_information"                          "save_g_entry_information"
+      "_space_25"                                     "save_g_entry_information"
+      "_label_3"                                      "save_g_entry_information"
+      "_space_35"                                     "save_g_entry_information"
+      "_Deposition_label_35"                          "save_g_entry_information"
+      "_space_15"                                     "save_g_entry_information"
+      "_space_36"                                     "save_g_entry_information"
+      "_*3g_entry_information"                        "save_g_entry_information"
+      "_*3entry_information"                          "save_g_entry_information"
+      "_space_14"                                     "save_g_entry_information"
+      "_space_35"                                     "save_g_entry_information"
+      "_label_33"                                     "save_g_entry_information"
+      "_space_20"                                     "save_g_entry_information"
+      "_label_20"                                     "save_g_entry_information"
+      "_*4g_entry_information"                        "save_g_entry_information"
+      "_*4entry_information"                          "save_g_entry_information"
+      "_space_10"                                     "save_g_entry_information"
+      "_Deposition_label_5"                           "save_g_entry_information"
+      "_Deposition_label_6"                           "save_g_entry_information"
+      "_space_15"                                     "save_g_entry_information"
+      "_space_20"                                     "save_g_entry_information"
+      "_Deposition_label_1"                           "save_g_entry_information"
+      "_space_25"                                     "save_g_entry_information"
+      "_system_description"                           "save_system_description"
+      "_dummy1"                                       "save_system_description"
+      "_molecular_system"                             "save_system_description"
+      "_system_label_0"                               "save_system_description"
+      "_space_101"                                    "save_system_description"
+      "_space_21"                                     "save_system_description"
+      "_space_102"                                    "save_system_description"
+      "_space_26"                                     "save_system_description"
+      "_label_103"                                    "save_system_description"
+      "_label_66"                                     "save_system_description"
+      "_space_104"                                    "save_system_description"
+      "_label_65"                                     "save_system_description"
+      "_space_104"                                    "save_system_description"
+      "_space_106"                                    "save_system_description"
+      "_space_114"                                    "save_system_description"
+      "_space_105"                                    "save_system_description"
+      "_system_label_22"                              "save_system_description"
+      "_denatured"                                    "save_system_description"
+      "_molten_globule"                               "save_system_description"
+      "_reduced"                                      "save_system_description"
+      "_space_58"                                     "save_system_description"
+      "_space_54"                                     "save_system_description"
+      "_space_59"                                     "save_system_description"
+      "_space_61"                                     "save_system_description"
+      "_*6system_description"                         "save_system_description"
+      "_*6molecular_system"                           "save_system_description"
+      "_label_0"                                      "save_system_description"
+      "_label_21"                                     "save_system_description"
+      "_space_107"                                    "save_system_description"
+      "_space_108"                                    "save_system_description"
+      "_space_109"                                    "save_system_description"
+      "_space_27"                                     "save_system_description"
+      "_space_113"                                    "save_system_description"
+      "_*7system_description"                         "save_system_description"
+      "_*7system"                                     "save_system_description"
+      "_space_110"                                    "save_system_description"
+      "_space_22"                                     "save_system_description"
+      "_label_32"                                     "save_system_description"
+      "_space_115"                                    "save_system_description"
+      "_label_28"                                     "save_system_description"
+      "_space_23"                                     "save_system_description"
+      "_cbx_ligands"                                  "save_system_description"
+      "_label_27"                                     "save_system_description"
+      "_space_45"                                     "save_system_description"
+      "_cbx_ns_residue"                               "save_system_description"
+      "_label_93"                                     "save_system_description"
+      "_space_112"                                    "save_system_description"
+      "_subsystem_query"                              "save_system_description"
+      "_space_55"                                     "save_system_description"
+      "_space_56"                                     "save_system_description"
+      "_space_24"                                     "save_system_description"
+      "_label_113"                                    "save_system_description"
+      "_space_34"                                     "save_system_description"
+      "_label_43"                                     "save_system_description"
+      "_space_54"                                     "save_system_description"
+      "_*4system_description"                         "save_system_description"
+      "_non_standard_residue_label_0"                 "save_system_description"
+      "_space_21"                                     "save_system_description"
+      "_non_standard_residue_label_1"                 "save_system_description"
+      "_ns_label_10"                                  "save_system_description"
+      "_space_22"                                     "save_system_description"
+      "_NS_label_12"                                  "save_system_description"
+      "_NS_label_56"                                  "save_system_description"
+      "_space_65"                                     "save_system_description"
+      "_space_66"                                     "save_system_description"
+      "_space_25"                                     "save_system_description"
+      "_non_standard_residue_label_3"                 "save_system_description"
+      "_space_96"                                     "save_system_description"
+      "_ns_label_45"                                  "save_system_description"
+      "_space_95"                                     "save_system_description"
+      "_space_34"                                     "save_system_description"
+      "_space_35"                                     "save_system_description"
+      "_space_40"                                     "save_system_description"
+      "_*5system_description"                         "save_system_description"
+      "_Ligand_label_0"                               "save_system_description"
+      "_Ligand_label_1"                               "save_system_description"
+      "_space_31"                                     "save_system_description"
+      "_space_10"                                     "save_system_description"
+      "_Ligand_label_3"                               "save_system_description"
+      "_space_64"                                     "save_system_description"
+      "_Ligand_label_10"                              "save_system_description"
+      "_space_66"                                     "save_system_description"
+      "_Ligand_label_12"                              "save_system_description"
+      "_Ligand_label_56"                              "save_system_description"
+      "_space_65"                                     "save_system_description"
+      "_space_25"                                     "save_system_description"
+      "_Ligand_label_4"                               "save_system_description"
+      "_space_96"                                     "save_system_description"
+      "_ns_label_45"                                  "save_system_description"
+      "_space_95"                                     "save_system_description"
+      "_space_33"                                     "save_system_description"
+      "_space_13"                                     "save_system_description"
+      "_space_15"                                     "save_system_description"
+      "_space_16"                                     "save_system_description"
+      "_*3system_description"                         "save_system_description"
+      "_mol_polymer_label_0"                          "save_system_description"
+      "_mol_polymer_label_11"                         "save_system_description"
+      "_space_10"                                     "save_system_description"
+      "_space_15"                                     "save_system_description"
+      "_mol_polymer_label_72"                         "save_system_description"
+      "_DNA"                                          "save_system_description"
+      "_RNA"                                          "save_system_description"
+      "_space_20"                                     "save_system_description"
+      "_label_25"                                     "save_system_description"
+      "_label_30"                                     "save_system_description"
+      "_space_32"                                     "save_system_description"
+      "_space_35"                                     "save_system_description"
+      "_label_40"                                     "save_system_description"
+      "_label_45"                                     "save_system_description"
+      "_space_75"                                     "save_system_description"
+      "_*9system_description"                         "save_system_description"
+      "_dummy"                                        "save_system_description"
+      "_crosslink_label_0"                            "save_system_description"
+      "_crosslink_label_11"                           "save_system_description"
+      "_space_10"                                     "save_system_description"
+      "_space_60"                                     "save_system_description"
+      "_*2system_description"                         "save_system_description"
+      "_label_0"                                      "save_system_description"
+      "_space_10"                                     "save_system_description"
+      "_label_4"                                      "save_system_description"
+      "_space_10"                                     "save_system_description"
+      "_space_11"                                     "save_system_description"
+      "_space_11"                                     "save_system_description"
+      "_space_111"                                    "save_system_description"
+      "_label_66"                                     "save_system_description"
+      "_space_78"                                     "save_system_description"
+      "_label_65"                                     "save_system_description"
+      "_space_68"                                     "save_system_description"
+      "_space_35"                                     "save_system_description"
+      "_space_116"                                    "save_system_description"
+      "_space_105"                                    "save_system_description"
+      "_label_0"                                      "save_system_description"
+      "_space_107"                                    "save_system_description"
+      "_space_108"                                    "save_system_description"
+      "_space_109"                                    "save_system_description"
+      "_space_27"                                     "save_system_description"
+      "_space_126"                                    "save_system_description"
+      "_source"                                       "save_source"
+      "_dummy"                                        "save_source"
+      "_natural_source_label_0"                       "save_source"
+      "_space_10"                                     "save_source"
+      "_space_15"                                     "save_source"
+      "_space_20"                                     "save_source"
+      "_space_25"                                     "save_source"
+      "_label_30"                                     "save_source"
+      "_space_35"                                     "save_source"
+      "_label_40"                                     "save_source"
+      "_space_45"                                     "save_source"
+      "_label_50"                                     "save_source"
+      "_space_55"                                     "save_source"
+      "_eubacteria"                                   "save_source"
+      "_eucaryote"                                    "save_source"
+      "_label_60"                                     "save_source"
+      "_fungi"                                        "save_source"
+      "_plantae"                                      "save_source"
+      "_protista"                                     "save_source"
+      "_not_applicable_1"                             "save_source"
+      "_viroids"                                      "save_source"
+      "_viruses"                                      "save_source"
+      "_other_superkingdom"                           "save_source"
+      "_unclassified"                                 "save_source"
+      "_space_70"                                     "save_source"
+      "_space_75"                                     "save_source"
+      "_space_80"                                     "save_source"
+      "_*1source"                                     "save_source"
+      "_experimental_source_label_0"                  "save_source"
+      "_space_21"                                     "save_source"
+      "_space_25"                                     "save_source"
+      "_label_25"                                     "save_source"
+      "_label_35"                                     "save_source"
+      "_space_35"                                     "save_source"
+      "_es_natural_source"                            "save_source"
+      "_chemically_synthesized"                       "save_source"
+      "_cell_free_synthesis"                          "save_source"
+      "_enzymatic_semisynthesis"                      "save_source"
+      "_vendor"                                       "save_source"
+      "_space_22"                                     "save_source"
+      "_space_31"                                     "save_source"
+      "_sample_description"                           "save_sample_description"
+      "_dummy"                                        "save_sample_description"
+      "_space_10"                                     "save_sample_description"
+      "_space_21"                                     "save_sample_description"
+      "_label_10"                                     "save_sample_description"
+      "_space_12"                                     "save_sample_description"
+      "_space_35"                                     "save_sample_description"
+      "_bicell_solution"                              "save_sample_description"
+      "_micelles"                                     "save_sample_description"
+      "_liposomes"                                    "save_sample_description"
+      "_emulsion"                                     "save_sample_description"
+      "_gel"                                          "save_sample_description"
+      "_solid"                                        "save_sample_description"
+      "_space_22"                                     "save_sample_description"
+      "_*1sample_description"                         "save_sample_description"
+      "_*1sample"                                     "save_sample_description"
+      "_sample_content_label_0"                       "save_sample_description"
+      "_space_10"                                     "save_sample_description"
+      "_sample_content_label_1"                       "save_sample_description"
+      "_space_22"                                     "save_sample_description"
+      "_sample_content_label_10"                      "save_sample_description"
+      "_space_17"                                     "save_sample_description"
+      "_*2sample_description"                         "save_sample_description"
+      "_*2sample"                                     "save_sample_description"
+      "_b_space_10"                                   "save_sample_description"
+      "_b_label_10"                                   "save_sample_description"
+      "_b_space_12"                                   "save_sample_description"
+      "_b_space_35"                                   "save_sample_description"
+      "_b_bicell_solution"                            "save_sample_description"
+      "_b_micelles"                                   "save_sample_description"
+      "_b_liposomes"                                  "save_sample_description"
+      "_b_emulsion"                                   "save_sample_description"
+      "_b_gel"                                        "save_sample_description"
+      "_b_solid"                                      "save_sample_description"
+      "_b_space_22"                                   "save_sample_description"
+      "_*1sample_description"                         "save_sample_description"
+      "_*1sample"                                     "save_sample_description"
+      "_b_sample_content_label_0"                     "save_sample_description"
+      "_b_space_10"                                   "save_sample_description"
+      "_b_sample_content_label_1"                     "save_sample_description"
+      "_b_space_22"                                   "save_sample_description"
+      "_b_sample_content_label_10"                    "save_sample_description"
+      "_b_space_17"                                   "save_sample_description"
+      "_*3sample_description"                         "save_sample_description"
+      "_*3sample"                                     "save_sample_description"
+      "_c_space_10"                                   "save_sample_description"
+      "_c_label_10"                                   "save_sample_description"
+      "_c_space_12"                                   "save_sample_description"
+      "_c_space_35"                                   "save_sample_description"
+      "_c_bicell_solution"                            "save_sample_description"
+      "_c_micelles"                                   "save_sample_description"
+      "_c_liposomes"                                  "save_sample_description"
+      "_c_emulsion"                                   "save_sample_description"
+      "_c_gel"                                        "save_sample_description"
+      "_c_solid"                                      "save_sample_description"
+      "_c_space_22"                                   "save_sample_description"
+      "_*3sample_description"                         "save_sample_description"
+      "_*3sample"                                     "save_sample_description"
+      "_c_sample_content_label_0"                     "save_sample_description"
+      "_c_space_10"                                   "save_sample_description"
+      "_c_sample_content_label_1"                     "save_sample_description"
+      "_c_space_22"                                   "save_sample_description"
+      "_c_sample_content_label_10"                    "save_sample_description"
+      "_c_space_17"                                   "save_sample_description"
+      "_*4sample_description"                         "save_sample_description"
+      "_*4sample"                                     "save_sample_description"
+      "_d_space_10"                                   "save_sample_description"
+      "_d_label_10"                                   "save_sample_description"
+      "_d_space_12"                                   "save_sample_description"
+      "_d_space_35"                                   "save_sample_description"
+      "_d_bicell_solution"                            "save_sample_description"
+      "_d_micelles"                                   "save_sample_description"
+      "_d_liposomes"                                  "save_sample_description"
+      "_d_emulsion"                                   "save_sample_description"
+      "_d_gel"                                        "save_sample_description"
+      "_d_solid"                                      "save_sample_description"
+      "_d_space_22"                                   "save_sample_description"
+      "_*4sample_description"                         "save_sample_description"
+      "_*4sample"                                     "save_sample_description"
+      "_d_sample_content_label_0"                     "save_sample_description"
+      "_d_space_10"                                   "save_sample_description"
+      "_d_sample_content_label_1"                     "save_sample_description"
+      "_d_space_22"                                   "save_sample_description"
+      "_d_sample_content_label_10"                    "save_sample_description"
+      "_d_space_17"                                   "save_sample_description"
+      "_*5sample_description"                         "save_sample_description"
+      "_*5sample"                                     "save_sample_description"
+      "_e_space_10"                                   "save_sample_description"
+      "_e_label_10"                                   "save_sample_description"
+      "_e_label_15"                                   "save_sample_description"
+      "_e_space_12"                                   "save_sample_description"
+      "_expt_conditions"                              "save_expt_conditions"
+      "_dummy"                                        "save_expt_conditions"
+      "_reporting_conditions_label_1"                 "save_expt_conditions"
+      "_space_10"                                     "save_expt_conditions"
+      "_reporting_conditions_label_0"                 "save_expt_conditions"
+      "_space_11"                                     "save_expt_conditions"
+      "_space_21"                                     "save_expt_conditions"
+      "_space_42"                                     "save_expt_conditions"
+      "_space_23"                                     "save_expt_conditions"
+      "_label_11"                                     "save_expt_conditions"
+      "_Variable_type_pH"                             "save_expt_conditions"
+      "_space_35"                                     "save_expt_conditions"
+      "_pH*"                                          "save_expt_conditions"
+      "_pD"                                           "save_expt_conditions"
+      "_space_41"                                     "save_expt_conditions"
+      "_space_12"                                     "save_expt_conditions"
+      "_space_24"                                     "save_expt_conditions"
+      "_temperature_label_0"                          "save_expt_conditions"
+      "_space_13"                                     "save_expt_conditions"
+      "_space_25"                                     "save_expt_conditions"
+      "_ionic_strength_label_0"                       "save_expt_conditions"
+      "_space_31"                                     "save_expt_conditions"
+      "_label_21"                                     "save_expt_conditions"
+      "_space_32"                                     "save_expt_conditions"
+      "_space_14"                                     "save_expt_conditions"
+      "_space_26"                                     "save_expt_conditions"
+      "_pressure_label_0"                             "save_expt_conditions"
+      "_label_24"                                     "save_expt_conditions"
+      "_space_38"                                     "save_expt_conditions"
+      "_space_15"                                     "save_expt_conditions"
+      "_space_16"                                     "save_expt_conditions"
+      "_space_27"                                     "save_expt_conditions"
+      "_label_16"                                     "save_expt_conditions"
+      "_label_5"                                      "save_NMR_experimental"
+      "_dummy"                                        "save_NMR_experimental"
+      "_label_10"                                     "save_NMR_experimental"
+      "_space_15"                                     "save_NMR_experimental"
+      "_space_20"                                     "save_NMR_experimental"
+      "_space_25"                                     "save_NMR_experimental"
+      "_label_30"                                     "save_NMR_experimental"
+      "_label_35"                                     "save_NMR_experimental"
+      "_space_40"                                     "save_NMR_experimental"
+      "_space_45"                                     "save_NMR_experimental"
+      "_space_50"                                     "save_NMR_experimental"
+      "_space_55"                                     "save_NMR_experimental"
+      "_label_60"                                     "save_NMR_experimental"
+      "_label_65"                                     "save_NMR_experimental"
+      "_space_70"                                     "save_NMR_experimental"
+      "_space_75"                                     "save_NMR_experimental"
+      "_space_80"                                     "save_NMR_experimental"
+      "_space_85"                                     "save_NMR_experimental"
+      "_*2NMR_experimental"                           "save_NMR_experimental"
+      "_software"                                     "save_NMR_experimental"
+      "_nmrexp_label_15"                              "save_NMR_experimental"
+      "_nmrexp_label_16"                              "save_NMR_experimental"
+      "_space_10"                                     "save_NMR_experimental"
+
+   '_dummy'                                             "save_nmr_parameters" 
+   '_chemical_shift_label_0'                          "save_nmr_parameters" 
+   '_ambiguity_table_label_0'                       "save_nmr_parameters"
+   '_cs_file_path_name'                             "save_nmr_parameters"
+   '_nmr_parameters'                                    "save_nmr_parameters"
+   '_space_105'                                   "save_nmr_parameters"
+   '_label_105'                                   "save_nmr_parameters"
+   '_cbx_chemical_shifts'                                   "save_nmr_parameters"
+   '_cbx_coupling_constants'                                   "save_nmr_parameters"     
+   '_space_16'                                         "save_nmr_parameters"             
+   '_space_18'                                     "save_nmr_parameters"                 
+   '_*1nmr_parameters'                                    "save_nmr_parameters"          
+   '_label_10'                                     "save_nmr_parameters"                 
+   '_space_15'                                     "save_nmr_parameters"                
+   '_chem_shift_ref_framecode'                                    "save_nmr_parameters" 
+   '_space_20'                                     "save_nmr_parameters"                
+   '_space_25'                                     "save_nmr_parameters"                 
+   '_chem_shift_label_0'                                    "save_nmr_parameters"        
+   '_space_30'                                       "save_nmr_parameters"               
+   '_chem_shift_label_1'                                    "save_nmr_parameters"        
+   '_chem_shift_label_31'                                    "save_nmr_parameters"       
+   '_space_35'                                        "save_nmr_parameters"              
+   '_chem_shift_label_32'                                    "save_nmr_parameters"       
+   '_chem_shift_label_33'                                    "save_nmr_parameters"       
+   '_chem_shift_label_34'                                    "save_nmr_parameters"       
+   '_chem_shift_label_35'                                    "save_nmr_parameters"       
+   '_chem_shift_label_36'                                    "save_nmr_parameters"       
+   '_chem_shift_label_37'                                    "save_nmr_parameters"       
+   '_space_40'                                              "save_nmr_parameters"        
+   '_chem_shift_label_38'                                    "save_nmr_parameters"       
+   '_space_45'                                              "save_nmr_parameters"        
+   '_space_50'                                              "save_nmr_parameters"        
+   '_space_55'                                              "save_nmr_parameters"        
+   '_*0nmr_parameters'                                   "save_nmr_parameters"
+      '_*1chemical_shift_reference'                                   "save_nmr_parameters"
+      '_chem_shift_label_2'                                   "save_nmr_parameters"
+      '_chem_shift_label_55'                                   "save_nmr_parameters"
+      '_space_10'                                   "save_nmr_parameters"
+      '_chem_shift_label_3'                                   "save_nmr_parameters"
+      '_space_15'                                   "save_nmr_parameters"
+      '_space_20'                                   "save_nmr_parameters"
+      '_chem_shift_label_10'                                   "save_nmr_parameters"
+      '_space_25'                                   "save_nmr_parameters"
+      '_chem_shift_label_11'                                   "save_nmr_parameters"
+      '_space_30'                                   "save_nmr_parameters"
+      '_chem_shift_label_12'                                   "save_nmr_parameters"
+      '_space_35'                                   "save_nmr_parameters"
+      '_space_40'                                   "save_nmr_parameters"
+      '_chem_shift_label_14'                                   "save_nmr_parameters"
+      '_space_45'                                   "save_nmr_parameters"
+      '_*2nmr_parameters'                                   "save_nmr_parameters"
+      '_dummy                                   "save_nmr_parameters"
+      '_space_10'                                   "save_nmr_parameters"
+      '_label_15'                                   "save_nmr_parameters"
+      '_label_20'                                   "save_nmr_parameters"
+      '_space_25'                                   "save_nmr_parameters"
+      '_space_30'                                   "save_nmr_parameters"
+      '_space_35'                                   "save_nmr_parameters"
+      '_label_40'                                   "save_nmr_parameters"
+      '_space_45'                                   "save_nmr_parameters"
+      '_FTP_chem_shifts*'                                   "save_nmr_parameters"
+      '_space_50'                                   "save_nmr_parameters"
+      '_label_55'                                   "save_nmr_parameters"
+      '_space_60'                                   "save_nmr_parameters"
+      '_space_65'                                   "save_nmr_parameters"
+      '_space_70'                                   "save_nmr_parameters"
+      '_space_75'                                   "save_nmr_parameters"
+      '_label_80'                                   "save_nmr_parameters"
+      '_space_85'                                   "save_nmr_parameters"
+      '_space_90'                                   "save_nmr_parameters"
+      '_*3nmr_parameters'                                   "save_nmr_parameters"
+      '_dummy'                                   "save_nmr_parameters"
+      '_j_label_0'                                  "save_nmr_parameters"
+      '_j_file_path_name'                           "save_nmr_parameters"
+      '_space_10'                                   "save_nmr_parameters"
+      '_space_15'                                   "save_nmr_parameters"
+      '_space_20'                                   "save_nmr_parameters"
+      '_space_25'                                   "save_nmr_parameters"
+      '_space_30'                                   "save_nmr_parameters"
+      '_label_35'                                   "save_nmr_parameters"
+      '_space_40'                                   "save_nmr_parameters"
+      '_FTP_coupling_constants*'                    "save_nmr_parameters"
+
+
+
+      "_nmr_kinetic_thermo"                           "save_nmr_kinetic_thermo"
+      "_space_105"                                    "save_nmr_kinetic_thermo"
+      "_label_105"                                    "save_nmr_kinetic_thermo"
+      "_cbx_chemical_shifts"                          "save_nmr_kinetic_thermo"
+      "_cbx_coupling_constants"                       "save_nmr_kinetic_thermo"
+      "_cbx_relaxation_par"                           "save_nmr_kinetic_thermo"
+      "_cbx_peak_lists"                               "save_nmr_kinetic_thermo"
+      "_space_10"                                     "save_nmr_kinetic_thermo"
+      "_label_10"                                     "save_nmr_kinetic_thermo"
+      "_cbx_H_exch_other"                             "save_nmr_kinetic_thermo"
+      "_cbx_pKa_values"                               "save_nmr_kinetic_thermo"
+      "_space_16"                                     "save_nmr_kinetic_thermo"
+      "_space_18"                                     "save_nmr_kinetic_thermo"
+      "_*1nmr_kinetic_thermo"                         "save_nmr_kinetic_thermo"
+      "_dummy"                                        "save_nmr_kinetic_thermo"
+      "_label_10"                                     "save_nmr_kinetic_thermo"
+      "_space_15"                                     "save_nmr_kinetic_thermo"
+      "_space_20"                                     "save_nmr_kinetic_thermo"
+      "_space_25"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_0"                           "save_nmr_kinetic_thermo"
+      "_space_30"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_1"                           "save_nmr_kinetic_thermo"
+      "_chem_shift_label_31"                          "save_nmr_kinetic_thermo"
+      "_space_35"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_32"                          "save_nmr_kinetic_thermo"
+      "_chem_shift_label_33"                          "save_nmr_kinetic_thermo"
+      "_chem_shift_label_34"                          "save_nmr_kinetic_thermo"
+      "_chem_shift_label_35"                          "save_nmr_kinetic_thermo"
+      "_chem_shift_label_36"                          "save_nmr_kinetic_thermo"
+      "_chem_shift_label_37"                          "save_nmr_kinetic_thermo"
+      "_space_40"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_38"                          "save_nmr_kinetic_thermo"
+      "_space_45"                                     "save_nmr_kinetic_thermo"
+      "_space_50"                                     "save_nmr_kinetic_thermo"
+      "_space_55"                                     "save_nmr_kinetic_thermo"
+      "_*0nmr_kinetic_thermo"                         "save_nmr_kinetic_thermo"
+      "_*1chemical_shift_reference"                   "save_nmr_kinetic_thermo"
+      "_chem_shift_label_2"                           "save_nmr_kinetic_thermo"
+      "_chem_shift_label_55"                          "save_nmr_kinetic_thermo"
+      "_space_10"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_3"                           "save_nmr_kinetic_thermo"
+      "_space_15"                                     "save_nmr_kinetic_thermo"
+      "_space_20"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_10"                          "save_nmr_kinetic_thermo"
+      "_external_to_the_sample"                       "save_nmr_kinetic_thermo"
+      "_space_25"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_11"                          "save_nmr_kinetic_thermo"
+      "_indirect"                                     "save_nmr_kinetic_thermo"
+      "_space_30"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_12"                          "save_nmr_kinetic_thermo"
+      "_cylindrical"                                  "save_nmr_kinetic_thermo"
+      "_space_35"                                     "save_nmr_kinetic_thermo"
+      "_space_40"                                     "save_nmr_kinetic_thermo"
+      "_chem_shift_label_14"                          "save_nmr_kinetic_thermo"
+      "_perpendicular_to_Bo"                          "save_nmr_kinetic_thermo"
+      "_space_45"                                     "save_nmr_kinetic_thermo"
+      "_*2nmr_kinetic_thermo"                         "save_nmr_kinetic_thermo"
+      "_dummy"                                        "save_nmr_kinetic_thermo"
+      "_chemical_shift_label_0"                       "save_nmr_kinetic_thermo"
+      "_space_10"                                     "save_nmr_kinetic_thermo"
+      "_label_15"                                     "save_nmr_kinetic_thermo"
+      "_label_20"                                     "save_nmr_kinetic_thermo"
+      "_space_25"                                     "save_nmr_kinetic_thermo"
+      "_space_30"                                     "save_nmr_kinetic_thermo"
+      "_space_35"                                     "save_nmr_kinetic_thermo"
+      "_label_40"                                     "save_nmr_kinetic_thermo"
+      "_space_45"                                     "save_nmr_kinetic_thermo"
+      "_space_50"                                     "save_nmr_kinetic_thermo"
+      "_label_55"                                     "save_nmr_kinetic_thermo"
+      "_space_60"                                     "save_nmr_kinetic_thermo"
+      "_space_65"                                     "save_nmr_kinetic_thermo"
+      "_space_70"                                     "save_nmr_kinetic_thermo"
+      "_ambiguity_table_label_0"                      "save_nmr_kinetic_thermo"
+      "_space_75"                                     "save_nmr_kinetic_thermo"
+      "_label_80"                                     "save_nmr_kinetic_thermo"
+      "_space_85"                                     "save_nmr_kinetic_thermo"
+      "_space_90"                                     "save_nmr_kinetic_thermo"
+      "_*3nmr_kinetic_thermo"                         "save_nmr_kinetic_thermo"
+      "_dummy"                                        "save_nmr_kinetic_thermo"
+      "_j_label_0"                                    "save_nmr_kinetic_thermo"
+      "_space_10"                                     "save_nmr_kinetic_thermo"
+      "_j_coupling_constants"                         "save_nmr_kinetic_thermo"
+      "_space_15"                                     "save_nmr_kinetic_thermo"
+      "_space_20"                                     "save_nmr_kinetic_thermo"
+      "_space_25"                                     "save_nmr_kinetic_thermo"
+      "_space_30"                                     "save_nmr_kinetic_thermo"
+      "_label_35"                                     "save_nmr_kinetic_thermo"
+      "_space_40"                                     "save_nmr_kinetic_thermo"
+      "_references"                                   "save_references"
+      "_dummy"                                        "save_references"
+      "_Citation_label_0"                             "save_references"
+      "_Citation_label_1"                             "save_references"
+      "_space_10"                                     "save_references"
+      "_space_15"                                     "save_references"
+      "_space_20"                                     "save_references"
+      "_label_25"                                     "save_references"
+      "_space_30"                                     "save_references"
+      "_space_35"                                     "save_references"
+      "_label_40"                                     "save_references"
+      "_space_45"                                     "save_references"
+      "_files_deposited"                              "save_files_deposited"
+      "_dummy"                                        "save_files_deposited"
+    stop_
+
+save_
+
+save_make_citation_full_tag          #  transform 6
+   _Saveframe_category    make_citation_full_tag
+ 
+      loop_
+       _key_tag
+
+       "_Author_ordinal"
+       "_Citation_title"
+       "_Journal_abbreviation"
+       "_Journal_name_full"
+       "_Journal_volume"
+       "_Page_first"
+       "_Page_last"
+       "_Citation_status"
+       "_Year"
+
+      stop_
+save_
+
+save_remove_empty_frames         #    transform 7
+   _Saveframe_category    remove_empty_frames
+
+save_
+
+save_free_all_category_tags      #    transform 8
+   _Saveframe_category    free_all_category_tags
+
+save_
+
+save_order                            #  Part 2 - section 1
+   _Saveframe_category    order
+
+   loop_
+      _saveframe_name
+      _key_tag
+      _key_value
+
+       loop_
+          _tag_name
+
+  *   "_Saveframe_category"   entry_information
+
+  "_Saveframe_category"
+  "_Entry_title"
+  "_Author_ordinal"
+  "_Author_family_name"
+  "_Author_given_name"
+  "_Author_middle_initials"
+  "_Author_family_title"
+  "_BMRB_accession_number"
+  "_BMRB_flat_file_name"
+  "_Entry_type"
+  '_Submission_date'
+  '_Accession_date'
+  '_Entry_origination'
+  '_NMR_STAR_version'
+  '_Experimental_method'
+  "_Details"
+  "_Special_processing_instructions"
+  "_Related_BMRB_accession_number"
+  "_Relationship"
+  "_Revised_BMRB_accession_number"
+  "_Replace_BMRB_accession_number"
+  "_Revision_details"
+  "_Replace_details*"
+  "_Release_immediately"
+  "_Release_on_publication"
+  "_Release_date_request"
+  "_Release_date_justification"
+
+       stop_
+
+  *   "_Saveframe_category"   contact_persons
+
+  "_Saveframe_category"
+  "_Family_name"
+  "_Given_name"
+  "_Middle_initials"
+  "_Family_title"
+  "_Department_and_Institution"
+  "_Mailing_address"
+  "_Phone_number"
+  "_Email_address"
+  "_FAX_number"
+
+       stop_
+
+  *   "_Saveframe_category"   entry_citation
+
+  "_Saveframe_category"
+#  "_Citation_full"
+  "_Citation_title"
+  "_Citation_status"
+  "_Citation_type"
+  "_MEDLINE_UI_code"
+  "_Author_ordinal"
+  "_Author_family_name"
+  "_Author_given_name"
+  "_Author_middle_initials"
+  "_Author_family_title"
+  "_Journal_abbreviation"
+  "_Journal_name_full"
+  "_Journal_volume"
+  "_Journal_issue"
+  "_Book_title"
+  "_Book_chapter_title"
+  "_Book_volume"
+  "_Book_series"
+  "_Book_publisher"
+  "_Book_publisher_city"
+  "_Book_ISBN"
+  "_Conference_title"
+  "_Conference_site"
+  "_Conference_state_province"
+  "_Conference_country"
+  "_Conference_start_date"
+  "_Conference_end_date"
+  "_Conference_abstract_number"
+  "_Thesis_institution"
+  "_Thesis_institution_city"
+  "_Thesis_institution_country"
+  "_Page_first"
+  "_Page_last"
+  "_Year"
+  "_Details"
+  "_Keyword"
+  "_Editor_name_full*"
+
+       stop_
+
+  *   "_Saveframe_category"   molecular_system
+
+  "_Saveframe_category"
+  "_Mol_system_name"
+  "_Abbreviation_common"
+  "_Enzyme_commission_number"
+  "_Mol_system_component_name"
+  "_Mol_label"
+
+  "_System_physical_state"
+  "_System_oligomer_state"
+  "_System_paramagnetic"
+  "_System_thiol_state"
+  "_magnetic_equivalence*"
+  "_Biological_function"
+  "_Database_name"
+  "_Database_accession_code"
+  "_Database_entry_mol_name"
+  "_Database_entry_details"
+
+       stop_
+
+  *   "_Saveframe_category"   monomeric_polymer
+
+  "_Saveframe_category"
+  "_Mol_type"
+  "_Mol_polymer_class"
+  "_Name_common"
+  "_Name_variant"
+  "_Abbreviation_common"
+  "_Molecular_mass"
+  "_Mol_thiol_state"
+  "_Details"
+  "_Sequence_citation_label"
+  "_Sequence_features"
+  "_Residue_count"
+  "_Mol_residue_sequence"
+  '_Residue_seq_code'
+  '_Residue_author_seq_code'
+  '_Residue_label' 
+
+  "_Residue_author_seq_code"
+  "_Database_name"            
+  "_Database_accession_code" 
+  "_Database_entry_mol_name" 
+  "_Sequence_alignment_details"
+
+       stop_
+
+  *   "_Saveframe_category"   polymer_residue
+
+  "_Saveframe_category"
+  "_Name_common"
+  "_Abbreviation_common"
+  "_Name_IUPAC"
+  "_Residue_location*"
+  "_PDB_code"
+  "_Name_database_BMRB"
+  "_Mol_paramagnetic"
+  "_Atom_prochirality_list*"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   ligand
+
+  "_Saveframe_category"
+  "_Name_common"
+  "_Abbreviation_common"
+  "_Name_IUPAC"
+  "_PDB_code"
+  "_Name_database_BMRB"
+  "_Mol_paramagnetic"
+  "_Mol_aromatic"
+  "_Inter_mol_bond_table*"
+  "_Atom_oxidation_number*"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   crosslink_bonds
+
+  "_Saveframe_category"
+  "_Bond_order"
+  "_Bond_type"
+  "_Atom_one_mol_system_component_name"
+  "_Atom_one_residue_seq_code"
+  "_Atom_one_atom_name"
+  "_Atom_two_mol_system_component_name"
+  "_Atom_two_residue_seq_code"
+  "_Atom_two_atom_name"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   biol_func_molecular_system
+
+  "_Saveframe_category"
+  "_Name_common"
+  "_Abbreviation_common"
+  "_Enzyme_commission_number"
+  "_Details"
+  "_Mol_system_component_name"
+  "_Biological_function*"
+  "_Database_name"
+  "_Database_accession_code"
+  "_Database_entry_details"
+
+       stop_
+
+  *   "_Saveframe_category"   natural_source
+
+  "_Saveframe_category"
+  "_Mol_label"
+  "_Organism_name_common"
+  "_NCBI_taxonomy_ID"
+  "_Superkingdom"
+  "_Kingdom"
+  "_Genus"
+  "_Species"
+  "_Strain"
+  "_Variant"
+  "_Organ"
+  "_Tissue"
+  "_Cell_line"
+  "_Cell_type"
+  "_ATCC_number"
+  "_Organelle"
+  "_Fraction"
+  "_Secretion"
+  "_Plasmid"
+  "_Gene_mnemonic"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   experimental_source
+
+  "_Saveframe_category"
+  "_Mol_label"
+  "_Production_method"
+  "_Host_organism_name_common"
+  "_Genus"
+  "_Species"
+  "_Strain"
+  "_Variant"
+  "_Organ"
+  "_Tissue"
+  "_Cell_line"
+  "_Cell_type"
+  "_ATCC_number"
+  "_Vector_type"
+  "_Vector_name"
+  "_Vendor_name"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   sample
+
+  "_Saveframe_category"
+  "_Sample_type"
+  "_Details"
+  "_Mol_label"
+  "_Concentration_value"
+  "_Concentration_value_units"
+  "_Concentration_min_value"
+  "_Concentration_max_value"
+  "_Isotopic_labeling"
+
+  "_Sample_label5*"
+  "_Sample_type5*"
+
+       stop_
+
+  *   "_Saveframe_category"   sample_mol_purity
+
+      .       
+
+       stop_
+
+  *   "_Saveframe_category"   software
+
+  "_Saveframe_category"
+  "_Name"
+  "_Version"
+  "_Task"
+  "_Citation_label"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   NMR_spectrometer
+
+  "_Saveframe_category"
+  "_Manufacturer"
+  "_Model"
+  "_Field_strength"
+  "_Spectrometer_list*"
+
+       stop_
+
+  *   "_Saveframe_category"   NMR_applied_experiment
+
+  "_Saveframe_category"
+  "_NMR_experiment_list*"
+  "_nmr_exp_Details*"
+  "_Spectrometer_list*"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   sample_conditions
+
+  "_Saveframe_category"
+  "_Details"
+  "_Variable_type"
+  "_Variable_value"
+  "_Variable_value_error"
+  "_Variable_value_units"
+
+       stop_
+
+  *   "_Saveframe_category"   chemical_shift_reference
+
+  "_Saveframe_category"
+  '_Default_1*'
+  '_Default_2*'
+  '_Default_3*'
+  '_Default_4*'
+  '_Default_5*'
+  "_Details"
+  "_Mol_common_name"
+  "_Atom_type"
+  "_Atom_isotope_number"
+  "_Atom_group"
+  "_Chem_shift_units"
+  "_Chem_shift_value"
+  "_Reference_method"
+  "_Reference_type"
+  "_External_reference_sample_geometry"
+  "_External_reference_location"
+  "_External_reference_sample_geometry_other"
+  "_External_reference_axis"
+  "_Indirect_shift_ratio"
+  "_Indirect_shift_ratio_citation_label"
+  "_Reference_correction_type"
+  "_Correction_value"
+  "_Correction_value_citation_label"
+
+       stop_
+
+  *   "_Saveframe_category"   assigned_chemical_shifts
+
+  "_Saveframe_category"
+  "_FTP_chem_shifts*"
+  "_Details"
+  "_ambiguity_table*"
+  "_Sample_label"
+  "_Sample_conditions_label"
+  "_Chem_shift_reference_set_label"
+  "_Mol_system_component_name"
+  "_H_shift_error"
+  "_2H_shift_error"
+  "_3H_shift_error"
+  "_C_shift_error"
+  "_N_shift_error"
+  "_P_shift_error"
+  "_F_shift_error"
+  '_Atom_shift_assign_ID'
+  '_Residue_seq_code'
+  '_Residue_label'
+  '_Atom_name'
+  '_Atom_type'
+  '_Chem_shift_value'
+  '_Chem_shift_value_error'
+  '_Chem_shift_ambiguity_code'
+
+       stop_
+
+  *   "_Saveframe_category"   coupling_constants
+
+  "_Saveframe_category"
+  "_FTP_coupling_constants*"
+  "_Details"
+  "_Sample_label"
+  "_Sample_conditions"
+  "_Spectrometer_frequency_1H"
+  "_Mol_system_component_name"
+
+       stop_
+
+  *   "_Saveframe_category"   citation
+
+  "_Saveframe_category"
+  "_MEDLINE_UI_code"
+  "_Citation_full"
+
+       stop_
+
+  *   "_Saveframe_category"   author_atom_nomenclature_maps
+
+      .       
+
+       stop_
+
+  *   "_Saveframe_category"   sequence_alignments
+
+      .       
+
+       stop_
+
+  *   "_Saveframe_category"   BMRB_verification_warnings
+
+      .       
+
+       stop_
+
+   stop_
+
+save_
+
+
+save_loops                            #  Part 2 - section 2
+   _Saveframe_category    loops
+
+   loop_
+      _saveframe_name
+      _key_tag
+      _key_value
+      _tabulation_flag
+
+       loop_
+          _tag_name
+
+  *   "_Saveframe_category"   contact_persons          linear
+
+  "_Family_name"
+  "_Given_name"
+  "_Middle_initials"
+  "_Family_title"
+  "_Department_and_Institution"
+  "_Mailing_address"
+  "_Phone_number"
+  "_Email_address"
+  "_FAX_number"
+
+       stop_
+
+  *   "_Saveframe_category"   entry_citation          linear
+
+  "_Keyword"
+
+                 stop_
+
+  *   "_Saveframe_category"   entry_citation          tabulate
+
+  "_Author_ordinal"
+  "_Author_family_name"
+  "_Author_given_name"
+  "_Author_middle_initials"
+  "_Author_family_title"
+
+                 stop_
+
+  #*   "_Saveframe_category"   entry_citation          linear
+
+  #"_Editor_name_full*"
+
+  #     stop_
+
+  *   "_Saveframe_category"   entry_information          tabulate
+
+  "_Author_ordinal"
+  "_Author_family_name"
+  "_Author_given_name"
+  "_Author_middle_initials"
+  "_Author_family_title"
+
+       stop_
+
+  *   "_Saveframe_category"   entry_information          tabulate
+
+  "_Related_BMRB_accession_number"
+  "_Relationship"
+
+       stop_
+
+  *   "_Saveframe_category"   molecular_system          tabulate
+
+  "_Mol_system_component_name"
+  "_Mol_label"
+
+       stop_
+
+  *   "_Saveframe_category"   molecular_system          linear
+
+  "_Biological_function"
+
+       stop_
+
+  *   "_Saveframe_category"   molecular_system          tabulate
+
+  "_Database_name"
+  "_Database_accession_code"
+  "_Database_entry_mol_name"
+  "_Database_entry_details"
+
+       stop_    
+
+  *  "_Saveframe_category"   monomeric_polymer        tabulate
+
+  '_Residue_seq_code'
+  '_Residue_author_seq_code'
+  '_Residue_label' 
+
+       stop_
+
+  *  "_Saveframe_category"   monomeric_polymer        tabulate
+
+     "_Database_name"
+     "_Database_accession_code"         
+     "_Database_entry_mol_name"         
+     "_Sequence_alignment_details"      
+
+
+       stop_
+
+  *   "_Saveframe_category"   crosslink_bonds          tabulate
+
+  "_Bond_order"
+  "_Bond_type"
+  "_Atom_one_mol_system_component_name"
+  "_Atom_one_residue_seq_code"
+  "_Atom_one_atom_name"
+  "_Atom_two_mol_system_component_name"
+  "_Atom_two_residue_seq_code"
+  "_Atom_two_atom_name"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   biol_func_molecular_system          linear
+
+  "_Database_name"
+  "_Database_accession_code"
+  "_Database_entry_details"
+
+       stop_
+
+  *   "_Saveframe_category"   natural_source          tabulate
+
+  "_Mol_label"
+  "_Organism_name_common"
+  "_NCBI_taxonomy_ID"
+  "_Superkingdom"
+  "_Kingdom"
+  "_Genus"
+  "_Species"
+  "_Strain"
+  "_Variant"
+  "_Organ"
+  "_Tissue"
+  "_Cell_line"
+  "_Cell_type"
+  "_ATCC_number"
+  "_Organelle"
+  "_Fraction"
+  "_Secretion"
+  "_Plasmid"
+  "_Gene_mnemonic"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   experimental_source          tabulate
+
+  "_Mol_label"
+  "_Production_method"
+  "_Host_organism_name_common"
+  "_Genus"
+  "_Species"
+  "_Strain"
+  "_Variant"
+  "_Organ"
+  "_Tissue"
+  "_Cell_line"
+  "_Cell_type"
+  "_ATCC_number"
+  "_Vector_type"
+  "_Vector_name"
+  "_Vendor_name"
+  "_Details"
+
+       stop_
+
+  *   "_Saveframe_category"   sample          tabulate
+
+  "_Mol_label"
+  "_Concentration_value"
+  "_Concentration_value_units"
+  "_Concentration_min_value"
+  "_Concentration_max_value"
+  "_Isotopic_labeling"
+
+                 stop_
+
+
+  *   "_Saveframe_category"   sample_conditions          tabulate
+
+  "_Variable_type"
+  "_Variable_value"
+  "_Variable_value_error"
+  "_Variable_value_units"
+
+       stop_
+
+  *   "_Saveframe_category"   software          linear
+
+#  "_Name"
+  "_Task"
+
+       stop_
+
+  *   "_Saveframe_category"   chemical_shift_reference          tabulate
+
+  "_Mol_common_name"
+  "_Atom_type"
+  "_Atom_isotope_number"
+  "_Atom_group"
+  "_Chem_shift_units"
+  "_Chem_shift_value"
+  "_Reference_method"
+  "_Reference_type"
+  "_External_reference_sample_geometry"
+  "_External_reference_location"
+  "_External_reference_sample_geometry_other"
+  "_External_reference_axis"
+  "_Indirect_shift_ratio"
+  "_Indirect_shift_ratio_citation_label"
+  "_Reference_correction_type"
+  "_Correction_value"
+  "_Correction_value_citation_label"
+
+       stop_
+
+
+ *  '_Saveframe_category'         'assigned_chemical_shifts'      tabulate       
+
+   '_Atom_shift_assign_ID'
+   '_Residue_seq_code'
+   '_Residue_label'
+   '_Atom_name'
+   '_Atom_type'
+   '_Chem_shift_value'
+   '_Chem_shift_value_error'
+   '_Chem_shift_ambiguity_code'
+
+       stop_
+
+    stop_
+
+save_
+
+

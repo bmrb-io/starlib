@@ -1,0 +1,23 @@
+data_duh
+
+# Simple example to test quoting style parsing:
+
+_typical_NON		 NonQuotedString
+_typical_SINGLE         'single quoted string'
+_typical_DOUBLE         "double quoted string"
+_typical_SEMICOLON
+;
+semicolon
+delimited
+string
+;
+
+loop_
+   _val1 _val2
+
+    Steve's Steve"s
+    Frits' Frits"
+    'Steve 'Steve
+    'typical' "typical"
+stop_
+

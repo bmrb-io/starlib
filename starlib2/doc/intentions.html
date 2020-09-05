@@ -1,0 +1,41 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: intentions</TITLE>
+    <LINK HREF=design.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>Intentions of the starlib library.</H1>
+    This brief overview describes what the starlib library is
+    intended to be used for, and what it is not intended to be
+    used for.
+    <HR WIDTH=50% HEIGHT=8>
+    <CODE><B>starlib</B></CODE> is a library originally developed
+    internally at BMRB for use with the NMR-STAR file format.
+    However, it is generic enough that it should be usable on
+    any STAR file format, such as CIF.  <CODE>starlib</CODE>
+    does not make any attempt to provide a way to search multiple
+    STAR files as if they were a database.  <CODE>starlib</CODE> is
+    intended primarily for use with one single STAR file.
+    <P>
+    At BMRB, STAR files are intended to be used only as a means of
+    transporting data between formats.  It is a long-range goal of
+    BMRB to eventually create a database schema for relational access
+    to the data that is currently kept in NMR-STAR files.  Therefore
+    the <CODE>starlib</CODE> library does not attempt to provide a
+    relational access paradigm.
+    <P>
+    What the <CODE>starlib</CODE> library does do is to provide a
+    means of searching through a STAR file for data and manipulating
+    that data.  The intention is to do this in a way that the programmer
+    can use similar functionality throughout the STAR file, where
+    possible.  As an example of this, the function to search for a
+    tag in a save frame is the same as the name of a function to
+    search for a tag in an entire STAR file.
+    <P>
+    Please do keep in mind, however, that this is the first version
+    of this library.  Suggestions as to how the interface could be
+    improved are welcome.
+    <HR>
+    <A HREF=design.html> - next topic - </A>
+</BODY>

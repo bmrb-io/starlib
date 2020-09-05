@@ -1,0 +1,451 @@
+<html><head><TITLE>DataValueNode</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  DataValueNode : public <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> ifndef NO_POSBITS_DATAVALUENODE, private <!1><A HREF="ASTnodeWithPosBits.html">ASTnodeWithPosBits</A> endif </H2><BLOCKQUOTE>
+This is the type that holds a single string value from the 
+star file, and the delimiter type that is used to quote it
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=125>
+<param name=classes value="MNO_POSBITS_DATAVALUENODE,M,Mifndef,M,CASTnode,MASTnode.2.html,CDataValueNode,MDataValueNode.html">
+<param name=before value="M,M,M,M">
+<param name=after value="Ml_,ML_,MD_,M">
+<param name=indent value="0,0,0,1">
+<param name=arrowdir value="up">
+</APPLET>
+<hr>
+
+<DL>
+<TABLE BORDER>
+<DT><h3>Public Classes</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.3.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum </TD><TD><B>ValType</B> <br>
+<I> ValType - the type of value this is</I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.3.1.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I> Skipping an enum of zero, as that will indicate</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.1.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I> an undefined value.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.1.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>NON</B> <br>
+<I> not quoted</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.1.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DOUBLE</B> <br>
+<I> double-quotes</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.1.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SINGLE</B> <br>
+<I> single-quotes</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.1.6"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SEMICOLON</B> <br>
+<I> semicolon-delimited</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.1.7"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>FRAMECODE</B> <br>
+<I> framecode (puts a dollar sign in front)</I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public Methods</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.3.30"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>changeToAppropriateDelimiter</B> ( void )<br>
+<I>changeToAppropriateDelimiter():  Examine the string value
+and determine what the appropriate delimiter type should
+be, and apply it</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataValueNode</B> ( bool link, <!2><A HREF="DataValueNode.html#DOC.3.16">DataValueNode</A> &copy )<br>
+<I>Copy with parallel link</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.17"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataValueNode</B> ( <!2><A HREF="DataValueNode.html#DOC.3.16">DataValueNode</A> &copy )<br>
+<I> Copy constructor.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.16"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataValueNode</B> (const char *str, <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> type )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.15"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataValueNode</B> (const string &str, <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> type )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.14"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataValueNode</B> (const char *str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.9"> <IMG BORDER=0 SRC=icon1.gif></A> static  <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> </TD><TD><B>findAppropriateDelimiterType</B> ( const string &val )<br>
+<I>Find the delimiter type that would be appropriate for
+the given string</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>isOfType</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.12"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> </TD><TD><B>myDelimType</B> ( void ) const <br>
+<I>Returns the type of the DataValueNode - indicating what
+kind of string delimiter it has</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.8"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int </TD><TD><B>myLongestStr</B> ( void )<br>
+<I>Returns the length of the longest string in this object</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.18"> <IMG BORDER=0 SRC=icon1.gif></A> string </TD><TD><B>myName</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.2"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>* </TD><TD><B>myParallelCopy</B> ( void )<br>
+<I>Overrides the virtual method of the same name for
+ASTnode</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTnode::ASTtype</A> </TD><TD><B>myType</B> (void)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.3"> <IMG BORDER=0 SRC=icon1.gif></A> string </TD><TD><B>myValue</B> ( void ) const <br>
+<I>Returns the string value of this node</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.25"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator< </B> (const char *str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.21"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator< </B> (const string &str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.27"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator<=</B> (const char *str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.23"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator<=</B> (const string &str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.7"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator== </B> (const string &str)<br>
+<I>For comparing values as strings</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.20"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator== </B> (const char *str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.26"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator> </B> (const char *str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.22"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator> </B> (const string &str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.24"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator>=</B> (const string &str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.28"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>operator>=</B> (const char *str)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.13"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>setDelimType</B> ( <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> setTo )<br>
+<I>Sets the type of string value this is, and consequently,
+what kind of delimiter to use when printing this node out</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.19"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>Unparse</B> (int indent)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.6"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>Unparse</B> (int indent, int presize, int postsize)<br>
+<I>This function is public for reasons of technical difficulty</I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.3.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.3.4.2"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>setValue</B> ( const string &newVal )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.4.3"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>setValue</B> ( const char *newVal )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.3.4.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>Changes the value of this string</I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Protected Fields</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.3.29"> <IMG BORDER=0 SRC=icon1.gif></A> string </TD><TD><B>myStrVal</B> <br>
+<I></I>
+</TD></TR></TABLE></DL>
+<hr><H3>Inherited from <A HREF="ASTnode.2.html">ASTnode:</A></h3>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><IMG SRC=icon2.gif>  enum  <B>ASTtype</B>
+
+<DL>
+<DT><A HREF="#DOC.81.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ASTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATABLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.4"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAFILENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.5"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.6"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAITEMNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.7"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.8"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPNAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.9"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPDEFLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.10"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.11"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPVALLISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.12"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATANAMENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.13"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATANODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.14"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAVALUENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.15"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>GLOBALBLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.16"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>GLOBALHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.17"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>HEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.18"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPROWNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.19"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ITERNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.20"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPNAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.21"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPDEFLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.22"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPTABLENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.23"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPITER</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.24"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPVALLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.25"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEFRAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.26"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEFRAMENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.27"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.28"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>STARLISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.29"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>STARFILENODE</B> </B>
+ <DD><I></I>
+
+</DL>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> virtual  void  <B>copyFrom</B>( const <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> &copyFromMe )
+<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*  <B>myParent</B>(void)
+<DT><IMG SRC=icon2.gif> bool  <B>NotVirtualIsOfType</B>( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>removeChild</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>removeMe</B>( void )
+<DT><IMG SRC=icon2.gif> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  <B>searchByTag</B>( char *searchFor)
+<DT><IMG SRC=icon2.gif> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  <B>searchByTag</B>( string &searchFor)
+<DT><IMG SRC=icon2.gif> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  <B>searchForType</B>( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> type, int delim = -1)
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setParent</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *p )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>unlinkChild</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>unlinkMe</B>( void )
+</DL></DL>
+<hr><H3>Inherited from <A HREF="ASTnodeWithPosBits.html">ASTnodeWithPosBits:</A></h3>
+
+<DL>
+</DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+This is the type that holds a single string value from the 
+star file, and the delimiter type that is used to quote it
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="ValType">
+<A NAME ="DOC.3.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  ValType</B></TT>
+<DD> ValType - the type of value this is
+<DL></DL><P><DL>
+
+<A NAME="">
+<A NAME ="DOC.3.1.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD> Skipping an enum of zero, as that will indicate
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.3.1.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD> an undefined value.
+<DL></DL><P>
+<A NAME="NON">
+<A NAME ="DOC.3.1.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  NON</B></TT>
+<DD> not quoted
+<DL></DL><P>
+<A NAME="DOUBLE">
+<A NAME ="DOC.3.1.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DOUBLE</B></TT>
+<DD> double-quotes
+<DL></DL><P>
+<A NAME="SINGLE">
+<A NAME ="DOC.3.1.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SINGLE</B></TT>
+<DD> single-quotes
+<DL></DL><P>
+<A NAME="SEMICOLON">
+<A NAME ="DOC.3.1.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SEMICOLON</B></TT>
+<DD> semicolon-delimited
+<DL></DL><P>
+<A NAME="FRAMECODE">
+<A NAME ="DOC.3.1.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  FRAMECODE</B></TT>
+<DD> framecode (puts a dollar sign in front)
+<DL></DL><P></DL>
+
+<A NAME="myType">
+<A NAME ="DOC.3.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTnode::ASTtype</A>  myType(void)</B></TT>
+<DL></DL><P>
+<A NAME="isOfType">
+<A NAME ="DOC.3.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  isOfType( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )</B></TT>
+<DL></DL><P>
+<A NAME="myParallelCopy">
+<A NAME ="DOC.3.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*  myParallelCopy( void )</B></TT>
+<DD>Overrides the virtual method of the same name for
+ASTnode.  DataValueNodes inside loops need some
+special work behind the scenes to handle the
+parallel copy.  On the surface, this method should
+operate the same as for all other ASTnodes
+<DL></DL><P>
+<A NAME="myDelimType">
+<A NAME ="DOC.3.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A>  myDelimType( void ) const </B></TT>
+<DD>Returns the type of the DataValueNode - indicating what
+kind of string delimiter it has
+<DL></DL><P>
+<A NAME="setDelimType">
+<A NAME ="DOC.3.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setDelimType( <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> setTo )</B></TT>
+<DD>Sets the type of string value this is, and consequently,
+what kind of delimiter to use when printing this node out
+<DL></DL><P>
+<A NAME="myValue">
+<A NAME ="DOC.3.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> string  myValue( void ) const </B></TT>
+<DD>Returns the string value of this node.  This is
+identical to myName(), and is included just for
+completeness.
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.3.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="setValue">
+<A NAME ="DOC.3.4.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setValue( const string &newVal )</B></TT>
+<DL></DL><P>
+<A NAME="setValue">
+<A NAME ="DOC.3.4.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setValue( const char *newVal )</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.3.4.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>Changes the value of this string.  *DO NOT* include
+delimiters when using this function.  Use setType()
+to set the delimiter style instead.  For example,
+to set the value to a framecode (dollar-sign on the front),
+make two seperate function calls like so:
+<pre>
+val->setValue( "new_value" );
+val->setType( DataValudeNode::FRAMECODE );
+</pre>
+Do *NOT* do this:
+<pre>
+val->setValue( "$new_value" );
+</pre>
+There are two overloaded versions: one for string and
+one for char *
+<DL></DL><P></DL>
+
+<A NAME="DataValueNode">
+<A NAME ="DOC.3.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataValueNode(const char *str)</B></TT>
+<DL></DL><P>
+<A NAME="DataValueNode">
+<A NAME ="DOC.3.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataValueNode(const string &str, <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> type )</B></TT>
+<DL></DL><P>
+<A NAME="DataValueNode">
+<A NAME ="DOC.3.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataValueNode(const char *str, <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A> type )</B></TT>
+<DL></DL><P>
+<A NAME="DataValueNode">
+<A NAME ="DOC.3.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataValueNode( <!2><A HREF="DataValueNode.html#DOC.3.16">DataValueNode</A> &copy )</B></TT>
+<DD> Copy constructor.
+<DL></DL><P>
+<A NAME="DataValueNode">
+<A NAME ="DOC.3.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataValueNode( bool link, <!2><A HREF="DataValueNode.html#DOC.3.16">DataValueNode</A> &copy )</B></TT>
+<DD>Copy with parallel link.  Set "link" to true to create
+a copy with a parallel link, or set it to false to create
+a copy without a parallel link.  See the external documentation
+for more details on parallel copies.
+<DL></DL><P>
+<A NAME="myName">
+<A NAME ="DOC.3.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> string  myName() const </B></TT>
+<DL></DL><P>
+<A NAME="Unparse">
+<A NAME ="DOC.3.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  Unparse(int indent)</B></TT>
+<DL></DL><P>
+<A NAME="Unparse">
+<A NAME ="DOC.3.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  Unparse(int indent, int presize, int postsize)</B></TT>
+<DD>This function is public for reasons of technical difficulty.
+You should not need to call it yourself.  Instead call the
+other version of Unparse:  Unparse(int).
+<DL></DL><P>
+<A NAME="operator== ">
+<A NAME ="DOC.3.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator== (const string &str)</B></TT>
+<DD>For comparing values as strings.
+(Gripe to Mr. B. Stroustrup: Why did you make me have to define
+these operations seperately!?  Isn't it enough for me to define
+"==" and "<", and then the compiler can derive code for the rest
+of them from just those two?  Like so:
+<pre>
+a != b   <==>  !( a == b )
+a >= b   <==>  !( a < b )
+a > b    <==>  !( a < b ) && !( a == b )
+... etc ...
+</pre>
+End Gripe.)
+<DL></DL><P>
+<A NAME="operator== ">
+<A NAME ="DOC.3.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator== (const char *str)</B></TT>
+<DL></DL><P>
+<A NAME="operator< ">
+<A NAME ="DOC.3.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator< (const string &str)</B></TT>
+<DL></DL><P>
+<A NAME="operator> ">
+<A NAME ="DOC.3.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator> (const string &str)</B></TT>
+<DL></DL><P>
+<A NAME="operator<=">
+<A NAME ="DOC.3.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator<=(const string &str)</B></TT>
+<DL></DL><P>
+<A NAME="operator>=">
+<A NAME ="DOC.3.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator>=(const string &str)</B></TT>
+<DL></DL><P>
+<A NAME="operator< ">
+<A NAME ="DOC.3.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator< (const char *str)</B></TT>
+<DL></DL><P>
+<A NAME="operator> ">
+<A NAME ="DOC.3.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator> (const char *str)</B></TT>
+<DL></DL><P>
+<A NAME="operator<=">
+<A NAME ="DOC.3.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator<=(const char *str)</B></TT>
+<DL></DL><P>
+<A NAME="operator>=">
+<A NAME ="DOC.3.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  operator>=(const char *str)</B></TT>
+<DL></DL><P>
+<A NAME="myStrVal">
+<A NAME ="DOC.3.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> string  myStrVal</B></TT>
+<DL></DL><P>
+<A NAME="myLongestStr">
+<A NAME ="DOC.3.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int  myLongestStr( void )</B></TT>
+<DD>Returns the length of the longest string in this object.
+Used by Unparse() at various levels of the AST tree.
+(In this case it just returns the length of the longest
+string, plus whatever extra the quotation marks might need.)
+<DL></DL><P>
+<A NAME="changeToAppropriateDelimiter">
+<A NAME ="DOC.3.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  changeToAppropriateDelimiter( void )</B></TT>
+<DD>changeToAppropriateDelimiter():  Examine the string value
+and determine what the appropriate delimiter type should
+be, and apply it
+<DL></DL><P>
+<A NAME="findAppropriateDelimiterType">
+<A NAME ="DOC.3.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> static  <!2><A HREF="DataValueNode.html#DOC.3.1">ValType</A>  findAppropriateDelimiterType( const string &val )</B></TT>
+<DD>Find the delimiter type that would be appropriate for
+the given string.  This is a static method, using none
+of the data in a DataValueNode.  It is kept here in
+this class for organizational purposes only.
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

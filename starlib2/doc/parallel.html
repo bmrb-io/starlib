@@ -1,0 +1,144 @@
+<html>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+
+<HEAD>
+    <TITLE>Starlib: Parallel copy functions </TITLE>
+    <HTML-EDITOR>By Hand (vi)</HTML-EDITOR>
+</HEAD>
+
+<BODY>
+    <H1><CENTER>Starlib</CENTER></H1>
+    <H2><CENTER>Parallel Copying Functions.</CENTER></H2>
+    <P>
+    Sometimes it is useful to make a copy of a starfile tree in
+    such a way that, given a node in one of the trees, it is
+    possible to find the same corresponding node in the other tree.
+    (At least, we found it useful to do this at BMRB, so we are
+    including the functions that did this in the public distribution
+    of the library, in the hopes that someone else might find it
+    useful also.)
+    <P>
+    <EM>If you do not need to use this parallel link feature, then it
+    is highly reccomended that you use the ordinary copy constructor
+    to create a copy of a starfile tree.</EM>
+    <P>
+    Specificly, the place where we found this a useful thing to do
+    was in our "s2nmr" program.  This program converted Star files
+    from an intermediate format used by the web pages into the final
+    NMR-STAR format.  This program required that we make a copy of the
+    starfile tree, search for some tags in the original tree, and then
+    perform certain operations, not on those tags themselves, but on
+    their counterparts in the new copy of the tree.
+    <P>
+    This ability is admitedly limited, though.  You can only make one
+    copy of a tree at a time using these functions, due to the limited
+    way this feature is implemented behind the scenes.  If you want to
+    copy tree A into tree B, and then copy tree A into tree C, using
+    these parallel links, then you will have to delete tree A or tree B
+    first.  A starfile tree cannot be linked to more than one other
+    'parallel' partner starfile tree at a time.  This rule is enforced 
+    in the parallel copy function.  If you attempt to use the parallel
+    copy function to create a parallel copy of a tree that already has
+    a parallel peer, the function will fail and return NULL.
+    <P>
+    Again, it should be repeated that: 
+    <EM>If you do not need to use this parallel link feature, then it
+    is highly reccomended that you use the ordinary copy constructor
+    to create a copy of a starfile tree.</EM>
+    <P>
+    When two starfile trees are linked in parallel like this, you can
+    simply delete one of them to break the link.  The destructors will
+    unlink it from its parallel peer, and the parallel peer can then
+    be used to make another parallel copy.
+    <P>
+    Note that once the copy is made, the two trees are indeed "peers"
+    in that they retain no knowlede of which tree was the original
+    tree and which was the copy.  Either one can deleted when finished,
+    and the other one will automatically 'lose' all knowlege of its
+    parallel peer.
+    <P>
+    
+    <H3>Methods list:</H3>
+    These methods (functions) are all part of the main base
+    type <CODE>ASTnode</CODE>.  Thus they can be used at any
+    level of the star tree.  (For example, you could call a
+    DataLoopNode's parallel copy constructor method to copy just
+    that DataLoopNode rather than an entire Star File tree.  Normally,
+    when an entire star file needs to be parallel copied, you would
+    call the StarFileNode's parallel copy constructor method.
+
+    <UL>
+	<LI>
+	    <H4><CODE>(Constructors)</CODE></H4>
+	    Each ASTnode will have a new constructor to be
+	    used when you want to create a parallel copy with
+	    links.  It will work just like the regular
+	    copy constructor, except that you pass a flag
+	    determining whether or not you want a link to
+	    be made:  Here is an example:
+	    <PRE>
+
+	        StarFileNode *original;
+		StarfileNode *copy;
+
+		...
+
+		copy = new StarFileNode( true, *original );
+
+	    </PRE>
+	    This creates the new Star File with the proper links
+	    in place.<BR>
+	    <EM>The old copy constructors still exist, so you
+	    do not need to change every line of code to comply
+	    with this new convention.  The following two
+	    lines of code are exactly equivilent:</EM>
+	    <PRE>
+		StarFileNode * copy = new StarFileNode( s );
+		StarFileNode * copy = new StarFileNode( false, s );
+	    </PRE>
+	    <P>
+	</LI>
+	<LI>
+	    <H4><CODE>ASTnode *myParallelCopy( void )</CODE></H4>
+	    This method returns a pointer to an ASTnode.  The
+	    ASTnode returned is the parallel 'other' version of
+	    this node in the parallel tree.  Incedentally, since
+	    the two parallel trees are aware of each other, the
+	    parallel copy of the parallel copy is the orginial
+	    node, so this function is self-inverting, like this:
+	    <BR>
+	    <CODE>foo-&gt;myParallelCopy()-&gt;myParallelCopy() == foo </CODE>
+	    <BR>
+	    <EM>If there is no parallel node corresponding to this
+	    node, then this method will return a NULL pointer.  This
+	    can happen if a node in the parallel tree was deleted
+	    after the parallel copy was made.</EM>
+	    <P>
+	</LI>
+	<LI>
+	    <H4><CODE><EM>(The Destructor)</EM></CODE></H4>
+	    The destructor of <CODE>ASTnode</CODE> (and all types
+	    derived from <CODE>ASTnode</CODE>) is set up to look
+	    for a parallel copy, and if there is one, to unlink it
+	    from this node before this node gets destroyed.
+	    Therefore when you have a pair of parallel star trees,
+	    and you delete one of them, or just a node in one of
+	    them, then the corresponding nodes in the parallel tree
+	    will become unlinked from this node that is about to die.
+	    In the extreme case, when a parallel copy of a
+	    <CODE>StarFileNode</CODE> is made, and then later one of
+	    the pair of <CODE>StarFileNode</CODE>s is deleted, then
+	    the other <CODE>StarFileNode</CODE> is completely
+	    unlinked from the deleted tree, and can be used to
+	    create another parallel copy if so desired.
+	</LI>
+    </UL>
+
+    <HR>
+    <A HREF=example2.html> - previous topic - </A>
+    <A HREF=bugs.html> - next topic - </A>
+
+</BODY>
+
+</html>

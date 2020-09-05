@@ -1,0 +1,86 @@
+data_test1
+
+save_frame1
+    _Saveframe_category  cat1
+    _freetag1  val1
+    _freetag2  val2
+    loop_
+        _looptag1
+        _looptag2
+        _looptag3
+
+	loopval1
+	loopval2
+	loopval3
+    stop_
+    _freetag3  val3
+    loop_
+        _looptag4
+        _looptag5
+        _looptag6
+
+	loopval4
+	loopval5
+	loopval6
+     stop_
+save_
+
+
+save_frame2
+    #  errror - not category tag_Saveframe_category  cat1
+    _freetag1  val1
+    _freetag2  val2
+    loop_
+        _looptag1
+        _looptag2
+        _looptag3
+
+	loopval1
+	loopval2
+	loopval3
+    stop_
+    _freetag3  val3
+    loop_
+        _looptag4
+        _looptag5
+        _looptag6
+
+	loopval4
+	loopval5
+	loopval6
+     stop_
+save_
+
+save_frame3
+    _Saveframe_category  cat3
+    _freetag1  val1
+    loop_
+        _looptag1
+
+	loopval1
+    stop_
+save_
+
+save_frame4
+    _Saveframe_category  cat3
+    _freetag1  val1
+    loop_
+        _looptag1
+
+	loopval1
+    stop_
+save_
+
+save_frame5
+    _Saveframe_category  cat3
+    _freetag1  val
+    _freetag2  val
+    _freetag3  val
+    _freetag4  val
+    loop_
+        _looptag1
+
+	loopval1
+    stop_
+save_
+

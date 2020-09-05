@@ -1,0 +1,112 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib installation.</TITLE>
+    <LINK HREF=using_compile.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>"starlib" installation instructions.</H1>
+
+    <P>
+
+    <H3>INSTALLATION INSTRUCTIONS:</H3>
+
+    <H4>What you need before you begin:</H4>
+    <UL>
+	<LI>Some Unix shell prompt knowlege so that these
+	Instructions can be followed easily.
+	<P>
+	<LI>A computer platform to compile C++:  Right now the two
+	known working platforms are Irix with CC and Red hat Linux 5.2.
+	with egcs 1.1.1.  There is nothing in the code that is
+	<em>intentionally</em> dependant upon proprietary compiler
+	extensions, so the code should be able to port to other platforms
+	with a minimum of effort.  Irix and RedHat Linux 5.2 are 
+	simply the only platforms within easy reach for the development
+	team to use.  The code might port to other platforms and you are
+	welcome to try (and e-mail portability suggestions back to the
+	developers for inclusion in future releases.)
+	<P>
+	<LI>A C++ STL class library with the "basic_string" class and the
+	vector<> class.  The code compiles under Irix with CC and under
+	Linux with egcs 1.1.1 (which is <em>not</em> the version of egcs
+	that ships with RedHat 5.2 - you will need to download and install
+	it from <A HREF=http://www.cygnus.com/egcs>Cygnus</A>.)
+	<P>
+	<LI><CODE>gunzip</CODE> and <CODE>tar</CODE> for extraction.
+	<P>
+	<LI>The FSF's lex and yacc replacements called
+	<CODE>bison</CODE> and <CODE>flex</CODE>.  The code should
+	also work with any generic lex/yacc (with a modification to the
+	Makefile), but this is untested.
+    </UL>
+
+    <U>Follow the steps...</U>
+    <P>
+    <OL>
+	<LI>Get the starlib.tar.gz file from BMRB.</LI>
+	<P>
+
+	<LI>Unpack the archive file with this command:<BR>
+	    <CODE>gunzip --stdout starlib.tar.gz | tar xvf -</CODE>
+	<P>
+	
+	<LI><CODE>cd starlib</CODE>
+	<P>
+
+	<LI>Edit the "Makefile".  Uncomment the appropriate section for
+	    your particular OS/compiler.  Also change the appropriate
+	    defines that set up where the compiler is on your system, if
+	    need be.
+	    <P>
+	    I apologise for not using something like GNU autoconf, but
+	    we have not had time to convert to it.  I am interested in
+	    any systems on which this code is known to compile, and the 
+	    Makefile that was used to do so.  If you change the Makefile
+	    and it compiles, please let BMRB know so we can make it
+	    part of the standard install in a later version.  (e-mail
+	    address can be found at the bottom of this document).
+	    <P>
+	<P>
+
+	<LI>Issue the command: <CODE>make</CODE>
+	<P>
+
+	<LI>If it works, copy the resulting libstar.a file to a
+	    location where you intend to use it, and copy all the
+	    header files in this directory (*.h) to a location
+	    where a program using this library can find them using
+	    the '-I' option to the compiler.
+	    <P>
+	    If you don't mind the clutter, you can just use the directory
+	    in which you just built starlib for this purpose.
+	    <P>
+	    If you are like me and prefer to read the header files,
+	    to see the exact prototypes in addition to using the
+	    documentation, I recommend that you read them in the
+	    order shown here for maximum understandability:
+	    <UL>
+		<LI><CODE>astnode.h</CODE>
+		<LI><CODE>list.h</CODE>
+		<LI><CODE>astlist.h</CODE>
+		<LI><CODE>ast.h</CODE>
+	    </UL>
+
+	<P>
+	<LI><A HREF=using_compile.html>Read the next topic</A>, "Using
+	    the library" for instructions on how to make use of
+	    <CODE>libstar.a</CODE> in your own code.
+    </OL>
+    
+    <P>
+
+    The current maintainer of starlib is:
+    <UL><LI>Steve mading, 
+            <A HREF=mailto:madings@bmrb.wisc.edu>
+	        madings@bmrb.wisc.edu
+	    </A>
+    </UL>
+    <HR>
+    <A HREF=design.html> - previous topic - </A>
+    <A HREF=using_compile.html> - next topic - </A>
+</BODY>

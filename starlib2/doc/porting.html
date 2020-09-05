@@ -1,0 +1,39 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib portation.</TITLE>
+    <LINK HREF=Using_compile.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>"starlib" porting notes.</H1>
+
+    <HR>
+    The starlib was first developed on an SGI Irix 6.2 machine.
+    Due to some strange things that that platform does, and due to
+    the fact that the C++ STL standard was still in the process of
+    being ratified when it was created, there is a portation
+    problem that will come up when you try to move this to a different
+    platform:
+    <P>
+    <UL>
+	<LI>SGI's 'CC' compiler did not implement the C++ "string" class
+	    in the normal location.  With SGI, if you #include the file
+	    "&lt;string.h&gt;", you end up with the old-fashioned Ansi-C
+	    string header file (the one with <CODE>strcat()</CODE>,
+	    <CODE>strcmp()</CODE>, <CODE>strlen()</CODE>, etc...)  The new
+	    C++ standard says that it should give you the C++ string class,
+	    but for whatever reasons, SGI didn't want to do it that way.
+	    Their C++ string class is in a file called "mstring.h".
+	    Knowing that this would be a problem, I created a seperate file
+	    called <CODE>portatbility.h</CODE>, which contains the include
+	    of <CODE>mstring.h</CODE>.  To fix this for other non-SGI
+	    platforms, simply edit <CODE>portability.h</CODE>, and change
+	    the string include to whatever is appropriate to your system.
+	    In future, SGI claims to have a better, more compliant C++
+	    library with their compiler.  When this happens, I will be able
+	    to fix this annoyance.
+    </UL>
+    <HR>
+    <A HREF=install.html> - previous topic - </A>
+</BODY>
+

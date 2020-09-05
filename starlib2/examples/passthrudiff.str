@@ -1,0 +1,90 @@
+data_passthru_example2
+
+save_test_a
+   loop_
+      _looptag1
+      _looptag2
+
+       65161.32905  adios      
+          65.32     goodbye    
+           0.32525 arevederche
+           0.32525 "au revior" 
+       91205        cat        
+      stop_
+
+   stop_
+   loop_
+      _vertical_tag1
+      _vertical_tag2
+      _vertical_tag3
+
+       vertical_val1   
+       vertical_val2   
+      
+;
+vertical
+value
+3
+; 
+      
+       vertical_val1.1 
+       vertical_val1.2 
+      'vertical val 1.3' 
+      
+
+   stop_
+
+   _open_tag1  "open value 1"
+   _open_tag2  openval2
+
+
+save_
+save_block1
+
+   loop_
+      _has_decimals
+      _all_integer
+      _all_text
+      _mixed
+
+       139.141  193   hello    hello   
+         0.1      5   goodbye      9.1 
+          .       31  .             .  
+        98       -1   test     test    
+
+   stop_
+
+   _open_tag1  "save open value 1"
+   _open_tag2  saveopenval2
+
+   # comment doesn't matter
+   _new_tag_for_file2  X
+
+save_
+
+
+save_block2
+
+   loop_
+      _single_nest1
+      _single_nest2
+      _single_nest3
+      _single_nest4
+
+       v1         v2         v3         vFour      
+       vFive      vSix       vSeven     vEight     
+       vNine     "v X"      'value X1' "value XII" 
+      "value 13" "value 14" 
+;
+(value 15)
+This is a very long string to test out how semicolon
+delimited strings get printed by the starlib
+program.  This very long string, because it is a semicolon
+delimited string, should be ignored in determining the 
+formatting of the columns.
+; "value 16"  
+
+   stop_
+
+save_
+

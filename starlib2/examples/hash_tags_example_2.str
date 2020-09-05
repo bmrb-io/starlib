@@ -1,0 +1,31 @@
+data_test2
+
+save_frame1
+    _Saveframe_category  cat1
+    _freetag1  val1
+    _freetag2  val2
+    _freetag_from_test2  valtest2
+    loop_
+        _looptag1
+        _looptag2
+        _looptag3
+        _looptag_from_test2 
+	
+	loopval1
+	loopval2
+	loopval3
+	loopvaltest2
+    stop_
+
+    _freetag3  val3
+    loop_
+        _looptag4
+        _looptag5
+        _looptag6
+
+	loopval4
+	loopval5
+	loopval6
+     stop_
+save_
+

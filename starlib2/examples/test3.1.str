@@ -1,0 +1,11 @@
+
+data_foo
+
+    loop_
+        _delete_me_0
+	_dont_delete
+
+	val1  a
+	val2  b
+	val3  c
+    stop_

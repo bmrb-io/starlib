@@ -1,0 +1,3649 @@
+<HEAD>
+    <TITLE>s2nmr specs.</TITLE>
+    <!-- CVS LOG MESSAGE COMMENT:
+    .. $Log: not supported by cvs2svn $
+    .. Revision 1.24  2008/08/14 18:44:34  madings
+    .. *** empty log message ***
+    ..
+    .. Revision 1.23  2005/03/04 23:32:18  madings
+    .. checking in doc changes and a lot of incremental bugfixes
+    .. too many to mention (cvs repository was broken and confused
+    .. for a while so this represents about 5 months of stuff)
+    ..
+    .. Revision 1.22  2003/07/30 05:14:59  madings
+    .. debugged a problem that made it necessary to add better output
+    .. messages to transform43.cc, also updated the specs.html
+    .. documentation to add rules 42 through 45.
+    ..
+    .. Revision 1.21  2003/07/24 18:49:24  madings
+    .. Changes to handle 2.1-3.0 mappings.
+    ..
+    .. Revision 1.20  2001/06/18 16:57:17  madings
+    .. Several fixes for s2nmr segfault bugs.
+    ..
+    .. Revision 1.19  2001/04/13 21:17:23  madings
+    .. Changes to use the new starlib2.
+    .. Also discovered an error in transform10 as well.
+    ..
+# Revision 1.18  2000/03/23  01:24:56  madings
+# Altered transform30 to include some nomenclature mapping down into
+# one-letter codes, and documented it.
+#
+# Revision 1.17  2000/03/20  09:45:51  madings
+# Weekend fixes to s2nmr, to respond to some of Jurgen's comments:
+# Note, the old s2nmr program is under the name "/bmrb/bin/s2nmr-old", just
+# in case you discover a major bug and want to get the old version back.
+#
+# 1 - The max number allowed for a saveframe's order sequence used to be
+# 999.  This was too small.  It has been increased to 9999999, and documented
+# acccordingly in specs.html
+#
+# 2 - Documented that only one middle initial is recognized when
+# parsing names from strings.
+#
+# 3 - Numerous places in the code that created new values did so without
+# the proper delimiter type  (For example, it might put a multi-line
+# value into a quoted string ("...") instead of a semicolon string.)
+# Jurgen noticed this on the citation title, but when I looked for it
+# in the code, I found that particular mistake was common throughout the
+# newer rules that came after transform # 17.  This has been fixed.
+#
+# 4 - rule 19, change data_tag_name, did not work as expected:
+# I looked at the code and this was simply a case of bad documentation.
+# What this rule is meant to do is look for the _BMRB_accession_number
+# tag somewhere in the file and use its value as the name of the data_
+# tag.  That's all it does.  If a _BMRB_accession_number tag is not there,
+# it fails to do anything.  The documentation has been changed to properly
+# describe this.
+#
+# 5 - "rule 22 is unclear to me" - I have re-written explanation of this
+# rule, and fixed a bug in the code that refused to operate on multiple
+# target saveframes.  (If the key/value pair designated more than one
+# output saveframe, it would fail.)
+#
+# 6 - "rule 25 change_tag_value has backward documenation".  Looked at
+# the code to see what it does, and the code is really buggy.  A redo
+# from scratch would be quicker than trying to fix it.  The documentation
+# isn't backward - the code is.  It uses the wrong variables for things,
+# but not in a consistant manner, so I can't just quickly swap things
+# around.  Also, we need to define what should be the correct behaviour
+# when multiple saveframes are found by either of the two key_tag/value
+# searches.  If two input saveframes are found, and two output saveframes
+# are found, then is the correct behaviour to copy input 1 to output 1 and
+# input 2 to output 2?  Or is the correct behaviour to copy in a 'cross
+# product' fashion and copy input 1 to both outputs 1 and 2, and copy
+# input 2 to both outputs 1 and 2?  Issues of possible name clashes need
+# to be considered too with this.  In light of this, I'm going to put off
+# working on this rule untill I am sure it is worth the time, and this
+# ambigious behaviour is defined better.  I have to be careful not to spend
+# too much time on this program.
+#
+# 7 - Fixed the broken condition where output_sf_name_tag is null (.) in
+# values_to_saveframes_many_to_many.
+#
+# 8 - Repaired a few typos here and there.
+#
+# CVS----------------------------------------------------------------------
+#
+# Revision 1.16  2000/03/17  01:57:44  madings
+# Forgot to put the link to the new transform41's documentation in
+# the main table.
+#
+# Revision 1.15  2000/03/17  01:54:15  madings
+# Added transforms: rename_saveframes, and remove_saveframes.
+#
+# Revision 1.14  2000/03/16  05:09:48  madings
+# Jurgen discovered some minor bugs in s2nmr and the fixes are installed:
+#
+#    1 - remove_null_tags was previously unable to handle asterisks
+#       as wildcards when filling out the key_tag and key_value field.
+#       This is fixed.
+#
+#    2 - The same goes for remove_tag, which will now take an asterisk
+#       as the saveframe name, meaning all safeframes.
+#
+#    3 - The documentation on the internal website had some typos in
+#       tag names.
+#
+# Revision 1.13  1999/07/30  18:29:17  june
+# 7-30-99, June
+# add transform1d.cc, transform26a.cc, transform38.cc, transform39.cc,
+#  updated transform17.cc, doc/specs.html
+#
+# Revision 1.12  1999/07/27  16:36:40  zixia
+# *** empty log message ***
+#
+# Revision 1.11  1999/07/13  16:37:07  zixia
+# Add documentation for transformation37.
+#
+# Revision 1.10  1999/07/07  20:49:20  zixia
+# *** empty log message ***
+#
+# Revision 1.9  1999/06/18  21:43:21  zixia
+# Add specifications for transfrom32, 33, 34, 35 and 36.
+#
+# Revision 1.8  1999/06/10  19:50:21  zixia
+# Add specifications for new functions (transform19-transform31) by Zixia Gu.
+#
+# Revision 1.7  1999/04/28  19:17:49  madings
+# added _free_or_loop_flag for transform17
+#
+# Revision 1.6  1999/04/20  21:36:59  madings
+# Updated the specs to include transform17 and transform 18 and some
+# small changes to transform 2a and 1c.
+#
+# Revision 1.5  1999/04/09  20:11:12  madings
+# Added docs for transform 17, 18 and a change to 2a
+#
+# Revision 1.4  1999/02/05  01:34:48  madings
+# Many changes from debug sessions with Eldon:
+# 1 - added new transforms:  transform15.cc and transform16.cc
+# 2 - added 'don't-care' functionality to transform14.cc when
+#     tag_value is a dot.
+# 3 - Fixed some garbled errStream messages that printed the wrong
+#     transform # to the log (transform11 printed error messages tagged
+#     as transform6 for example.)
+#
+# Revision 1.3  1999/01/28  06:16:29  madings
+# Altered documentation to match the new change to using the
+# save_order_of_operations saveframe and the consequent addition
+# of the _Saveframe_category tag, and the consequent change that
+# the saveframe's names are now irrelevant to the program.
+#
+# Revision 1.2  1999/01/27  00:26:55  madings
+# Fixed a bug in save_loops that was causing deleted tags to be recreated
+# when making a loop.  Also re-arranged the order of operations and adjusted
+# the documentation to match this.
+#
+# Revision 1.1  1998/12/15  04:31:53  madings
+# Merged specs.txt and change_proposals.txt into specs.html.
+# the two text files are obsolete and will go away soon.
+#
+    -->
+</HEAD>
+<BODY BGCOLOR=black TEXT=white LINK=cyan VLINK=yellow>
+
+New specs of the s2nmr program:
+
+<P>
+<H2>Suggested order of operations</H2>
+This is the suggested order of operations.  It can be altered via
+the <A HREF="#oop">save_order_of_operations saveframe</A>,
+explained below.
+<P>
+<FONT COLOR="#FFFF30">
+    To make them stand out, recent additions
+    are shown in yellow text like this.
+</FONT>
+
+<TABLE BORDER>
+<TR><TH>typical order
+    <TH>rule name
+    <TH>rule ID number
+<TR><TD>1
+    <TD>"remove_tag"
+    <TD><A HREF="#5">5  </A>
+<TR><TD>2
+    <TD>"tag_to_framecode"
+    <TD><A HREF="#1b">1b </A>
+<TR><TD>3
+    <TD>"renamed_tags"
+    <TD><A HREF="#1a">1a </A>
+<TR><TD>4
+    <TD>"tag_to_value"
+    <TD><A HREF="#3a">3a </A>
+<TR><TD>5
+    <TD>"tag_to_frame_loop_uniform"
+    <TD><A HREF="#2b">2b </A>
+<TR><TD>6
+    <TD>"tag_to_frame_loop_unique"
+    <TD><A HREF="#2c">2c </A>
+<TR><TD>7
+    <TD>"tag_to_frame_free"
+    <TD><A HREF="#2a">2a </A>
+<TR><TD>8
+    <TD>"keyed_renamed_tags"
+    <TD><A HREF="#1c">1c </A>
+<TR><TD>9
+    <TD>"keyed_renamed_tags_no_block"
+    <TD><A HREF="#1d">1d </A>
+<TR><TD>10
+    <TD>"make_new_saveframe"
+    <TD><A HREF="#9">9 </A>
+<TR><TD>11
+    <TD>"keyed_tag_to_value"
+    <TD><A HREF="#3c">3c </A>
+<TR><TD>12
+    <TD>"free_all_category_tags"
+    <TD><A HREF="#8">8 </A>
+<TR><TD>13
+    <TD>"make_citation_full_tag"
+    <TD><A HREF="#6">6 </A>
+<TR><TD>14
+    <TD>"make_new_tag"
+    <TD><A HREF="#14">14 </A>
+<TR><TD>15
+    <TD>"explode_Mol_residue_sequence"
+    <TD><A HREF="#11">11 </A>
+<TR><TD>16
+    <TD>"insert_loop_defaults"
+    <TD><A HREF="#10">10 </A>
+<TR><TD>17
+    <TD>"remove_null_loop_rows"
+    <TD><A HREF="#12">12 </A>
+<TR><TD>18 
+    <TD>"remove_null_tags"
+    <TD><A HREF="#13">13 </A>
+<TR><TD>19 
+    <TD>"change_tag_value"
+    <TD><A HREF="#15">15 </A>
+<TR><TD>20 
+    <TD>"tag_to_loop"
+    <TD><A HREF="#16">16 </A>
+<TR><TD>21
+    <TD>"values_to_saveframes_many_to_many"
+    <TD><A HREF="#17">17 </A>
+<TR><TD>22
+    <TD>"parse_split_name"
+    <TD><A HREF="#18">18 </A>
+<TR><TD>23
+    <TD>"change_data_tag_name"
+    <TD><A HREF="#19">19 </A>
+<TR><TD>24
+    <TD>"remvoe_global_block"
+    <TD><A HREF="#20">20 </A>   
+<TR><TD>25
+    <TD>"create_saveframe"
+    <TD><A HREF="#21">21 </A>   
+<TR><TD>26
+    <TD>"move_tag_into_saveframe"
+    <TD><A HREF="#22">22 </A>   
+<TR><TD>27
+    <TD>"copy_saveframe"
+    <TD><A HREF="#23">23 </A>   
+<TR><TD>28
+    <TD>"framecode_to_tag"
+    <TD><A HREF="#24">24 </A>   
+<TR><TD>29
+    <TD>"change_tag_value"
+    <TD><A HREF="#25">25 </A>   
+<TR><TD>30
+    <TD>"insert_column"
+    <TD><A HREF="#26">26 </A>   
+<TR><TD>31
+    <TD>"insert_ordinal"
+    <TD><A HREF="#26a">26a </A>   
+<TR><TD>32
+    <TD>"insert_loop"
+    <TD><A HREF="#27">27 </A>   
+<TR><TD>33
+    <TD>"renaming_saveframe"
+    <TD><A HREF="#28">28 </A>   
+<TR><TD>34
+    <TD>"check_chemical_shift_nomenclature"
+    <TD><A HREF="#29">29 </A>   
+<TR><TD>35
+    <TD>"calculate_residue_count"
+    <TD><A HREF="#30">30 </A>
+<TR><TD>36
+    <TD>"change_database_name"
+    <TD><A HREF="#31">31 </A>   
+<TR><TD>37
+    <TD>"convert_C_to_K"
+    <TD><A HREF="#32">32 </A> 
+<TR><TD>38
+    <TD>"assign_value_to_Citation_type"
+    <TD><A HREF="#33">33 </A>
+<TR><TD>39
+    <TD>"make_new_tag_II"
+    <TD><A HREF="#34">34 </A> 
+<TR><TD>40
+    <TD>"insert_loop_defaults_II"
+    <TD><A HREF="#35">35 </A>  
+<TR><TD>41
+    <TD>"create_enzyme_commission_number"
+    <TD><A HREF="#36">36 </A>      
+<TR><TD>42
+    <TD>"copy_saveframe_content"
+    <TD><A HREF="#37">37 </A>       
+<TR><TD>43
+    <TD>"order"
+    <TD><A HREF="#2-I">2-I</A>
+<TR><TD>44
+    <TD>"loops"
+    <TD><A HREF="#2-II">2-II</A>
+<TR><TD>45
+    <TD>"remove_empty_frames"
+    <TD><A HREF="#7">7</A>
+<TR><TD>46
+    <TD>"remove_tags_not_in_saveframes"
+    <TD><A HREF="#38">38</A>
+<TR><TD>47
+    <TD>"parse_tag_to_new_tag"
+    <TD><A HREF="#39">39</A>
+<TR><TD>48
+    <TD>"remove_saveframes"
+    <TD><A HREF="#40">40</A>
+<TR><TD>49
+    <TD>"rename_saveframes"
+    <TD><A HREF="#41">41</A>
+<TR><TD>50
+    <TD>"remove_2.1_tags"
+    <TD><A HREF="#42">42</A>
+<TR><TD>51
+    <TD>"generic_value_mapper_A"
+    <TD><A HREF="#43">43</A>
+<TR><TD>52
+    <TD>"insert_nmrstr_3_IDs"
+    <TD><A HREF="#44">44</A>
+<TR><TD>53
+    <TD>"insert_value_from_lookup_A"
+    <TD><A HREF="#45">45</A>
+<TR><TD>54
+    <TD>"TODO"
+    <TD><A HREF="#46">46</A>
+<TR><TD>55
+    <TD>"TODO"
+    <TD><A HREF="#47">47</A>
+<TR><TD>56
+    <TD>"remove_sf_if_missing_tag"
+    <TD><A HREF="#48">48</A>
+<TR><TD>57-74
+    <TD>((These functions undocumented as of now - need to fix this TODO.))
+    <TD>57-74</A>
+<TR><TD>75
+    <TD>"calculate_data_row_counts"
+    <TD><A HREF="#75">75</A>
+<TR><TD>76
+    <TD>"insert_default_isotope_numbers"
+    <TD><A HREF="#76">76</A>
+</TABLE BORDER>
+
+<P>
+<P>
+<A NAME=oop>
+<H2>Order of Operations saveframe</H2>
+<P>
+The purpose of this saveframe is to allow the author of the
+mapping file to dictate which order the rules will be run in,
+and how.  Also, it allows for the same rule to be run more than
+once, with different mapping saveframes driving that rule on
+different runs.
+<P>
+This saveframe is a single loop that gives framecodes for other
+saveframes in the file, and an ordering sequence in which to
+run those saveframes.  This ordering sequence number must be
+less than 9999999.  The type of the rule to be run is
+determined by looking at the _Saveframe_category of the 
+saveframe being referenced, rather than by the saveframe's name
+itself.  The saveframes' names are now irrelevant to the software,
+so that the mapping file author is free to name them in whatever
+way seems sensible.
+<P>
+Here is a template:
+<PRE>
+
+    save_order_of_operations
+	loop_
+	    _order_sequence   _rule_framecode
+	    
+	    ..                ..
+        stop_
+    save_
+
+</PRE>
+Here is an example map file that would run a remove_tag rule, then
+a keyed_renamed_tags  rule, and then another remote_tag rule:
+<PRE>
+    save_order_of_operations
+	loop_
+	    _order_sequence   _rule_framecode
+	    
+	    # Note that it's the order of the _order_sequence
+            # tag that matters, not the order in which the
+            # tags appear in this file, so in this example,
+	    # $final_removal actually is executed last because
+            # its _order_sequence is highest.
+            # (As is shown in this example, the ordering need not
+            # increase consecutively - gaps are okay.)
+	    
+	     1                $preliminary_removal
+	    99                $final_removal
+	     5                $some_keyed_renames
+        stop_
+    save_
+
+    save_preliminary_removal
+	_Saveframe_category  remove_tag
+	 loop_
+	   _old_tag_name
+	   _old_saveframe
+	   _new_tag_name
+	   _new_saveframe
+
+	   # etc...
+	 stop_
+    save_
+
+    save_some_keyed_renames
+	 _Saveframe_category  keyed_renamed_tags
+	 loop_
+	   _key_tag
+	   _key_value
+	   _old_tag_name
+	   _new_tag_name
+
+           # etc ...
+	 stop_
+    save_
+
+    save_final_removal
+	_Saveframe_category  remove_tag
+	 loop_
+	   _old_tag_name
+	   _old_saveframe
+	   _new_tag_name
+	   _new_saveframe
+
+	   # etc...
+	 stop_
+    save_
+</PRE>
+
+<A NAME=1a>
+<H3>
+1) One-to-one mappings of (tag, value) pairs
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>renamed_tags
+   <TD>1a
+</TABLE BORDER>
+
+<P>
+ 1a) Renaming tags:<BR>
+     The tag is renamed, but the value is unchanged.  This also handles
+     the trivial case of writing out tags whose name doesn't change.  Renamed
+tags
+     that are moved between saveframes (the _old_saveframe and _new_saveframe
+     values are different) will not appear in loops;  there are other
+transformations
+     to do that.
+<P>
+<PRE>
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  renamed_tags
+	 loop_
+	   _old_tag_name
+	   _old_saveframe
+	   _new_tag_name
+	   _new_saveframe
+
+	 "_author_name"
+	 "citation"
+	 "_submittor_name"
+	 "primary_citation"
+	 ...
+	 stop_
+     save_
+
+     effect:
+     generic STAR 		NMR-STAR
+
+     _author_name "bob jones"	_submittor_name "bob jones"
+</PRE>
+<P>
+<P>
+
+
+<A NAME=1b>
+<H3>
+ 1b) Replacing values with framecodes:
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_framecode
+   <TD>1b
+</TABLE BORDER>
+<P>
+     The users will often refer to a save frame just by giving its
+     name.  To make this into into a framecode, prepend a "$" to the
+     value, and replace whitespace with underscores.  It is not
+     necessary to verify that this framecode points to an existing
+     saveframe.
+<P>
+<PRE>
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  tag_to_framecode
+	 loop_
+	   _old_tag_name
+	   _old_saveframe
+
+	 "_reporting_conditions"
+	 "experiment"
+	 ...
+	 stop_
+     save_
+
+     effect:
+     generic STAR 				NMR-STAR
+
+     _reporting_conditions "conditions 1"	_reporting_conditions $conditions_1
+
+</PRE>
+
+<A NAME=1c>
+<H3>
+   Renaming keyed tags:
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>keyed_renamed_tags
+   <TD>1c
+</TABLE BORDER>
+<P>
+     A variation on 1a).  Sometimes, we do not know the name of the saveframe
+     to search for the tag (for instance, if the saveframe name was derived
+     from a tag value by 2).  Rather than altering the tag based on its
+     existance in a particular saveframe, the tag is altered if it is in
+     the same saveframe as another tag (the key) that takes a particular
+     value (the key value).
+<P>
+<PRE>
+
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  keyed_renamed_tags
+	 loop_
+	   _key_tag
+	   _key_value
+	   _old_tag_name
+	   _new_tag_name
+
+	 "_saveframe_category"
+	 "author"
+	 "_author_name"
+	 "_submittor_name"
+	 ...
+	 stop_
+     save_
+
+     effect:
+     generic STAR 		NMR-STAR
+
+     _author_name "bob jones"	_submittor_name "bob jones"
+
+</PRE>
+    In the case where the the key_tag and key_value appear outside a
+    saveframe, the datablock or global block in which they appear
+    will be the place where the change occurs.  (Instead of the saveframe
+    in which they appear).
+
+<A NAME=1d>
+<H3>
+   Renaming keyed tags in saveframes only:
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>keyed_renamed_tags_no_block
+   <TD>1d
+</TABLE BORDER>
+<P>
+     A variation on 1c).  Do the same thing as keyed_renamed_tags (1d), but leave those tags outside saveframes not changed. 
+<P>
+<PRE>
+
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  keyed_renamed_tags_no_block
+	 loop_
+	   _key_tag
+	   _key_value
+	   _old_tag_name
+	   _new_tag_name
+
+	 "_saveframe_category"
+	 "author"
+	 "_author_name"
+	 "_submittor_name"
+	 ...
+	 stop_
+     save_
+
+     effect:
+     generic STAR 		NMR-STAR
+
+     _author_name "bob jones"	_submittor_name "bob jones"
+
+</PRE>
+
+<H2>
+    Mapping (tag, value) pairs to changes in scope
+</H2>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>... (several) ...
+   <TD>2a,2b,2c
+</TABLE BORDER>
+<P>
+   Creating save frames from values:  Often, users entering data into
+   AutoDep will need to create new save frames to be later referenced
+   with framecodes.  The only way to define these new save frames is to
+   read them in in data tags, however.
+<P>
+   There are three cases in which the data tag appears:<BR>
+   I)   In a collection of free tags, possibly followed by tags in loops.<BR>
+   II)  In a loop, possibly preceeded by free tags.<BR>
+   III) In a saveframe containing several loops, each with its own<BR>
+        change-of-scope tag.
+<P>
+
+<A NAME=2a>
+<H3>
+    Free tag to saveframe name:
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_frame_free
+   <TD>2a
+</TABLE BORDER>
+<P>
+   In this case, the entire contents of the old saveframe containing
+   the tag is placed into the new saveframe, regardless of where the
+   tag appears.  The tag may appear anywhere before the first loop.
+<P>
+<PRE>
+   syntax:
+   save_{some_name_here}
+       _Saveframe_category  tag_to_scope
+       loop_
+	 _old_tag_name
+	 _old_saveframe
+	 _delete_old_tag
+
+       "_new_molecule_code"
+       "new_molecules"
+       "yes"
+       stop_
+   save_
+
+
+   effect:
+   generic STAR 			  NMR-STAR
+
+   save_new_molecules			  save_hmgb
+   _new_molecule_type protein		  _new_molecule_type protein
+   _new_molecule_name "hemoglobin bombay" _new_molecule_name "hemoglobin bombay"
+   _new_molecule_code hmgb
+					  loop_
+   loop_				    _residue
+     _residue				    a s t r p m
+     a s t r p m			    stop_
+     stop_				  save_
+   save_
+</PRE>
+<P>
+<A NAME="tag_to_scope_change">
+    CHANGE PROPOSAL: Make this rule capable of renaming saveframes to
+    a fixed value instead of the value of a tag in the loop.  To
+    trigger this, simply put the new saveframe name in for the value
+    of "_old_tag_name", like so:
+    <PRE>
+   save_{some_name_here}
+       _Saveframe_category  tag_to_scope
+       loop_
+	 _old_tag_name
+	 _old_saveframe
+	 _delete_old_tag
+
+       "primary_citation"       # New name will be "save_primary_citation"
+       "entry_citation_primary" # where old name was "save_entry_citation_primary"
+       "yes"                    # In this context, this flag is meaningless.
+       stop_
+   save_
+    </PRE>
+    This action is triggered by the fact that "primary_citation" does
+    not start with an underscore and therefore is obviously not a tag
+    name.
+<P>
+
+<A NAME=2b>
+<H3>
+    Loop to saveframe name when values are uniform.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_frame_loop_uniform
+   <TD>2b
+</TABLE BORDER>
+<P>
+   In this case, any tags in the old saveframe before the loop are left
+   in the old saveframe, and a new saveframe is made with the data
+   items in each iteration of the loop.
+<P>
+<PRE>
+   syntax:
+   save_{some_name_here}
+       _Saveframe_category  tag_to_scope
+       loop_
+	 _old_tag_name
+	 _old_saveframe
+	 _delete_old_tag
+
+       "_new_molecule_code"
+       "new_molecules"
+       "yes"
+       stop_
+   save_
+
+   effect:
+   generic STAR 			NMR-STAR
+
+   save_new_molecules			save_new_molecules
+   _creation_date "9 May 1997"		_creation_date "9 May 1997"
+   _created_by "evil dave"		_created_by "evil dave"
+                                        save_
+
+   loop_				save_hmgb
+     _new_molecule_code			_new_molecule_name "hemoglobin bombay"
+     _new_molecule_name			_new_molecule_type "heme protein"
+     _new_molecule_type                 save_
+					
+   "hmgb"  "hemoglobin bombay"
+   "heme protein"			save_pen
+   "pen"  "penicillin" "antibiotic"	_new_molecule_name "penicillin"
+   					_new_molecule_type "antibiotic"
+                                        save_
+    save_
+</PRE>
+
+<A NAME=2c>
+<H3>
+    Loop values to saveframe name when the values are unique.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_frame_loop_unique
+   <TD>2c
+</TABLE BORDER>
+<P>
+   In this case, a new saveframe is made with the data for each loop
+   iteration. Each loop will have exactly one change-of-scope tag.
+<P>
+<PRE>
+
+   syntax:
+   save_{some_name_here}
+       _Saveframe_category  tag_to_scope
+       loop_
+	 _old_tag_name
+	 _old_saveframe
+	 _delete_old_tag
+
+       "_new_molecule_code"
+       "new_molecules"
+       "yes"
+       "_experimenter_last_name"
+       "new_molecules"
+       "yes"
+       stop_
+   save_
+
+
+   effect:
+   generic STAR 			NMR-STAR
+
+   save_new_molecules
+   loop_				save_hmgb
+     _new_molecule_code			_new_molecule_name "hemoglobin bombay"
+     _new_molecule_name			_new_molecule_type "heme protein"
+     _new_molecule_type                 save_
+					
+   "hmgb"  "hemoglobin bombay"
+   "heme protein"			save_pen
+   "pen"  "penicillin" "antibiotic"	_new_molecule_name "penicillin"
+   stop_				_new_molecule_type "antibiotic"
+                                        save_
+   loop_				
+     _experimenter_first_name
+     _experimenter_initial		save_Jones
+     _experimenter_last_name		_experimenter_first_name Bob
+   Bob I Jones				_experimenter_initial I
+   Joe M Smith				save_
+   stop_
+   save_				save_Smith
+					_experimenter_first_name Joe
+					_experimenter_initial M
+					save_
+</PRE>
+
+<A NAME=3a>
+<H3>
+    Mapping tag names into loop values:
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_value
+   <TD>3a
+</TABLE BORDER>
+<P>
+     To make the interface (that generates ZINC/generic STAR) easier to
+     understand, sets of items that are recorded as NMR-STAR loops are
+     read as unlooped tags.  Generally, one of the *tags* read into the
+     generic STAR is a *value* in the NMR-STAR loop.  In addition to
+     the tags being renamed, the name of a tag being used as a value is
+     inserted into the value of another in NMR-STAR, with the leading
+     underscore removed.
+<P>
+<PRE>
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  tag_to_value
+	 loop_
+	   _old_tag_name
+	   _old_saveframe
+	   _new_tag_name
+	   _tag_name_becomes_value
+
+	 "_ph" 		"conditions" 	"_condition" 	"yes"
+	 "_ph" 		"conditions" 	"_value"     	"no"
+	 "_ph_error" 	"conditions" 	"_error" 	"no"
+	 "_temperature" 	"conditions" 	"_condition" 	"yes"
+	 "_temperature" 	"conditions" 	"_value" 	"no"
+	 "_temperature_error" "conditions" 	"_error" 	"no"
+	 ....
+	 stop_
+     save_
+
+     effect:
+
+     generic STAR 		NMR-STAR
+
+     save_conditions		save_conditions
+     _ph 7			loop_
+     _ph_error 0.1		  _condition
+     _temperature 25		  _value
+     _temperature_error 0.01	  _error
+     save_
+				ph 	7 	0.1
+				temperature	25	0.01
+
+				stop_
+				save_
+
+</PRE>
+
+<A NAME=3b>
+<H3>
+    Parsing values into loops
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>value_to_loop
+   <TD>3b
+</TABLE BORDER>
+<P>
+
+     Occasionally, a single generic STAR tag holds a set of closely
+     related data that are represented in NMR-STAR as a loop.  The
+     value has to be read, and broken up in a loop based on a specified
+     delimitter or field width.
+<P>
+<PRE>
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  value_to_loop
+	 loop_
+	   _old_tag_name
+	   _old_saveframe
+	   _new_tag_name
+	   _delimitter
+	   _width
+
+	 "_sequence"
+	 "molecule_description"
+	 "_residue"
+	 .
+	 "1"
+	 ...
+	 stop_
+     save_
+
+
+     effect:
+
+     generic STAR 	NMR-STAR
+
+     _sequence		loop_
+     acerytal 		  _residue
+
+			  a c e r
+    			  y t a l
+
+			stop_
+</PRE>
+<P>
+In practice this is a rare occurance, and would only be used in conjunction
+with other transformations (1b and 4a).
+<P>
+
+<A NAME=3c>
+<H3>
+    Mapping keyed tag names into values
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>keyed_tag_to_value
+   <TD>3c
+</TABLE BORDER>
+<P>
+
+    A variation on 3a.  Sometimes, we do not know the name of the saveframe
+    to search for the tag (for instance, if the saveframe name was derived
+    from a tag value by 2).  Rather than altering the tag based on its
+    existance in a particular saveframe, the tag is altered if it is in
+    the same saveframe as another tag (the key) that takes a particular
+    value (the key value).
+<P>
+<PRE>
+     syntax:
+     save_{some_name_here}
+	 _Saveframe_category  keyed_tag_to_value
+	 loop_
+	   _old_tag_name
+	   _key_tag
+	   _key_value
+	   _new_tag_name
+	   _tag_name_becomes_value
+
+	 "_ph" 		"_marker"   "best run"	"_condition" 	"yes"
+	 "_ph" 		"_marker"   "best run"	"_value"     	"no"
+	 "_ph_error" 	"_marker"   "best run"	"_error" 	"no"
+	 "_temperature" 	"_marker"   "best run"	"_condition" 	"yes"
+	 "_temperature" 	"_marker"   "best run"	"_value" 	"no"
+	 "_temperature_error" "_marker" "best run"	"_error" 	"no"
+	 ....
+	 stop_
+     save_
+
+     effect:
+
+     generic STAR 		NMR-STAR
+
+     save_conditions_1		save_conditions_1
+     _marker "best run"		_marker "best run"
+     _ph 7			loop_
+     _ph_error 0.1		  _condition
+     _temperature 25		  _value
+     _temperature_error 0.01	  _error
+     save_                      
+				ph 	7 	0.1
+				temperature	25	0.01
+
+				stop_
+				save_
+</PRE>
+
+<P>
+<A NAME=5>
+<H3>
+   Removing unneeded (tag, value) pairs
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_tag
+   <TD>5
+</TABLE BORDER>
+<P>
+
+  Some tags produced by the Autodep software are not needed for further
+  processing of the data.  This transformation deletes these (tag, value)
+  pairs.  If the tag is in a loop, all values associated with that tag
+  should be removed as well.
+<P>
+<PRE>
+  syntax:
+
+  save_{some_name_here}
+      _Saveframe_category  remove_tag
+      loop_
+	_old_tag_name
+	_old_saveframe
+
+      '_dummy_citation_type'	'save_citation'
+      '_redunant_citation_code'	'save_citation'
+      stop_
+  save_
+
+  effect:
+
+  generic STAR				NMR-STAR
+
+  citation				save_citation
+  _citation_type  	book		_citation_type	book
+  _dummy_citation_type	book		_date 		'97 July 1'
+  _date			'97 July 1'	loop_
+  loop_					_classification_type
+    _classification_type		_classification_code
+    _classification_code
+    _redundant_classification_code	  ISBN  0-13-110362-8
+					  LOC	QA76.73.C15K47
+    ISBN  0-13-110362-8   013B6		stop_
+    LOC	QA76.73.C15K47    QA76.97july	save_
+  stop_
+  save_
+</PRE>
+
+
+<A NAME=6>
+<H3>
+    Create Full Citation header
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>make_citation_full_tag
+   <TD>6
+</TABLE BORDER>
+<P>
+    This rule pieces together the information from the file into the
+    _Full_citation tag.  It is hardcoded.  The rule will be activated
+    when a saveframe like this appears in the mapping file, and is
+    activated in the sage_order_of_operations saveframe.
+<PRE>
+    save_{some_name_here}
+      _Saveframe_category  make_citation_full_tag
+        # No contents to this saveframe
+    save_
+    
+</PRE>
+
+<P>
+
+<A NAME=7>
+<H3>
+    Removing empty saveframes
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_empty_frames
+   <TD>7
+</TABLE BORDER>
+<P>
+	Removes saveframes which are either completely empty, or
+	have nothing but the _Saveframe_category tag.
+<P>
+	This new rule will have no corresponding entries in the 
+	mapping file.  There is nothing to configure, as this rule
+	will be applied unconditionally to all empty saveframes
+	that are found.
+<P>
+	In the mapping config file, there will be an entry like this:
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  remove_empty_frames
+        # no contents.
+    save_
+    
+</PRE>
+<P>
+	This saveframe will have no tags of any kind inside.  It is
+	simply a trigger - if the saveframe exists, then run this rule,
+	else don't run this rule.
+<P>
+
+<A NAME=8>
+<H3>
+    Free category tags from loops.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>free_all_category_tags
+   <TD>8
+</TABLE BORDER>
+<P>
+        This new rule finds all tags
+	with the name "_Saveframe_category" that are in a loop.  It
+	then moves those tags out of the loop so they become a free
+	tag (Data Item) instead of a looped tag.  It is expected that
+	when a _Saveframe_category tag is inside a loop, all the values
+	for that tag will be the same on all rows of that loop.  If this
+	is not the case, then s2nmr should issue a warning and keep
+	processing.
+<P>
+	The saveframe "free_all_category_tags" will trigger
+	the execution of this rule.  This rule has no configuration
+	information, so this saveframe will be empty.  Its existence
+	will simply trigger the rule:
+<P>
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  free_all_category_tags
+        # Empty contents
+    save_
+    
+</PRE>
+<P>
+
+<A NAME=9>
+<H3>
+    Making new saveframes by copying values from other saveframes.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>make_new_saveframe
+   <TD>9
+</TABLE BORDER>
+<P>
+	This new rule will make a new
+	saveframe, and populate it with data copied (or moved) from 
+	existing data elsewhere in the file.
+<P>
+	The rule will look like this in the mapping file:
+<P>
+<PRE>
+	save_{some_name_here}
+            _Saveframe_category  make_new_saveframe
+	    loop_
+		_new_frame_name
+		loop_
+		    _from_key_tag
+		    _from_key_value
+		    _from_tagname
+		    _copy_or_move_flag
+
+		...
+	
+</PRE>
+<P>
+	Explanation:
+	<UL>
+	    <LI>_new_frame_name is the name of the new saveframe.</LI>
+	    <LI>_from_key_tag and _from_key_value are the
+	        typical tag/value pair used to idenitify a single
+		saveframe category.</LI>
+	    <LI>_from_tagname is the tagname to copy from the saveframe.</LI>
+	    <LI>_copy_or_mode_flag is a single character set to either "C" or
+	    "M", indicating whether to copy the tag (non-descructive), or
+	    move the tag (delete it from the old saveframe).</LI>
+	</UL>
+<P>
+	"In the case where the tag copied is a looped tag instead of a
+	free tag, the entire column is copied out into the new saveframe,
+	and put into its own loop.  (The loop re-order rule can collect
+	these together later.)"
+<P>
+	In the case where there are more than one saveframe that matches
+	the given key tag/value criteria, it is considered an error because
+	this rule specifies the name of the new saveframe to create and you
+	should not create two saveframes with this same name.  If this
+	happens, handle it like all other s2nmr errors - issue a warning
+	message to the error log, don't make the new saveframe, and keep
+	going.
+<P>
+	Example:
+<PRE>
+	# IN THE MAPPING FILE:
+	save_{some_name_here}
+          _Saveframe_category  make_new_saveframe
+	  loop_
+	     _new_frame_name
+	     loop_
+		_from_key_tag
+		_from_key_value
+		_from_tagname
+		_copy_or_move_flag
+
+	     "new_frame1"
+		"_Saveframe_category"  cat1  "_Saveframe_category"  C 
+		"_Saveframe_category"  cat1  "_tag1"                M 
+		"_Saveframe_category"  cat1  "_tag2"		    M 
+		"_Saveframe_category"  cat1  "_tag4"		    M 
+		"_Saveframe_category"  cat1  "_tag5"		    M 
+		stop_
+	    stop_
+	save_
+      ---------------------------------
+	# --- BEFORE: ---
+	save_test1
+	    _Saveframe_category  cat1
+
+	    _tag0                val0
+	    _tag1                val1
+	    loop_
+		_tag2
+		_tag3
+		_tag4
+		_tag5
+
+		v2.1  v3.1  v4.1 v5.1
+		v2.2  v3.2  v4.2 v5.2
+	    stop_
+	save_
+	
+
+	# --- AFTER: ---
+	
+</PRE>
+<P>
+
+<A NAME=10>
+<H3>
+    Inserting default rows into loops.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>insert_loop_defaults
+   <TD>10
+</TABLE BORDER>
+<P>
+	Inserts the contents of a loop into
+	another loop, when certain conditions are met.
+<P>	
+	The Mapping file:
+<P>
+	    What to insert:  What to insert will be designated by some
+	    saveframes in the mapping file like so (Any name for the
+	    saveframe can be chosen so long as it does not clash with
+	    the other names of saveframes in the mapping file):
+<P>
+<PRE>
+	save_insert_1
+	    loop_
+		_tag1
+		_tag2
+		...etc...
+
+		# This is a single row of data to insert
+		val1  val2  ...etc...
+	    stop_
+	save_
+	save_insert_2
+	    loop_
+		_tagA
+		_tagB
+		...etc...
+
+		# This is a single row of data to insert
+		valA  valB  ...etc...
+	    stop_
+	save_
+</PRE>
+<P>
+	    Whether to insert it:  Whether or not to insert the row of
+	    values will be determined by the existance of a certain tag
+	    having a certain value.  If a certain tag has a certain value
+	    in a certain saveframe, then the loop row specified in one of
+	    the above saveframes is inserted into that saveframe if the
+	    'trigger' tag/value was found.  The "_whichloop_tag" field
+	    designates which loop the new row should be inserted into,
+	    in case there are more than one loop in the saveframe.
+	    "_whichloop_tag" is a tagname in one of the loops in the
+	    saveframe.
+<P>
+	If the _trigger_tag and/or the _trigger_value is set to asterisk ('*'), then
+	the trigger tag will be ignored and the insert will be uncondintional.
+<P>
+	    An example of the rule looks like this:
+<P>
+<PRE>
+    save_{some_name_here}
+      _Saveframe_category  insert_loop_defaults
+      loop_
+	_key_tag
+	_key_value
+	_trigger_tag
+	_trigger_value
+	_insert_framecode
+	_whichloop_tag
+
+	# (Note: $insert1 and $insert2 are framecodes
+	# that refer to the insert_1 and save_insert_2
+	# saveframes shown in the example above.)
+	#
+	"_Saveframe_category" cat1 "_default1" yes $insert_1 "_tagA"
+	"_Saveframe_category" cat1 "_default2" yes $insert_2 "_tagA"
+      stop_
+    save_
+    
+    Using the above rule, It might look like this:
+    ----------------------------------------------
+
+	# ----- BEFORE: -----
+	save_test1
+	    _Saveframe_category  cat1
+
+	    _example_tag         foo
+	    _default1            no
+	    _default2            yes
+
+	    loop_
+		_tagA
+		_tagB
+		...etc...
+
+		previously-existing-val-1
+		previously-existing-val-2
+		...etc...
+
+		previously-existing-val-3
+		previously-existing-val-4
+		...etc...
+	    stop_
+
+	    # This loop will remain untouched because the
+	    # "_whichloop_tag" was set to "_tagA" in the
+	    # mapping file, and this next loop contains
+	    # no "_tagA":
+	    loop_
+		_tagX
+		_tagY
+		_tagZ
+
+		... etc ...
+	    stop_
+	save_
+
+	# ----- AFTER: -------
+	save_test1
+	    _Saveframe_category  cat1
+
+	    _example_tag         foo
+	    _default1            no
+	    _default2            yes
+
+	    loop_
+		_tagA
+		_tagB
+		...etc...
+
+		previously-existing-val-1
+		previously-existing-val-2
+		...etc...
+
+		previously-existing-val-3
+		previously-existing-val-4
+		...etc...
+
+		valA
+		valB
+		...etc...
+	    stop_
+
+	    loop_
+		_tagX
+		_tagY
+		_tagZ
+
+		... etc ...
+	    stop_
+	save_
+</PRE>
+<P>
+	To make this rule simpler to implement, the loop that the 
+	value is being inserted into must previously exist in the
+	original file.  This rule will not attempt to create a
+	new loop from scratch, because to do so would require that
+	we violate the way s2nmr was designed.  (An explanation as
+	to how is beyond the scope of this document, but feel free
+	to ask Steve and he will explain it in person.)
+<P>
+
+<A NAME=11>
+<H3>
+    Exploding the Mol_residue_sequence tag.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>explode_Mol_residue_sequence
+   <TD>11
+</TABLE BORDER>
+
+<P>
+	This is a special case rule, first some background
+	information:
+<P>
+	Whenever the tag "_Mol_residue_sequence" is encountered, it
+	is expected to have a string of letters as its value, like
+	this example:
+<P>
+<PRE>
+    _Mol_residue_sequence             
+    ;
+    PVR
+    ;
+    # Please note that this string of letters is usually much longer,
+    # and spans more than one line of text.  The program parsing this
+    # needs to ignore these line breaks and act as if it is all one
+    # long string of letters.
+</PRE>
+<P>
+	Whenever the tag "_Residue_author_seq_code" is encountered,
+	it is expected to have a tabular text string like this:
+<P>
+<PRE>
+    _Residue_author_seq_code*
+    ;
+       1, A
+       2, B
+       3, C
+    ;
+</PRE>
+<P>
+	Whenever the above two tags are found together in the
+	same saveframe, this rule should generate the following
+	new loop and insert it into the same saveframe:
+<P>
+<PRE>
+    loop_
+	_Residue_seq_code
+	_Residue_author_seq_code
+	_Residue_label
+
+	1  A  P
+	2  B  V
+	3  C  R
+    stop_
+</PRE>
+<P>
+	(_Residue_seq_code and _Residue_author_seq_code are taken from
+	the parsing of the value for _Residue_author_seq_code*, and
+	_Residue_label is taken from the letters in the string for
+	_Mol_residue_sequence.)
+<P>
+	If _Residue_author_seq_code* is missing from the input file,
+	then create the loop anyway, but without the
+	_Residue_author_seq_code column.
+<P>
+	If _Residue_quthor_seq_code* exists, but has a useless value
+	(a value not in the expected format described above), then
+	create the loop anyway, but without the _Residue_author_seq_code
+	column.
+<P>
+	If _Mol_residue_sequence exists, but has a useless value
+	(a value not in the expected format described above), then
+	do not generate a loop, and issue a warning/error.
+<P>
+	In the mapping configuration file, this rule will be triggered
+	by the following empty saveframe:
+<PRE>
+	    save_{some_name_here}
+	       _Saveframe_category  explode_Mol_residue_sequence
+	    save_
+	    
+</PRE>
+	(If the saveframe does not exist, then don't run this function.)
+<P>
+
+<A NAME=12>
+<H3>
+    Removing loop rows that have no useful data.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_null_loop_rows
+   <TD>12
+</TABLE BORDER>
+<P>
+	Removes rows from loops where certain values are null.
+<P>
+	Given a list of tagnames that are in a loop, remove any rows
+	from that loop for which all the values for the given tags
+	are either nonexistant or null (a single period).
+<P>
+	If doing so removes the very last row from the loop, then
+	get rid of the entire loop too.  (Because of this feature,
+	this rule should not come before insert_loop_defaults in the
+	order of operations, as that might cause it to prematurely
+	delete the loop before the default rows are inserted.)
+<P>
+	The mapping entry for this rule looks like this:
+<P>
+<PRE>
+	save_{some_name_here}
+            _Saveframe_category  remove_null_loop_rows
+	    loop_
+		_key_tag
+		_key_value
+		loop_
+		    _important_tagname
+
+		"_Saveframe_category"  cat1
+		    "_looptagA"
+		    "_looptagB"
+		    "_looptagC"
+		stop_
+	    stop_
+	save_
+</PRE>
+<P>
+	An example using the above mapping dictionary:
+<P>
+<PRE>
+	# ---- BEFORE: ----
+	save_test1
+	    _Saveframe_category  cat1
+
+	    loop_
+		_looptagA
+		_looptagB
+		_looptagC
+		_looptagD
+
+		.     .     .     .
+		.     .     .     D-val
+		.     A-val .     .
+	    stop_
+	save_
+
+	# ---- AFTER: ----
+	save_test1
+	    _Saveframe_category  cat1
+
+	    loop_
+		_looptagA
+		_looptagB
+		_looptagC
+		_looptagD
+
+		.     A-val .     .
+	    stop_
+	save_
+</PRE>
+<P>
+	Note that even though the second row of the loop had a non-null
+	value for _looptagD, it was deleted anyway because _looptagD
+	was not listed among the important tags in the mapping file.
+<P>
+
+<A NAME=13>
+<H3>
+    Removing free tags with no data.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_null_tags
+   <TD>13
+</TABLE BORDER>
+<P>
+	This new rule removes tags for
+	which the value is a null (a single period), or in the case
+	of a looped tag, when all the values for that tag are null.
+<P>
+	If removing a column from a loop causes that loop to no longer
+	have any columns, than remove the loop entirely.
+<P>
+	Example configuration in the mapping file:
+<P>
+<PRE>
+	save_{some_name_here}
+            _Saveframe_category  remove_null_tags
+	    loop_
+		_key_tag
+		_key_value
+		_old_tagname
+
+		"_Saveframe_category"   "category1"   "_tag1"
+		"_Saveframe_category"   "category1"   "_tag2"
+		"_Saveframe_category"   "category1"   "_tag3"
+		"_Saveframe_category"   "category1"   "_tag4"
+	    stop_
+	save_
+</PRE>
+<P>
+	Example result of rule (using the above mapping example):
+<P>
+<PRE>
+	# BEFORE:
+	save_data1
+	    _Saveframe_category  category1
+	    _tag1                .
+	    _tag2                "value"
+	    _tag5                .
+	    loop_
+		_tag3
+		_tag4
+		_tag5
+		
+		.  .    .
+		.  val1 .
+		.  .    .
+	    stop_
+	save_
+
+	# AFTER:
+	save_data1
+	    _Saveframe_category  category1
+	    _tag2                "value"
+	    _tag5                .
+	    loop_
+		_tag4
+		_tag6
+		
+		.    .
+		val1 .
+		.    .
+	    stop_
+	save_
+</PRE>
+<P>
+	Notice that while tag5 and tag6 had null values, they were
+	not deleted because they were not specified in the mapping file.
+	Also notice that while tag4 had some nulls, not all the values
+	in the column were null, so it was not deleted.
+<P>
+
+<A NAME=14>
+<H3>
+    Make a new tag with hardcoded value.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>make_new_tag
+   <TD>14
+</TABLE BORDER>
+<P>
+    This rule makes new tags in saveframes with hardcoded
+    values.  The mapping entry looks like this:
+<P>
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  make_new_tag
+	loop_
+	    _key_tag
+	    _key_value
+	    _new_tag
+	    _new_value
+
+	    "_Saveframe_category" entry_information  "_NMR_STAR_Version" "2.1"
+	    ...etc...
+	stop_
+    save_
+</PRE>
+<P>
+    The above example would add the version number tag to the saveframe whose
+    _Saveframe_category is entry_information.
+<P>
+    Note that if the _key_value field is assigned a null value ".", then it is
+    a "don't care" field, such that as long as _key_tag exists in the saveframe,
+    regardless of its value, this rule will operate on the saveframe.
+<P>
+
+<A NAME=15>
+<H3>
+    Change the value of an existing tag iff that tag is already set to a specified value.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>change_tag_value
+   <TD>15
+</TABLE BORDER>
+<P>
+    This rule says: "If the value of this existing tag is such-and-such, then
+    change it to so-and-so instead."  The standard key tag & key value technique
+    is used to designate the saveframes in which to look for the tag to change.
+<P>
+Example:
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  change_tag_value
+
+	loop_
+	    _key_tag     # Look in saveframes where this tag...
+	    _key_value   # ...has this value.
+	    _tag_with_a_value_to_change  # If this tag...
+	    _tag_value                   # ...is set to this value...
+	    _new_tag_value               # ...then change it to this instead.
+
+	    "_Saveframe_category" entry_information  "_NMR_STAR_Version" "." "2.1"
+	    ...etc...
+	stop_
+    save_
+</PRE>
+<P>
+
+<A NAME=16>
+<H3>
+    Change a free tag/value into a loop with one tag and one value.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_loop
+   <TD>16
+</TABLE BORDER>
+<P>
+    Change the given tag/value from a free tag into a loop tag in a
+    new loop with just one data value (one column of one row).  Example:
+    <BR>Turn this:<BR>
+    <TT>        _some_tag_name   "the value"</TT><BR>
+    into this:<BR>
+    <TT>   loop_<BR>
+          _some_tag_name<BR>
+	  <BR>
+	  "the value"<BR>
+       stop_<BR>
+    </TT>
+<P>
+Example:
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  tag_to_loop
+
+	loop_
+	    _key_tag     # Look in saveframes where this tag...
+	    _key_value   # ...has this value.
+	    _tag_to_put_in_loop  # operate on this tag.
+
+	    "_Saveframe_category" some_category  "_some_tag_name"
+	    ...etc...
+	stop_
+    save_
+</PRE>
+<P>
+    Note that if the tag is <b>already</b> in a loop, then nothing happens
+    and no error is issued.
+<P>
+
+<A NAME=17>
+<H3>
+    Map loop values to multiple saveframes depending on name, In a many-to-many fashion.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file category name
+    <TH>Rule number
+<TR>
+   <TD>values_to_saveframes_many_to_many
+   <TD>17
+</TABLE BORDER>
+<P>
+    This rule will take several values (typically in a loop) and move or copy them
+    into multiple saveframes.  Which saveframe a value ends up in will depend
+    upon a key value in the input loop.
+<P>
+    This rule is described using a nested loop in the mapping file.  The outermost
+    level of the nesting loop describes where to take the data from in the original
+    file and where to put the data in the output file.  The inner loop level under
+    that describes which tags of the input loop should be put into the output loop.
+<P>
+    This is a sample of the mapping loop, heavily embellished with comments
+    explaining it:
+<P>
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category   values_to_saveframes_many_to_many
+	
+	loop_
+	    _input_key_tag        # look in the loop where this tag exists.
+
+            # Note, the following three tags define the input saveframe to pull
+            # the data from.  It can either be defined by its name or by a tag/value
+	    # pair, but not both.  (If the name is given, it overrides the tag/value
+            # pair.)  For all three of these tags, if it is set to "*" it means
+            # "don't care".  A single dot (null) will have the same effect as setting it
+            # to asterisk, although the asterisk is preferred.
+            #
+	    # If all three of these are set as don't care, then the input will be taken
+            # from anywhere where the tag name is found, even if it is not inside a saveframe.
+
+	    _input_sf_name        # look in the saveframe where this is its name,
+	                          #    Ignore if set to *.
+	    _input_sf_key_tag     # look in the saveframe where this tag...
+	    _input_sf_key_value   # ...has this value.
+
+
+            # The following fields define where in the output the copy will be placed.
+            # the saveframe's name is the base name plus the value of the "name tag" appended
+            # to it.  If such a saveframe already exists, then the output will be placed
+            # into it, else a new saveframe will be made with that name.  If a new saveframe
+            # has to be made, then the category given below will be used as the value to
+            # its Saveframe_category tag.  If the saveframe already exists, then the category
+            # given is a boolean check: if the saveframe found does not match the category
+	    # given, then abort the operation.
+
+	    _output_sf_category   # Saveframe_category for the output saveframe.
+	    _output_sf_base_name  # base for the output saveframe's name
+	    _output_sf_name_tag   # tag whose value appends to the output saveframe name.
+	                          #    (set to null (.) to just take the base name as-is.)
+				  # This value will be appended with a preceeding underscore,
+				  # for readability.  (save_entry_citation_primary instead of
+				  # save_entry_citationprimary)
+
+	    _copy_or_move_flag    # 'M' == move, anything else assumes "copy".
+	    loop_
+		_input_tag          # inner loop will be a list of tagnames to move or copy.
+		_free_or_loop_flag  # 'F' = free, 'L' = looped.  Determines if a tag should be put into
+		                    # the output saveframe as a free tag or a looped tag.
+		_new_tag_name       # The new name to rename the tag to in the new saveframe.
+		                    # this is optional.  You can leave it out of the loop and you
+				    # will be retaining the same names as in the original loop.
+				    #  Note that if output_sf_name_tag is in use, it will be
+				    #  using the name of the tag as it was originally, not
+				    #  as it is after this rename.
+				    </FONT>
+
+
+	    #######   Now the values:   #########
+
+	    # This example maps the mmCIF citations into BMRB's entry_citation saveframe:
+	    # (but it does not parse the names into separate values.  That will be a
+	    # different rule.)
+	    
+	    "_citation_author.citation_id"  # _input_key_tag
+	    *                               # _input_sf_name == don't care.
+	    *                               # _input_sf_key_tag == don't care.
+	    *                               # _input_sf_key_value == don't care.
+	    "entry_citation"                # _output_sf_category
+	    "save_entry_citation"           # _output_sf_base_name
+	    "_citation_author.citation_id"  # _output_sf_name_tag
+	    M                               # _copy_or_move_flag
+
+		# List of _input_tag values:
+
+		"_citation_author.name"  L   "_Author_name"
+
+		stop_
+	    # next iteration of this rule would go here...
+
+	stop_
+    save_
+</PRE>
+<P>
+    The result of the above rule would be:
+    <TABLE BORDER WIDTH=80% ALIGN=CENTER>
+	<TR>
+	    <TH>INPUT</TH>
+	    <TH>OUTPUT</TH>
+	</TR>
+	<TR>
+	    <TD><PRE>
+# This example was taken from 1brz.mmcif,
+# Jane Caldwell's Brazzein submission.
+loop_
+_citation_author.citation_id
+_citation_author.name
+ primary   'Caldwell, J.E.'
+ primary   'Abildgaard, F.'
+ primary   'Dzakula, Z.'
+ primary   'Ming, D.'
+ primary   'Hellekant, G.'
+ primary   'Markley, J.L.'
+   1       'Caldwell, J.E.'
+   1       'Abildgaard, F.'
+   1       'Ming, D.'
+   1       'Hellekant, G.' 
+   1       'Markley, J.L.'
+
+	    </PRE></TD>
+	    <TD><PRE>
+save_entry_citation_primary  # If this is not the name you want, it
+			     # can be renamed with the proposed
+			     # <A HREF="#tag_to_scope_change">change to tag_to_scope</A>.
+    _Saveframe_category  entry_citation
+
+    loop_
+	_Author_Name
+        
+	'Caldwell, J.E.'
+	'Abildgaard, F.'
+	'Dzakula, Z.'
+	'Ming, D.'
+	'Hellekant, G.'
+	'Markley, J.L.'
+    stop_
+
+    ...
+save_
+
+save_entry_citation_1
+    _Saveframe_category  entry_citation
+
+    loop_
+	_Author_Name
+
+        'Caldwell, J.E.'
+        'Abildgaard, F.'
+        'Ming, D.'
+        'Hellekant, G.' 
+        'Markley, J.L.'
+    stop_
+save_
+
+
+	    </PRE></TD>
+	</TR>
+    </TABLE>
+<P>
+
+<A NAME=18>
+<H3>
+   Splitting up name fields by parsing.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>parse_split_name
+   <TD>18
+</TABLE BORDER>
+<P>
+    This rule splits a single value into multiple values
+    under the assumption that that value is a name.  The
+    split uses a heuristic (to be explained) guess to parse
+    the name field.  This comes in handy in several places in
+    the mapping, and thus probably warrants its own separate
+    rule (instead of trying to combine this code into lots
+    of other rules.)
+<P>
+    The heuristic guessing algorithm will be like so.  Please note
+    that in these examples, a "word" refers to any string of characters
+    separated by whitespace or the punctuation marks (inluding period).
+<P>
+    <OL>
+	<LI>
+	    If the value contains the substring ", " (comma
+	    followed by whitespace), assume it is in last-name-first
+	    format, else assume it is first-name-first format.
+	</LI>
+        <LI>
+	    If in first-name-first format, assume an increasing
+	    level of formality the more words there are, as follows:
+	    <OL>
+		<LI>If there are two 'words', assume the first word
+		is the first name and the second word is the last name
+		and the middle initial is not given.
+		EXAMPLE: <TT>"Steve Mading"</TT></LI>
+		<LI>If there are three 'words', assume they are first,
+		middle, and last names in order.
+		EXAMPLE: <TT>"Steven L. Mading"</TT></LI>
+		<LI>If there are four 'words', assume the first one is a title
+		or family name and the rest are as follows above.
+		EXAMPLE: <TT>"Mr Steven L. Mading"</TT></LI>
+		<LI>Override: If any word is in this short list of titles in the
+		following set, assume it is the title even if there are less than
+		four words.  {Mr,Ms,Miss,Mrs,Dr,Sr,Jr,Phd,...}</LI>
+
+	    </OL>
+	    Note that this algorithm fails to properly detect last names
+	    with spaces in them such as "Albert Van Morrison", where the
+	    "Van" will be misinterpeted as the middle name.
+	</LI>
+	<LI>
+	    If in last-name-first format, assume an increasing level
+	    of formality the more words there are, as follows:
+	    <OL>
+		<LI>
+		    Assume everything up to the comma is the last name, always.
+		    This makes this method a lot better for last names like
+		    "Van Morrison" that have whitespace.
+		</LI>
+		<LI>
+		    After the comma:
+		    <OL>
+			<LI>If there is one word after the comma, assume it
+			    is the last name and the middle name is missing.
+			    EXAMPLE: <TT>"Mading, Steven"</TT> </LI>
+			<LI>If there are more than one word after the comma, assume
+			    they are first and middle names, in that order.
+			    EXAMPLES: <TT>"Mading, Steven Lee", "Mading, S.L."</TT></LI>
+			<LI>If there is a second comma, assume what comes after is the
+			    title or family name.
+			    EXAMPLE: <TT>"Mading, Steven L, Mr."</TT>
+			<LI>Override: If any word is in this short list of titles in the
+			    following set, assume it is the title even if there are less than
+			    three words or it is in the wrong place:
+			    {Mr,Ms,Miss,Mrs,Dr,Sr,Jr,Phd,...}</LI>
+		    </OL>
+		<LI>
+	    </OL>
+	</LI>
+	<LI><P>A Note About Middle Initials:  If there are more than one middle
+	initial, then only the first initial is taken.  This was done because
+	the program can't tell the difference between seeing a middle name
+	spelled out and a middle name initialized.  (If I see a middle name of
+	"L.E.E.", it assumes that this is the entire middle name, and should
+	be abbreviated "L.".  It doesn't know that perhaps this person has three
+	middle names and the "L.E.E." was an abbreviation already.)
+    </OL>
+<P>
+    Okay, anyway, with that heuristic, the rule looks like this:
+
+    <PRE>
+    save_{some_name}
+	_Saveframe_category  parse_split_name
+
+	loop_
+
+	    # This triple of name, tag/value finds a saveframe to
+	    # alter in the standard way (either by name or by keyed
+	    # tag/value pair.)  If all of them are "don't care" asterisks,
+	    # then the rule operates everywhere it finds a matching tag
+	    # for _parse_tag in the file (in or out of a saveframe).
+	    _sf_name
+	    _key_tag
+	    _key_value
+
+	    _parse_tag          # The tag to parse the values out of.
+	    _output_title_tag   # The name of the newly created title/family tag.
+	    _output_first_tag   # The name of the newly created first-name tag.
+	    _output_middle_tag  # The name of the newly created middle-name tag.
+	    _output_last_tag    # The name of the newly created last-name tag.
+            _keep_old_tag       # Set to "Y" to keep the old parse tag or "N" to
+	                        # delete it when done.
+
+	    
+
+	    *
+	    _Saveframe_category
+	    entry_citation
+
+	    "_citation_author.citation_id"
+	    "_Author_family_title"
+	    "_Author_given_name"
+	    "_Author_middle_initials"
+	    "_Author_family_name"
+	    N
+	    
+
+	    <EM>...next iteration of this rule goes here...</EM>
+
+	stop_
+    save_
+    </PRE>
+    If this rule finds that _parse_tag is a free tag, then the new
+    tags it creates are free tags also.<BR>
+    If this rule finds that _parse_tag is in a loop, then the new
+    tags it creates will appear as columns in the same loop, with the
+    parsed values for each value appearing on the approriate rows.<BR>
+    In either case, the new values appear in the same saveframe where the
+    _parse_tag was found (or not in a saveframe at all if the _parse_tag
+    was found outside a saveframe).
+
+<!-- These extra font-enders get around a bug in Netscape's renderer.
+  -- When I change font color and then start a table, it seems to
+  -- think my <FONT>s are more deeply nested than they really are,
+  -- so I have to turn the font off more times than I turned it on
+  -- in order to really get it to turn off:
+  -->
+</FONT>
+</FONT>
+</FONT>
+<P>
+<HR WIDTH=70%>
+
+
+<A NAME=19>
+<H3>
+   Change the data_ to data_accession_number
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>change_data_tag_name
+   <TD>19
+</TABLE BORDER>
+
+<p>
+  Change the tag data_ to match the value for _BMRB_accession_number.
+  So, if in the file there exists a value such as:<BR>
+  <TT>       _BMRB_accession_number  1234</TT><BR>
+  Then this would rename the data_ block to data_1234.
+  If more than one data_ block exists in the input, the behaviour is to
+  only change the first one.
+  <P>
+  This rule will only work if the _BMRB_accession_number tag exists
+  as a free tag (not a looped tag).
+  <P>
+  In the mapping configuration file, this rule will be triggered by the following empty saveframe:
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category  change_data_tag_name
+save
+</PRE>
+
+
+<A NAME=20>
+<H3>
+   Remove_global_block
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>remove_global_block
+   <TD>20
+</TABLE BORDER>
+
+<P>
+Remove the global block.
+
+IN the mapping configuration file, this rule will be triggered by the following empty saveframe:
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category  remove_global_block 
+save_
+</PRE>
+
+<A NAME=21>
+<H3>
+   Create saveframe.
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>create_new_saveframe
+   <TD>21
+</TABLE BORDER>
+
+<P>
+Create a new saveframe and insert pairs (tag, value) into the newly created saveframe.
+
+The rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category         create_new_saveframe
+   loop_
+       _frame_name
+       loop_
+           _new_tag_name
+	   _new_tag_value
+       ...
+
+Example:
+
+     #IN THE MAPPING FILE:
+     save_{some_name_here}
+        _Saveframe_category  create_new_saveframe
+	loop_
+	    _frame_name
+	    loop_
+	        _new_tag_name
+		_new_tag_value
+
+	    "save_entry_information"	
+	         "_Saveframe_category" "entry_information"
+		 stop_
+	stop_
+     save_	
+
+</PRE>
+
+
+<A NAME=22>
+<H3>
+   Copy tag into saveframe
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>copy_tag_into_saveframe
+   <TD>22
+</TABLE BORDER>
+
+<P>
+This rule takes a tag which is not in a saveframe, and copies it into a pre-existing
+saveframe somewhere.  The saveframe that it will be copied into is the saveframe
+specified in the familiar _key_tag and _key_value combination. (Find a saveframe
+which has the _key_tag with at least one value equal to _key_value, and copy the
+tag there.)
+<P>
+If the original tag was in a loop, the whole loop is copied.  If the original
+tag was free, then just the tag is copied.
+<P>
+The rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category   copy_tag_into_saveframe
+    loop_
+        _tag_to_move
+	_key_tag   #the saveframe contains this tag
+	_key_value #with this value
+	
+        ...
+    stop_
+save_  
+</PRE>
+
+<A NAME=23>
+<H3>
+   Copy saveframe
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>copy_saveframe
+   <TD>23
+</TABLE BORDER>
+
+<P>
+Find a saveframe which contains a pair of (tag, value). The saveframe should be under GlobalBlockNode. 
+Copy the whole saveframe under DataBlockNode.
+
+The rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category   copy_saveframe
+    loop_
+        _key_tag
+	_key_value
+
+	...
+   stop_
+save_   
+</PRE>
+
+<A NAME=24>
+<H3>
+   Replacing framecode with value
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>framecode_to_tag
+   <TD>24
+</TABLE BORDER>
+
+<P>
+Replace framecode to tag value. Remove "$" and replace underscores with whitespace.
+If the tag_name is a loop tag, apply it to the whole loop. It is an opposite funciton for 
+tag_to_framecode.
+
+Ihe rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category framecode_to_tag
+    loop_
+        _key_tag
+	_key_value
+	_tag_name
+
+	...
+    stop_
+save_
+</PRE>
+
+
+<A NAME=25>
+<H3>
+   Change tag value II
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>change_tag_value_II
+   <TD>25
+</TABLE BORDER>
+
+<P>
+Copy the value of one tag and assign the value to another tag.
+
+The rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category change_tag_value_II
+    loop_
+       _key_tag
+       _key_value
+       _tag_name
+       _new_value_key_tag
+       _new_value_key_value
+       _new_value_tag_name
+
+       ...
+     stop_
+save_ 
+</PRE>
+
+<A NAME=26>
+<H3>
+   Insert column into a loop
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>insert_column
+   <TD>26
+</TABLE BORDER>
+
+<P>
+Insert a column with a specified value into targeted loop. If a column with the same name already exists, 
+on insertion occurs.
+
+The rule will look like this in the mappin file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category insert_column
+    loop_
+        _key_tag
+	_key_value
+	_key_loop_tag
+	_new_tag_name
+	_new_tag_value
+	...
+    stop_
+save_ 
+</PRE>
+
+<A NAME=26a>
+<H3>
+   Insert ordinal column into a loop
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>insert_column_ordinal
+   <TD>26a
+</TABLE BORDER>
+
+<P>
+Insert a column with sequence number of fixed interval or a constant number into targeted loop. If a column with the same name already exists, 
+on insertion occurs.
+
+The rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category insert_ordinal
+    loop_
+        _key_tag
+	_key_value
+	_key_loop_tag
+	_new_tag_name
+	_new_tag_value_start     #start number
+	_new_tag_value_interval   #change interval
+	_new_tag_value_change    #should be "increase" "decrease" "constant"
+
+	"_Saveframe_category" 
+	"entry_information" 
+	"_Author_family_title"    
+	"_Author_ordinal"       
+	"1"   
+	"1"  
+	"increase"
+    stop_
+save_ 
+</PRE>
+
+<A NAME=27>
+<H3>
+   Insert loop
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>insert_loop
+   <TD>27
+</TABLE BORDER>
+
+<P>
+Insert a loop into a saveframe.
+
+The rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category  insert_loop
+   loop_
+       _key_tag  //Insert the loop into a saveframe with (tag, value)
+       _key_value
+       loop_
+           _column_name
+	   ...
+       stop_
+   stop_
+save_
+
+For example:
+save_{some_name_here}
+   _Saveframe_category  insert_loop
+   loop_
+       _key_tag
+       _key_value
+       loop_
+           _column_name
+
+	   "Saveframe_category" "monomeric_polymer"  "_Database_name"
+            stop_
+   stop_
+save_   
+</PRE>
+
+<A NAME=28>
+<H3>
+   Rename saveframe
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>rename_saveframe
+   <TD>28
+</TABLE BORDER>
+
+<P>
+Rename the saveframe as the value of a tag.
+
+This rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category  rename_saveframe
+    loop_ 
+        _key_tag
+	_key_value
+	_renaming_tag     # The value of the tag will be used as the
+	                  # new saveframe name.
+        _renaming_prefix  # the prefix to prepend to the name. (optional).
+
+	...
+   stop_
+save_ 
+</PRE>
+
+<A NAME=29>
+<H3>
+   Check nomenclature for chemical shift loop data
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>check_chemical_shift_nomenclature
+   <TD>29
+</TABLE BORDER>
+
+<P>
+Check the nomenclature for chemical shift loop data.
+
+This rule will look like this in the mapping file:
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category  check_chemical_shift_nomenclature
+    loop_
+        _residue_label
+	_old_atom_name
+	_new_atom_name
+        "I"   "HD"  "HD1"
+	...
+   stop_
+save_
+</PRE>
+
+<A NAME=30>
+<H3>
+   Calulate residue count
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>calculate_residue_count
+   <TD>30
+</TABLE BORDER>
+
+<P>
+This rule will do a couple of things which are related:
+<P>
+<PRE>
+1. Calculate the value for _Residue_count by counting rows of loop which has tag
+   "_Residue_seq_code".
+   _Residue_count is in the saveframe which contains (_Saveframe_category, monomeric_polymer).
+   The loop having tag _Residue_seq_code is in the same saveframe.
+   
+2. Assign value for _Mol_residue_sequence. The value is from the value of _Residue_label.
+   If a value of _Residue_label is a framecode (starting with $), put replace "X" in the value. 
+   Node the value of _Mol_residue_sequence is quoted by semicolon and 20 letters per line.
+
+2.5 - When writing out the _Mol_residue_sequence, if the original values of _Residue_label
+   were not proper one-letter codes, a mapping will be attempted.  This mapping operates
+   off of a loop given in the rule (see below).  This loop will show which labels in
+   _Residue_label map to which letter codes in the sequence.  The algorithm used when
+   mapping is this:
+        1 - If the value to _Residue_label is in the "from" column, map it to the
+	associated "to" value when putting it in the sequence.
+	2 - If the label is alredy in the "to" column, map it as-is.
+	3 - If the label is neither in the "from" nor the "to" columns, then map it
+	to the value "X" in the sequence, to indicate that it is unknown to the software.
+   
+3. Create a loop in the saveframe which contains (_Saveframe_category, polymer_residue).
+   loop_
+       _Mol_label //Saveframe code for the molecule where this non-standard residue is
+       _Residue_seq_code//located (from Section 4.1.) The sequence position(s) for the residue.
+
+   stop_    
+
+   
+This rule will look like this in the mapping file:
+
+save_{some_name_here}
+    _Saveframe_category calculate_residue_count
+
+    loop_
+	_Residue_label_from
+	_Residue_label_to
+
+	ALA A     CYS C     ASP D     GLU E     PHE F
+	GLY G     HIS H     ILE I     LYS K     LEU L
+	MET M     ASN N     PRO P     GLN Q     ARG R
+	SER S     THR T     VAL V     TRP W     TYR Y
+	GUA G     CYT C     ADE A     THY T     URA U
+    stop_
+save_ 
+</PRE>
+
+<A NAME=31>
+<H3>
+   Change database name
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>change_database_name
+   <TD>31
+</TABLE BORDER>
+
+<P>
+Change database name. If the the tag _database_name contains 'PDB', then change 
+the value of this tag into 'PDB'.
+
+This rule will look like this in the mapping file.
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category  change_database_name
+   loop_
+       _key_tag
+       _value
+
+       _Database_name  PDB
+   stop_
+save_
+</PRE>
+
+
+<A NAME=32>
+<H3>
+   convert C to K
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>convert_C_to_K
+   <TD>32
+</TABLE BORDER>
+
+<P>
+
+Convert the temperature unit form centigrade (C) to kalvin (K).
+_key_tag and _key_value specifies which saveframe to look for.
+Then within the target saveframe, search for a tag _type_tag. If the value
+of _type_tag is 'temperature' and the value of _unit_tag is 'C', then
+add 273 to the value of _value_tag and also change the value of _unit_tag 
+form 'C' to 'K'.
+
+This rule will look like this in the mapping file.
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category convert_C_to_K
+   loop_
+       _key_tag
+       _key_value
+       _type_tag
+       _value_tag
+       _unit_tag
+
+    "_Saveframe_category"  "sample_condition"  "_Variable_type" "_Variable_value"  "_Variable_units"
+    ...
+    stop_
+save_
+</PRE>
+
+
+<A NAME=33>
+<H3>
+   Assign value to _Citation_type
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>assign_citation_type
+   <TD>33
+</TABLE BORDER>
+
+<P>
+If the value of '_Journal_abbreviation' is not '.' or '?', then set the value of 
+_Citation_type as "journal'.
+
+This rule will look like this in the mapping file.
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category  assign_citation_type
+save_ 
+</PRE>
+
+
+<A NAME=34>
+<H3>
+   Make new tag II
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>make_new_tag_II
+   <TD>34
+</TABLE BORDER>
+
+<P>
+This rule makes new tags in saveframes with hardoded values. The difference between this rule and 
+make_new_tag is that the saveframe name is given in this rule.
+This rule will look like this in the mapping file.
+<P>
+<PRE>
+save_{some_name_here}
+   _Saveframe_category  make_new_tag_II
+   loop_
+       _saveframe_name //In which saveframe
+       _new_tag
+       _new_value
+       ...
+   stop_
+save_
+</PRE>
+
+
+<A NAME=35>
+<H3>
+   Insert loop defauls II
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>insert_loop_defaults_II
+   <TD>35
+</TABLE BORDER>
+
+<P>
+This rule is very simily as insert_loop_defaults, except that there is one more tag to specify
+which position a new row will be inserted. There are two possible positions. One the insert a new row
+at the begginning of the loop. The other is insert a new row at the end of the loop.
+
+Please read the specification for insert_loop_defaults first.
+This rule will look like this in the mapping file.
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category insert_loop_defaults_II
+    loop_
+       _key_tag
+       _key_value
+       _trigger_tag
+       _trigger_value
+       _insert_framecode
+       _whichloop_tag
+       _position_tag//'F' means to insert as the first row. 'L' means to insert as the last row.
+       
+        '_Saveframe_category'  entry_information  '_Entry_origination'  BMRB  
+	$insert_revision_default   '_Revision_date'  'F'
+   stop_
+save_ 
+</PRE>
+
+<A NAME=36>
+<H3>
+   Create _Enzyme_commision_number tag
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>create_enzyme_commission_number
+   <TD>36
+</TABLE BORDER>
+
+<P>
+Create tag _Enzyme_commission_number if the following loop exists.
+<PRE>
+   save_<Mol_polymer_label>
+    _Saveframe_category   monomeric_polymer
+    loop_
+       _Classifition_system_name
+       _Classification_system_code
+
+     'Enzyme Commission'          'EC 1.5.1.3'
+    stop_
+   
+   save_
+</PRE>
+
+   If there is a value called 'Enzyme Commission'. Then create the _Enzyme_commission_number
+   tag and assign 1.5.1.3 as the value.
+This rule will look like this in the mapping file.
+<P>
+<PRE>
+ save_{some_name_here}
+       _Saveframe_category create_enzyme_commission_number
+   save_  
+</PRE>
+
+
+<A NAME=37>
+<H3>
+   Copy saveframe content
+</H3>
+<TABLE BORDER>
+<TR>
+   <TH>Mapping file name
+   <TH>Rule number
+<TR>
+   <TD>copy_saveframe_content
+   <TD>37
+</TABLE BORDER>
+
+<P>
+Make a new saveframe. The content of the newly made saveframe is copied from a source saveframe. 
+The source saveframe is defined by its saveframe name. A pair of (tag, value) is inserted into 
+the newly_made saveframe.
+
+This rule looks like this in the mapping file.
+<P>
+<PRE>
+save_{some_name_here}
+    _Saveframe_category copy_saveframe_content
+    loop_
+        _source_saveframe_name //Copy the contents of this saveframe
+	_key_tag //The new tag to be inserted.
+	_key_value //The tag value for this new tag.
+	
+        "save_natural_source"  "_Saveframe_category"   "natural_source"
+    stop_	
+save_ 
+</PRE>
+
+
+<A NAME=38>
+<H3>
+    Removing tags which are not in saveframe
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_tags_not_in_saveframe
+   <TD>7
+</TABLE BORDER>
+<P>
+	Removes tags (free or in loop) which are not in saveframes.
+<P>
+	This new rule will have no corresponding entries in the 
+	mapping file.  There is nothing to configure, as this rule
+	will be applied unconditionally to all tags outside saveframes.
+	that are found.
+<P>
+	In the mapping config file, there will be an entry like this:
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  remove_tags_not_in_saveframe
+        # no contents.
+    save_
+    
+</PRE>
+<P>
+	This saveframe will have no tags of any kind inside.  It is
+	simply a trigger - if the saveframe exists, then run this rule,
+	else don't run this rule.
+<P>
+
+
+<A NAME=39>
+<H3>
+    Parse tag to tag
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>parse_tag_to_new_tag
+   <TD>39
+</TABLE BORDER>
+<P>
+	Parse a tag value and use one token as new tag value
+<P>
+	This new rule will parse the tag and take one of the token as the value of another tag.
+<P>
+	In the mapping config file, there will be an entry like this:
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  parse_tag_to_new_tag
+	loop_
+	   _parse_tag   
+	   _parse_by
+	   _which_token   #is used as the new tag value
+	   _output_key_tag
+	   _output_key_value
+	   _output_tag    
+
+	   "_exptl.method"
+	   ","
+	   1
+	   "_Saveframe_category"
+	   entry_information
+	   "_Experimental_method"
+	stop-
+
+    save_
+    
+</PRE>
+
+<A NAME=40>
+<H3>
+    Remove Saveframes by name or tag/value pair.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_saveframes
+   <TD>40
+</TABLE BORDER>
+<P>
+    This rule will remove the specified saveframes.  Saveframes are
+    specified by the familiar three-tag technique.  You can either
+    name the saveframe explicitly, or specify a tag and value pair that
+    must exist inside the saveframe.  You can even do
+    both, which means only delete the named savefreme *if* it has the
+    key tag/value given.
+<P>
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  remove_saveframes
+
+	loop_ 
+	    _frame_name  # The saveframe to delete by name - '*' means don't care.
+	    _key_tag     # Delete if this key tag exists in the saveframe and...
+	    _key_value   # ...it has this value.
+
+	        # Some example data:
+
+	        # Remove the 'save_remove_me' saveframe, unconditionally:
+	    'save_remove_me'    *             *
+
+	        # Remove  all saveframes that have a tag _rm_sf1 with a value 'val1':
+	    *                   '_rm_sf1'     'val1'
+
+	        # Remove  save_remove_me2, if and only if a tag "_tag_there" has a
+		# value of "." inside the saveframe somewhere:
+	    'save_remove_me2'   '_tag_there'  '.'
+
+	stop_
+    save_
+    
+</PRE>
+
+<A NAME=41>
+<H3>
+    Rename Saveframes by name or tag/value pair.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_saveframes
+   <TD>41
+</TABLE BORDER>
+<P>
+    This rule will rename the specified saveframes.  Saveframes are
+    specified by the familiar three-tag technique.  You can either
+    name the saveframe explicitly, or specify a tag and value pair that
+    must exist inside the saveframe.  You can even do
+    both, which means only rename the named savefreme *if* it has the
+    key tag/value given.
+<P>
+    Please note that with this it is possible to rename multiple saveframes
+    to the same name, which is technically not allowed in STAR, but this
+    program won't check for that condition.
+<P>
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category  rename_saveframes
+
+	loop_ 
+	    _frame_name  # The saveframe to delete by name - '*' means don't care.
+	    _key_tag     # Delete if this key tag exists in the saveframe and...
+	    _key_value   # ...it has this value.
+	    _new_frame_name    # This is the name to rename it to.
+
+	        # Some example data:
+
+	        # Rename the 'save_remove_me' saveframe, unconditionally:
+	    'save_rename_me'    *             *  'save_new_name'
+
+	        # Rename  all saveframes that have a tag _rm_sf1 with a value 'val1':
+		# Watch out - this might make more than one saveframe with the
+		# name "save_new_name_1":
+	    *                   '_rm_sf1'     'val1'  'save_new_name_1'
+
+	stop_
+    save_
+    
+</PRE>
+
+<P>
+<A NAME=42>
+<H3>
+    Grouping and printing loops
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_2.1_tags
+   <TD>42
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<P>
+<PRE>
+save_remove_oldstyle_tags
+    _Saveframe_category  remove_2.1_tags
+save_
+</PRE>
+
+This rule simply says to remove all tags which do not contain a dot
+(.) in their name somewhere.  It has no arguments.
+<P>
+
+
+<A NAME=43>
+<H3>
+    Map loop values to multiple saveframes depending on name, In a many-to-many fashion.
+    This rule is an updated version of <A HREF='#17'>transform 17</A>.
+    It is meant to replace rule 17.  Rule 17 is left in place only for
+    backward compatability with old mapping files written before this
+    rule existed.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file category name
+    <TH>Rule number
+<TR>
+   <TD>generic_value_mapper_A
+   <TD>43
+</TABLE BORDER>
+<P>
+    Each iteration of this rule takes a set of tags that are in
+    the same "scope" and copies them to a destination scope.
+    "Scope" means a particular loop or free-tags section.
+<P>
+    This rule is described using a nested loop in the mapping file.  The outermost
+    level of the nesting loop describes where to take the data from in the original
+    file and where to put the data in the output file.  The inner loop level under
+    that describes which tags of the input loop should be put into the output loop.
+<P>
+    This is a sample of the mapping loop, heavily embellished with comments
+    explaining it:
+<P>
+<PRE>
+    save_{some_name_here}
+        _Saveframe_category   values_to_saveframes_many_to_many
+	
+	loop_
+	    _input_key_tag        # The source tags come from the scope
+	                          # that contains this tag.  (If this tag is
+				  # a free tag, that means this rule will
+				  # deal with the free tags that are "alongside"
+				  # this tag in the saveframe's free tag section.
+				  # If this tag is a looped tag, then it
+				  # indicates the source for this rule will be
+				  # the loop containing this tag.
+
+            # Note, the following three tags define the input saveframe to pull
+            # the data from.  It can either be defined by its name or by a tag/value
+	    # pair, but not both.  (If the name is given, it overrides the tag/value
+            # pair.)  For all three of these tags, if it is set to "*" it means
+            # "don't care".  A single dot (null) will have the same effect as setting it
+            # to asterisk, although the asterisk is preferred.
+            #
+	    # If all three of these are set as don't care, then the input will be taken
+            # from anywhere where the tag name is found, even if it is not inside a saveframe.
+
+	    _input_sf_name        # look in the saveframe where this is its name,
+	                          #    Ignore if set to *.
+	    _input_sf_key_tag     # look in the saveframe where this tag...
+	    _input_sf_key_value   # ...has this value.
+
+
+            # The following fields define where in the output the copy will be placed.
+            # the saveframe's name is the base name plus the value of the "name tag" appended
+            # to it.  If such a saveframe already exists, then the output will be placed
+            # into it, else a new saveframe will be made with that name.  If a new saveframe
+            # has to be made, then the category given below will be used as the value to
+            # its Saveframe_category tag.  If the saveframe already exists, then the category
+            # given is a boolean check: if the saveframe found does not match the category
+	    # given, then abort the operation.
+
+	    _output_sf_category   # Saveframe_category for the output saveframe.
+	    _output_sf_base_name  # base for the output saveframe's name
+	    _output_sf_name_tag   # tag whose value appends to the output saveframe name.
+	                          #    (set to null (.) to just take the base name as-is.)
+				  # This value will be appended with a preceeding underscore,
+				  # for readability.  (save_entry_citation_primary instead of
+				  # save_entry_citationprimary)
+
+
+	                               # These two tags define, if there are multiple 
+	                               # source or destination saveframes to choose from,
+				       # which should be the one used.
+				       #
+				       # They are usually set to null.
+
+	    _output_sf_label_back_tag  # If this tag is non-null (not "."), then it
+	                               # indicates that an output saveframe is not
+				       # considered a match unless the <b>source</b>
+				       # saveframe's name matches the value of this
+				       # tag in the <b>output</b> saveframe.
+	    _output_sf_label_fore_tag  # If this tag is non-null (not "."), then it
+	                               # indicates that an output saveframe is not
+				       # considered a match unless the <b>output</b>
+				       # saveframe's name matches the value of this
+				       # tag in the <b>input</b> saveframe.
+
+	    _copy_or_move_flag    # 'M' == move, anything else assumes "copy".
+
+	    loop_
+		_input_tag          # inner loop will be a list of tagnames to move or copy.
+
+		_delimiter_filter   # If this value is non-null, then it indicates that
+		                    # Only those cases where the source value has this
+				    # type of delimiter are considered valid matches.
+				    # Possible values are:
+				    #     .  (don't-care)
+				    #     FRAMECODE
+				    #     SINGLE
+				    #     DOUBLE
+				    #     SEMICOLON
+				    #     NON
+				    # These can be preceeded with an exclamation point (!)
+				    # which negates the meaning.  So, for example,
+				    # "!FRAMECODE"  means "any value which is not a
+				    # framecode value is considered a match."
+
+		_free_or_loop_flag  # 'F' = free, 'L' = looped.  Determines if a tag should be put into
+		                    # the output saveframe as a free tag or a looped tag.
+
+		_new_tag_name       # The new name to rename the tag to in the new saveframe.
+		                    # this is optional.  You can leave it out of the loop and you
+				    # will be retaining the same names as in the original loop.
+				    #  Note that if output_sf_name_tag is in use, it will be
+				    #  using the name of the tag as it was originally, not
+				    #  as it is after this rename.
+				    </FONT>
+
+
+	    #######   Now the values:   #########
+
+	    # This example maps the mmCIF citations into BMRB's entry_citation saveframe:
+	    # (but it does not parse the names into separate values.  That will be a
+	    # different rule.)
+	    
+	    "_citation_author.citation_id"  # _input_key_tag
+	    *                               # _input_sf_name == don't care.
+	    *                               # _input_sf_key_tag == don't care.
+	    *                               # _input_sf_key_value == don't care.
+	    "entry_citation"                # _output_sf_category
+	    "save_entry_citation"           # _output_sf_base_name
+	    "_citation_author.citation_id"  # _output_sf_name_tag
+	    M                               # _copy_or_move_flag
+
+		# List of _input_tag values:
+
+		"_citation_author.name"  L   "_Author_name"
+
+		stop_
+	    # next iteration of this rule would go here...
+
+	stop_
+    save_
+</PRE>
+<P>
+
+<P>
+<A NAME=44>
+<H3>
+    Inserting nmr-star 3.0 id tags
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>insert_nmrstr_3_IDs
+   <TD>44
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<P>
+<PRE>
+save_<name>
+    _Saveframe_category  insert_nmrstr_3_IDs
+    loop_
+        _tag_name
+	_parallel_label
+
+	"_Entity_natural_src.Citation_ID"			"_Entity_natural_src.Citation_label"
+	"_Entity_experimental_src.Citation_ID"			"_Entity_experimental_src.Citation_label"
+	"_Citation_ref.Citation_ID"				"_Citation_ref.Citation_label"
+	... etc...
+    stop_
+save_
+</PRE>
+This rule does a number of things.  It is a catch-all for all the ID tag insertions
+needed for 3.0.  Here is what it does:
+   (1) For each saveframe with 3.0-style tags in it (tags that have dots in the name),
+   It inserts the SF_ID field, counting as it goes to make each saveframe
+   unique.  Negative numbers are used to indicate that these are not the
+   "read" saveframe id's as they are only unique on this one file.)
+
+   (2) For each saveframe with 3.0-style tags in it, the Entry_ID tag is added.
+
+   (3) For each iteration of the mapping rule loop, create a numerical ID that
+   points at the same saveframe that the label tag points at.
+
+<P>
+
+<P>
+<A NAME=45>
+<H3>
+    Inserting nmr-star 3.0 id tags
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>insert_value_from_lookup_A
+   <TD>45
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<pre>
+#
+#  To map _Mol_system_component_name in assigned_chemical_shifts, this will need a
+#  weird case.
+#
+#    This rule implements step 3 in the algorithm below:
+#
+#      Step 1 - when mapping the Mol_system_component_name from molecular_system to assembly (3.0),
+#                     make a temp dummy variable containing that name even though it's going away.
+#      Step 2 - in 3.0, have a new s2nmr rule that does the following lookup:
+#                     get value for column A from table bar where column B on table bar = yadda.
+#                     Use it to make a free tag who's value is the ID that matches the mol_system_component_name
+#      Step 3 - in 3.0, stick that value into the loop instead of freed.  (Lookup in the template file
+#                     for what it's called.)
+#      Step 4-  Remove the dummy tag made in step 1.
+#
+</pre>
+<P>
+<PRE>
+save_name_to_id_lookup
+    _Saveframe_category insert_value_from_lookup_A
+
+    loop_
+        _get_the_value_for_this_tag
+        _look_up_where_that_value_matches_this_tag       # in a different loop somewhere
+	_retrieve_value_of_this_tag_on_that_same_row     # as the second value was found on.
+	_new_tag_name                                    # Back in the original location
+	                                                 #  Where the first tag came from,
+							 #  add the value found, under this
+							 #  name.
+
+	#  This rule only makes sense if the first and fourth columns are from the
+	#  same loop (and thus have the same tag_category name), and the second
+	#  and third columns are from the same loop as each other too
+
+	'_Assigned_chemical_shifts.temp_mol_sys_comp_name'
+	'_Entity_assembly.temp_mol_sys_comp_name'
+	'_Entity_assembly.ID'
+	'_Assigned_chemical_shifts.temp_mol_sys_comp_name_id_match'
+
+    stop_
+save_
+</PRE>
+<P>
+
+<P>
+<A NAME=48>
+<H3>
+    Removing saveframes if a tag is not present
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>remove_sf_if_missing_tag
+   <TD>48
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<pre>
+
+save_<name-here>
+    _Saveframe_category   remove_sf_if_missing_tag
+
+    loop_
+        _key_tag      # look at the saveframe with this key tag.
+        _key_value    #   if it has this value.
+	_needed_tag   #     If this tag is missing from that saveframe, remove the saveframe.
+
+	'_NMR_spectral_processing.Sf_category'
+	NMR_spectral_processing 
+	'_Spectral_processing_param.Processing_dimension_ID'
+
+     stop_
+save_
+</pre>
+
+
+<P>
+<A NAME=75>
+<H3>
+    Calculate data row counts.  Calculates the count of how many
+    rows of data of different types exist in the entry.  For example,
+    "There are 800 coupling constants, 542 order parameters, and 401
+    1H chemical shifts, 102 13C chemical shifts, etc..."
+    The function is generic enough to do the task for either 2.1 or 3.1
+    files by providing a different mapping file.  The mapping rule paramters
+    below describe the data types to look for, what to call them, and which
+    columns to use to split the count further (i.e. 1H vs 13C chemical shifts)
+    It should be run after the conversion to the final format is done, but
+    before the tags are re-ordered.
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>calculate_data_row_counts
+   <TD>75
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<pre>
+
+save_<name-here>
+    _Saveframe_category   calulate_data_row_counts
+
+    loop_
+        _output_key_tag      # Which saveframe to put the output result into
+        _output_key_value    # is defined by these pairs.  If more than one hit
+	                     # is found, it just uses the first one (this goes
+			     # into entry information, so there should only
+			     # be 1)
+	# A new loop is going to be made with the following two tags in it
+	_output_type_tag     # Holds the name of the tag that describes the
+	                     # type of the data, (The tag who's value
+			     # is "order parameters", or "coupling constants",
+			     # etc.)
+	_output_count_tag    # Holds the name of the tag that holds the count
+	                     # of rows for that type.
+
+        # The counts for that tag will come from these places mentioned in this
+	# inner loop:
+	loop_
+	    _input_key_tag    # tag/value pair that defines a saveframe to get the
+	    _input_key_value  # data from.  If asterisk (*), then we don't care.
+	                      # (useful when looking at a 3.1 file where the loop
+			      # tagname is good enough to define the exact loop
+			      # we mean)
+	    _label_whichloop_string # The text name for this label in the count
+	                            # loop.  for example "order parameters" for
+				    # where the tag says "_Order_param.Val".
+	    _input_whichloop_tag  # A tag in the loop we want to count.  Use a
+	                          # tagname that is known to be present in all
+				  # cases.  Don't use an optional tag that might
+				  # not be in the loop even when the loop
+				  # is present.
+	    # In some cases, the loop count is supposed to be split up even
+	    # further by type, for example, 1H chemical shifts vs 13C
+	    # chemical shifts, etc. in those cases, this inner inner loop
+	    # describes how to do that aggregation ("group by" in SQL terms).
+	    # If this inner inner loop is null, then no such aggregation
+	    # occurs.
+	    # In most cases, this inner inner loop will be null.  It's only
+	    # used for chemical shifts, as of this writing.
+	    loop_
+	        _input_group_tags  # A list of the tags to group by, in order
+		                   # of how to prepend them to the names.
+				   # (Put the isotope number first
+				   # before the atom type to get it to say
+				   # "13C".  Put them the other way around
+				   # to get it to say "C13".)
+
+             stop_
+         stop_
+     stop_
+save_
+</pre>
+
+<P>
+<A NAME=76>
+<H3>
+    For the various data loops that have atom_type and atom_isotope number,
+    insert the default isotope number if it is missing.
+    (Also makes the column if it is not there)
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>insert_default_isotope_numbers
+   <TD>75
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<pre>
+
+save_<name-here>
+    _Saveframe_category   insert_default_isotope_numbers
+
+    # This first loop defines the isotope number mapping:
+    loop_
+	_atom_type
+	_default_isotope_number
+    stop_
+
+    # This second loop defines the tag names to apply it to.
+    loop_
+	_input_key_tag
+	_input_key_value
+	_input_atom_type_tag
+	_output_atom_isotope_tag
+    stop_
+save_
+</pre>
+
+
+
+
+<P>
+<A NAME=2-I>
+<H3>
+   Ordering of save frames and tags
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>order
+   <TD>2-I
+</TABLE BORDER>
+<P>
+
+   Save frames and tags in generic STAR occur in an arbitrary order.
+   They have to be re-ordered for NMR-STAR output.
+<P>
+<PRE>
+   syntax:
+   save_{some_name_here}
+       _Saveframe_category  order
+       _insert_dummy_value  ?  # if this tag is present, then the rule will
+                               # insert dummy tags where the tag is missing,
+			       # and it will give the dummy this value.
+	# These loops must exist in the output even if they are dummy rows
+	# (name just one of the tags in the loop to activate this rule)
+	loop_
+	    _mandatory_loop_tags
+
+	    ..
+	stop_
+
+       loop_
+	 _saveframe_name
+	 _key_tag
+	 _key_value
+	 _saveframe_number
+	 <FONT COLOR="#FFFF30">_tabulation_flag      # Determines whether
+	                   # the loop into which this flag is put should be
+			   # formatted tabular or linear.  Possible values
+			   # are:    "tabulate" or "linear".
+			   # In the case where this is a free, unlooped tag,
+			   # the value of this flag is irrelevant.
+	 </FONT>
+	 loop_
+	   _tag_name
+	   <FONT COLOR="#FFFF30">_which_loop      # Id's which loop this 
+	                   # tag will be put into, if it is in a loop.
+			   # If the tag is free, this field won't have
+			   # any effect.  If the tag is in a loop, then
+			   # this field determines which loop it should
+			   # be put into in the output saveframe.  All
+			   # tags with the same value for their _which_loop
+			   # field will be put into the same output loop.
+			   #
+			   # Special case: If this field is a dot (.), then
+			   # this means the tag in question will always
+			   # appear in its own seperate loop (or is a free
+			   # tag).  The tags with a dot (.) here will NOT
+			   # be collected together into one large loop.
+
+	   _tabulate_flag  # Either "tabulate" or "linear".  Indicates
+	                   # what type of loop should be made, if this is
+			   # to be put into a loop.  (When several tags
+			   # are put into the same loop, then only the
+			   # tabulate_flag for the tag that appeared
+			   # first for that loop affects the type of
+			   # loop created.)
+	   </FONT>
+	   <FONT COLOR="#FFFF30">
+	   # deleted _tag_number from the documentation.
+	   # It was in the documentation, but not implemented.
+	   </FONT>
+
+	 "foo"
+	 .
+	 .
+	 1
+	 "_foo" 1 Free
+	 "_bar" 2 LoopX # This example indicates that you want
+	 "_zot" 3 LoopX # these tags in the same loop.
+	_stop
+	*
+	"_saveframe_category"
+	"bar"
+	 2
+	 "_foo" 1 Free
+	 "_bar" 2 LoopX  # This example indicates that you want
+	 "_zot" 3 LoopY  # These tags in seperate loops.
+	stop_
+	stop_
+    save_
+</PRE>
+
+
+<P>
+<A NAME=2-II>
+<H3>
+    Grouping and printing loops
+</H3>
+<TABLE BORDER>
+<TR>
+    <TH>Mapping file name
+    <TH>Rule number
+<TR>
+   <TD>tag_to_framecode
+   <TD>2-II
+</TABLE BORDER>
+<P>
+<FONT COLOR="#FFFF30">
+<P>
+	<PRE>
+	THIS RULE IS NOT NEEDED ANYMORE.
+
+	The change to save_order that added the _which_loop
+	tag has made this function unnecessary now.  It will
+	still work, but it should be avoided in the interest
+	of saving memory.
+	</PRE>
+</FONT>
+<P>
+   There are many ways that tags with multiple values within a save frame
+   could be arranged into loops.  For NMR-STAR files, a particular
+   association is desired.  In addition, the loops can be written out
+   either as tables, with all the values for one iteration of the loop
+   on one line, or simply with each value on a separate line.
+<P>
+<PRE>
+   syntax:
+   save_{some_name_here}
+       _Saveframe_category  loops
+       loop_
+	 _saveframe_name
+	 _key_tag
+	 _key_value
+	 _tabulation_flag
+	 loop_
+	 _tag_name
+
+       "example"
+       .
+       .
+       tabulate
+       "_first_name" "_last_name" "_title"
+       _stop
+       *
+       "_saveframe_category"
+       "publication"
+       linear
+       "_publication_name" "_publication_date" "_publication_volume"
+       _stop
+       _stop
+    save_
+</PRE>
+
+
+<HR WIDTH=90%>
+<HR WIDTH=90%>
+
+</BODY>

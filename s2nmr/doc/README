@@ -1,0 +1,20 @@
+DIfferent components of code structure written:
+
+
+1)ast.h/ast.cc => contains all the constructors for the different sub-data structures making
+up the STAR AST
+
+2)astoper.cc  => contains the basic set of primitive functions to manipulate the STAR AST
+
+3) main.cc => A single file containing the set of STAR to NMR-STAR transformations
+
+4) interface.cc/.h => contains functions that allow you to add to the STAR-in memory
+data structure
+
+5) unparse.cc => All function to pretty prints a STAR file
+
+6)star.y => YACC specs
+
+7)star.l => LEX spec
+
+8)scopeTagList.cc/h => A convenient data structure defined here and used by transformation 2

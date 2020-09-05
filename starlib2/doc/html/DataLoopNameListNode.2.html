@@ -1,0 +1,807 @@
+<html><head><TITLE>DataLoopNameListNode</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>  class  DataLoopNameListNode : public <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>, private <!1><A HREF="ASTnodeWithPosBits.html">ASTnodeWithPosBits</A> </H2><BLOCKQUOTE>
+This is a list of lists of names in a loop.  The first
+list of names is the list of names for the outermost loop.
+the second list of names is the list of names for the next
+nesting level in, and so on.
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=65>
+<param name=classes value="CASTnode,MASTnode.2.html,CDataLoopNameListNode,MDataLoopNameListNode.2.html">
+<param name=before value="M,M">
+<param name=after value="Md_,M">
+<param name=indent value="0,1">
+<param name=arrowdir value="up">
+</APPLET>
+<hr>
+
+<DL>
+<TABLE BORDER>
+<DT><h3>Public Classes</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.45.5"> <IMG BORDER=0 SRC=icon1.gif></A>  class </TD><TD><B>const_iterator</B> <br>
+<I>This is supposed to behave like the iterator class
+in an STL vector</I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.45.5.1"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>   ::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A> </TD><TD><B>vIter</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>const_iterator</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>const_iterator</B> ( const <!1><A HREF="ASTlist.html">ASTlist</A><<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A> &copyMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>const_iterator</B> ( const value_type &copyMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>~const_iterator</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.6"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>operator!=</B> ( const <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> &x ) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.7"> <IMG BORDER=0 SRC=icon1.gif></A> const_reference </TD><TD><B>operator*</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.8"> <IMG BORDER=0 SRC=icon1.gif></A> const  value_type </TD><TD><B>operator-></B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.9"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>& </TD><TD><B>operator++</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.10"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>& </TD><TD><B>operator++</B> (int)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.11"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>& </TD><TD><B>operator--</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.12"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>& </TD><TD><B>operator--</B> (int)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.13"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>& </TD><TD><B>operator+=</B> (size_type n)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.5.14"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>& </TD><TD><B>operator-=</B> (size_type n)<br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4"> <IMG BORDER=0 SRC=icon1.gif></A>  class </TD><TD><B>iterator</B> <br>
+<I>This is supposed to behave like the iterator class
+in an STL vector</I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.45.4.1"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>   ::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> </TD><TD><B>vIter</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>iterator</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>iterator</B> ( const <!1><A HREF="ASTlist.html">ASTlist</A><<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> &copyMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>iterator</B> ( value_type &copyMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>~iterator</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.6"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>operator==</B> ( const <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> &x ) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.7"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>operator!=</B> ( const <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> &x ) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.8"> <IMG BORDER=0 SRC=icon1.gif></A> reference </TD><TD><B>operator*</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.9"> <IMG BORDER=0 SRC=icon1.gif></A> value_type </TD><TD><B>operator-></B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.10"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>& </TD><TD><B>operator++</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.11"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>& </TD><TD><B>operator++</B> (int)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.12"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>& </TD><TD><B>operator--</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.13"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>& </TD><TD><B>operator--</B> (int)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.14"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>& </TD><TD><B>operator+=</B> (size_type n)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.4.15"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>& </TD><TD><B>operator-=</B> (size_type n)<br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.1"> <IMG BORDER=0 SRC=icon1.gif></A>  enum </TD><TD><B>Status</B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.45.1.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ERROR</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.1.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>STOP</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.1.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>NEW_ITER</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.1.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>SAME_ITER</B> <br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public Methods</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.45.30"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>AddDataName</B> (const string & name)<br>
+<I> <em>DEPRECIATED - use the STL vector notation instead: </em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.26"> <IMG BORDER=0 SRC=icon1.gif></A> reference </TD><TD><B>back</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.24"> <IMG BORDER=0 SRC=icon1.gif></A> const_reference </TD><TD><B>back</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.15"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> </TD><TD><B>begin</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.17"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5">const_iterator</A> </TD><TD><B>begin</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.32"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>ChangeName</B> ( const string &oldName, const string &newName )<br>
+<I> <em>DEPRECIATED - use the STL vector notation instead: </em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.14"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>debugPrint</B> ( void )<br>
+<I> Print out debugging info detailing the layout of this list:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.20"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>empty</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.18"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5">const_iterator</A> </TD><TD><B>end</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.16"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> </TD><TD><B>end</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.36"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>FlattenNestedLoop</B> (<!1><A HREF="List.html">List</A><<!1><A HREF="DataNameNode.html">DataNameNode</A>*>* L)<br>
+<I> <em>DEPRECIATED - use the STL vector notation instead: </em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.23"> <IMG BORDER=0 SRC=icon1.gif></A> reference </TD><TD><B>front</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.25"> <IMG BORDER=0 SRC=icon1.gif></A> const_reference </TD><TD><B>front</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.34"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.1">Status</A> </TD><TD><B>getNextTag</B> (DataLoopValListNode::Status vstat, int & row)<br>
+<I> <em>DEPRECIATED - use the STL vector notation instead: </em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.29"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>isOfType</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.12"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  int </TD><TD><B>myLongestStr</B> ( void )<br>
+<I>
+Returns the length of the longest string in this object</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.35"> <IMG BORDER=0 SRC=icon1.gif></A> string </TD><TD><B>myName</B> () const <br>
+<I>Return the 'name' of this node (the name of the first tag in the
+outermost nesting level is arbitrarily chosen as the "name" of
+this node</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.28"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTnode::ASTtype</A> </TD><TD><B>myType</B> (void)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.21"> <IMG BORDER=0 SRC=icon1.gif></A> reference </TD><TD><B>operator[]</B> ( size_type n )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.22"> <IMG BORDER=0 SRC=icon1.gif></A> const_reference </TD><TD><B>operator[]</B> ( size_type n) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.31"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A> </TD><TD><B>RemoveDataName</B> ( const string & name, int *nest = (int*)NULL, int *ele = (int*)NULL )<br>
+<I> <em>DEPRECIATED - use the STL vector notation instead: </em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.33"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>reset</B> ()<br>
+<I> <em>DEPRECIATED - use the STL vector notation instead: </em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.9"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> * </TD><TD><B>searchByTag</B> ( string &searchFor )<br>
+<I>
+Given a tag name, find the AST object it resides in</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.10"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> * </TD><TD><B>searchForType</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> type, int delim = -1 )<br>
+<I>This method returns a list of all the nodes of the given type
+that are inside this node, or children of this node, or children
+of children of this node, etc all the way down to the leaf nodes</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.19"> <IMG BORDER=0 SRC=icon1.gif></A> size_type </TD><TD><B>size</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.7"> <IMG BORDER=0 SRC=icon1.gif></A> int </TD><TD><B>tagPosition</B> (const string & TagName)<br>
+<I><em>DEPRECIATED - use tagPositionDeep instead</em><br>
+Get the index of the given tag, if it resides in the outermost
+loop only (is incapable of searching into nested tags</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.8"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>tagPositionDeep</B> ( string tagName, int *nestLevel, int *column )<br>
+<I>Get the index of the given name</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.11"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  bool </TD><TD><B>unlinkChild</B> ( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )<br>
+<I>unlinks the given ASTnode from this ASTnode, assuming that
+the given ASTnode is a child of this ASTnode</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.27"> <IMG BORDER=0 SRC=icon1.gif></A> virtual  void </TD><TD><B>Unparse</B> (int indent)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.13"> <IMG BORDER=0 SRC=icon1.gif></A> virtual </TD><TD><B>~DataLoopNameListNode</B> ()<br>
+<I> Destructor - recursively destroys the whole list of names.</I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.45.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.45.3.1"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>* </TD><TD><B>value_type</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.3.2"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>* </TD><TD><B>pointer</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.3.3"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  const  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>* </TD><TD><B>const_pointer</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.3.4"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>& </TD><TD><B>reference</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.3.5"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  const  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>& </TD><TD><B>const_reference</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.3.6"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  size_t </TD><TD><B>size_type</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.3.7"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  size_t </TD><TD><B>difference_type</B> <br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.6"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.45.6.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I>
+Insertions/Deletions</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.6.4"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>insert</B> ( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos, vector<<!1><A HREF="DataNameNode.html">DataNameNode</A>*> &v )<br>
+<I> Make a copy of the vector version:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.6.2"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>insert</B> ( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos, <!1><A HREF="LoopNameListNode.html">LoopNameListNode</A> &v )<br>
+<I><u>Insert</u> - Insert before 'pos', the LoopNameListNode given</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.6.5"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>insert</B> ( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos, <!1><A HREF="LoopNameListNode.html">LoopNameListNode</A> *v )<br>
+<I>Make a link to the node given (NOT A COPY - don't delete the node
+pointer that was passed)</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.6.3"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>erase</B> ( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos )<br>
+<I>erase - Remove the row of tagnames given</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.45.2.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataLoopNameListNode</B> ( <!2><A HREF="#DOC.63">DataLoopDefListNode</A> &L)<br>
+<I> Copy constructor with a deep recursive copy</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.2.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataLoopNameListNode</B> ( bool link, <!2><A HREF="#DOC.63">DataLoopDefListNode</A> &L)<br>
+<I> Parallel copy constructor:</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.2.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataLoopNameListNode</B> (const <!2><A HREF="#DOC.63">DataLoopDefListNode</A>& D)<br>
+<I> Also a Copy Constructor.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.2.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataLoopNameListNode</B> (<!1><A HREF="ASTlist.html">ASTlist</A><<!2><A HREF="#DOC.14">LoopDefListNode</A> *> *L)<br>
+<I> </I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.45.2.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>DataLoopNameListNode</B> ()<br>
+<I> Create an empty list of lists of names.</I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE></DL>
+<hr><H3>Inherited from <A HREF="ASTnode.2.html">ASTnode:</A></h3>
+
+<DL>
+<DL>
+<DT><h3>Public Classes</h3><DD><DT><IMG SRC=icon2.gif>  enum  <B>ASTtype</B>
+
+<DL>
+<DT><A HREF="#DOC.81.1.1"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ASTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.2"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>BLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.3"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATABLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.4"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAFILENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.5"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.6"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAITEMNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.7"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.8"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPNAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.9"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPDEFLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.10"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.11"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATALOOPVALLISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.12"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATANAMENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.13"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATANODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.14"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>DATAVALUENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.15"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>GLOBALBLOCKNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.16"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>GLOBALHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.17"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>HEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.18"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPROWNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.19"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>ITERNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.20"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPNAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.21"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPDEFLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.22"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPTABLENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.23"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPITER</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.24"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>LOOPVALLISTNODE</B> </B>
+ <DD><I> <em>DEPRECIATED</em> - Do not use:</I>
+<DT><A HREF="#DOC.81.1.25"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEFRAMELISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.26"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEFRAMENODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.27"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>SAVEHEADINGNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.28"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>STARLISTNODE</B> </B>
+ <DD><I></I>
+<DT><A HREF="#DOC.81.1.29"> <IMG BORDER=0 SRC=icon1.gif></A>  <B>STARFILENODE</B> </B>
+ <DD><I></I>
+
+</DL>
+</DL><DL>
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> virtual  void  <B>copyFrom</B>( const <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> &copyFromMe )
+<DT><IMG SRC=icon2.gif> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*  <B>myParent</B>(void)
+<DT><IMG SRC=icon2.gif> bool  <B>NotVirtualIsOfType</B>( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>removeChild</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>removeMe</B>( void )
+<DT><IMG SRC=icon2.gif> virtual  void  <B>setParent</B>( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *p )
+<DT><IMG SRC=icon2.gif> virtual  bool  <B>unlinkMe</B>( void )
+</DL></DL>
+<hr><H3>Inherited from <A HREF="ASTnodeWithPosBits.html">ASTnodeWithPosBits:</A></h3>
+
+<DL>
+</DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+This is a list of lists of names in a loop.  The first
+list of names is the list of names for the outermost loop.
+the second list of names is the list of names for the next
+nesting level in, and so on.
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="Status">
+<A NAME ="DOC.45.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  enum  Status</B></TT>
+<DL></DL><P><DL>
+
+<A NAME="ERROR">
+<A NAME ="DOC.45.1.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ERROR</B></TT>
+<DL></DL><P>
+<A NAME="STOP">
+<A NAME ="DOC.45.1.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  STOP</B></TT>
+<DL></DL><P>
+<A NAME="NEW_ITER">
+<A NAME ="DOC.45.1.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  NEW_ITER</B></TT>
+<DL></DL><P>
+<A NAME="SAME_ITER">
+<A NAME ="DOC.45.1.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  SAME_ITER</B></TT>
+<DL></DL><P></DL>
+
+<A NAME="">
+<A NAME ="DOC.45.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="DataLoopNameListNode">
+<A NAME ="DOC.45.2.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataLoopNameListNode( <!2><A HREF="#DOC.63">DataLoopDefListNode</A> &L)</B></TT>
+<DD> Copy constructor with a deep recursive copy
+<DL></DL><P>
+<A NAME="DataLoopNameListNode">
+<A NAME ="DOC.45.2.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataLoopNameListNode( bool link, <!2><A HREF="#DOC.63">DataLoopDefListNode</A> &L)</B></TT>
+<DD> Parallel copy constructor:
+<DL></DL><P>
+<A NAME="DataLoopNameListNode">
+<A NAME ="DOC.45.2.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataLoopNameListNode(const <!2><A HREF="#DOC.63">DataLoopDefListNode</A>& D)</B></TT>
+<DD> Also a Copy Constructor.
+<DL></DL><P>
+<A NAME="DataLoopNameListNode">
+<A NAME ="DOC.45.2.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataLoopNameListNode(<!1><A HREF="ASTlist.html">ASTlist</A><<!2><A HREF="#DOC.14">LoopDefListNode</A> *> *L)</B></TT>
+<DD> 
+<DL></DL><P>
+<A NAME="DataLoopNameListNode">
+<A NAME ="DOC.45.2.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  DataLoopNameListNode()</B></TT>
+<DD> Create an empty list of lists of names.
+<DL></DL><P></DL>
+
+<A NAME="~DataLoopNameListNode">
+<A NAME ="DOC.45.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  ~DataLoopNameListNode()</B></TT>
+<DD> Destructor - recursively destroys the whole list of names.
+<DL></DL><P>
+<A NAME="debugPrint">
+<A NAME ="DOC.45.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  debugPrint( void )</B></TT>
+<DD> Print out debugging info detailing the layout of this list:
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.45.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="value_type">
+<A NAME ="DOC.45.3.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*  value_type</B></TT>
+<DL></DL><P>
+<A NAME="pointer">
+<A NAME ="DOC.45.3.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>*  pointer</B></TT>
+<DL></DL><P>
+<A NAME="const_pointer">
+<A NAME ="DOC.45.3.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  const  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>*  const_pointer</B></TT>
+<DL></DL><P>
+<A NAME="reference">
+<A NAME ="DOC.45.3.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>&  reference</B></TT>
+<DL></DL><P>
+<A NAME="const_reference">
+<A NAME ="DOC.45.3.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  const  <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.3.1">value_type</A>&  const_reference</B></TT>
+<DL></DL><P>
+<A NAME="size_type">
+<A NAME ="DOC.45.3.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  size_t  size_type</B></TT>
+<DL></DL><P>
+<A NAME="difference_type">
+<A NAME ="DOC.45.3.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  size_t  difference_type</B></TT>
+<DL></DL><P></DL>
+
+<A NAME="iterator">
+<A NAME ="DOC.45.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  class  iterator</B></TT>
+<DD>This is supposed to behave like the iterator class
+in an STL vector.  It is not documented because the
+reader is expected to have access to the STL vector
+documentation, and a treatise on how to use STL vectors
+is beyond the scope of this documentation.
+Note that reverse_iterator and const_reverse_iterator are
+not implemented.
+<DL></DL><P><DL>
+
+<A NAME="vIter">
+<A NAME ="DOC.45.4.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>   ::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>  vIter</B></TT>
+<DL></DL><P>
+<A NAME="iterator">
+<A NAME ="DOC.45.4.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  iterator()</B></TT>
+<DL></DL><P>
+<A NAME="iterator">
+<A NAME ="DOC.45.4.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  iterator( const <!1><A HREF="ASTlist.html">ASTlist</A><<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> &copyMe )</B></TT>
+<DL></DL><P>
+<A NAME="iterator">
+<A NAME ="DOC.45.4.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  iterator( value_type &copyMe )</B></TT>
+<DL></DL><P>
+<A NAME="~iterator">
+<A NAME ="DOC.45.4.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ~iterator()</B></TT>
+<DL></DL><P>
+<A NAME="operator==">
+<A NAME ="DOC.45.4.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  operator==( const <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> &x ) const </B></TT>
+<DL></DL><P>
+<A NAME="operator!=">
+<A NAME ="DOC.45.4.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  operator!=( const <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A> &x ) const </B></TT>
+<DL></DL><P>
+<A NAME="operator*">
+<A NAME ="DOC.45.4.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> reference  operator*() const </B></TT>
+<DL></DL><P>
+<A NAME="operator->">
+<A NAME ="DOC.45.4.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> value_type  operator->() const </B></TT>
+<DL></DL><P>
+<A NAME="operator++">
+<A NAME ="DOC.45.4.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>&  operator++()</B></TT>
+<DL></DL><P>
+<A NAME="operator++">
+<A NAME ="DOC.45.4.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>&  operator++(int)</B></TT>
+<DL></DL><P>
+<A NAME="operator--">
+<A NAME ="DOC.45.4.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>&  operator--()</B></TT>
+<DL></DL><P>
+<A NAME="operator--">
+<A NAME ="DOC.45.4.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>&  operator--(int)</B></TT>
+<DL></DL><P>
+<A NAME="operator+=">
+<A NAME ="DOC.45.4.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>&  operator+=(size_type n)</B></TT>
+<DL></DL><P>
+<A NAME="operator-=">
+<A NAME ="DOC.45.4.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4.2">iterator</A>&  operator-=(size_type n)</B></TT>
+<DL></DL><P></DL>
+
+<A NAME="const_iterator">
+<A NAME ="DOC.45.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  class  const_iterator</B></TT>
+<DD>This is supposed to behave like the iterator class
+in an STL vector.  It is not documented because the
+reader is expected to have access to the STL vector
+documentation, and a treatise on how to use STL vectors
+is beyond the scope of this documentation.
+Note that reverse_iterator and const_reverse_iterator are
+not implemented.
+<DL></DL><P><DL>
+
+<A NAME="vIter">
+<A NAME ="DOC.45.5.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="ASTlist.html">ASTlist</A> <<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>   ::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>  vIter</B></TT>
+<DL></DL><P>
+<A NAME="const_iterator">
+<A NAME ="DOC.45.5.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  const_iterator()</B></TT>
+<DL></DL><P>
+<A NAME="const_iterator">
+<A NAME ="DOC.45.5.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  const_iterator( const <!1><A HREF="ASTlist.html">ASTlist</A><<!1><A HREF="LoopNameListNode.html">LoopNameListNode</A>*>::<!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A> &copyMe )</B></TT>
+<DL></DL><P>
+<A NAME="const_iterator">
+<A NAME ="DOC.45.5.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  const_iterator( const value_type &copyMe )</B></TT>
+<DL></DL><P>
+<A NAME="~const_iterator">
+<A NAME ="DOC.45.5.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ~const_iterator()</B></TT>
+<DL></DL><P>
+<A NAME="operator!=">
+<A NAME ="DOC.45.5.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  operator!=( const <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> &x ) const </B></TT>
+<DL></DL><P>
+<A NAME="operator*">
+<A NAME ="DOC.45.5.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const_reference  operator*() const </B></TT>
+<DL></DL><P>
+<A NAME="operator->">
+<A NAME ="DOC.45.5.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  value_type  operator->() const </B></TT>
+<DL></DL><P>
+<A NAME="operator++">
+<A NAME ="DOC.45.5.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>&  operator++()</B></TT>
+<DL></DL><P>
+<A NAME="operator++">
+<A NAME ="DOC.45.5.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>&  operator++(int)</B></TT>
+<DL></DL><P>
+<A NAME="operator--">
+<A NAME ="DOC.45.5.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>&  operator--()</B></TT>
+<DL></DL><P>
+<A NAME="operator--">
+<A NAME ="DOC.45.5.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>&  operator--(int)</B></TT>
+<DL></DL><P>
+<A NAME="operator+=">
+<A NAME ="DOC.45.5.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>&  operator+=(size_type n)</B></TT>
+<DL></DL><P>
+<A NAME="operator-=">
+<A NAME ="DOC.45.5.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5.2">const_iterator</A>&  operator-=(size_type n)</B></TT>
+<DL></DL><P></DL>
+
+<A NAME="begin">
+<A NAME ="DOC.45.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A>  begin()</B></TT>
+<DL></DL><P>
+<A NAME="end">
+<A NAME ="DOC.45.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A>  end()</B></TT>
+<DL></DL><P>
+<A NAME="begin">
+<A NAME ="DOC.45.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5">const_iterator</A>  begin() const </B></TT>
+<DL></DL><P>
+<A NAME="end">
+<A NAME ="DOC.45.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.5">const_iterator</A>  end() const </B></TT>
+<DL></DL><P>
+<A NAME="size">
+<A NAME ="DOC.45.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> size_type  size() const </B></TT>
+<DL></DL><P>
+<A NAME="empty">
+<A NAME ="DOC.45.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  empty() const </B></TT>
+<DL></DL><P>
+<A NAME="operator[]">
+<A NAME ="DOC.45.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> reference  operator[]( size_type n )</B></TT>
+<DL></DL><P>
+<A NAME="operator[]">
+<A NAME ="DOC.45.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const_reference  operator[]( size_type n) const </B></TT>
+<DL></DL><P>
+<A NAME="front">
+<A NAME ="DOC.45.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> reference  front()</B></TT>
+<DL></DL><P>
+<A NAME="back">
+<A NAME ="DOC.45.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const_reference  back() const </B></TT>
+<DL></DL><P>
+<A NAME="front">
+<A NAME ="DOC.45.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const_reference  front() const </B></TT>
+<DL></DL><P>
+<A NAME="back">
+<A NAME ="DOC.45.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> reference  back()</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.45.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="">
+<A NAME ="DOC.45.6.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD>
+Insertions/Deletions.  Inserting new loop levels' names,
+and deleting a level of loop names. <p>
+<u>Insert</u> - Insert before 'pos', the row of tagnames given by
+'v'.  Note that what this means is that you are
+inserting a new nesting level to the loop.  If this
+is already inside a DataLoopNode, then you are only
+allowed to add new nesting levels at the deepest level,
+i.e. 'pos' must == 'end()' or it will refuse to do it
+and return false.  This is because if you inserted a
+new nesting level in the middle, then values that are
+at the levels deeper than that are no longer associated
+with the higher-level row that they are supposed to
+"hang" off from.
+<p>
+If this DataLoopNameListNode is not inside a DataLoopNode,
+then you can insert and remove nesting levels at will.
+<p>
+the passed vector itself (in other words, you can delete
+it after calling (and the DataNameNodes it points to).
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.45.6.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  insert( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos, vector<<!1><A HREF="DataNameNode.html">DataNameNode</A>*> &v )</B></TT>
+<DD> Make a copy of the vector version:
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.45.6.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  insert( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos, <!1><A HREF="LoopNameListNode.html">LoopNameListNode</A> &v )</B></TT>
+<DD><u>Insert</u> - Insert before 'pos', the LoopNameListNode given.
+<p>
+(This function performs a DEEP copy of the given name def list
+so everything in the passed argument can be deleted after
+calling, if it is appropriate.)
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.45.6.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  insert( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos, <!1><A HREF="LoopNameListNode.html">LoopNameListNode</A> *v )</B></TT>
+<DD>Make a link to the node given (NOT A COPY - don't delete the node
+pointer that was passed)
+<DL></DL><P>
+<A NAME="erase">
+<A NAME ="DOC.45.6.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  erase( <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.4">iterator</A> pos )</B></TT>
+<DD>erase - Remove the row of tagnames given.  If this is
+inside a DataLoopNode, then calling this method
+also removes all the values from the body of the
+loop that were associated with these names.
+<p>
+In order to keep the STAR syntax correct,
+deleting a row of names also results in all
+tagnames for levels nested AFTER that row
+being deleted also.  (If there are three nested
+levels in a loop and you delete the middle level,
+then the inner level goes away too.)
+<p>
+That is why there is no erase() method for erasing
+a range of rows of names.  There would be no point,
+seeing as how once one is deleted, the rest under it
+have to be deleted too.
+<DL></DL><P></DL>
+
+<A NAME="Unparse">
+<A NAME ="DOC.45.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  void  Unparse(int indent)</B></TT>
+<DL></DL><P>
+<A NAME="myType">
+<A NAME ="DOC.45.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTnode::ASTtype</A>  myType(void)</B></TT>
+<DL></DL><P>
+<A NAME="isOfType">
+<A NAME ="DOC.45.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  isOfType( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> T )</B></TT>
+<DL></DL><P>
+<A NAME="AddDataName">
+<A NAME ="DOC.45.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  AddDataName(const string & name)</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector notation instead: </em>
+<DL></DL><P>
+<A NAME="RemoveDataName">
+<A NAME ="DOC.45.31">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  RemoveDataName( const string & name, int *nest = (int*)NULL, int *ele = (int*)NULL )</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector notation instead: </em>
+<DL></DL><P>
+<A NAME="ChangeName">
+<A NAME ="DOC.45.32">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="StarFileNode.3.html#DOC.53.1">StarFileNode::Status</A>  ChangeName( const string &oldName, const string &newName )</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector notation instead: </em>
+<DL></DL><P>
+<A NAME="reset">
+<A NAME ="DOC.45.33">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  reset()</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector notation instead: </em>
+<DL></DL><P>
+<A NAME="getNextTag">
+<A NAME ="DOC.45.34">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="DataLoopNameListNode.2.html#DOC.45.1">Status</A>  getNextTag(DataLoopValListNode::Status vstat, int & row)</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector notation instead: </em>
+<DL></DL><P>
+<A NAME="myName">
+<A NAME ="DOC.45.35">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> string  myName() const </B></TT>
+<DD>Return the 'name' of this node (the name of the first tag in the
+outermost nesting level is arbitrarily chosen as the "name" of
+this node
+<DL></DL><P>
+<A NAME="FlattenNestedLoop">
+<A NAME ="DOC.45.36">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  FlattenNestedLoop(<!1><A HREF="List.html">List</A><<!1><A HREF="DataNameNode.html">DataNameNode</A>*>* L)</B></TT>
+<DD> <em>DEPRECIATED - use the STL vector notation instead: </em>
+<DL></DL><P>
+<A NAME="tagPosition">
+<A NAME ="DOC.45.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int  tagPosition(const string & TagName)</B></TT>
+<DD><em>DEPRECIATED - use tagPositionDeep instead</em><br>
+Get the index of the given tag, if it resides in the outermost
+loop only (is incapable of searching into nested tags.)
+(This search is case-insensitive).
+
+<DL><DT><B>See Also:</B><DD><!2><A HREF="DataLoopNameListNode.2.html#DOC.45.8">tagPositionDeep</A><br></DL><P>
+<A NAME="tagPositionDeep">
+<A NAME ="DOC.45.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  tagPositionDeep( string tagName, int *nestLevel, int *column )</B></TT>
+<DD>Get the index of the given name.  Returns the
+nest depth and the column index within that nest depth.
+(indexes start counting at zero, negative numbers returned
+mean the tag was not found.)
+The search is case-insensitive.
+<DL></DL><P>
+<A NAME="searchByTag">
+<A NAME ="DOC.45.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  searchByTag( string &searchFor )</B></TT>
+<DD>
+Given a tag name, find the AST object it resides in.  It returns
+a pointer to the lowest level AST object that the tag resides in.
+The caller of this function needs to use the isOfType() and/or
+myType() methods to determine what type to cst the object.
+Returns a NULL if nothing was found.
+<P>
+This search is case-insensitive.  The names of things, according
+to the STAR specification, are supposed to be case-insensitive.
+This is being applied not only to tag names but also to
+saveframe names and datablock names.
+<p>
+WARNING: The list returned is allocated in heap space.  It is
+the caller's responsibility to delete the list after it is no
+longer needed.
+
+<DL><DT><B>Parameters:</B><DD><B>searchFor</B> -  Look for this string as the tag name.<br></DL><P>
+<A NAME="searchForType">
+<A NAME ="DOC.45.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  <!1><A HREF="List.html">List</A> <<!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A>*> *  searchForType( <!2><A HREF="ASTnode.2.html#DOC.81.1">ASTtype</A> type, int delim = -1 )</B></TT>
+<DD>This method returns a list of all the nodes of the given type
+that are inside this node, or children of this node, or children
+of children of this node, etc all the way down to the leaf nodes
+<DL><DT><B>Parameters:</B><DD><B>type</B> -  type to search for
+<br><B>delim</B> -  the delimiter type (not relevant at this scope )<br></DL><P>
+<A NAME="unlinkChild">
+<A NAME ="DOC.45.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  bool  unlinkChild( <!2><A HREF="ASTnode.2.html#DOC.81.21">ASTnode</A> *child )</B></TT>
+<DD>unlinks the given ASTnode from this ASTnode, assuming that
+the given ASTnode is a child of this ASTnode.  Does NOT
+call the destructor of the child node!! Use this function to
+remove the child from this ASTnode but not free it's space.
+RETURNS: true if the child was unlinked.  false if the given
+ASTnode was not even in this class anywhere, and
+therefore nothing was done.
+This function MUST be overridden for each subclass of ASTnode.
+<DL></DL><P>
+<A NAME="myLongestStr">
+<A NAME ="DOC.45.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> virtual  int  myLongestStr( void )</B></TT>
+<DD>
+Returns the length of the longest string in this object.
+Used by Unparse() at various levels of the AST tree.
+(In this case it takes the longest tagname from the name list)
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

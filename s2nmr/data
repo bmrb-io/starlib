@@ -1,0 +1,1026 @@
+saveframe_contact_persons	_dummy		?	
+saveframe_contact_persons	_*1contact_persons	0	?	_*1contact_persons_0
+saveframe_contact_persons	_a_contact_persons	0	contact_persons	_*1contact_persons_0
+saveframe_contact_persons	_dummy	0	?	_*1contact_persons_0
+saveframe_contact_persons	_contact_persons	0	contact_persons	_*1contact_persons_0
+saveframe_contact_persons	_space_31	0	?	_*1contact_persons_0
+saveframe_contact_persons	_given_name	0	Douglas	_*1contact_persons_0
+saveframe_contact_persons	_middle_initials	0	V.	_*1contact_persons_0
+saveframe_contact_persons	_Family_name	0	Laurents	_*1contact_persons_0
+saveframe_contact_persons	_family_title	0	?	_*1contact_persons_0
+saveframe_contact_persons	_Department_and_Institution	0	Instituto de Física Química "Rocasolano"\nC.S.I.C.\n	_*1contact_persons_0
+saveframe_contact_persons	_Mailing_address	0	c/ Serrano 119\n28006 Madrid\nSPAIN\n	_*1contact_persons_0
+saveframe_contact_persons	_Phone_number	0	+34 91-561-9400	_*1contact_persons_0
+saveframe_contact_persons	_Email_address	0	dlaurents@iqfr.csic.es	_*1contact_persons_0
+saveframe_contact_persons	_FAX_number	0	+34 91-564-2431	_*1contact_persons_0
+saveframe_primary_citation	_dummy		?	
+saveframe_primary_citation	_primary_citation		?	
+saveframe_primary_citation	_entry_citation		entry_citation	
+saveframe_primary_citation	_dummy		?	
+saveframe_primary_citation	_space_31		?	
+saveframe_primary_citation	_entry_citation_label_0		?	
+saveframe_primary_citation	_space_8		?	
+saveframe_primary_citation	_journal_entry		journal_entry	
+saveframe_primary_citation	_book_entry		journal_entry	
+saveframe_primary_citation	_abstract_entry		journal_entry	
+saveframe_primary_citation	_thesis_entry		journal_entry	
+saveframe_primary_citation	_BMRB_only		journal_entry	
+saveframe_primary_citation	_publication_other		journal_entry	
+saveframe_primary_citation	_space_41		?	
+saveframe_primary_citation	_entry_citation_label_10		?	
+saveframe_primary_citation	_space_19		?	
+saveframe_primary_citation	_published		submitted	
+saveframe_primary_citation	_in_press		submitted	
+saveframe_primary_citation	_submitted		submitted	
+saveframe_primary_citation	_in_preparation		submitted	
+saveframe_primary_citation	_other_publication_status		submitted	
+saveframe_primary_citation	_space_42		?	
+saveframe_primary_citation	_Citation_title		Charge-Charge Interactions are Key Determinants of the pK values of Ionizable Groups in Ribonuclease Sa (pI=3.5) and a Basic Variant (pI=10.2)	
+saveframe_primary_citation	_Citation_keywords		pK, electrostatic interactions, Coulomb, Poisson-Boltzmann	
+saveframe_primary_citation	_Citation_details		?	
+saveframe_primary_citation	_*1primary_citation	0	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	0	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	0	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	0	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	0	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	0	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	0	1	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	0	Douglas	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	0	V.	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	0	Laurents	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	0	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	0	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	0	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	1	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	1	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	1	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	1	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	1	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	1	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	1	2	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	1	Beatrice	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	1	M. P.	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	1	Huyghues-Despointes	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	1	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	1	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	1	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	2	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	2	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	2	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	2	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	2	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	2	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	2	3	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	2	Marta	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	2	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	2	Bruix	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	2	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	2	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	2	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	3	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	3	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	3	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	3	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	3	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	3	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	3	4	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	3	Richard	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	3	L.	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	3	Thurlkill	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	3	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	3	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	3	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	4	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	4	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	4	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	4	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	4	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	4	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	4	5	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	4	David	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	4	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	4	Schell	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	4	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	4	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	4	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	5	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	5	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	5	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	5	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	5	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	5	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	5	6	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	5	Stephanie	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	5	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	5	Newsome	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	5	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	5	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	5	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	6	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	6	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	6	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	6	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	6	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	6	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	6	7	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	6	Gerald	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	6	R.	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	6	Grimsley	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	6	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	6	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	6	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	7	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	7	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	7	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	7	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	7	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	7	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	7	8	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	7	Kevin	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	7	L.	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	7	Shaw	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	7	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	7	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	7	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	8	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	8	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	8	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	8	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	8	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	8	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	8	9	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	8	Saul	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	8	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	8	Treviño	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	8	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	8	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	8	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	9	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	9	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	9	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	9	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	9	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	9	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	9	10	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	9	Manuel	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	9	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	9	Rico	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	9	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	9	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	9	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	10	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	10	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	10	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	10	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	10	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	10	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	10	11	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	10	J. Martin	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	10	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	10	Scholtz	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	10	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	10	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	10	?	_*1entry_citation_1
+saveframe_primary_citation	_*1primary_citation	11	?	_*1entry_citation_1
+saveframe_primary_citation	_*1entry_citation	11	?	_*1entry_citation_1
+saveframe_primary_citation	_space_25	11	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_35	11	?	_*1entry_citation_1
+saveframe_primary_citation	_Deposition_label_38	11	?	_*1entry_citation_1
+saveframe_primary_citation	_space_37	11	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_ordinal	11	12	_*1entry_citation_1
+saveframe_primary_citation	_Author_given_name	11	C. Nick	_*1entry_citation_1
+saveframe_primary_citation	_Author_middle_initials	11	?	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_name	11	Pace	_*1entry_citation_1
+saveframe_primary_citation	_Author_family_title	11	?	_*1entry_citation_1
+saveframe_primary_citation	_space_15	11	?	_*1entry_citation_1
+saveframe_primary_citation	_space_35	11	?	_*1entry_citation_1
+saveframe_primary_citation	_*2primary_citation		?	
+saveframe_primary_citation	_*3entry_citation		?	
+saveframe_primary_citation	_page_first		na	
+saveframe_primary_citation	_page_last		na	
+saveframe_primary_citation	_year		na	
+saveframe_primary_citation	_entry_citation_label_1		?	
+saveframe_primary_citation	_space_18		?	
+saveframe_primary_citation	_space_29		?	
+saveframe_primary_citation	_Journal_abbreviation		J. Mol. Biol.	
+saveframe_primary_citation	_Journal_name_full		?	
+saveframe_primary_citation	_space_59		?	
+saveframe_primary_citation	_entry_citation_label_5		?	
+saveframe_primary_citation	_Journal_volume		na	
+saveframe_primary_citation	_Journal_issue		?	
+saveframe_primary_citation	_Journal_page_first		na	
+saveframe_primary_citation	_Journal_page_last		na	
+saveframe_primary_citation	_Journal_year		na	
+saveframe_primary_citation	_entry_citation_label_2		?	
+saveframe_primary_citation	_space_28		?	
+saveframe_primary_citation	_Book_title		?	
+saveframe_primary_citation	_space_31		?	
+saveframe_primary_citation	_Book_editor		?	
+saveframe_primary_citation	_Book_volume		?	
+saveframe_primary_citation	_Book_series		?	
+saveframe_primary_citation	_Book_publisher		?	
+saveframe_primary_citation	_Book_publisher_city		?	
+saveframe_primary_citation	_Book_page_first		?	
+saveframe_primary_citation	_Book_page_last		?	
+saveframe_primary_citation	_Book_year		?	
+saveframe_primary_citation	_entry_citation_label_3		?	
+saveframe_primary_citation	_space_38		?	
+saveframe_primary_citation	_Conference_title		?	
+saveframe_primary_citation	_Conference_site		?	
+saveframe_primary_citation	_Conference_state_province		?	
+saveframe_primary_citation	_Conference_country		?	
+saveframe_primary_citation	_Conference_start_date		?	
+saveframe_primary_citation	_Conference_end_date		?	
+saveframe_primary_citation	_Conference_abstract_number		?	
+saveframe_primary_citation	_entry_citation_label_4		?	
+saveframe_primary_citation	_space_48		?	
+saveframe_primary_citation	_Thesis_institution		?	
+saveframe_primary_citation	_Thesis_institution_city		?	
+saveframe_primary_citation	_Thesis_institution_country		?	
+saveframe_primary_citation	_Thesis_year		?	
+saveframe_g_entry_information	_dummy		?	
+saveframe_g_entry_information	_g_entry_information		entry_information	
+saveframe_g_entry_information	_entry_information		entry_information	
+saveframe_g_entry_information	_label_10		?	
+saveframe_g_entry_information	_space_15		?	
+saveframe_g_entry_information	_space_20		?	
+saveframe_g_entry_information	_deposition_type_0		?	
+saveframe_g_entry_information	_label_25		?	
+saveframe_g_entry_information	_space_30		?	
+saveframe_g_entry_information	_deposition_new		deposition_new	
+saveframe_g_entry_information	_deposition_revision		deposition_new	
+saveframe_g_entry_information	_deposition_replacement		deposition_new	
+saveframe_g_entry_information	_space_35		?	
+saveframe_g_entry_information	_Revised_BMRB_accession_number		?	
+saveframe_g_entry_information	_Replace_BMRB_accession_number		?	
+saveframe_g_entry_information	_Revision_details_1		?	
+saveframe_g_entry_information	_Revision_details_2		?	
+saveframe_g_entry_information	_space_36		?	
+saveframe_g_entry_information	_space_37		?	
+saveframe_g_entry_information	_label_50		?	
+saveframe_g_entry_information	_label_55		?	
+saveframe_g_entry_information	_Deposition_title_2		1H and 15N Chemical Shift Assignments for the charge reverse variant of Ribonuclease Sa "5K" (D1K, D17K, D25K, E41K, E74K)	
+saveframe_g_entry_information	_*1g_entry_information	0	?	_*1entry_information_2
+saveframe_g_entry_information	_*1entry_information	0	?	_*1entry_information_2
+saveframe_g_entry_information	_space_25	0	?	_*1entry_information_2
+saveframe_g_entry_information	_label_3	0	?	_*1entry_information_2
+saveframe_g_entry_information	_space_35	0	?	_*1entry_information_2
+saveframe_g_entry_information	_Deposition_label_35	0	?	_*1entry_information_2
+saveframe_g_entry_information	_Author_ordinal	0	?	_*1entry_information_2
+saveframe_g_entry_information	_Author_given_name	0	?	_*1entry_information_2
+saveframe_g_entry_information	_Author_middle_initials	0	?	_*1entry_information_2
+saveframe_g_entry_information	_Author_family_name	0	?	_*1entry_information_2
+saveframe_g_entry_information	_Author_family_title	0	?	_*1entry_information_2
+saveframe_g_entry_information	_space_15	0	?	_*1entry_information_2
+saveframe_g_entry_information	_space_36	0	?	_*1entry_information_2
+saveframe_g_entry_information	_*3g_entry_information		?	
+saveframe_g_entry_information	_*3entry_information		?	
+saveframe_g_entry_information	_Details		?	
+saveframe_g_entry_information	_space_14		?	
+saveframe_g_entry_information	_space_35		?	
+saveframe_g_entry_information	_label_33		?	
+saveframe_g_entry_information	_Special_processing_instructions		?	
+saveframe_g_entry_information	_space_20		?	
+saveframe_g_entry_information	_label_20		?	
+saveframe_g_entry_information	_Related_BMRB_accession_number		4259	
+saveframe_g_entry_information	_*4g_entry_information		?	
+saveframe_g_entry_information	_*4entry_information		?	
+saveframe_g_entry_information	_space_10		?	
+saveframe_g_entry_information	_Deposition_label_5		?	
+saveframe_g_entry_information	_Deposition_label_6		?	
+saveframe_g_entry_information	_space_15		?	
+saveframe_g_entry_information	_Release_immediately		?	
+saveframe_g_entry_information	_space_20		?	
+saveframe_g_entry_information	_Release_date_request		?	
+saveframe_g_entry_information	_Deposition_label_1		?	
+saveframe_g_entry_information	_space_25		?	
+saveframe_g_entry_information	_Hold_justification		?	
+saveframe_system_description	_dummy		?	
+saveframe_system_description	_system_description		?	
+saveframe_system_description	_system_sf_category		molecular_system	
+saveframe_system_description	_dummy1		?	
+saveframe_system_description	_molecular_system		?	
+saveframe_system_description	_system_label_0		?	
+saveframe_system_description	_space_101		?	
+saveframe_system_description	_space_21		?	
+saveframe_system_description	_System_name		5K Ribonuclease Sa	
+saveframe_system_description	_sys_Abbreviation_common		5K, 5K RNase Sa	
+saveframe_system_description	_sys_biological_unit		monomer	
+saveframe_system_description	_system_components		5K RNase Sa, 5K RNase Sa	
+saveframe_system_description	_space_102		?	
+saveframe_system_description	_space_26		?	
+saveframe_system_description	_label_103		?	
+saveframe_system_description	_label_66		?	
+saveframe_system_description	_space_104		?	
+saveframe_system_description	_label_65		?	
+saveframe_system_description	_space_104		?	
+saveframe_system_description	_sys_Enzyme_commission_number		?	
+saveframe_system_description	_space_106		?	
+saveframe_system_description	_Biological_function		?	
+saveframe_system_description	_space_114		?	
+saveframe_system_description	_space_105		?	
+saveframe_system_description	_system_label_22		?	
+saveframe_system_description	_native		native	
+saveframe_system_description	_denatured		native	
+saveframe_system_description	_molten_globule		native	
+saveframe_system_description	_reduced		native	
+saveframe_system_description	_space_58		?	
+saveframe_system_description	_space_54		?	
+saveframe_system_description	_magnetic_equivalence		?	
+saveframe_system_description	_space_59		?	
+saveframe_system_description	_space_61		?	
+saveframe_system_description	_*6system_description	0	?	_*6molecular_system_3
+saveframe_system_description	_*6molecular_system	0	?	_*6molecular_system_3
+saveframe_system_description	_label_0	0	?	_*6molecular_system_3
+saveframe_system_description	_label_21	0	?	_*6molecular_system_3
+saveframe_system_description	_space_107	0	?	_*6molecular_system_3
+saveframe_system_description	_sys_Database_name	0	?	_*6molecular_system_3
+saveframe_system_description	_space_108	0	?	_*6molecular_system_3
+saveframe_system_description	_sys_Database_accession_number	0	?	_*6molecular_system_3
+saveframe_system_description	_space_109	0	?	_*6molecular_system_3
+saveframe_system_description	_sys_Database_entry_details	0	?	_*6molecular_system_3
+saveframe_system_description	_space_27	0	?	_*6molecular_system_3
+saveframe_system_description	_space_113	0	?	_*6molecular_system_3
+saveframe_system_description	_*7system_description		?	
+saveframe_system_description	_*7system		?	
+saveframe_system_description	_space_110		?	
+saveframe_system_description	_space_22		?	
+saveframe_system_description	_label_32		?	
+saveframe_system_description	_space_115		?	
+saveframe_system_description	_label_28		?	
+saveframe_system_description	_space_23		?	
+saveframe_system_description	_cbx_ligands		off	
+saveframe_system_description	_label_27		?	
+saveframe_system_description	_space_45		?	
+saveframe_system_description	_cbx_ns_residue		off	
+saveframe_system_description	_label_93		?	
+saveframe_system_description	_space_112		?	
+saveframe_system_description	_subsystem_query		?	
+saveframe_system_description	_space_55		?	
+saveframe_system_description	_space_56		?	
+saveframe_system_description	_space_24		?	
+saveframe_system_description	_sys_Details		?	
+saveframe_system_description	_label_113		?	
+saveframe_system_description	_space_34		?	
+saveframe_system_description	_label_43		?	
+saveframe_system_description	_space_54		?	
+saveframe_system_description	_*4system_description	0	?	_*4system_description_4
+saveframe_system_description	_polymer_residue	0	polymer_residue	_*4system_description_4
+saveframe_system_description	_non_standard_residue_framecode	0	?	_*4system_description_4
+saveframe_system_description	_non_standard_residue_label_0	0	?	_*4system_description_4
+saveframe_system_description	_space_21	0	?	_*4system_description_4
+saveframe_system_description	_non_standard_residue_label_1	0	?	_*4system_description_4
+saveframe_system_description	_ns_PDB_code	0	?	_*4system_description_4
+saveframe_system_description	_ns_label_10	0	?	_*4system_description_4
+saveframe_system_description	_space_22	0	?	_*4system_description_4
+saveframe_system_description	_ns_Name_database_BMRB	0	?	_*4system_description_4
+saveframe_system_description	_NS_label_12	0	?	_*4system_description_4
+saveframe_system_description	_NS_label_56	0	?	_*4system_description_4
+saveframe_system_description	_space_65	0	?	_*4system_description_4
+saveframe_system_description	_space_66	0	?	_*4system_description_4
+saveframe_system_description	_space_25	0	?	_*4system_description_4
+saveframe_system_description	_non_standard_residue_label_3	0	?	_*4system_description_4
+saveframe_system_description	_ns_Name_common	0	?	_*4system_description_4
+saveframe_system_description	_space_96	0	?	_*4system_description_4
+saveframe_system_description	_ns_label_45	0	?	_*4system_description_4
+saveframe_system_description	_space_95	0	?	_*4system_description_4
+saveframe_system_description	_ns_Name_IUPAC	0	?	_*4system_description_4
+saveframe_system_description	_ns_Abbreviation_common	0	?	_*4system_description_4
+saveframe_system_description	_ns_Residue_location	0	?	_*4system_description_4
+saveframe_system_description	_space_34	0	?	_*4system_description_4
+saveframe_system_description	_ns_Mol_paramagnetic	0	?	_*4system_description_4
+saveframe_system_description	_space_35	0	?	_*4system_description_4
+saveframe_system_description	_ns_Atom_prochirality	0	?	_*4system_description_4
+saveframe_system_description	_space_40	0	?	_*4system_description_4
+saveframe_system_description	_ns_Details	0	?	_*4system_description_4
+saveframe_system_description	_*5system_description	0	?	_*5system_description_5
+saveframe_system_description	_ligand	0	ligand	_*5system_description_5
+saveframe_system_description	_ligand_framecode	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_0	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_1	0	?	_*5system_description_5
+saveframe_system_description	_space_31	0	?	_*5system_description_5
+saveframe_system_description	_space_10	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_3	0	?	_*5system_description_5
+saveframe_system_description	_space_64	0	?	_*5system_description_5
+saveframe_system_description	_lig_PDB_code	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_10	0	?	_*5system_description_5
+saveframe_system_description	_space_66	0	?	_*5system_description_5
+saveframe_system_description	_lig_Name_database_BMRB	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_12	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_56	0	?	_*5system_description_5
+saveframe_system_description	_space_65	0	?	_*5system_description_5
+saveframe_system_description	_space_25	0	?	_*5system_description_5
+saveframe_system_description	_Ligand_label_4	0	?	_*5system_description_5
+saveframe_system_description	_lig_Name_common	0	?	_*5system_description_5
+saveframe_system_description	_space_96	0	?	_*5system_description_5
+saveframe_system_description	_ns_label_45	0	?	_*5system_description_5
+saveframe_system_description	_space_95	0	?	_*5system_description_5
+saveframe_system_description	_lig_Name_IUPAC	0	?	_*5system_description_5
+saveframe_system_description	_lig_Abbreviation_common	0	?	_*5system_description_5
+saveframe_system_description	_lig_Mol_paramagnetic	0	?	_*5system_description_5
+saveframe_system_description	_lig_Mol_aromatic	0	?	_*5system_description_5
+saveframe_system_description	_space_33	0	?	_*5system_description_5
+saveframe_system_description	_lig_Bond_list_inter	0	?	_*5system_description_5
+saveframe_system_description	_space_13	0	?	_*5system_description_5
+saveframe_system_description	_space_15	0	?	_*5system_description_5
+saveframe_system_description	_lig_Atom_oxidation_number	0	?	_*5system_description_5
+saveframe_system_description	_space_16	0	?	_*5system_description_5
+saveframe_system_description	_lig_Details	0	?	_*5system_description_5
+saveframe_system_description	_*3system_description	0	?	_*3system_description_6
+saveframe_system_description	_monomeric_polymer	0	monomeric_polymer	_*3system_description_6
+saveframe_system_description	_mol_polymer_label_0	0	?	_*3system_description_6
+saveframe_system_description	_mol_polymer_label_11	0	?	_*3system_description_6
+saveframe_system_description	_space_10	0	?	_*3system_description_6
+saveframe_system_description	_mp_Name_common	0	Ribonuclease Sa	_*3system_description_6
+saveframe_system_description	_mp_Name_variant	0	5K (D1K, D17K, D25K, E41K, E74K)	_*3system_description_6
+saveframe_system_description	_mp_Abbreviation_common	0	5K RNase Sa, 5K	_*3system_description_6
+saveframe_system_description	_space_15	0	?	_*3system_description_6
+saveframe_system_description	_mol_polymer_label_72	0	?	_*3system_description_6
+saveframe_system_description	_protein_peptide	0	protein_peptide	_*3system_description_6
+saveframe_system_description	_DNA	0	protein_peptide	_*3system_description_6
+saveframe_system_description	_RNA	0	protein_peptide	_*3system_description_6
+saveframe_system_description	_space_20	0	?	_*3system_description_6
+saveframe_system_description	_label_25	0	?	_*3system_description_6
+saveframe_system_description	_label_30	0	?	_*3system_description_6
+saveframe_system_description	_space_32	0	?	_*3system_description_6
+saveframe_system_description	_Mol_residue_sequence	0	KVSGTVCLSA LPPEATKTLN LIASKGPFPY \nSQDGVVFQNR KSVLPTQSYG YYHEYTVITP \nGARTRGTRRI ITGKATQEDY YTGDHYATFS\nLIDQTC\n	_*3system_description_6
+saveframe_system_description	_space_35	0	?	_*3system_description_6
+saveframe_system_description	_mp_Residue_author_seq_code	0	?	_*3system_description_6
+saveframe_system_description	_mp_Sequence_citation_label	0	?	_*3system_description_6
+saveframe_system_description	_mp_Sequence_features	0	?	_*3system_description_6
+saveframe_system_description	_label_40	0	?	_*3system_description_6
+saveframe_system_description	_label_45	0	?	_*3system_description_6
+saveframe_system_description	_space_75	0	?	_*3system_description_6
+saveframe_system_description	_Molecular_mass	0	?	_*3system_description_6
+saveframe_system_description	_mp_Details	0	?	_*3system_description_6
+saveframe_system_description	_*9system_description	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_bonds_sf	0	crosslink_bonds	_*9system_description_7
+saveframe_system_description	_crosslink_bonds	0	crosslink_bonds	_*9system_description_7
+saveframe_system_description	_dummy	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_label_0	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_label_11	0	?	_*9system_description_7
+saveframe_system_description	_space_10	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_mol_1	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_res_1	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_atom_1	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_mol_2	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_res_2	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_atom_2	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_order	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_Bond_type	0	?	_*9system_description_7
+saveframe_system_description	_space_60	0	?	_*9system_description_7
+saveframe_system_description	_crosslink_details	0	?	_*9system_description_7
+saveframe_system_description	_*2system_description	0	?	_*2system_description_8
+saveframe_system_description	_biol_func_molecular_system	0	biol_func_molecular_system	_*2system_description_8
+saveframe_system_description	_label_0	0	?	_*2system_description_8
+saveframe_system_description	_space_10	0	?	_*2system_description_8
+saveframe_system_description	_label_4	0	?	_*2system_description_8
+saveframe_system_description	_space_10	0	?	_*2system_description_8
+saveframe_system_description	_space_11	0	?	_*2system_description_8
+saveframe_system_description	_bu_Name_common	0	?	_*2system_description_8
+saveframe_system_description	_bu_Abbreviation_common	0	?	_*2system_description_8
+saveframe_system_description	_bu_components	0	?	_*2system_description_8
+saveframe_system_description	_space_11	0	?	_*2system_description_8
+saveframe_system_description	_bu_Biological_function	0	?	_*2system_description_8
+saveframe_system_description	_space_111	0	?	_*2system_description_8
+saveframe_system_description	_label_66	0	?	_*2system_description_8
+saveframe_system_description	_space_78	0	?	_*2system_description_8
+saveframe_system_description	_label_65	0	?	_*2system_description_8
+saveframe_system_description	_space_68	0	?	_*2system_description_8
+saveframe_system_description	_bu_Enzyme_commission_number	0	?	_*2system_description_8
+saveframe_system_description	_space_35	0	?	_*2system_description_8
+saveframe_system_description	_space_116	0	?	_*2system_description_8
+saveframe_system_description	_space_105	0	?	_*2system_description_8
+saveframe_system_description	_label_0	0	?	_*2system_description_8
+saveframe_system_description	_space_107	0	?	_*2system_description_8
+saveframe_system_description	_bu_Database_name	0	?	_*2system_description_8
+saveframe_system_description	_space_108	0	?	_*2system_description_8
+saveframe_system_description	_bu_Database_accession_number	0	?	_*2system_description_8
+saveframe_system_description	_space_109	0	?	_*2system_description_8
+saveframe_system_description	_bu_Database_entry_details	0	?	_*2system_description_8
+saveframe_system_description	_space_27	0	?	_*2system_description_8
+saveframe_system_description	_space_126	0	?	_*2system_description_8
+saveframe_system_description	_bu_Details	0	?	_*2system_description_8
+saveframe_source	_dummy		?	
+saveframe_source	_source	0	?	_ATCC_number_9
+saveframe_source	_natural_source_sf_category	0	natural_source	_ATCC_number_9
+saveframe_source	_natural_source	0	natural_source	_ATCC_number_9
+saveframe_source	_dummy	0	?	_ATCC_number_9
+saveframe_source	_natural_source_label_0	0	?	_ATCC_number_9
+saveframe_source	_space_10	0	?	_ATCC_number_9
+saveframe_source	_space_15	0	?	_ATCC_number_9
+saveframe_source	_Mol_label	0	5K RNase Sa	_ATCC_number_9
+saveframe_source	_space_20	0	?	_ATCC_number_9
+saveframe_source	_space_25	0	?	_ATCC_number_9
+saveframe_source	_label_30	0	?	_ATCC_number_9
+saveframe_source	_space_35	0	?	_ATCC_number_9
+saveframe_source	_label_40	0	?	_ATCC_number_9
+saveframe_source	_space_45	0	?	_ATCC_number_9
+saveframe_source	_label_50	0	?	_ATCC_number_9
+saveframe_source	_space_55	0	?	_ATCC_number_9
+saveframe_source	_archaea	0	eubacteria	_ATCC_number_9
+saveframe_source	_eubacteria	0	eubacteria	_ATCC_number_9
+saveframe_source	_eucaryote	0	eubacteria	_ATCC_number_9
+saveframe_source	_label_60	0	?	_ATCC_number_9
+saveframe_source	_animalia	0	?	_ATCC_number_9
+saveframe_source	_fungi	0	?	_ATCC_number_9
+saveframe_source	_plantae	0	?	_ATCC_number_9
+saveframe_source	_protista	0	?	_ATCC_number_9
+saveframe_source	_not_applicable_1	0	?	_ATCC_number_9
+saveframe_source	_viroids	0	eubacteria	_ATCC_number_9
+saveframe_source	_viruses	0	eubacteria	_ATCC_number_9
+saveframe_source	_other_superkingdom	0	eubacteria	_ATCC_number_9
+saveframe_source	_unclassified	0	eubacteria	_ATCC_number_9
+saveframe_source	_space_70	0	?	_ATCC_number_9
+saveframe_source	_space_75	0	?	_ATCC_number_9
+saveframe_source	_Organism_common_name	0	?	_ATCC_number_9
+saveframe_source	_Genus	0	Streptomyces	_ATCC_number_9
+saveframe_source	_Species	0	aureofaciens	_ATCC_number_9
+saveframe_source	_Strain	0	?	_ATCC_number_9
+saveframe_source	_Variant	0	?	_ATCC_number_9
+saveframe_source	_Organ	0	?	_ATCC_number_9
+saveframe_source	_Tissue	0	?	_ATCC_number_9
+saveframe_source	_Cell_line	0	?	_ATCC_number_9
+saveframe_source	_Cell_type	0	?	_ATCC_number_9
+saveframe_source	_ATCC_number	0	?	_ATCC_number_9
+saveframe_source	_Organelle	0	?	_ATCC_number_9
+saveframe_source	_Secretion	0	?	_ATCC_number_9
+saveframe_source	_Fraction	0	?	_ATCC_number_9
+saveframe_source	_Plasmid	0	?	_ATCC_number_9
+saveframe_source	_Gene_name	0	?	_ATCC_number_9
+saveframe_source	_space_80	0	?	_ATCC_number_9
+saveframe_source	_Details	0	?	_ATCC_number_9
+saveframe_source	_*1source	0	?	_*1source_10
+saveframe_source	_expt_source_sf_category	0	experimental_source	_*1source_10
+saveframe_source	_experimental_source	0	experimental_source	_*1source_10
+saveframe_source	_experimental_source_label_0	0	?	_*1source_10
+saveframe_source	_space_21	0	?	_*1source_10
+saveframe_source	_es_Mol_label	0	5K RNase Sa	_*1source_10
+saveframe_source	_space_25	0	?	_*1source_10
+saveframe_source	_label_25	0	?	_*1source_10
+saveframe_source	_label_35	0	?	_*1source_10
+saveframe_source	_space_35	0	?	_*1source_10
+saveframe_source	_recombinant_technology	0	recombinant_technology	_*1source_10
+saveframe_source	_es_natural_source	0	recombinant_technology	_*1source_10
+saveframe_source	_chemically_synthesized	0	recombinant_technology	_*1source_10
+saveframe_source	_cell_free_synthesis	0	recombinant_technology	_*1source_10
+saveframe_source	_enzymatic_semisynthesis	0	recombinant_technology	_*1source_10
+saveframe_source	_vendor	0	recombinant_technology	_*1source_10
+saveframe_source	_space_22	0	?	_*1source_10
+saveframe_source	_es_Host_organism_name_common	0	?	_*1source_10
+saveframe_source	_es_Genus	0	?	_*1source_10
+saveframe_source	_es_Species	0	?	_*1source_10
+saveframe_source	_es_Strain	0	?	_*1source_10
+saveframe_source	_es_Variant	0	?	_*1source_10
+saveframe_source	_es_Organ	0	?	_*1source_10
+saveframe_source	_es_Tissue	0	?	_*1source_10
+saveframe_source	_es_Cell_line	0	?	_*1source_10
+saveframe_source	_es_Cell_type	0	?	_*1source_10
+saveframe_source	_es_ATCC_number	0	?	_*1source_10
+saveframe_source	_es_Vector_type	0	?	_*1source_10
+saveframe_source	_es_Vector_name	0	?	_*1source_10
+saveframe_source	_es_Vendor	0	?	_*1source_10
+saveframe_source	_space_31	0	?	_*1source_10
+saveframe_source	_es_Details	0	?	_*1source_10
+saveframe_sample_description	_dummy		?	
+saveframe_sample_description	_sample_description		?	
+saveframe_sample_description	_sample		sample	
+saveframe_sample_description	_dummy		?	
+saveframe_sample_description	_space_10		?	
+saveframe_sample_description	_space_21		?	
+saveframe_sample_description	_label_10		?	
+saveframe_sample_description	_space_12		?	
+saveframe_sample_description	_sample_framecode		sample 1	
+saveframe_sample_description	_space_35		?	
+saveframe_sample_description	_solution		solution	
+saveframe_sample_description	_bicell_solution		solution	
+saveframe_sample_description	_micelles		solution	
+saveframe_sample_description	_liposomes		solution	
+saveframe_sample_description	_emulsion		solution	
+saveframe_sample_description	_gel		solution	
+saveframe_sample_description	_solid		solution	
+saveframe_sample_description	_space_22		?	
+saveframe_sample_description	_Details		?	
+saveframe_sample_description	_*1sample_description	0	?	_*1sample_11
+saveframe_sample_description	_*1sample	0	?	_*1sample_11
+saveframe_sample_description	_sample_content_label_0	0	?	_*1sample_11
+saveframe_sample_description	_space_10	0	?	_*1sample_11
+saveframe_sample_description	_Mol_label	0	5K RNase Sa	_*1sample_11
+saveframe_sample_description	_sample_content_label_1	0	?	_*1sample_11
+saveframe_sample_description	_space_22	0	?	_*1sample_11
+saveframe_sample_description	_Concentration_value	0	?	_*1sample_11
+saveframe_sample_description	_sample_content_label_10	0	?	_*1sample_11
+saveframe_sample_description	_space_17	0	?	_*1sample_11
+saveframe_sample_description	_Concentration_min_value	0	1	_*1sample_11
+saveframe_sample_description	_Concentration_max_value	0	2	_*1sample_11
+saveframe_sample_description	_Concentration_value_units	0	mM	_*1sample_11
+saveframe_sample_description	_isotopic_labeling	0	[U 13C; U 15N]	_*1sample_11
+saveframe_sample_description	_*2sample_description		?	
+saveframe_sample_description	_*2sample		?	
+saveframe_sample_description	_b_space_10		?	
+saveframe_sample_description	_b_label_10		?	
+saveframe_sample_description	_b_space_12		?	
+saveframe_sample_description	_b_sample_framecode		?	
+saveframe_sample_description	_b_space_35		?	
+saveframe_sample_description	_b_solution		?	
+saveframe_sample_description	_b_bicell_solution		?	
+saveframe_sample_description	_b_micelles		?	
+saveframe_sample_description	_b_liposomes		?	
+saveframe_sample_description	_b_emulsion		?	
+saveframe_sample_description	_b_gel		?	
+saveframe_sample_description	_b_solid		?	
+saveframe_sample_description	_b_space_22		?	
+saveframe_sample_description	_b_Details		?	
+saveframe_sample_description	_*1sample_description	0	?	_*1sample_12
+saveframe_sample_description	_*1sample	0	?	_*1sample_12
+saveframe_sample_description	_b_sample_content_label_0	0	?	_*1sample_12
+saveframe_sample_description	_b_space_10	0	?	_*1sample_12
+saveframe_sample_description	_b_Mol_label	0	?	_*1sample_12
+saveframe_sample_description	_b_sample_content_label_1	0	?	_*1sample_12
+saveframe_sample_description	_b_space_22	0	?	_*1sample_12
+saveframe_sample_description	_b_Concentration_value	0	?	_*1sample_12
+saveframe_sample_description	_b_sample_content_label_10	0	?	_*1sample_12
+saveframe_sample_description	_b_space_17	0	?	_*1sample_12
+saveframe_sample_description	_b_Concentration_min_value	0	?	_*1sample_12
+saveframe_sample_description	_b_Concentration_max_value	0	?	_*1sample_12
+saveframe_sample_description	_b_Concentration_value_units	0	?	_*1sample_12
+saveframe_sample_description	_b_Isotopic_labeling	0	?	_*1sample_12
+saveframe_sample_description	_*3sample_description		?	
+saveframe_sample_description	_*3sample		?	
+saveframe_sample_description	_c_space_10		?	
+saveframe_sample_description	_c_label_10		?	
+saveframe_sample_description	_c_space_12		?	
+saveframe_sample_description	_c_sample_framecode		?	
+saveframe_sample_description	_c_space_35		?	
+saveframe_sample_description	_c_solution		?	
+saveframe_sample_description	_c_bicell_solution		?	
+saveframe_sample_description	_c_micelles		?	
+saveframe_sample_description	_c_liposomes		?	
+saveframe_sample_description	_c_emulsion		?	
+saveframe_sample_description	_c_gel		?	
+saveframe_sample_description	_c_solid		?	
+saveframe_sample_description	_c_space_22		?	
+saveframe_sample_description	_c_Details		?	
+saveframe_sample_description	_*3sample_description	0	?	_*3sample_13
+saveframe_sample_description	_*3sample	0	?	_*3sample_13
+saveframe_sample_description	_c_sample_content_label_0	0	?	_*3sample_13
+saveframe_sample_description	_c_space_10	0	?	_*3sample_13
+saveframe_sample_description	_c_Mol_label	0	?	_*3sample_13
+saveframe_sample_description	_c_sample_content_label_1	0	?	_*3sample_13
+saveframe_sample_description	_c_space_22	0	?	_*3sample_13
+saveframe_sample_description	_c_Concentration_value	0	?	_*3sample_13
+saveframe_sample_description	_c_sample_content_label_10	0	?	_*3sample_13
+saveframe_sample_description	_c_space_17	0	?	_*3sample_13
+saveframe_sample_description	_c_Concentration_min_value	0	?	_*3sample_13
+saveframe_sample_description	_c_Concentration_max_value	0	?	_*3sample_13
+saveframe_sample_description	_c_Concentration_value_units	0	?	_*3sample_13
+saveframe_sample_description	_c_Isotopic_labeling	0	?	_*3sample_13
+saveframe_sample_description	_*4sample_description		?	
+saveframe_sample_description	_*4sample		?	
+saveframe_sample_description	_d_space_10		?	
+saveframe_sample_description	_d_label_10		?	
+saveframe_sample_description	_d_space_12		?	
+saveframe_sample_description	_d_sample_framecode		?	
+saveframe_sample_description	_d_space_35		?	
+saveframe_sample_description	_d_solution		?	
+saveframe_sample_description	_d_bicell_solution		?	
+saveframe_sample_description	_d_micelles		?	
+saveframe_sample_description	_d_liposomes		?	
+saveframe_sample_description	_d_emulsion		?	
+saveframe_sample_description	_d_gel		?	
+saveframe_sample_description	_d_solid		?	
+saveframe_sample_description	_d_space_22		?	
+saveframe_sample_description	_d_Details		?	
+saveframe_sample_description	_*4sample_description	0	?	_*4sample_14
+saveframe_sample_description	_*4sample	0	?	_*4sample_14
+saveframe_sample_description	_d_sample_content_label_0	0	?	_*4sample_14
+saveframe_sample_description	_d_space_10	0	?	_*4sample_14
+saveframe_sample_description	_d_Mol_label	0	?	_*4sample_14
+saveframe_sample_description	_d_sample_content_label_1	0	?	_*4sample_14
+saveframe_sample_description	_d_space_22	0	?	_*4sample_14
+saveframe_sample_description	_d_Concentration_value	0	?	_*4sample_14
+saveframe_sample_description	_d_sample_content_label_10	0	?	_*4sample_14
+saveframe_sample_description	_d_space_17	0	?	_*4sample_14
+saveframe_sample_description	_d_Concentration_min_value	0	?	_*4sample_14
+saveframe_sample_description	_d_Concentration_max_value	0	?	_*4sample_14
+saveframe_sample_description	_d_Concentration_value_units	0	?	_*4sample_14
+saveframe_sample_description	_d_Isotopic_labeling	0	?	_*4sample_14
+saveframe_sample_description	_*5sample_description	0	?	_*5sample_15
+saveframe_sample_description	_*5sample	0	?	_*5sample_15
+saveframe_sample_description	_e_space_10	0	?	_*5sample_15
+saveframe_sample_description	_e_label_10	0	?	_*5sample_15
+saveframe_sample_description	_e_label_15	0	?	_*5sample_15
+saveframe_sample_description	_e_space_12	0	?	_*5sample_15
+saveframe_sample_description	_e_sample_framecode	0	?	_*5sample_15
+saveframe_sample_description	_e_sample_contents	0	?	_*5sample_15
+saveframe_expt_conditions	_dummy		?	
+saveframe_expt_conditions	_expt_conditions	0	?	_Details_16
+saveframe_expt_conditions	_sample_conditions	0	sample_conditions	_Details_16
+saveframe_expt_conditions	_dummy	0	?	_Details_16
+saveframe_expt_conditions	_reporting_conditions_label_1	0	?	_Details_16
+saveframe_expt_conditions	_space_10	0	?	_Details_16
+saveframe_expt_conditions	_reporting_conditions_label_0	0	?	_Details_16
+saveframe_expt_conditions	_space_11	0	?	_Details_16
+saveframe_expt_conditions	_space_21	0	?	_Details_16
+saveframe_expt_conditions	_reporting_conditions_framecode	0	Ex-cond 1	_Details_16
+saveframe_expt_conditions	_space_42	0	?	_Details_16
+saveframe_expt_conditions	_space_23	0	?	_Details_16
+saveframe_expt_conditions	_label_11	0	?	_Details_16
+saveframe_expt_conditions	_Variable_type_pH	0	?	_Details_16
+saveframe_expt_conditions	_space_35	0	?	_Details_16
+saveframe_expt_conditions	_pH	0	pH	_Details_16
+saveframe_expt_conditions	_pH*	0	pH	_Details_16
+saveframe_expt_conditions	_pD	0	pH	_Details_16
+saveframe_expt_conditions	_space_41	0	?	_Details_16
+saveframe_expt_conditions	_Variable_value_pH	0	5.5	_Details_16
+saveframe_expt_conditions	_Variable_value_error_pH	0	0.1	_Details_16
+saveframe_expt_conditions	_Variable_value_units_pH	0	?	_Details_16
+saveframe_expt_conditions	_space_12	0	?	_Details_16
+saveframe_expt_conditions	_space_24	0	?	_Details_16
+saveframe_expt_conditions	_temperature_label_0	0	?	_Details_16
+saveframe_expt_conditions	_temperature	0	30C	_Details_16
+saveframe_expt_conditions	_Variable_value_error_temp	0	1	_Details_16
+saveframe_expt_conditions	_Variable_value_units_temp	0	?	_Details_16
+saveframe_expt_conditions	_space_13	0	?	_Details_16
+saveframe_expt_conditions	_space_25	0	?	_Details_16
+saveframe_expt_conditions	_ionic_strength_label_0	0	?	_Details_16
+saveframe_expt_conditions	_space_31	0	?	_Details_16
+saveframe_expt_conditions	_label_21	0	?	_Details_16
+saveframe_expt_conditions	_space_32	0	?	_Details_16
+saveframe_expt_conditions	_ionic_strength	0	0.005	_Details_16
+saveframe_expt_conditions	_Variable_value_error_ionic_strength	0	0.003	_Details_16
+saveframe_expt_conditions	_Variable_value_units_is	0	?	_Details_16
+saveframe_expt_conditions	_space_14	0	?	_Details_16
+saveframe_expt_conditions	_space_26	0	?	_Details_16
+saveframe_expt_conditions	_pressure_label_0	0	?	_Details_16
+saveframe_expt_conditions	_label_24	0	?	_Details_16
+saveframe_expt_conditions	_space_38	0	?	_Details_16
+saveframe_expt_conditions	_pressure	0	?	_Details_16
+saveframe_expt_conditions	_Variable_value_error_pressure	0	?	_Details_16
+saveframe_expt_conditions	_Variable_value_units_pressure	0	?	_Details_16
+saveframe_expt_conditions	_space_15	0	?	_Details_16
+saveframe_expt_conditions	_space_16	0	?	_Details_16
+saveframe_expt_conditions	_space_27	0	?	_Details_16
+saveframe_expt_conditions	_label_16	0	?	_Details_16
+saveframe_expt_conditions	_Details	0	?	_Details_16
+saveframe_NMR_experimental	_dummy		?	
+saveframe_NMR_experimental	_NMR_experimental		NMR_applied_experiment	
+saveframe_NMR_experimental	_NMR_applied_experiment		NMR_applied_experiment	
+saveframe_NMR_experimental	_label_5		?	
+saveframe_NMR_experimental	_label_10		?	
+saveframe_NMR_experimental	_space_15		?	
+saveframe_NMR_experimental	_space_20		?	
+saveframe_NMR_experimental	_space_25		?	
+saveframe_NMR_experimental	_label_30		?	
+saveframe_NMR_experimental	_label_35		?	
+saveframe_NMR_experimental	_space_40		?	
+saveframe_NMR_experimental	_nmr_experiments		2D 1H-1H TOCSY\n2D 1H-1H NOESY\n2D 1H-15N HSQC\n	
+saveframe_NMR_experimental	_space_45		?	
+saveframe_NMR_experimental	_nmr_experiment_details		?	
+saveframe_NMR_experimental	_space_50		?	
+saveframe_NMR_experimental	_space_55		?	
+saveframe_NMR_experimental	_label_60		?	
+saveframe_NMR_experimental	_label_65		?	
+saveframe_NMR_experimental	_space_70		?	
+saveframe_NMR_experimental	_spectrometer		AMX600             Bruker	
+saveframe_NMR_experimental	_space_75		?	
+saveframe_NMR_experimental	_spectrometer_details		?	
+saveframe_NMR_experimental	_space_80		?	
+saveframe_NMR_experimental	_space_85		?	
+saveframe_NMR_experimental	_*2NMR_experimental	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_software_sf	0	software	_*2NMR_experimental_17
+saveframe_NMR_experimental	_software	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_nmrexp_label_15	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_nmrexp_label_16	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_software_name	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_software_version	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_Software_task	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_space_10	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_software_citation	0	?	_*2NMR_experimental_17
+saveframe_NMR_experimental	_soft_details	0	?	_*2NMR_experimental_17
+saveframe_nmr_parameters	_dummy		?	
+saveframe_nmr_parameters	_nmr_parameters		?	
+saveframe_nmr_parameters	_space_105		?	
+saveframe_nmr_parameters	_label_105		?	
+saveframe_nmr_parameters	_cbx_chemical_shifts		on	
+saveframe_nmr_parameters	_cbx_coupling_constants		off	
+saveframe_nmr_parameters	_space_16		?	
+saveframe_nmr_parameters	_space_18		?	
+saveframe_nmr_parameters	_*1nmr_parameters		?	
+saveframe_nmr_parameters	_chem_shift_reference		chemical_shift_reference	
+saveframe_nmr_parameters	_dummy		?	
+saveframe_nmr_parameters	_label_10		?	
+saveframe_nmr_parameters	_space_15		?	
+saveframe_nmr_parameters	_chem_shift_ref_framecode		CSR 1	
+saveframe_nmr_parameters	_space_20		?	
+saveframe_nmr_parameters	_space_25		?	
+saveframe_nmr_parameters	_chem_shift_label_0		?	
+saveframe_nmr_parameters	_space_30		?	
+saveframe_nmr_parameters	_chem_shift_label_1		?	
+saveframe_nmr_parameters	_chem_shift_label_31		?	
+saveframe_nmr_parameters	_space_35		?	
+saveframe_nmr_parameters	_chem_shift_label_32		?	
+saveframe_nmr_parameters	_chem_shift_label_33		?	
+saveframe_nmr_parameters	_chem_shift_label_34		?	
+saveframe_nmr_parameters	_chem_shift_label_35		?	
+saveframe_nmr_parameters	_chem_shift_label_36		?	
+saveframe_nmr_parameters	_chem_shift_label_37		?	
+saveframe_nmr_parameters	_space_40		?	
+saveframe_nmr_parameters	_chem_shift_label_38		?	
+saveframe_nmr_parameters	_space_45		?	
+saveframe_nmr_parameters	_chem_shift_ref_1		on	
+saveframe_nmr_parameters	_chem_shift_ref_5		?	
+saveframe_nmr_parameters	_chem_shift_ref_2		?	
+saveframe_nmr_parameters	_chem_shift_ref_3		on	
+saveframe_nmr_parameters	_chem_shift_ref_4		?	
+saveframe_nmr_parameters	_space_50		?	
+saveframe_nmr_parameters	_space_55		?	
+saveframe_nmr_parameters	_*0nmr_parameters	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_*1chemical_shift_reference	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_2	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_55	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_10	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_3	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_15	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Atom_type	0	H	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Atom_isotope_number	0	1	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Mol_common_name	0	TSP	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Atom_group	0	methyl	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Chemical_shift_units	0	ppm	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Chemical_shift_value	0	0.00	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_20	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_10	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_internal	0	internal	_*0nmr_parameters_18
+saveframe_nmr_parameters	_External_in_the_sample	0	internal	_*0nmr_parameters_18
+saveframe_nmr_parameters	_external_to_the_sample	0	internal	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_25	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_11	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_direct	0	direct	_*0nmr_parameters_18
+saveframe_nmr_parameters	_indirect	0	direct	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_30	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_12	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_spherical	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_cylindrical	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_35	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_other_orientation	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_40	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_14	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_parallel_to_Bo	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_perpendicular_to_Bo	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_45	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Indirect_shift_ratio	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Indirect_shift_ratio_citation_label	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Reference_correction_type	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Correction_value	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Correction_value_citation_label	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Details	0	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_*0nmr_parameters	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_*1chemical_shift_reference	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_2	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_55	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_10	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_3	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_15	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Atom_type	1	N	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Atom_isotope_number	1	15	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Mol_common_name	1	TSP	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Atom_group	1	methyl	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Chemical_shift_units	1	ppm	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Chemical_shift_value	1	0.00	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_20	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_10	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_internal	1	internal	_*0nmr_parameters_18
+saveframe_nmr_parameters	_External_in_the_sample	1	internal	_*0nmr_parameters_18
+saveframe_nmr_parameters	_external_to_the_sample	1	internal	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_25	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_11	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_direct	1	indirect	_*0nmr_parameters_18
+saveframe_nmr_parameters	_indirect	1	indirect	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_30	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_12	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_spherical	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_cylindrical	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_35	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_other_orientation	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_40	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_chem_shift_label_14	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_parallel_to_Bo	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_perpendicular_to_Bo	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_space_45	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Indirect_shift_ratio	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Indirect_shift_ratio_citation_label	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Reference_correction_type	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Correction_value	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Correction_value_citation_label	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_Details	1	?	_*0nmr_parameters_18
+saveframe_nmr_parameters	_*2nmr_parameters	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_dummy	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_assigned_chemical_shifts	0	assigned_chemical_shifts	_*2nmr_parameters_19
+saveframe_nmr_parameters	_chemical_shift_label_0	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_10	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_15	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_20	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_25	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_chem_shift_framecode	0	shift set 1	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_30	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_35	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_40	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_45	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_file_path_name	0	C:Mis documentos/doug/RNaseSa/gen_atom_list_5K.htm	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Mol_system_component_name	0	5K RNase Sa	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Sample_label	0	sample 1	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Sample_conditions_label	0	cond. set 1	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_reference_set_label	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_50	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_55	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_60	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_h_chemshift_error	0	0.01	_*2nmr_parameters_19
+saveframe_nmr_parameters	_d_chemshift_error	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_t_chemshift_error	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_c_chemshift_error	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_n_chemshift_error	0	0.15	_*2nmr_parameters_19
+saveframe_nmr_parameters	_p_chemshift_error	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_f_chemshift_error	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_65	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Details	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_70	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_ambiguity_table_label_0	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_75	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_80	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_85	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_ambiguity_table	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_90	0	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_*2nmr_parameters	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_dummy	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_assigned_chemical_shifts	1	assigned_chemical_shifts	_*2nmr_parameters_19
+saveframe_nmr_parameters	_chemical_shift_label_0	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_10	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_15	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_20	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_25	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_chem_shift_framecode	1	shift set 1	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_30	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_35	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_40	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_45	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_file_path_name	1	gen_atom_list_5K.htm	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Mol_system_component_name	1	5K RNase Sa	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Sample_label	1	sample 1	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Sample_conditions_label	1	cond. set 1	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_reference_set_label	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_50	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_55	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_60	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_h_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_d_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_t_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_c_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_n_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_p_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_f_chemshift_error	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_65	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_cs_Details	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_70	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_ambiguity_table_label_0	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_75	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_label_80	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_85	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_ambiguity_table	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_space_90	1	?	_*2nmr_parameters_19
+saveframe_nmr_parameters	_*3nmr_parameters	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_coupling_constants	0	coupling_constants	_*3nmr_parameters_20
+saveframe_nmr_parameters	_dummy	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_label_0	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_space_10	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_coupling_constants	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_space_15	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_space_20	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_coupling_constants_framecode	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_space_25	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_space_30	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_label_35	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_space_40	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_file_path_name	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_Mol_system_component_name	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_Sample_label	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_Sample_conditions_label	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_Spectrometer_frequency_1H	0	?	_*3nmr_parameters_20
+saveframe_nmr_parameters	_j_Details	0	?	_*3nmr_parameters_20
+saveframe_references	_dummy		?	
+saveframe_references	_references	0	?	_Citation_framecode_21
+saveframe_references	_citation	0	citation	_Citation_framecode_21
+saveframe_references	_dummy	0	?	_Citation_framecode_21
+saveframe_references	_Citation_label_0	0	?	_Citation_framecode_21
+saveframe_references	_Citation_label_1	0	?	_Citation_framecode_21
+saveframe_references	_space_10	0	?	_Citation_framecode_21
+saveframe_references	_Citation_framecode	0	?	_Citation_framecode_21
+saveframe_references	_space_15	0	?	_Citation_framecode_21
+saveframe_references	_space_20	0	?	_Citation_framecode_21
+saveframe_references	_label_25	0	?	_Citation_framecode_21
+saveframe_references	_space_30	0	?	_Citation_framecode_21
+saveframe_references	_medline_an	0	?	_Citation_framecode_21
+saveframe_references	_space_35	0	?	_Citation_framecode_21
+saveframe_references	_label_40	0	?	_Citation_framecode_21
+saveframe_references	_space_45	0	?	_Citation_framecode_21
+saveframe_references	_Citation_full	0	?	_Citation_framecode_21
+saveframe_files_deposited	_dummy		?	

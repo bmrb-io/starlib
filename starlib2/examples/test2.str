@@ -1,0 +1,29 @@
+#
+#  This file is input for testing the array notation example
+#  program.
+#
+#   Run it like this:
+#
+#     array_usage < array_usage.str
+#
+
+global_
+
+    _flat_tag_0  "value0"
+    _flat_tag_1  "value1"
+    _flat_tag_2  "value2"
+    _flat_tag_3  "value3"
+
+    # This loop is going to be in the global array at
+    # index "4":
+    loop_
+	_outer_looptag_0
+	_inner_looptag_1
+	_inner_looptag_2
+	_pad_tag_1
+
+	10.21    4   3.3 pad
+    stop_
+
+    _flat_tag_5  "value4"
+    _flat_tag_6  "value5"

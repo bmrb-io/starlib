@@ -1,0 +1,276 @@
+<html><head><TITLE>ASTlist</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> template <class T>   class  ASTlist : public <!2><A HREF="List.html#DOC.85.3">List</A> <T> </H2><BLOCKQUOTE>
+
+The purpose of this type is to be a template class just like
+the base "List" is, but with the added caveat that it works
+on ASTnodes that are part of an AST star file tree
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=65>
+<param name=classes value="CList,MList.html,CASTlist,MASTlist.html">
+<param name=before value="M,M">
+<param name=after value="Md_,M">
+<param name=indent value="0,1">
+<param name=arrowdir value="up">
+</APPLET>
+<hr>
+
+<DL>
+<TABLE BORDER>
+<DT><h3>Public Fields</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.74.12"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.12">const_iterator</A> </TD><TD><B>const_iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.6"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  const  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>* </TD><TD><B>const_pointer</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.8"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  const  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>& </TD><TD><B>const_reference</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.14"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.14">const_reverse_iterator</A> </TD><TD><B>const_reverse_iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.10"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  size_t </TD><TD><B>difference_type</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.11"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> </TD><TD><B>iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.5"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>* </TD><TD><B>pointer</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.7"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>& </TD><TD><B>reference</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.13"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.13">reverse_iterator</A> </TD><TD><B>reverse_iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.9"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  size_t </TD><TD><B>size_type</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.4"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  T </TD><TD><B>value_type</B> <br>
+<I></I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public Methods</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.74.22"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>AddToEnd</B> (<!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> &appendMe)<br>
+<I> <em>DEPRECIATED</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.25"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>AlterCurrent</B> (T k)<br>
+<I> <em>DEPRECIATED</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.16"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ASTlist</B> (const <!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> & L)<br>
+<I> constructor (giving the parent node)</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.17"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ASTlist</B> (const <!2><A HREF="List.html#DOC.85.3">List</A><T> & L)<br>
+<I> copy constructor</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.15"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>ASTlist</B> ( <!1><A HREF="ASTnode.2.html">ASTnode</A> *parent )<br>
+<I> constructor (default)</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.20"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>insert</B> ( <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> pos, <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> first, <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> last )<br>
+<I> Identical to the STL vector method of the same prototype.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.19"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> </TD><TD><B>insert</B> ( <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> pos, const T& x )<br>
+<I> Identical to the STL vector method of the same prototype.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.23"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>Insert</B> (<!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> &appendMe)<br>
+<I> <em>DEPRECIATED</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.21"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>insert</B> ( <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> pos, <!2><A HREF="ASTlist.html#DOC.74.9">size_type</A> n, const T& x)<br>
+<I> Identical to the STL vector method of the same prototype.</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.24"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>InsertAfter</B> (<!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> &appendMe)<br>
+<I> <em>DEPRECIATED</em></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.1"> <IMG BORDER=0 SRC=icon1.gif></A> <!1><A HREF="ASTnode.2.html">ASTnode</A>* </TD><TD><B>myParent</B> ( void ) const <br>
+<I>myParent() - gets the parent ASTnode that this list
+is contained inside</I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.2"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>setParent</B> ( <!1><A HREF="ASTnode.2.html">ASTnode</A> *setToThis )<br>
+<I>setParent() - sets the parent ASTnode that this list is
+inside of</I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.74.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.74.3.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I><font size=+1>
+The following functions are identical to their equivilent
+functions in List<>, but they have been changed to ensure
+that the newly added ASTnodes will have the proper parent
+pointer copied to them</I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.74.18"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I> copy constructor for List<>.</I>
+</TD></TR></TABLE></DL>
+<hr><H3>Inherited from <A HREF="List.html">List:</A></h3>
+
+<DL>
+<DL>
+<DT><h3>Public Methods</h3><DD><DT><IMG SRC=icon2.gif> bool  <B>AtEnd</B>() const 
+<DT><IMG SRC=icon2.gif> bool  <B>AtStart</B>() const 
+<DT><IMG SRC=icon2.gif> T  <B>Current</B>()
+<DT><IMG SRC=icon2.gif> void  <B>FreeList</B>()
+<DT><IMG SRC=icon2.gif> T  <B>Last</B>() const 
+<DT><IMG SRC=icon2.gif> int  <B>Length</B>() const 
+<DT><IMG SRC=icon2.gif> bool  <B>Lookup</B>(T k)
+<DT><IMG SRC=icon2.gif> void  <B>MemorizeCurrent</B>()
+<DT><IMG SRC=icon2.gif> void  <B>Next</B>()
+<DT><IMG SRC=icon2.gif> <!2><A HREF="List.html#DOC.85.3">List</A>&  <B>operator = </B>(const <!2><A HREF="List.html#DOC.85.3">List</A><T> & dl)
+<DT><IMG SRC=icon2.gif> void  <B>Prev</B>()
+<DT><IMG SRC=icon2.gif> void  <B>RemoveCurrent</B>()
+<DT><IMG SRC=icon2.gif> void  <B>Reset</B>()
+<DT><IMG SRC=icon2.gif> void  <B>RestoreCurrent</B>()
+<DT><IMG SRC=icon2.gif> bool  <B>SeekTo</B>( T obj )
+</DL></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+The purpose of this type is to be a template class just like
+the base "List" is, but with the added caveat that it works
+on ASTnodes that are part of an AST star file tree.
+The idea is that the list itself remembers who it's parent
+is, and therefore it can propigate that parent on to any
+new AST objects that are attached to the list.
+
+WARNING ! WARNING ! WARNING ! WARNING ! WARNING ! WARNING !
+WARNING ! WARNING ! WARNING ! WARNING ! WARNING ! WARNING !
+WARNING ! WARNING ! WARNING ! WARNING ! WARNING ! WARNING !
+===========================================================
+Although this class is a template that looks like
+it should work on any class, it REALLY only works
+correctly on classes derived from ASTnode.
+It will crash the code (segfault) if you try to use
+this list on a type which is not derived from
+ASTnode.  Due to a nasty syntax catch-22, I was forced
+to make this look like it would operate on any generic
+class.  (template <ASTnode*T> would not work).
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="value_type">
+<A NAME ="DOC.74.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  T  value_type</B></TT>
+<DL></DL><P>
+<A NAME="pointer">
+<A NAME ="DOC.74.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>*  pointer</B></TT>
+<DL></DL><P>
+<A NAME="const_pointer">
+<A NAME ="DOC.74.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  const  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>*  const_pointer</B></TT>
+<DL></DL><P>
+<A NAME="reference">
+<A NAME ="DOC.74.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>&  reference</B></TT>
+<DL></DL><P>
+<A NAME="const_reference">
+<A NAME ="DOC.74.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  const  <!2><A HREF="ASTlist.html#DOC.74.4">value_type</A>&  const_reference</B></TT>
+<DL></DL><P>
+<A NAME="size_type">
+<A NAME ="DOC.74.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  size_t  size_type</B></TT>
+<DL></DL><P>
+<A NAME="difference_type">
+<A NAME ="DOC.74.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  size_t  difference_type</B></TT>
+<DL></DL><P>
+<A NAME="iterator">
+<A NAME ="DOC.74.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.11">iterator</A>  iterator</B></TT>
+<DL></DL><P>
+<A NAME="const_iterator">
+<A NAME ="DOC.74.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.12">const_iterator</A>  const_iterator</B></TT>
+<DL></DL><P>
+<A NAME="reverse_iterator">
+<A NAME ="DOC.74.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.13">reverse_iterator</A>  reverse_iterator</B></TT>
+<DL></DL><P>
+<A NAME="const_reverse_iterator">
+<A NAME ="DOC.74.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="ASTlist.html#DOC.74.14">const_reverse_iterator</A>  const_reverse_iterator</B></TT>
+<DL></DL><P>
+<A NAME="ASTlist">
+<A NAME ="DOC.74.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ASTlist( <!1><A HREF="ASTnode.2.html">ASTnode</A> *parent )</B></TT>
+<DD> constructor (default)
+<DL></DL><P>
+<A NAME="ASTlist">
+<A NAME ="DOC.74.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ASTlist(const <!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> & L)</B></TT>
+<DD> constructor (giving the parent node)
+<DL></DL><P>
+<A NAME="ASTlist">
+<A NAME ="DOC.74.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  ASTlist(const <!2><A HREF="List.html#DOC.85.3">List</A><T> & L)</B></TT>
+<DD> copy constructor
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.74.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD> copy constructor for List<>.
+<DL></DL><P>
+<A NAME="myParent">
+<A NAME ="DOC.74.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!1><A HREF="ASTnode.2.html">ASTnode</A>*  myParent( void ) const </B></TT>
+<DD>myParent() - gets the parent ASTnode that this list
+is contained inside.  Returns NULL if this list is
+not contained inside a parent ASTnode.
+<DL></DL><P>
+<A NAME="setParent">
+<A NAME ="DOC.74.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  setParent( <!1><A HREF="ASTnode.2.html">ASTnode</A> *setToThis )</B></TT>
+<DD>setParent() - sets the parent ASTnode that this list is
+inside of.  This parent will be propigated to any new
+ASTnodes that are added to this ASTlist.
+Thus if a user of the AST library gets a hold of one
+of the ASTlists that is in the library, that user can
+add new items to that list and still retain integrety.
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.74.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="">
+<A NAME ="DOC.74.3.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD><font size=+1>
+The following functions are identical to their equivilent
+functions in List<>, but they have been changed to ensure
+that the newly added ASTnodes will have the proper parent
+pointer copied to them.
+</font>
+<DL></DL><P></DL>
+
+<A NAME="insert">
+<A NAME ="DOC.74.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A>  insert( <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> pos, const T& x )</B></TT>
+<DD> Identical to the STL vector method of the same prototype.
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.74.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  insert( <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> pos, <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> first, <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> last )</B></TT>
+<DD> Identical to the STL vector method of the same prototype.
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.74.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  insert( <!2><A HREF="ASTlist.html#DOC.74.11">iterator</A> pos, <!2><A HREF="ASTlist.html#DOC.74.9">size_type</A> n, const T& x)</B></TT>
+<DD> Identical to the STL vector method of the same prototype.
+<DL></DL><P>
+<A NAME="AddToEnd">
+<A NAME ="DOC.74.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  AddToEnd(<!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> &appendMe)</B></TT>
+<DD> <em>DEPRECIATED</em>
+<DL></DL><P>
+<A NAME="Insert">
+<A NAME ="DOC.74.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  Insert(<!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> &appendMe)</B></TT>
+<DD> <em>DEPRECIATED</em>
+<DL></DL><P>
+<A NAME="InsertAfter">
+<A NAME ="DOC.74.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  InsertAfter(<!2><A HREF="ASTlist.html#DOC.74.16">ASTlist</A><T> &appendMe)</B></TT>
+<DD> <em>DEPRECIATED</em>
+<DL></DL><P>
+<A NAME="AlterCurrent">
+<A NAME ="DOC.74.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  AlterCurrent(T k)</B></TT>
+<DD> <em>DEPRECIATED</em>
+<DL></DL><P></DL>
+<hr>
+ <DL><DT><B>This class has no child classes.</B></DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

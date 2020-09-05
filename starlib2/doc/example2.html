@@ -1,0 +1,223 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: example 2</TITLE>
+    <LINK HREF=bugs.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>Starlib: example 2</H1>
+    <H2>(Deleting something)</H2>
+    This example shows how to delete something.
+    <P>
+    Let's assume that you have already read a STAR file into memory
+    using <CODE>yyparse()</CODE> as shown in the <A HREF=main.html>
+    main example</A>.  This star file is pointed to by the variable
+    called <CODE>AST</CODE>
+    <P>
+    To delete something you must first get a pointer to it via
+    one of the searching techniques, then you delete that pointer.
+    It's that simple.  Almost.
+    <P>
+    The destructors for the various nodes are set up to automatically
+    remove a node from its parent when it gets deleted via the
+    <CODE>delete</CODE> operator.  So to delete a DataItemNode,
+    simply use the <CODE>delete</CODE> operator on it.  To delete
+    a save frame, get a pointer to it and use the <CODE>delete</CODE>
+    operator on it.
+    <P>
+    The place where this idea breaks down is where deleting something
+    causes descrepencies to appear in the STAR tree.  For example,
+    it makes no sense to delete a single DataValueNode from inside a
+    loop, leaving a "hole".  Therefore, it is sometimes dangerous to
+    delete something directly from a star file tree.  The table below
+    should help sort things out.
+    <P>
+    The following is a list of types of nodes where it is safe to
+    use the delete operator directly to delete a node:
+    <TABLE BORDER>
+	<TR>
+	    <TH>Node Type
+	    <TH COLSPAN=2>Effect of deleting
+	<TR>
+	    <TH><CODE>BlockNode</CODE>
+	    <TD>OK
+	    <TD>Deletes the Block Node properly.
+	<TR>
+	    <TH><CODE>DataBlockNode</CODE>
+	    <TD>OK
+	    <TD>Deletes the BLock Node properly.
+	<TR>
+	    <TH><CODE>DataFileNode</CODE>
+	    <TD>Not defined.
+	    <TD>
+	<TR>
+	    <TH><CODE>DataHeadingNode</CODE>
+	    <TD>Do not delete.
+	    <TD>Deleting a Heading for a data node
+	        without deleting the datanode itself is meaningless.
+	<TR>
+	    <TH><CODE>DataItemNode</CODE>
+	    <TD>OK
+	    <TD>Deletes the DataItemNode from the save frame or
+	        data block or global block that it is inside.
+	<TR>
+	    <TH><CODE>DataListNode</CODE>
+	    <TD>Do not delete.
+	    <TD>Deleting a DataListNode without
+	        also deleting the block it is inside of is meaningless.
+	<TR>
+	    <TH><CODE>DataLoopDefListNode</CODE>
+	    <TD>Do not delete.
+	    <TD>Deleting a DataLoopDefListNode without
+	        also deleting the loop it is inside of is meaningless.
+	<TR>
+	    <TH><CODE>DataLoopNode</CODE>
+	    <TD>OK
+	    <TD>Deletes the loop from the save frame or data block
+	        or global block that it is inside of.
+	<TR>
+	    <TH><CODE>DataLoopValListNode</CODE>
+	    <TD>Do not Delete.
+	    <TD>Deleting a data loop val list without
+	        also deleting the loop it is inside of is meaningless.
+	<TR>
+	    <TH><CODE>DataNameNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a data name from inside of a loop or
+	        a data item is meaningless.  But note, however,
+		that DataLoopNode does have a function called
+		<CODE>RemoveColumn()</CODE>, if removing the
+		entire column under the tag as well as the tag
+		is what is desired.
+	<TR>
+	    <TH><CODE>DataNode</CODE>
+	    <TD>N/A
+	    <TD>There is no such thing as
+	        a node that is a DataNode.  DataNode is a pure
+		virtual class, from which are derived DataItemNode,
+		DataLoopNode, and SaveFrameNode.
+	<TR>
+	    <TH><CODE>DataValueNode</CODE>
+	    <TD>Do not Delete.
+	    <TD>Deleting a data value without deleting
+	        the item or loop it is inside of is meaningless.
+	<TR>
+	    <TH><CODE>GlobalBlockNode</CODE>
+	    <TD>OK
+	    <TD>Deleting a GlobalBlockNode deletes everything inside it.
+	<TR>
+	    <TH><CODE>GlobalHeadingNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a heading without deleting the
+	        thing it labels is meaningless.
+	<TR>
+	    <TH><CODE>HeadingNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a heading without deleting the
+	        thing it labels is meaningless.
+	<TR>
+	    <TH><CODE>LoopDefListNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a LoopDefListNode without
+	        deleting the loop it is inside of is meaningless.
+	<TR>
+	    <TH><CODE>SaveFrameListNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a SaveFrameListNode without
+	        also deleting the SaveFrameNode it is inside of is
+		meaningless.
+	<TR>
+	    <TH><CODE>SaveFrameNode</CODE>
+	    <TD>OK
+	    <TD>Deleting a SaveFrameNode will delete all its contents.
+	<TR>
+	    <TH><CODE>SaveHeadingNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a SaveHeadingNode without
+	        also deleting the SaveFrameNode it is inside of is
+		meaningless.
+	<TR>
+	    <TH><CODE>StarListNode</CODE>
+	    <TD>Do Not Delete.
+	    <TD>Deleting a StarListNode without
+	        also deleting the StarFileNode it is inside of is
+		meaningless.
+	<TR>
+	    <TH><CODE>StarFileNode</CODE>
+	    <TD>OK
+	    <TD>Deleting the StarFileNode will delete the entire
+	        star file tree from memory.
+    </TABLE>
+    <P>
+    <HR WIDTH=60%>
+    <H2><CENTER>Examples:</CENTER></H2>
+    Here's an example code snippet to delete a saveframe called
+    "save_delete_me":
+    <PRE>
+	<FONT COLOR=BLUE>//Assume "AST" is a ptr to a StarFileNode:</FONT>
+	List&lt;ASTnode*&gt; *matches = AST-&gt;searchByTag( "save_delete_me" );
+	<FONT COLOR=BLUE>
+	//In reality, we know that there should be one match, so this
+	//for-loop is probably overkill:</FONT>
+	for( matches-&gt;Reset() ; ! matches-&gt;AtEnd() ; matches-&gt;Next() )
+	    if( matches-&gt;Current()-&gt;isOfType( ASTnode::SAVEFRAME )
+		delete matches-&gt;Current();
+        <FONT COLOR=BLUE>
+	// You must always delete the list returned by the search
+	// function when you are done with it </FONT>
+	delete results;
+    </PRE>
+    Here is an example to delete all DataItemNodes that have a
+    tag name "_Author_first_name" with a value of "Zaphod":
+    <PRE>
+	<FONT COLOR=BLUE>//Assume "AST" is a ptr to a StarFileNode:</FONT>
+	List&lt;ASTnode*&gt; *matches =
+	    AST-&gt;searchForTypeByTagValue(
+	       ASTnode::DATAITEMNODE, "_Author_first_name", "Zaphod" );
+
+	for( matches-&gt;Reset() ; ! matches-&gt;AtEnd() ; matches-&gt;Next() )
+	    delete matches-&gt;Current();
+        <FONT COLOR=BLUE>
+	// You must always delete the list returned by the search
+	// function when you are done with it </FONT>
+	delete results;
+    </PRE>
+    Here is an example to delete from within a loop the column
+    with the name "_looptag2".  Note that because you are not supposed
+    to directly delete the DataNameNodes that are inside a loop
+    (according to the chart above), you must use a different technique
+    here, namely calling the <CODE>RemoveColumn</CODE> method of
+    <CODE>DataLoopNode</CODE>:
+    <PRE>
+	<FONT COLOR=BLUE>//Assume "AST" is a ptr to a StarFileNode:</FONT>
+	List&lt;ASTnode*&gt; *matches = AST-&gt;searchForTag( "_looptag2" );
+
+	for( matches-&gt;Reset() ; ! matches-&gt;AtEnd() ; matches-&gt;Next() )
+	{
+	    ASTnode *cur = matches-&gt;Current();
+	    <FONT COLOR=BLUE>
+	    // Walk up the parent list until the loop that this match
+	    // was found inside of is reached.  If this match was not
+	    // inside a loop, then this will walk all the way up to
+	    // the root and eventually reach NULL.</FONT>
+	    while(  cur != NULL  &amp;&amp;
+	            ! cur-&gt;isOfType( ASTnode::DATALOOPNODE )  )
+	    {   cur = cur-&gt;myParent();
+	    }
+	    <FONT COLOR=BLUE>
+	    // If we reached NULL, then the match was not in a loop,
+	    // so only do something if it did not reach NULL: </FONT>
+	    if( cur != NULL )
+	    {   ((DataLoopNode*)cur)-&gt;RemoveColumn( "_looptag2" );
+	    }
+	}
+        <FONT COLOR=BLUE>
+	// You must always delete the list returned by the search
+	// function when you are done with it </FONT>
+	delete results;
+    </PRE>
+    
+    <HR>
+    <A HREF=example1.html> - previous topic - </A>
+    <A HREF=parallel.html> - next topic - </A>
+</BODY>

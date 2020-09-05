@@ -1,0 +1,416 @@
+data_data
+
+save_nmr_parameters
+
+   loop_
+      _Details
+
+      "1H chemical shifts were referenced using internal TSP as a standard and pH-corrected values are reported here in ppm relative to DS" 
+
+   stop_
+
+save_
+
+
+save_entry_information
+   _Saveframe_category      entry_information
+
+   _Entry_title            "Backbone 1H, 13C, 15N chemical shift assignments for Azotobacter vinelandii C69A apoflavodoxin"
+
+   loop_
+      _Author_ordinal
+      _Author_family_name
+      _Author_given_name
+      _Author_middle_initials
+      _Author_family_title
+
+       .  .  .  .  . 
+
+   stop_
+
+   _BMRB_accession_number   .
+   _BMRB_flat_file_name     .
+   _Entry_type              new
+   _Submission_date         .
+   _Accession_date          .
+   _Entry_origination       author
+   _NMR_STAR_version        2.1
+   _Experimental_method     NMR
+   _Release_immediately     .
+
+save_
+
+
+save_contact_persons
+   _Saveframe_category   contact_persons
+
+
+   loop_
+      _Family_name
+      _Given_name
+      _Middle_initials
+      _Family_title
+      _Department_and_Institution
+      _Mailing_address
+      _Phone_number
+      _Email_address
+      _FAX_number
+
+       Steensma    
+       Elles 
+       .    
+       . 
+      
+;
+Dept. of Biochemistry
+BMC
+Uppsala University
+; 
+      
+;
+Box 576
+S-75123 Uppsala
+Sweden
+; 
+      "+46 18 4714642" 
+       elles@xray.bmc.uu.se          
+      "+46 18 511755"  
+      
+      "van Mierlo" 
+       Carlo 
+       P.M. 
+       . 
+      
+;
+Dept. of Biochemistry
+Wageningen Agricultural University
+; 
+      
+;
+Dreijenlaan 3
+6703 HA  Wageningen
+The Netherlands
+; 
+      "+31 317 484621" 
+       carlo.vanmierlo@nmr.bc.wau.nl 
+      "+31 317 484801" 
+      
+
+   stop_
+
+save_
+
+
+save_entry_citation
+   _Saveframe_category     entry_citation
+
+   _Citation_full         
+;
+Steensma, E., and van Mierlo, C. P.M.., "Structural characterisation of apoflavodoxin shows that the location of the stable nucleus differs among proteins with a flavodoxin-like topology," J. Mol. Biol., in_press (1998).
+;
+   _Citation_title        "Structural characterisation of apoflavodoxin shows that the location of the stable nucleus differs among proteins with a flavodoxin-like topology"
+   _Citation_status        in_press
+   _Citation_type          journal
+   _MEDLINE_UI_code        .
+
+   loop_
+      _Author_ordinal
+      _Author_family_name
+      _Author_given_name
+      _Author_middle_initials
+      _Author_family_title
+
+       1   Steensma     Elles  .     . 
+       2  "van Mierlo"  Carlo  P.M.  . 
+
+   stop_
+
+   _Journal_abbreviation  "J. Mol. Biol."
+   _Journal_name_full     "Journal of Molecular Biology"
+   _Journal_volume         ?
+   _Page_first             ?
+   _Page_last              ?
+   _Year                   1998
+
+   loop_
+      _Keyword
+
+      "apoflavodoxin, hydrogen/deuterium exchange, protein stability, protein folding, NMR spectroscopy" 
+      
+
+   stop_
+
+save_
+
+
+save_apoflavodoxin
+   _Saveframe_category         molecular_system
+
+   _Mol_system_name           "Azotobacter vinelandii C69A apoflavodoxin II"
+   _Abbreviation_common        apoflavodoxin
+   _Enzyme_commission_number   .
+
+   loop_
+      _Mol_system_component_name
+      _Mol_label
+
+      "apoflavodoxin, apoflavodoxin"  ? 
+
+   stop_
+
+   _System_physical_state      native
+   _System_oligomer_state      monomer
+   _System_paramagnetic        ?
+
+   loop_
+      _Biological_function
+
+      "holoflavodoxin is an electron transfer protein" 
+      
+
+   stop_
+
+   loop_
+      _Database_name
+      _Database_accession_code
+      _Database_entry_mol_name
+      _Database_entry_details
+
+       .  .  ?  . 
+
+   stop_
+
+save_
+
+
+save_na
+   _Saveframe_category     monomeric_polymer
+
+   _Mol_type               polymer
+   _Mol_polymer_class      protein
+   _Name_common           "Azotobacter vinelandii apoflavodoxin II"
+   _Name_variant           C69A
+   _Abbreviation_common    na
+   _Molecular_mass         ~20000
+   _Residue_count          ?
+   _Mol_residue_sequence  
+;
+AKIGLFFGSNTGKTRKVAKSIKKRFDDETMSDALNVNRVSAEDFAQYQFL 
+ILGTPTLGEGELPGLSSDAENESWEEFLPKIEGLDFSGKTVALFGLGDQV
+GYPENYLDALGELYSFFKDRGAKIVGSWSTDGYEFESSEAVVDGKFVGLA
+LDLDNQSGKTDERVAAWLAQIAPEFGLSL
+;
+
+   loop_
+      _Database_name
+      _Database_accession_code
+      _Database_entry_mol_name
+      _Sequence_alignment_details
+
+       .  .  .  . 
+
+   stop_
+
+save_
+
+
+save_natural_source
+   _Saveframe_category   natural_source
+
+
+   loop_
+      _Mol_label
+      _Organism_name_common
+      _NCBI_taxonomy_ID
+      _Superkingdom
+      _Kingdom
+      _Genus
+      _Species
+      _ATCC_number
+
+      $apoflavodoxin  .  .  Eubacteria  .  Azotobacter  vinelandii  478  
+
+   stop_
+
+save_
+
+
+save_experimental_source
+   _Saveframe_category   experimental_source
+
+
+   loop_
+      _Mol_label
+      _Production_method
+      _Host_organism_name_common
+      _Genus
+      _Species
+      _Strain
+      _Vector_name
+
+      $apoflavodoxin 'recombinant technology'  .  .  .  .  . 
+
+   stop_
+
+save_
+
+
+save_sample_1
+   _Saveframe_category   sample
+
+   _Sample_type          solution
+
+   loop_
+      _Mol_label
+      _Concentration_value
+      _Concentration_value_units
+      _Isotopic_labeling
+
+      $apoflavodoxin  ~2  mM  100%-15N 
+
+   stop_
+
+save_
+
+
+save_Felix
+   _Saveframe_category   software
+
+   _Name                 Felix
+   _Version              2.3
+
+   loop_
+      _Task
+
+      "processing of data" 
+      
+
+   stop_
+
+save_
+
+
+save_Xeasy
+   _Saveframe_category   software
+
+   _Name                 Xeasy
+
+   loop_
+      _Task
+
+      "spectral analysis (peak assignment, measurement peak heights)" 
+      
+
+   stop_
+
+save_
+
+
+save_NMR_spectrometer
+   _Saveframe_category   NMR_spectrometer
+
+   _Manufacturer         .
+   _Model                .
+   _Field_strength       .
+   _Spectrometer_list*  "AMX500 spectrometer, Bruker, 500 MHz"
+
+save_
+
+
+save_NMR_applied_experiment
+   _Saveframe_category     NMR_applied_experiment
+
+   _NMR_experiment_list*  
+;
+1H-15N HSQC
+ct-HNHA
+ct-HNHB
+TOCSY-HMQC
+HMQC-NOESY-HSQC
+NOESY-HSQC
+;
+   _Details               "triple-resonance 5 mm inverse probe with a self-shielded z-gradient"
+
+save_
+
+
+save_Conditions_sample_1
+   _Saveframe_category   sample_conditions
+
+   _Details             
+;
+The sample was in 150 mM potassium pyrophosphate in 90% H2O / 10% D2O.
+A hydrogen/deuterium exchange experiment was carried out in 100% D2O
+;
+
+   loop_
+      _Variable_type
+      _Variable_value
+      _Variable_value_error
+      _Variable_value_units
+
+       pH*             6.0  0    . 
+       temperature  303K    0.5  . 
+
+   stop_
+
+save_
+
+
+save_chemical_shift_reference
+   _Saveframe_category   chemical_shift_reference
+
+
+   loop_
+      _Mol_common_name
+      _Atom_type
+      _Atom_isotope_number
+      _Atom_group
+      _Chem_shift_units
+      _Chem_shift_value
+      _Reference_method
+      _Reference_type
+      _External_reference_sample_geometry
+      _External_reference_location
+      _External_reference_axis
+      _Indirect_shift_ratio
+
+       DSS  H   1   'methyl protons'  ppm  0.0  internal  direct    .  .  .  1.0         
+       DSS  N  15   'methyl protons'  ppm  0.0  .         indirect  .  .  .  0.101329118 
+
+   stop_
+
+save_
+
+
+save_.
+   _Saveframe_category               assigned_chemical_shifts
+
+
+   loop_
+      _Sample_label
+
+       . 
+
+   stop_
+
+   _Sample_conditions_label          .
+   _Chem_shift_reference_set_label   .
+   _Mol_system_component_name        .
+
+   loop_
+      _Atom_shift_assign_ID
+      _Residue_seq_code
+      _Residue_label
+      _Atom_name
+      _Atom_type
+      _Chem_shift_value
+      _Chem_shift_value_error
+      _Chem_shift_ambiguity_code
+
+       .  .  .  .  .  .  .  . 
+
+   stop_
+
+save_
+

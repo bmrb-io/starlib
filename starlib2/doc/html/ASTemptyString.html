@@ -1,0 +1,227 @@
+<html><head><TITLE>ASTemptyString</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> string  ASTemptyString  </H2><BLOCKQUOTE>
+
+<pre>
+RCS HISTORY:
+History:
+$Log: astnode
+</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+<pre>
+RCS HISTORY:
+History:
+$Log: ASTemptyString.html,v $
+Revision 1.2  2001/12/04 20:58:51  madings
+Major changes  - see doc/changes.html for details:
+   - setstring / getstring interface at the  loop level
+   - implement #<START-SKIP> ... #<END-SKIP> directives
+   - fix compiler errors related to use of iterators and const
+        on newer versions of gcc.
+   - ValCache usage, with LoopRows containing one string for the
+        whole row instead of seperate data value nodes.
+   - change the type of the *os file stream because the ability to
+        construct from a unix fileno() handle has been depreciated in
+	newer C++ stream libraries.
+
+Revision 1.3  2001/11/13 20:30:34  madings
+This update includes several changes:
+(See doc/changes.html for the full explanation)
+1- The previous compilers we had been using had allowed us to get
+away with some mis-use of the const specifier without flagging
+it as a warning or error.  That is no longer the case, so we had
+to alter some of the code's use of "const".
+2- The STL no longer allows vector iterators to be interchangable
+with pointers, so we lost the ability to use that feature for
+users of the library.
+3- The streams library no longer allows you to make an ofstream out of
+a pipe or standard output.  Callers of this method must now make
+'os' be a pointer to an ostream instead of ofstream.
+4- The newer compilers no longer allow a reference to a temporary store
+that was created just for the duration of the function call.
+
+Revision 1.2  2001/10/09 19:03:24  madings
+Modified formatNMRSTAR to return exit codes for errors, and also
+rolling up some minor changes to the source in terms of formatting.
+
+Revision 1.1.1.1  2001/04/17  10:00:41  madings
+
+Revision 2.3  1999/11/19  02:04:58  informix
+No actual code changes  - cosmetic whitespace changes.
+
+Revision 2.2  1999/08/26  06:44:16  madings
+More changes to attempt to trim the memory footprint of this
+program down:  Added the ability to compile the code with
+some of the line-number and column-number information turned off
+in DataValueNodes.  It didn't seem to help any.
+
+Revision 2.1  1999/04/28  02:29:00  madings
+Made the searchByTag and searchByTagValue functions case-insensitive
+for tag-names, datablock names, and saveframe names (but not data values).
+
+Revision 2.0  1999/01/23  03:34:33  madings
+Since this new version compiles on
+multiple platforms(well, okay, 2 of them), I
+thought it warranted to call it version 2.0
+
+Revision 1.12  1999/01/22  23:58:28  madings
+Golly, where should I begin?  Okay, There was a port to linux being
+done in this version, which in turn meant a port to egcs instead of
+making code that can only compile on a CFront style compiler like SGI
+uses.  This port meant a lot of tiny changes all over the place to
+accomodate the differences in the way templates get linked.  Also,
+a bug was discovered in the way rows were deleted in the LoopTableNode's
+erase() operator.  The bug was there all along and it surfaced as part
+of the portation (what was just bad data in SGI was causing coredumps
+in Linux.)  Hopefully now that it compiles under egcs, it will be much
+more portable and I can begin getting it out to the public.
+
+Revision 1.11  1998/10/08  03:45:38  madings
+Two changes:
+1 - Most signifigant change is that the library now has
+doc++ comments in it.
+2 - Also, changed so that when using the copy constructor,
+it remembers line numbers and column numbers in the newly
+copied tree (I hope, this is untested.)
+
+Revision 1.10  1998/09/08  00:39:22  madings
+My previous fix to the parsing of semicolon delimited strings broke
+the line count, which zhaohua showed me.  This has been corrected
+in this version.  (Also, irrelevant changes to comments in astnode.h
+that don't affect anything are also in this commital)
+
+Revision 1.9  1998/09/04  07:02:06  madings
+There were several bug fixes with this version.
+
+However, the erasing probably still needs some work.
+
+Revision 1.8  1998/08/29  08:46:04  madings
+This one was a rather large change.  I haven't finished
+documenting and testing all of it, so expect another
+revision or two soon.
+
+This revision creates a new way of dealing with loops.  Now
+the caller can use the loops like 2-D vectors, but with some
+extra magic behind the scenes to ensure that no insertions or
+deletions that can leave the tree in an invalid state will
+be allowed.  (For example, you cannot remove a value from the
+loop without also removing the tagname for it and all the other
+values in that column.)
+
+Also in this revision is a fix to the previous revision's method
+of making List and ASTlist be wrappers around STL vector.  The
+previous version of the library broke when the STL library decided
+to move the vector to a new location in memory (realloc), and the
+myCurrent interator became invalid.  Now myCurrent is an integer
+index offset instead, so it moves with the vector.
+
+Also in this revision are some fixes to a longstanding problem that
+made the library incapable of parsing nested loops unless the nested
+loops were fully populated.  (In other words if an inner loop for any
+row was null, because the input file simply has a "stop_" and no
+data for the inner loop, it used to crash on that.)  Now it works and
+empty inner loops are represented to the caller as null pointers (so
+don't blindly follow inner loop pointers that are handed to you - check
+them first.)
+
+Note that this marks my first attempt to make a class that implements
+the STL vector interface, so I expect to find some bugs to fix in the
+next revision or two.  There's some strange C++ "magic" going on here
+to get this to work.
+
+Revision 1.7  1998/08/21  02:00:20  informix
+Fixed some lex rules so that it handles semicolon strings better.
+(  It used to not parse this example:
+; This value has some text on the same
+line as the starting semicolon.
+;
+)
+
+Revision 1.6  1998/07/17  01:41:30  madings
+Two changes related to Unparse() this revision:
+1 - Added the ability to programtically insert comments with
+the get/setPreComment functions.
+2 - Make Unparse() somewhat more sophisticated to handle formatting
+values so they line up with each other.
+
+Revision 1.5  1998/06/02  06:22:03  madings
+Made the yacc code that keeps track of lineNum/colNum a bit more
+sophisticated so that it shows the locations of the beginnings
+of the objects, not the ends of them.  Also gave the base class
+'ASTnode' a copy constructor that will copy the increasing number
+of variables that are being stored in astnode, like the lineNum/colNum.
+
+Revision 1.4  1998/05/29  06:51:16  madings
+Added the ability to search for all objects of a particular AST type.
+(i.e. all SaveFrameNodes, or all DataItemNodes, etc...)
+See the method called "searchForType()", which was added to do this.
+
+Revision 1.3  1998/05/25  07:15:15  madings
+Added preliminary support for keeping track of line numbers and column
+numbers from the parse.  This way, programs reading the data can give
+the user actual line/column number references to things found in the
+STAR file.
+
+Revision 1.2  1998/05/08  20:27:24  informix
+Made a change to handle the C++ STL instead of gcc's libg++.
+Now all strings are of type 'string' instead of 'String' (notice
+the uppercase/lowercase change.)  Applications using this library
+will have to change also, unfortunately, to use the new string style.
+
+Revision 1.1.1.1  1998/02/12  20:59:00  informix
+re-creation of starlib project, without sb_lib stuff.  sb_lib has
+been moved to it's own project.
+
+Revision 1.1.1.1  1997/11/07  01:49:06  madings
+First check-in of starlib and sb_lib in library form.
+
+Revision 1.5  1997/10/25  02:59:26  madings
+2 Things in this check-in:
+-1- "Parallel copy".  Addded a new way to do a copy constructor
+such that it will copy with a parallel link back to the
+original tree it was copied from.  Any node in either tree
+can refer to the corresponding node in the new tree.
+See "parallel.html" for more detail.
+
+-2- Bug fixes to copy constructors that did not properly deep-copy
+all the way down into the LoopIter values.
+
+Revision 1.4  1997/10/10  18:34:21  madings
+Changed DataValueNode so that it now no longer has subclasses for
+single-quote-delimited strings, double-quote delimited strings,
+semicolon-delimited strings, and so on.  Now there is only one kind
+of DataValueNode, and it uses a flag to decide on the delimiter type.
+This also allows for the creation of methods to change a DataValueNode
+in place, which was not previously possible when different kinds of
+values had to be stored in different kinds of classes.
+
+Revision 1.3  1997/10/08  20:23:18  madings
+Added "searchForTypeByTag()" and "searchForTypeByTagValue()".
+
+(Also fixed bug where it would not find saveframes.)
+
+Revision 1.2  1997/09/16  22:03:19  madings
+Changed searchByTag() and searchByTagValue() so that they will
+return lists instead of returning single hits, and extended
+them to levels of the star tree above "saveframe" so it is now
+possible to use them on the whole star file.
+(Also changed the history log comments of several header files
+to use slash-star comment style instead of '//' style.)
+
+</pre>
+
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

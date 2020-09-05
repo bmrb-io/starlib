@@ -1,0 +1,733 @@
+///////////////////////////////////////////////////////////////////////////////
+//Documentation about the translation from mmCIF to nmrSTAR.                 //
+//file name: june.doc                                                        //
+//created on 7/26/99                                                         //
+//for info about tags in nmrSTAR to which the tags in mmCIF file matched     //
+//look at trun720.map                                                        //
+///////////////////////////////////////////////////////////////////////////////
+ 
+to do the translation, check out s2nmr, in s2nmr directory, run: s2nmr cif2nmrs
+tar <target_filename>, the result file will be <target_filename.nmrstr>
+
+problems remained so far for the whole file
+1)need a new function to remove all the old tags in the datablock. (they are 
+all outside any saveframe). //done 7/29/99
+2)need to assign data_accession_code as NMRSTAR_vs_<old_data_accession_code>_
+<new_data_accession_number>.
+3)build secondary_structure saveframes, need to join several tables, do the
+ calculation, assign the value
+4)build hydrogen_bonds saveframes, need joinning and calculation
+5)build sample saveframes, but there is not enough info in original file
+
+functions with bugs fixed:
+1)starlib: remove the empty loops 
+2)parse_split_name (Rule 18)
+
+functions with bugs not fixed:
+1)loops: can't work on those saveframe if there is an empty saveframe of same 
+saveframe_category.
+
+new functios
+1)values_to_saveframe_many_to_many_free( rule 17a): it can handle free tags, 
+take care of move_or_copy_flag and free_or_loop_flag, get bugs fixed for Rule 
+17.
+2)insert_ordinal ( rule 26a ): could do the same thing as insert_column, but
+ also insert a column with various numbers of interval fixed.
+3)keyed_renamed_tags_no_block ( rule 1d ), same as keyed_renamed_tags but 
+leave tags which aren't in saveframe not renamed
+4)remove_tags_not_in_saveframe (rule 38):delete all the tags in datablock which
+ are not in saveframe.
+5)parse_tag_to_new_tag ( rule 39 ): parse a tag value and assign the selected 
+token to the destined tag in saveframe ( choose by saveframe_catergory). The 
+saveframe should alreay exist, the tag could be generated if not there yet. 
+
+
+problems on the saveframes:
+example come from (s2nmr cif2nmrstar trun720)=>trun720.nmrstr
+(trun720 is from rcsb000720.cif with atomic coordinate data truncated)
+
+save_entry_information
+   _Saveframe_category    entry_information
+
+   _Entry_title          
+;
+SOLUTION STRUCTURE OF COMPONENT IV GLYCERA DIBRANCHIATA MONOMERIC HEMOGLOBIN-CO
+;
+
+   loop_
+      _Author_ordinal
+      _Author_family_name
+      _Author_given_name
+      _Author_middle_initials
+      _Author_family_title
+
+       1   Volkman    B.  F.  . 
+       2   Alam       S.  L.  . 
+       3   Satterlee  J.  D.  . 
+       4   Markley    J.  L.  . 
+
+   stop_
+
+   _Entry_type            new
+   _Submission_date       1999-03-26
+   _Entry_origination     PDB
+   _NMR_STAR_Version      2.1
+   _Experimental_method   NMR
+   _Revision_details     "converted from mmCIF to nmrStar"
+   _Release_keywords     "format_conversion"
+   _Release_author        BMRB
+
+save_
+
+
+save_contact_persons   **done
+   _Saveframe_category   contact_persons
+
+
+   loop_
+      _Family_name
+      _Given_name
+      _Middle_initials
+      _Family_title
+      _Mailing_address
+      _Phone_number
+      _Email_address
+      _FAX_number
+
+       VOLKMAN  B.  F.  . 
+;
+UNIVERSITY OF WISCONSIN-MADISON DEPARTMENT OF BIOCHEMISTRY 433 BABCOCK DR. 
+MADISON, WI 53706
+;  608-262-0459  VOLKMAN@NMRFAM.WISC.EDU  608-262-3759 
+       ULRICH   E.  L.  . 
+;
+UNIVERSITY OF WISCONSIN-MADISON DEPARTMENT OF BIOCHEMISTRY 433 BABCOCK DR. 
+MADISON, WI 53706
+;  608-265-5741  ELU@NMRFAM.WISC.EDU      608-262-3759 
+
+   stop_
+
+save_
+
+
+save_entry_citation
+   _Saveframe_category     entry_citation
+
+   _Citation_title        
+;
+Solution Structure and Backbone Dynamics of Component IV Glycera Dibranchiata 
+Monomeric Hemoglobin-CO
+;
+
+** need to figure out what's _Entry_status maybe by look at _Year 
+
+   loop_
+      _Author_ordinal
+      _Author_family_name
+      _Author_given_name
+      _Author_middle_initials
+      _Author_family_title
+
+       1   Volkman    B.  F.  . 
+       2   Alam       S.  L.  . 
+       3   Satterlee  J.  D.  . 
+       4   Markley    J.  L.  . 
+
+   stop_
+
+   _Journal_abbreviation   Biochemistry
+   _Journal_volume         37
+   _Book_publisher         ?
+   _Page_first             10906
+   _Page_last              10919
+   _Year                   1998
+
+save_
+
+
+save_citation_1
+   _Saveframe_category     citation
+
+   _Citation_title        
+;
+Detailed NMR Analysis of the Heme-Protein Interactions in Component IV Glycera 
+Dibranchiata Monomeric Hemoglobin-CO
+;
+
+**need _Citation_status
+
+   loop_
+      _Author_ordinal
+      _Author_family_name
+      _Author_given_name
+      _Author_middle_initials
+      _Author_family_title
+
+       1   Alam       S.  L.  . 
+       2   Volkman    B.  F.  . 
+       3   Markley    J.  L.  . 
+       4   Satterlee  J.  D.  . 
+
+   stop_
+
+   _Journal_abbreviation   J.Biomol.NMR
+   _Journal_volume         11
+   _Book_publisher         ?
+   _Page_first             19
+   _Page_last              133
+   _Year                   1998
+
+save_
+
+
+save_molecular_system
+   _Saveframe_category   molecular_system
+
+   _Mol_system_name     'GLOBIN, MONOMERIC COMPONENT M-IV'
+   _Abbreviation_common  'HEME PROTEIN, GLOBIN, OXYGEN TRANSPORT'
+
+** need add _Syatem_physical_state (no info from original file)
+** need _System_paramagnetic (no info from original file)
+
+**need new function to join with _entity.* tables to find out 
+** _Mol_component_name & _Mol_label
+
+   loop_
+      _Biological_function
+
+      'HEME PROTEIN' 
+      
+
+   stop_
+
+   loop_
+      _Database_name
+      _Database_accession_code
+
+       PDB  1VRF       
+       NDB  RCSB000720 
+
+   stop_
+
+save_
+
+
+save_monomeric_polymer_1
+   _Saveframe_category   monomeric_polymer
+
+   _Mol_type             polymer
+
+** need new function joining _entity* tables to get:
+** _Name_common, _Molecular_mass, _Details
+** rename saveframe_code as _Name_common
+
+** add _Mol_polymer_class (can oly guess from the name of the molecule)
+
+   loop_
+      _Residue_seq_code
+      _Residue_author_seq_code
+      _Residue_label
+
+         1     1   GLY 
+         2     2   LEU 
+         3     3   SER 
+         4     4   ALA 
+         5     5   ALA 
+         6     6   GLN 
+         7     7   ARG 
+         8     8   GLN 
+         9     9   VAL 
+        10    10   VAL 
+        11    11   ALA 
+        12    12   SER 
+        13    13   THR 
+        14    14   TRP 
+        15    15   LYS 
+        16    16   ASP 
+        17    17   ILE 
+        18    18   ALA 
+        19    19   GLY 
+        20    20   SER 
+        21    21   ASP 
+        22    22   ASN 
+        23    23   GLY 
+        24    24   ALA 
+        25    25   GLY 
+        26    26   VAL 
+        27    27   GLY 
+        28    28   LYS 
+        29    29   GLU 
+        30    30   CYS 
+        31    31   PHE 
+        32    32   THR 
+        33    33   LYS 
+        34    34   PHE 
+        35    35   LEU 
+        36    36   SER 
+        37    37   ALA 
+        38    38   HIS 
+        39    39   HIS 
+        40    40   ASP 
+        41    41   MET 
+        42    42   ALA 
+        43    43   ALA 
+        44    44   VAL 
+        45    45   PHE 
+        46    46   GLY 
+        47    47   PHE 
+        48    48   SER 
+        49    49   GLY 
+        50    50   ALA 
+        51    51   SER 
+        52    52   ASP 
+        53    53   PRO 
+        54    54   GLY 
+        55    55   VAL 
+        56    56   ALA 
+        57    57   ASP 
+        58    58   LEU 
+        59    59   GLY 
+        60    60   ALA 
+        61    61   LYS 
+        62    62   VAL 
+        63    63   LEU 
+        64    64   ALA 
+        65    65   GLN 
+        66    66   ILE 
+        67    67   GLY 
+        68    68   VAL 
+        69    69   ALA 
+        70    70   VAL 
+        71    71   SER 
+        72    72   HIS 
+        73    73   LEU 
+        74    74   GLY 
+        75    75   ASP 
+        76    76   GLU 
+        77    77   GLY 
+        78    78   LYS 
+        79    79   MET 
+        80    80   VAL 
+        81    81   ALA 
+        82    82   GLU 
+        83    83   MET 
+        84    84   LYS 
+        85    85   ALA 
+        86    86   VAL 
+        87    87   GLY 
+        88    88   VAL 
+        89    89   ARG 
+        90    90   HIS 
+        91    91   LYS 
+        92    92   GLY 
+        93    93   TYR 
+        94    94   GLY 
+        95    95   ASN 
+        96    96   LYS 
+        97    97   HIS 
+        98    98   ILE 
+        99    99   LYS 
+       100   100   ALA 
+       101   101   GLU 
+       102   102   TYR 
+       103   103   PHE 
+       104   104   GLU 
+       105   105   PRO 
+       106   106   LEU 
+       107   107   GLY 
+       108   108   ALA 
+       109   109   SER 
+       110   110   LEU 
+       111   111   LEU 
+       112   112   SER 
+       113   113   ALA 
+       114   114   MET 
+       115   115   GLU 
+       116   116   HIS 
+       117   117   ARG 
+       118   118   ILE 
+       119   119   GLY 
+       120   120   GLY 
+       121   121   LYS 
+       122   122   MET 
+       123   123   ASN 
+       124   124   ALA 
+       125   125   ALA 
+       126   126   ALA 
+       127   127   LYS 
+       128   128   ASP 
+       129   129   ALA 
+       130   130   TRP 
+       131   131   ALA 
+       132   132   ALA 
+       133   133   ALA 
+       134   134   TYR 
+       135   135   ALA 
+       136   136   ASP 
+       137   137   ILE 
+       138   138   SER 
+       139   139   GLY 
+       140   140   ALA 
+       141   141   LEU 
+       142   142   ILE 
+       143   143   SER 
+       144   144   GLY 
+       145   145   LEU 
+       146   146   GLN 
+       147   147   SER 
+
+   stop_
+
+** need a loop 0f _Database-name, _Database_accession_code 
+** (From molecular_system)
+
+save_
+
+
+save_HEM
+   _Saveframe_category      ligand
+
+   _Mol_type                non_polymer
+   _Name_common            'PROTOPORPHYRIN IX CONTAINING FE'
+   _Abbreviation_common     HEM
+   _Mol_empirical_formula  'C34 H32 N4 O4 FE1'
+   _Molecular_mass          616.498
+   _Synonym                 ?
+
+**  no info of _Mol_paramagnetic, _Mol_aromatic
+
+save_
+
+
+save_CMO
+   _Saveframe_category      ligand
+
+   _Mol_type                non_polymer
+   _Name_common            'CARBON MONOXIDE'
+   _Abbreviation_common     CMO
+   _Mol_empirical_formula  'C1 O1'
+   _Molecular_mass          28.010
+   _Synonym                 ?
+
+** same as above saveframe
+
+save_
+
+
+save_crosslink_bonds_?
+   _Saveframe_category   crosslink_bonds
+
+** use value_to_saveframe-many_to_many_free, it shouldn't be generated, this is
+**  just for illustration 
+
+
+** no info for loop: _Bond_order, _Bond_atom_one_atom_name, 
+** _Bond_atom_two_atom_name
+
+      _Bond_type                   ?
+      _Atom_one_residue_seq_code   ?
+      _Atom_one_atom_name          ?
+      _Atom_two_residue_seq_code   ?
+      _Atom_two_atom_name          ?
+
+save_
+
+
+save_natural_source
+   _Saveframe_category   natural_source
+
+
+   loop_
+      _Organism_name_common
+      _Genus
+      _Species
+      _Strain
+      _Variant
+      _Organ
+      _Tissue
+      _Cell_line
+      _Cell_type
+      _ATCC_number
+      _Organelle
+      _Fraction
+      _Secretion
+      _Plasmid
+      _Details
+
+       ?  ?  ?  ?  ?  ?  ?  ?  ?  ?  ?  ?  ?  ?  ? 
+
+   stop_
+
+** need new function to look at _entity_src_nat.id, if it's not '?', fetch 
+** the info from this table, otherwise  get info from _entity_src_gen.*
+
+** new function: from _entity_src_nat.entity_id or _entity_src_gen.entity_id
+** find _entity.type, figure out _Mol_label
+
+** if _Genus, _Species are '?', check _entity_src_nat.ndb_organism_scientific
+** or _entity_src_gen.ndb_gene_src_scientific_name( according to above rule)
+** if it's not '?', parse the string by white space, first token will be _Genus
+** second be _Species (need new function)
+
+save_
+
+
+save_experimental_source
+   _Saveframe_category   experimental_source
+
+
+   loop_
+      _Host_organism_name_common
+      _Genus
+      _Species
+      _Strain
+      _Variant
+      _Organ
+      _Tissue
+      _Cell_line
+      _Cell_type
+      _ATCC_number
+      _Organelle
+      _Vector_type
+      _Vector_name
+      _Details
+
+       ?  ?  ?  ?  ?  ?  ?  ?  ?  ?  PLASMID  ? 'RECOMBINANT PROTEIN WAS PRODUCED IN E. COLI' 
+
+   stop_
+
+** new function: from_entity_src_gen.entity_id find _entity.type,
+** figure out _Mol_label (might need join this table with other two tables)
+
+** new funtion: if _entity_src_gen.host_org_genus is '?', check 
+** _entity_src_gen.ndb_host_org_scientific_name, if it's not '?'
+** parse it by white space, first token will be _Genus, second _Species
+
+** new function: if _entity_src_gen.ndb_host_org_vector_type is 'PLASMID'
+** _entity_src_gen.plasmid_name will be the _Vector_name
+** otherwise use _entity_src_gen.ndb_host_org_vector as _Vector-name
+
+
+save_
+
+
+save_software    **done
+   _Saveframe_category   software
+
+
+   loop_
+      _Name
+
+       X-PLOR 
+       X-PLOR 
+
+   stop_
+
+   loop_
+      _Version
+
+       3.843 
+       3.843 
+
+   stop_
+
+   loop_
+      _Task
+
+       REFINEMENT             
+      'STRUCTURE CALCULATION' 
+
+   stop_
+
+   loop_
+      _Vendor
+
+       BRUNGER 
+       ?       
+
+   stop_
+
+save_
+
+
+save_NMR_spectrometer_1    **done
+   _Saveframe_category   NMR_spectrometer
+
+   _Manufacturer         BRUKER
+   _Model                DMX
+   _Field_strength       499.84
+
+save_
+
+
+save_NMR_spectrometer_2    **done
+   _Saveframe_category   NMR_spectrometer
+
+   _Manufacturer         BRUKER
+   _Model                DMX
+   _Field_strength       500.13
+
+save_
+
+
+save_NMR_spectrometer_3   **done
+   _Saveframe_category   NMR_spectrometer
+
+   _Manufacturer         BRUKER
+   _Model                DMX
+   _Field_strength       600.13
+
+save_
+
+
+save_NMR_spectrometer_4   **done
+   _Saveframe_category   NMR_spectrometer
+
+   _Manufacturer         BRUKER
+   _Model                DMX
+   _Field_strength       750.13
+
+save_
+
+
+save_NMR_applied_experiment    **done
+   _Saveframe_category   NMR_applied_experiment
+
+   _Details             
+;
+3D 15N NOESY-HSQC; 3D 13C NOESY-HSQC; 4D 13C/15N NOESY-HSQC; 3D HNHB; 3D 
+HNCOHB; 2D JCC; 2D JNC; 3D HNHA; 2D LRCC
+;
+
+save_
+
+
+save_NMR_applied_experiment_1    **done
+   _Saveframe_category   NMR_applied_experiment
+
+   _Experiment_name      NOEY & QUANTITATIVE J-CORRELATION
+
+save_
+
+
+save_sample_conditions_1
+   _Saveframe_category   sample_conditions
+
+   _rcsb_nmr_exptl_sample_conditions.temperature      293
+   _rcsb_nmr_exptl_sample_conditions.pressure         1 ATM
+   _rcsb_nmr_exptl_sample_conditions.pH               5.0
+   _rcsb_nmr_exptl_sample_conditions.ionic_strength   100 MM KCL
+
+** need new funtion 1)generate a loop: _Variable_type, _Variable_value,
+** _Variable_value_units  2)parse above tags/values to get the right format
+** insert a column of _Variable_value_error with value '.'
+
+ 
+save_
+
+
+save_conformer_statistical_characteristics
+   _Saveframe_category                                   conformer_statistical_characteristics
+
+**  need to find out _Conformer_family_label
+** need add loop: _Software_lable (assume there is only one software saveframe)
+
+   _Conformer_calculated_total_number                    1
+   _Conformer_submitted_total_number                     1
+   _Conformer_selection_criteria                         ?
+   _Average_constraints_per_residue                      ?
+   _Average_constraint_violations_per_residue            ?
+   _Maximum_distance_constraint_violation                ?
+   _Average_distance_constraint_violation
+                ?
+** need _RMSD_over_all_distance_constraint_violations
+
+   _Maximum_upper_distance_constraint_violation          ?
+   _Maximum_lower_distance_constraint_violation          ?
+   _Distance_constraint_violation_stat_calc_method       ?
+   _Maximum_torsion_angle_constraint_violation           ?
+   _Average_torsion_angle_constraint_violation           ?
+   _Torsion_angle_constraint_stat_calc_method            ?
+   _Rep_structure_conformer_number                       ?
+   _Rep_structure_selection_criteria                     ?
+   _Conformer_ensemble_covalent_bond_rms_dev             ?
+   _Conformer_ensemble_covalent_bond_rms_dev_error       ?
+   _Conformer_ensemble_bond_angle_rms_dev                ?
+   _Conformer_ensemble_bond_angle_rms_dev_error          ?
+   _Conformer_ensemble_impropers_rms_dev                 ?
+   _Conformer_ensemble_impropers_rms_dev_error           ?
+   _Conformer_ensemble_peptide_planarity_rms_dev         ?
+   _Conformer_ensemble_peptide_planarity_rms_dev_error   ?
+
+save_
+
+
+save_constraint_statistics		**done
+   _Saveframe_category                         constraint_statistics
+
+   _NOE_constraints_total_count                ?
+   _NOE_intraresidue_constraints_total_count   ?
+   _NOE_sequential_constraints_total_count     ?
+   _NOE_medium_range_constraints_total_count   ?
+   _NOE_long_range_constraints_total_count     ?
+
+save_
+
+
+save_other_links
+   _Saveframe_category   other_links
+
+
+   loop_
+      _Link_ID
+** need add _Link_type
+      _Link_atom_one_mol_system_component_id
+** need more info to figure out _Link_atom_one_mol_system_component_name
+      _Link_atom_one_residue_seq_code
+      _Link_atom_one_residue_label
+      _Link_atom_one_atom_name
+      _Link_atom_two_mol_system_component_id
+** need more info to figure out _Link_atom_two_mol_system_component_name
+      _Link_atom_two_residue_seq_code
+      _Link_atom_two_residue_label
+      _Link_atom_two_atom_name
+      _Details
+
+       1   HIS   90   ?  NE2  HEM  148   ?  FE  ? 
+       2   HEM  148   ?  FE   CMO  149   ?  C   ? 
+
+   stop_
+
+save_
+
+
+
+save_structure_coordinate_set_1       
+   _Saveframe_category   structure_coordinate_set
+
+**need loop: _Sample_label  by new function
+**need  _Sample_conditions_label  by new function
+
+   loop_
+      _Atom_list_number
+      _Conformer_number
+      _Residue_seq_code
+      _Residue_label
+      _Atom_name
+      _Atom_type
+      _Atom_cartn_x
+      _Atom_cartn_y
+      _Atom_cartn_z
+
+       1   1   1   GLY  N  N  11.949  7.838  11.241 
+
+   stop_
+
+save_
+
+
+
+
+
+
+

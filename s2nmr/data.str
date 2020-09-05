@@ -1,0 +1,953 @@
+data_data
+   save_contact_persons
+      _dummy   .
+      loop_
+         _*1contact_persons
+         _a_contact_persons
+         _dummy
+         _contact_persons
+         _space_31
+         _given_name
+         _middle_initials
+         _Family_name
+         _family_title
+         _Department_and_Institution
+         _Mailing_address
+         _Phone_number
+         _Email_address
+         _FAX_number
+
+         .   contact_persons   .   contact_persons   .   Douglas   V.   Laurents   .   
+;
+Instituto de Física Química "Rocasolano"
+C.S.I.C.
+;
+   
+;
+c/ Serrano 119
+28006 Madrid
+SPAIN
+;
+   "+34 91-561-9400"   dlaurents@iqfr.csic.es   "+34 91-564-2431"   
+         stop_
+   save_
+
+   save_primary_citation
+      _dummy   .
+      _primary_citation   .
+      _entry_citation   entry_citation
+      _space_31   .
+      _entry_citation_label_0   .
+      _space_8   .
+      _journal_entry   journal_entry
+      _book_entry   journal_entry
+      _abstract_entry   journal_entry
+      _thesis_entry   journal_entry
+      _BMRB_only   journal_entry
+      _publication_other   journal_entry
+      _space_41   .
+      _entry_citation_label_10   .
+      _space_19   .
+      _published   submitted
+      _in_press   submitted
+      _submitted   submitted
+      _in_preparation   submitted
+      _other_publication_status   submitted
+      _space_42   .
+      _Citation_title   "Charge-Charge Interactions are Key Determinants of the pK values of Ionizable Groups in Ribonuclease Sa (pI=3.5) and a Basic Variant (pI=10.2)"
+      _Citation_keywords   "pK, electrostatic interactions, Coulomb, Poisson-Boltzmann"
+      _Citation_details   .
+      loop_
+         _*1primary_citation
+         _*1entry_citation
+         _space_25
+         _Deposition_label_35
+         _Deposition_label_38
+         _space_37
+         _Author_ordinal
+         _Author_given_name
+         _Author_middle_initials
+         _Author_family_name
+         _Author_family_title
+         _space_15
+         _space_35
+
+         .   .   .   .   .   .   1   Douglas   V.   Laurents   .   .   .   
+         .   .   .   .   .   .   2   Beatrice   "M. P."   Huyghues-Despointes   .   .   .   
+         .   .   .   .   .   .   3   Marta   .   Bruix   .   .   .   
+         .   .   .   .   .   .   4   Richard   L.   Thurlkill   .   .   .   
+         .   .   .   .   .   .   5   David   .   Schell   .   .   .   
+         .   .   .   .   .   .   6   Stephanie   .   Newsome   .   .   .   
+         .   .   .   .   .   .   7   Gerald   R.   Grimsley   .   .   .   
+         .   .   .   .   .   .   8   Kevin   L.   Shaw   .   .   .   
+         .   .   .   .   .   .   9   Saul   .   Treviño   .   .   .   
+         .   .   .   .   .   .   10   Manuel   .   Rico   .   .   .   
+         .   .   .   .   .   .   11   "J. Martin"   .   Scholtz   .   .   .   
+         .   .   .   .   .   .   12   "C. Nick"   .   Pace   .   .   .   
+         stop_
+      _*2primary_citation   .
+      _*3entry_citation   .
+      _page_first   na
+      _page_last   na
+      _year   na
+      _entry_citation_label_1   .
+      _space_18   .
+      _space_29   .
+      _Journal_abbreviation   "J. Mol. Biol."
+      _Journal_name_full   .
+      _space_59   .
+      _entry_citation_label_5   .
+      _Journal_volume   na
+      _Journal_issue   .
+      _Journal_page_first   na
+      _Journal_page_last   na
+      _Journal_year   na
+      _entry_citation_label_2   .
+      _space_28   .
+      _Book_title   .
+      _Book_editor   .
+      _Book_volume   .
+      _Book_series   .
+      _Book_publisher   .
+      _Book_publisher_city   .
+      _Book_page_first   .
+      _Book_page_last   .
+      _Book_year   .
+      _entry_citation_label_3   .
+      _space_38   .
+      _Conference_title   .
+      _Conference_site   .
+      _Conference_state_province   .
+      _Conference_country   .
+      _Conference_start_date   .
+      _Conference_end_date   .
+      _Conference_abstract_number   .
+      _entry_citation_label_4   .
+      _space_48   .
+      _Thesis_institution   .
+      _Thesis_institution_city   .
+      _Thesis_institution_country   .
+      _Thesis_year   .
+   save_
+
+   save_g_entry_information
+      _dummy   .
+      _g_entry_information   entry_information
+      _entry_information   entry_information
+      _label_10   .
+      _space_15   .
+      _space_20   .
+      _deposition_type_0   .
+      _label_25   .
+      _space_30   .
+      _deposition_new   deposition_new
+      _deposition_revision   deposition_new
+      _deposition_replacement   deposition_new
+      _space_35   .
+      _Revised_BMRB_accession_number   .
+      _Replace_BMRB_accession_number   .
+      _Revision_details_1   .
+      _Revision_details_2   .
+      _space_36   .
+      _space_37   .
+      _label_50   .
+      _label_55   .
+      _Deposition_title_2   '1H and 15N Chemical Shift Assignments for the charge reverse variant of Ribonuclease Sa "5K" (D1K, D17K, D25K, E41K, E74K)'
+      loop_
+         _*1g_entry_information
+         _*1entry_information
+         _space_25
+         _label_3
+         _space_35
+         _Deposition_label_35
+         _Author_ordinal
+         _Author_given_name
+         _Author_middle_initials
+         _Author_family_name
+         _Author_family_title
+         _space_15
+         _space_36
+
+         .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      _*3g_entry_information   .
+      _*3entry_information   .
+      _Details   .
+      _space_14   .
+      _label_33   .
+      _Special_processing_instructions   .
+      _label_20   .
+      _Related_BMRB_accession_number   4259
+      _*4g_entry_information   .
+      _*4entry_information   .
+      _space_10   .
+      _Deposition_label_5   .
+      _Deposition_label_6   .
+      _Release_immediately   .
+      _Release_date_request   .
+      _Deposition_label_1   .
+      _space_25   .
+      _Hold_justification   .
+   save_
+
+   save_system_description
+      _dummy   .
+      _system_description   .
+      _system_sf_category   molecular_system
+      _dummy1   .
+      _molecular_system   .
+      _system_label_0   .
+      _space_101   .
+      _space_21   .
+      _System_name   "5K Ribonuclease Sa"
+      _sys_Abbreviation_common   "5K, 5K RNase Sa"
+      _sys_biological_unit   monomer
+      _system_components   "5K RNase Sa, 5K RNase Sa"
+      _space_102   .
+      _space_26   .
+      _label_103   .
+      _label_66   .
+      _space_104   .
+      _label_65   .
+      _sys_Enzyme_commission_number   .
+      _space_106   .
+      _Biological_function   .
+      _space_114   .
+      _space_105   .
+      _system_label_22   .
+      _native   native
+      _denatured   native
+      _molten_globule   native
+      _reduced   native
+      _space_58   .
+      _space_54   .
+      _magnetic_equivalence   .
+      _space_59   .
+      _space_61   .
+      loop_
+         _*6system_description
+         _*6molecular_system
+         _label_0
+         _label_21
+         _space_107
+         _sys_Database_name
+         _space_108
+         _sys_Database_accession_number
+         _space_109
+         _sys_Database_entry_details
+         _space_27
+         _space_113
+
+         .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      _*7system_description   .
+      _*7system   .
+      _space_110   .
+      _space_22   .
+      _label_32   .
+      _space_115   .
+      _label_28   .
+      _space_23   .
+      _cbx_ligands   off
+      _label_27   .
+      _space_45   .
+      _cbx_ns_residue   off
+      _label_93   .
+      _space_112   .
+      _subsystem_query   .
+      _space_55   .
+      _space_56   .
+      _space_24   .
+      _sys_Details   .
+      _label_113   .
+      _space_34   .
+      _label_43   .
+      loop_
+         _*4system_description
+         _polymer_residue
+         _non_standard_residue_framecode
+         _non_standard_residue_label_0
+         _space_21
+         _non_standard_residue_label_1
+         _ns_PDB_code
+         _ns_label_10
+         _space_22
+         _ns_Name_database_BMRB
+         _NS_label_12
+         _NS_label_56
+         _space_65
+         _space_66
+         _space_25
+         _non_standard_residue_label_3
+         _ns_Name_common
+         _space_96
+         _ns_label_45
+         _space_95
+         _ns_Name_IUPAC
+         _ns_Abbreviation_common
+         _ns_Residue_location
+         _space_34
+         _ns_Mol_paramagnetic
+         _space_35
+         _ns_Atom_prochirality
+         _space_40
+         _ns_Details
+
+         .   polymer_residue   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*5system_description
+         _ligand
+         _ligand_framecode
+         _Ligand_label_0
+         _Ligand_label_1
+         _space_31
+         _space_10
+         _Ligand_label_3
+         _space_64
+         _lig_PDB_code
+         _Ligand_label_10
+         _space_66
+         _lig_Name_database_BMRB
+         _Ligand_label_12
+         _Ligand_label_56
+         _space_65
+         _space_25
+         _Ligand_label_4
+         _lig_Name_common
+         _space_96
+         _ns_label_45
+         _space_95
+         _lig_Name_IUPAC
+         _lig_Abbreviation_common
+         _lig_Mol_paramagnetic
+         _lig_Mol_aromatic
+         _space_33
+         _lig_Bond_list_inter
+         _space_13
+         _space_15
+         _lig_Atom_oxidation_number
+         _space_16
+         _lig_Details
+
+         .   ligand   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*3system_description
+         _monomeric_polymer
+         _mol_polymer_label_0
+         _mol_polymer_label_11
+         _space_10
+         _mp_Name_common
+         _mp_Name_variant
+         _mp_Abbreviation_common
+         _space_15
+         _mol_polymer_label_72
+         _protein_peptide
+         _DNA
+         _RNA
+         _space_20
+         _label_25
+         _label_30
+         _space_32
+         _Mol_residue_sequence
+         _space_35
+         _mp_Residue_author_seq_code
+         _mp_Sequence_citation_label
+         _mp_Sequence_features
+         _label_40
+         _label_45
+         _space_75
+         _Molecular_mass
+         _mp_Details
+
+         .   monomeric_polymer   .   .   .   "Ribonuclease Sa"   "5K (D1K, D17K, D25K, E41K, E74K)"   "5K RNase Sa, 5K"   .   .   protein_peptide   protein_peptide   protein_peptide   .   .   .   .   
+;
+KVSGTVCLSA LPPEATKTLN LIASKGPFPY 
+SQDGVVFQNR KSVLPTQSYG YYHEYTVITP 
+GARTRGTRRI ITGKATQEDY YTGDHYATFS
+LIDQTC
+;
+   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*9system_description
+         _crosslink_bonds_sf
+         _crosslink_bonds
+         _dummy
+         _crosslink_label_0
+         _crosslink_label_11
+         _space_10
+         _crosslink_Bond_mol_1
+         _crosslink_Bond_res_1
+         _crosslink_Bond_atom_1
+         _crosslink_Bond_mol_2
+         _crosslink_Bond_res_2
+         _crosslink_Bond_atom_2
+         _crosslink_Bond_order
+         _crosslink_Bond_type
+         _space_60
+         _crosslink_details
+
+         .   crosslink_bonds   crosslink_bonds   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*2system_description
+         _biol_func_molecular_system
+         _label_0
+         _space_10
+         _label_4
+         _space_11
+         _bu_Name_common
+         _bu_Abbreviation_common
+         _bu_components
+         _bu_Biological_function
+         _space_111
+         _label_66
+         _space_78
+         _label_65
+         _space_68
+         _bu_Enzyme_commission_number
+         _space_35
+         _space_116
+         _space_105
+         _space_107
+         _bu_Database_name
+         _space_108
+         _bu_Database_accession_number
+         _space_109
+         _bu_Database_entry_details
+         _space_27
+         _space_126
+         _bu_Details
+
+         .   biol_func_molecular_system   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_source
+      _dummy   .
+      loop_
+         _source
+         _natural_source_sf_category
+         _natural_source
+         _dummy
+         _natural_source_label_0
+         _space_10
+         _space_15
+         _Mol_label
+         _space_20
+         _space_25
+         _label_30
+         _space_35
+         _label_40
+         _space_45
+         _label_50
+         _space_55
+         _archaea
+         _eubacteria
+         _eucaryote
+         _label_60
+         _animalia
+         _fungi
+         _plantae
+         _protista
+         _not_applicable_1
+         _viroids
+         _viruses
+         _other_superkingdom
+         _unclassified
+         _space_70
+         _space_75
+         _Organism_common_name
+         _Genus
+         _Species
+         _Strain
+         _Variant
+         _Organ
+         _Tissue
+         _Cell_line
+         _Cell_type
+         _ATCC_number
+         _Organelle
+         _Secretion
+         _Fraction
+         _Plasmid
+         _Gene_name
+         _space_80
+         _Details
+
+         .   natural_source   natural_source   .   .   .   .   "5K RNase Sa"   .   .   .   .   .   .   .   .   eubacteria   eubacteria   eubacteria   .   .   .   .   .   .   eubacteria   eubacteria   eubacteria   eubacteria   .   .   .   Streptomyces   aureofaciens   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*1source
+         _expt_source_sf_category
+         _experimental_source
+         _experimental_source_label_0
+         _space_21
+         _es_Mol_label
+         _space_25
+         _label_25
+         _label_35
+         _space_35
+         _recombinant_technology
+         _es_natural_source
+         _chemically_synthesized
+         _cell_free_synthesis
+         _enzymatic_semisynthesis
+         _vendor
+         _space_22
+         _es_Host_organism_name_common
+         _es_Genus
+         _es_Species
+         _es_Strain
+         _es_Variant
+         _es_Organ
+         _es_Tissue
+         _es_Cell_line
+         _es_Cell_type
+         _es_ATCC_number
+         _es_Vector_type
+         _es_Vector_name
+         _es_Vendor
+         _space_31
+         _es_Details
+
+         .   experimental_source   experimental_source   .   .   "5K RNase Sa"   .   .   .   .   recombinant_technology   recombinant_technology   recombinant_technology   recombinant_technology   recombinant_technology   recombinant_technology   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_sample_description
+      _dummy   .
+      _sample_description   .
+      _sample   sample
+      _space_10   .
+      _space_21   .
+      _label_10   .
+      _space_12   .
+      _sample_framecode   "sample 1"
+      _space_35   .
+      _solution   solution
+      _bicell_solution   solution
+      _micelles   solution
+      _liposomes   solution
+      _emulsion   solution
+      _gel   solution
+      _solid   solution
+      _space_22   .
+      _Details   .
+      loop_
+         _*1sample_description
+         _*1sample
+         _sample_content_label_0
+         _space_10
+         _Mol_label
+         _sample_content_label_1
+         _space_22
+         _Concentration_value
+         _sample_content_label_10
+         _space_17
+         _Concentration_min_value
+         _Concentration_max_value
+         _Concentration_value_units
+         _isotopic_labeling
+
+         .   .   .   .   "5K RNase Sa"   .   .   .   .   .   1   2   mM   "[U 13C; U 15N]"   
+         stop_
+      _*2sample_description   .
+      _*2sample   .
+      _b_space_10   .
+      _b_label_10   .
+      _b_space_12   .
+      _b_sample_framecode   .
+      _b_space_35   .
+      _b_solution   .
+      _b_bicell_solution   .
+      _b_micelles   .
+      _b_liposomes   .
+      _b_emulsion   .
+      _b_gel   .
+      _b_solid   .
+      _b_space_22   .
+      _b_Details   .
+      loop_
+         _*1sample_description
+         _*1sample
+         _b_sample_content_label_0
+         _b_space_10
+         _b_Mol_label
+         _b_sample_content_label_1
+         _b_space_22
+         _b_Concentration_value
+         _b_sample_content_label_10
+         _b_space_17
+         _b_Concentration_min_value
+         _b_Concentration_max_value
+         _b_Concentration_value_units
+         _b_Isotopic_labeling
+
+         .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      _*3sample_description   .
+      _*3sample   .
+      _c_space_10   .
+      _c_label_10   .
+      _c_space_12   .
+      _c_sample_framecode   .
+      _c_space_35   .
+      _c_solution   .
+      _c_bicell_solution   .
+      _c_micelles   .
+      _c_liposomes   .
+      _c_emulsion   .
+      _c_gel   .
+      _c_solid   .
+      _c_space_22   .
+      _c_Details   .
+      loop_
+         _*3sample_description
+         _*3sample
+         _c_sample_content_label_0
+         _c_space_10
+         _c_Mol_label
+         _c_sample_content_label_1
+         _c_space_22
+         _c_Concentration_value
+         _c_sample_content_label_10
+         _c_space_17
+         _c_Concentration_min_value
+         _c_Concentration_max_value
+         _c_Concentration_value_units
+         _c_Isotopic_labeling
+
+         .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      _*4sample_description   .
+      _*4sample   .
+      _d_space_10   .
+      _d_label_10   .
+      _d_space_12   .
+      _d_sample_framecode   .
+      _d_space_35   .
+      _d_solution   .
+      _d_bicell_solution   .
+      _d_micelles   .
+      _d_liposomes   .
+      _d_emulsion   .
+      _d_gel   .
+      _d_solid   .
+      _d_space_22   .
+      _d_Details   .
+      loop_
+         _*4sample_description
+         _*4sample
+         _d_sample_content_label_0
+         _d_space_10
+         _d_Mol_label
+         _d_sample_content_label_1
+         _d_space_22
+         _d_Concentration_value
+         _d_sample_content_label_10
+         _d_space_17
+         _d_Concentration_min_value
+         _d_Concentration_max_value
+         _d_Concentration_value_units
+         _d_Isotopic_labeling
+
+         .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*5sample_description
+         _*5sample
+         _e_space_10
+         _e_label_10
+         _e_label_15
+         _e_space_12
+         _e_sample_framecode
+         _e_sample_contents
+
+         .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_expt_conditions
+      _dummy   .
+      loop_
+         _expt_conditions
+         _sample_conditions
+         _dummy
+         _reporting_conditions_label_1
+         _space_10
+         _reporting_conditions_label_0
+         _space_11
+         _space_21
+         _reporting_conditions_framecode
+         _space_42
+         _space_23
+         _label_11
+         _Variable_type_pH
+         _space_35
+         _pH
+         _pH*
+         _pD
+         _space_41
+         _Variable_value_pH
+         _Variable_value_error_pH
+         _Variable_value_units_pH
+         _space_12
+         _space_24
+         _temperature_label_0
+         _temperature
+         _Variable_value_error_temp
+         _Variable_value_units_temp
+         _space_13
+         _space_25
+         _ionic_strength_label_0
+         _space_31
+         _label_21
+         _space_32
+         _ionic_strength
+         _Variable_value_error_ionic_strength
+         _Variable_value_units_is
+         _space_14
+         _space_26
+         _pressure_label_0
+         _label_24
+         _space_38
+         _pressure
+         _Variable_value_error_pressure
+         _Variable_value_units_pressure
+         _space_15
+         _space_16
+         _space_27
+         _label_16
+         _Details
+
+         .   sample_conditions   .   .   .   .   .   .   "Ex-cond 1"   .   .   .   .   .   pH   pH   pH   .   5.5   0.1   .   .   .   .   30C   1   .   .   .   .   .   .   .   0.005   0.003   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_NMR_experimental
+      _dummy   .
+      _NMR_experimental   NMR_applied_experiment
+      _NMR_applied_experiment   NMR_applied_experiment
+      _label_5   .
+      _label_10   .
+      _space_15   .
+      _space_20   .
+      _space_25   .
+      _label_30   .
+      _label_35   .
+      _space_40   .
+      _nmr_experiments   
+;
+2D 1H-1H TOCSY
+2D 1H-1H NOESY
+2D 1H-15N HSQC
+;
+
+      _space_45   .
+      _nmr_experiment_details   .
+      _space_50   .
+      _space_55   .
+      _label_60   .
+      _label_65   .
+      _space_70   .
+      _spectrometer   "AMX600             Bruker"
+      _space_75   .
+      _spectrometer_details   .
+      _space_80   .
+      _space_85   .
+      loop_
+         _*2NMR_experimental
+         _software_sf
+         _software
+         _nmrexp_label_15
+         _nmrexp_label_16
+         _software_name
+         _software_version
+         _Software_task
+         _space_10
+         _software_citation
+         _soft_details
+
+         .   software   .   .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_nmr_parameters
+      _dummy   .
+      _nmr_parameters   .
+      _space_105   .
+      _label_105   .
+      _cbx_chemical_shifts   on
+      _cbx_coupling_constants   off
+      _space_16   .
+      _space_18   .
+      _*1nmr_parameters   .
+      _chem_shift_reference   chemical_shift_reference
+      _label_10   .
+      _space_15   .
+      _chem_shift_ref_framecode   "CSR 1"
+      _space_20   .
+      _space_25   .
+      _chem_shift_label_0   .
+      _space_30   .
+      _chem_shift_label_1   .
+      _chem_shift_label_31   .
+      _space_35   .
+      _chem_shift_label_32   .
+      _chem_shift_label_33   .
+      _chem_shift_label_34   .
+      _chem_shift_label_35   .
+      _chem_shift_label_36   .
+      _chem_shift_label_37   .
+      _space_40   .
+      _chem_shift_label_38   .
+      _space_45   .
+      _chem_shift_ref_1   on
+      _chem_shift_ref_5   .
+      _chem_shift_ref_2   .
+      _chem_shift_ref_3   on
+      _chem_shift_ref_4   .
+      _space_50   .
+      _space_55   .
+      loop_
+         _*0nmr_parameters
+         _*1chemical_shift_reference
+         _chem_shift_label_2
+         _chem_shift_label_55
+         _space_10
+         _chem_shift_label_3
+         _space_15
+         _Atom_type
+         _Atom_isotope_number
+         _Mol_common_name
+         _Atom_group
+         _Chemical_shift_units
+         _Chemical_shift_value
+         _space_20
+         _chem_shift_label_10
+         _internal
+         _External_in_the_sample
+         _external_to_the_sample
+         _space_25
+         _chem_shift_label_11
+         _direct
+         _indirect
+         _space_30
+         _chem_shift_label_12
+         _spherical
+         _cylindrical
+         _space_35
+         _other_orientation
+         _space_40
+         _chem_shift_label_14
+         _parallel_to_Bo
+         _perpendicular_to_Bo
+         _space_45
+         _Indirect_shift_ratio
+         _Indirect_shift_ratio_citation_label
+         _Reference_correction_type
+         _Correction_value
+         _Correction_value_citation_label
+         _Details
+
+         .   .   .   .   .   .   .   H   1   TSP   methyl   ppm   0.00   .   .   internal   internal   internal   .   .   direct   direct   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         .   .   .   .   .   .   .   N   15   TSP   methyl   ppm   0.00   .   .   internal   internal   internal   .   .   indirect   indirect   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*2nmr_parameters
+         _dummy
+         _assigned_chemical_shifts
+         _chemical_shift_label_0
+         _space_10
+         _label_15
+         _label_20
+         _space_25
+         _chem_shift_framecode
+         _space_30
+         _space_35
+         _label_40
+         _space_45
+         _cs_file_path_name
+         _cs_Mol_system_component_name
+         _cs_Sample_label
+         _cs_Sample_conditions_label
+         _cs_reference_set_label
+         _space_50
+         _label_55
+         _space_60
+         _h_chemshift_error
+         _d_chemshift_error
+         _t_chemshift_error
+         _c_chemshift_error
+         _n_chemshift_error
+         _p_chemshift_error
+         _f_chemshift_error
+         _space_65
+         _cs_Details
+         _space_70
+         _ambiguity_table_label_0
+         _space_75
+         _label_80
+         _space_85
+         _ambiguity_table
+         _space_90
+
+         .   .   assigned_chemical_shifts   .   .   .   .   .   "shift set 1"   .   .   .   .   "C:Mis documentos/doug/RNaseSa/gen_atom_list_5K.htm"   "5K RNase Sa"   "sample 1"   "cond. set 1"   .   .   .   .   0.01   .   .   .   0.15   .   .   .   .   .   .   .   .   .   .   .   
+         .   .   assigned_chemical_shifts   .   .   .   .   .   "shift set 1"   .   .   .   .   gen_atom_list_5K.htm   "5K RNase Sa"   "sample 1"   "cond. set 1"   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+      loop_
+         _*3nmr_parameters
+         _coupling_constants
+         _dummy
+         _j_label_0
+         _space_10
+         _j_coupling_constants
+         _space_15
+         _space_20
+         _coupling_constants_framecode
+         _space_25
+         _space_30
+         _label_35
+         _space_40
+         _j_file_path_name
+         _j_Mol_system_component_name
+         _j_Sample_label
+         _j_Sample_conditions_label
+         _j_Spectrometer_frequency_1H
+         _j_Details
+
+         .   coupling_constants   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_references
+      _dummy   .
+      loop_
+         _references
+         _citation
+         _dummy
+         _Citation_label_0
+         _Citation_label_1
+         _space_10
+         _Citation_framecode
+         _space_15
+         _space_20
+         _label_25
+         _space_30
+         _medline_an
+         _space_35
+         _label_40
+         _space_45
+         _Citation_full
+
+         .   citation   .   .   .   .   .   .   .   .   .   .   .   .   .   .   
+         stop_
+   save_
+
+   save_files_deposited
+      _dummy   .
+   save_
+

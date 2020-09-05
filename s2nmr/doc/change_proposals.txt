@@ -1,0 +1,582 @@
+$Id: change_proposals.txt,v 1.4 2001-04-13 21:17:23 madings Exp $
+
+Change Proposals:  A CVS-controlled document with the changes
+as proposed, edited the day they are proposed.  For what changes
+were actually implememnted, look at change_log.txt.
+
+-------------- START OF RCS LOG -----------------------------------
+RCS LOG - make the logs short when cheking this in, otherwise
+the logs become redundant repeats of wha'ts in the rest of 
+the file.
+$Log: not supported by cvs2svn $
+# Revision 1.3  1999/07/30  18:29:17  june
+# 7-30-99, June
+# add transform1d.cc, transform26a.cc, transform38.cc, transform39.cc,
+#  updated transform17.cc, doc/specs.html
+#
+Revision 1.2  1998/12/04 22:58:13  madings
+Added the _whichloop_tag field to change proposal 6.
+
+# Revision 1.1  1998/11/20  19:28:48  madings
+# Added files in doc directory.
+#
+-------------- END OF RCS LOG -----------------------------------
+
+
+
+
+Proposed Changes to s2nmr for pseudoNMRSTAR to NMRSTAR:
+=======================================================
+
+1 - New Rule for s2nmr: save_remove_empty_frames:
+==================================================
+
+	Create a new rule for s2nmr.  This new rule, which
+	will be called "remove_empty_frames", removes saveframes
+	which are either completely empty, or have nothing but the
+	_Saveframe_category tag.
+
+	This new rule will have no corresponding entries in the 
+	mapping file.  There is nothing to configure, as this rule
+	will be applied unconditionally to all empty saveframes
+	that are found.
+
+	In the mapping config file, there will be an entry like this:
+	    save_remove_empty_frames
+	    save_
+	This saveframe will have no tags of any kind inside.  It is
+	simply a trigger - if the saveframe exists, then run this rule,
+	else don't run this rule.
+	
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+
+
+2 - New Rule for s2nmr: save_remove_null_tags:
+==============================================
+
+	Create a new rule for s2nmr.  This new rule removes tags for
+	which the value is a null (a single period), or in the case
+	of a looped tag, when all the values for that tag are null.
+
+	If removing a column from a loop causes that loop to no longer
+	have any columns, than remove the loop entirely.
+
+	Example configuration in the mapping file:
+	------------------------------------------
+		save_remove_null_tags
+		    loop_
+			_key_tag
+			_key_value
+			_old_tagname
+
+			"_Saveframe_category"   "category1"   "_tag1"
+			"_Saveframe_category"   "category1"   "_tag2"
+			"_Saveframe_category"   "category1"   "_tag3"
+			"_Saveframe_category"   "category1"   "_tag4"
+		    stop_
+		save_
+
+	Example result of rule (using the above mapping example):
+	---------------------------------------------------------
+		# BEFORE:
+		save_data1
+		    _Saveframe_category  category1
+		    _tag1                .
+		    _tag2                "value"
+		    _tag5                .
+		    loop_
+			_tag3
+			_tag4
+			_tag5
+			
+			.  .    .
+			.  val1 .
+			.  .    .
+		    stop_
+		save_
+
+		# AFTER:
+		save_data1
+		    _Saveframe_category  category1
+		    _tag2                "value"
+		    _tag5                .
+		    loop_
+			_tag4
+			_tag6
+			
+			.    .
+			val1 .
+			.    .
+		    stop_
+		save_
+	
+	Notice that while tag5 and tag6 had null values, they were
+	not deleted because they were not specified in the mapping file.
+	Also notice that while tag4 had some nulls, not all the values
+	in the column were null, so it was not deleted.
+
+	This new rule will be placed in the order of operations
+	near the end - just before the sorting steps.
+	
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+
+
+3 - New Rule for s2nmr: free_all_category_tags:
+===============================================
+
+	Create a new rule for s2nmr.  This new rule finds all tags
+	with the name "_Saveframe_category" that are in a loop.  It
+	then moves those tags out of the loop so they become a free
+	tag (Data Item) instead of a looped tag.  It is expected that
+	when a _Saveframe_category tag is inside a loop, all the values
+	for that tag will be the same on all rows of that loop.  If this
+	is not the case, then s2nmr should issue a warning and keep
+	processing.
+
+	The saveframe "save_free_all_category_tags" will trigger
+	the execution of this rule.  This rule has no configuration
+	information, so this saveframe will be empty.  Its existence
+	will simply trigger the rule:
+
+	    save_free_all_category_tags
+	    save_
+
+	This new rule will be placed after the rule to rename tags in
+	the order of operations.
+
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+
+
+4 - New Rule for s2nmr: explode_Mol_residue_sequence:
+=====================================================
+
+	This is a special case rule, first some background
+	information:
+
+	Whenever the tag "_Mol_residue_sequence" is encountered, it
+	is expected to have a string of letters as its value, like
+	this example:
+	
+_Mol_residue_sequence             
+;
+PVR
+;
+# Please note that this string of letters is usually much longer,
+# and spans more than one line of text.  The program parsing this
+# needs to ignore these line breaks and act as if it is all one
+# long string of letters.
+
+	Whenever the tag "_Residue_author_seq_code" is encountered,
+	it is expected to have a tabular text string like this:
+_Residue_author_seq_code*
+;
+   1, A
+   2, B
+   3, C
+;
+	
+	Whenever the above two tags are found together in the
+	same saveframe, this rule should generate the following
+	new loop and insert it into the same saveframe:
+
+	loop_
+	    _Residue_seq_code
+	    _Residue_author_seq_code
+	    _Residue_label
+
+	    1  A  P
+	    2  B  V
+	    3  C  R
+	stop_
+
+	(_Residue_seq_code and _Residue_author_seq_code are taken from
+	the parsing of the value for _Residue_author_seq_code*, and
+	_Residue_label is taken from the letters in the string for
+	_Mol_residue_sequence.)
+
+	If _Residue_author_seq_code* is missing from the input file,
+	then create the loop anyway, but without the
+	_Residue_author_seq_code column.
+
+	If _Residue_quthor_seq_code* exists, but has a useless value
+	(a value not in the expected format described above), then
+	create the loop anyway, but without the _Residue_author_seq_code
+	column.
+
+	If _Mol_residue_sequence exists, but has a useless value
+	(a value not in the expected format described above), then
+	do not generate a loop, and issue a warning/error.
+
+	In the mapping configuration file, this rule will be triggered
+	by the following empty saveframe:
+	    save_explode_Mol_residue_sequence
+	    save_
+	(If the saveframe does not exist, then don't run this function.)
+
+	This new rule will be put in the order of operations sometime after
+	all the tag renamings are done, but before the re-sorting is done.
+
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+
+
+
+5 - New Rule for s2nmr: make_new_saveframe
+
+	Create a new rule for s2nmr.  This new rule will make a new
+	saveframe, and populate it with data copied (or moved) from 
+	existing data elsewhere in the file.
+
+	The rule will look like this in the mapping file:
+	-------------------------------------------------
+		save_make_new_saveframe
+		    loop_
+			_new_frame_name
+			loop_
+			    _from_key_tag
+			    _from_key_value
+			    _from_tagname
+			    _copy_or_move_flag
+
+			...
+		save_
+	
+	Explanation:
+	    _new_frame_name is the name of the new saveframe.
+	    _from_key_tag and _from_key_value are the
+	        typical tag/value pair used to idenitify a single
+		saveframe category.
+	    _from_tagname is the tagname to copy from the saveframe.
+	    _copy_or_mode_flag is a single character set to either "C" or
+	    "M", indicating whether to copy the tag (non-descructive), or
+	    move the tag (delete it from the old saveframe).
+
+	In the case where the tag copied is a looped tag instead of a
+	free tag, the entire column is copied out into the new saveframe,
+	and put into its own loop.  (The loop re-order rule can collect
+	these together later.)
+
+	In the case where there are more than one saveframe that matches
+	the given key tag/value criteria, it is considered an error because
+	this rule specifies the name of the new saveframe to create and you
+	should not create two saveframes with this same name.  If this
+	happens, handle it like all other s2nmr errors - issue a warning
+	message to the error log, don't make the new saveframe, and keep
+	going.
+
+	Example:
+	--------
+	    # IN THE MAPPING FILE:
+	    save_make_new_saveframe
+	      loop_
+	         _new_frame_name
+		 loop_
+		    _from_key_tag
+		    _from_key_value
+		    _from_tagname
+	  	    _copy_or_move_flag
+
+	         "save_new_frame1"
+		    "_Saveframe_category"  cat1  "_Saveframe_category"  C
+		    "_Saveframe_category"  cat1  "_tag1"                M
+		    "_Saveframe_category"  cat1  "_tag2"		M
+		    "_Saveframe_category"  cat1  "_tag4"		M
+		    stop_
+		stop_
+          ---------------------------------
+	    # --- BEFORE: ---
+	    save_test1
+		_Saveframe_category  cat1
+
+		_tag0                val0
+		_tag1                val1
+		loop_
+		    _tag2
+		    _tag3
+		    _tag4
+
+		    v2.1  v3.1  v4.1
+		    v2.2  v3.2  v4.2
+		stop_
+	    save_
+
+	    # --- AFTER: ---
+	    save_test1
+		_Saveframe_category  cat1
+
+		_tag0                val0
+		loop_
+		    _tag3
+
+		    v3.1 
+		    v3.2 
+		stop_
+	    save_
+
+	    save_new_frame1
+		_Saveframe_category  cat1
+
+		_tag1                val1
+
+		loop_
+		    _tag2
+
+		    v2.1
+		    v2.2
+		stop_
+		loop_
+		    _tag4
+
+		    v4.1
+		    v4.2
+		stop_
+	    save_
+
+	This rule will be put into the order of operations somewhere
+	after the renaming is done, but before save_remove_null_tags
+	(described above in this file).
+
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+
+
+6 - New rule for s2nmr: insert_loop_defaults
+=============================+==============
+
+	This new rule for s2nmr will insert the contents of a loop into
+	another loop, when certain conditions are met.
+	
+	The Mapping file:
+	-----------------
+	    What to insert:  What to insert will be designated by some
+	    saveframes in the mapping file like so (Any name for the
+	    saveframe can be chosen so long as it does not clash with
+	    the other names of saveframes in the mapping file):
+
+		    save_insert_1
+			loop_
+			    _tag1
+			    _tag2
+			    ...etc...
+
+			    # This is a single row of data to insert
+			    val1  val2  ...etc...
+			stop_
+		    save_
+		    save_insert_2
+			loop_
+			    _tagA
+			    _tagB
+			    ...etc...
+
+			    # This is a single row of data to insert
+			    valA  valB  ...etc...
+			stop_
+		    save_
+
+	    Whether to insert it:  Whether or not to insert the row of
+	    values will be determined by the existance of a certain tag
+	    having a certain value.  If a certain tag has a certain value
+	    in a certain saveframe, then the loop row specified in one of
+	    the above saveframes is inserted into that saveframe if the
+	    'trigger' tag/value was found.  The "_whichloop_tag" field
+	    designates which loop the new row should be inserted into,
+	    in case there are more than one loop in the saveframe.
+	    "_whichloop_tag" is a tagname in one of the loops in the
+	    saveframe.
+
+	    An example of the rule looks like this:
+	    ---------------------------------------
+
+	    save_insert_loop_defaults
+	      loop_
+		_key_tag
+		_key_value
+		_trigger_tag
+		_trigger_value
+		_insert_framecode
+		_whichloop_tag
+
+		# (Note: $insert1 and $insert2 are framecodes
+		# that refer to the save_insert_1 and save_insert_2
+		# saveframes shown in the example above.)
+		#
+		"_Saveframe_category" cat1 "_default1" yes $insert_1 "_tagA"
+		"_Saveframe_category" cat1 "_default2" yes $insert_2 "_tagA"
+	      stop_
+	    save_
+	    
+	    Using the above rule, It might look like this:
+	    ----------------------------------------------
+
+		# ----- BEFORE: -----
+		save_test1
+		    _Saveframe_category  cat1
+
+		    _example_tag         foo
+		    _default1            no
+		    _default2            yes
+
+		    loop_
+			_tagA
+			_tagB
+			...etc...
+
+			previously-existing-val-1
+			previously-existing-val-2
+			...etc...
+
+			previously-existing-val-3
+			previously-existing-val-4
+			...etc...
+		    stop_
+
+		    # This loop will remain untouched because the
+		    # "_whichloop_tag" was set to "_tagA" in the
+		    # mapping file, and this next loop contains
+		    # no "_tagA":
+		    loop_
+			_tagX
+			_tagY
+			_tagZ
+
+			... etc ...
+		    stop_
+		save_
+
+		# ----- AFTER: -------
+		save_test1
+		    _Saveframe_category  cat1
+
+		    _example_tag         foo
+		    _default1            no
+		    _default2            yes
+
+		    loop_
+			_tagA
+			_tagB
+			...etc...
+
+			previously-existing-val-1
+			previously-existing-val-2
+			...etc...
+
+			previously-existing-val-3
+			previously-existing-val-4
+			...etc...
+
+			valA
+			valB
+			...etc...
+		    stop_
+
+		    loop_
+			_tagX
+			_tagY
+			_tagZ
+
+			... etc ...
+		    stop_
+		save_
+	
+	To make this rule simpler to implement, the loop that the 
+	value is being inserted into must previously exist in the
+	original file.  This rule will not attempt to create a
+	new loop from scratch, because to do so would require that
+	we violate the way s2nmr was designed.  (An explanation as
+	to how is beyond the scope of this document, but feel free
+	to ask Steve and he will explain it in person.)
+
+	This rule will be put into the order of operations right after
+	make_new_saveframes, but before save_remove_null_tags.
+
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+
+
+7 - New Rule for s2nmr: remove_null_loop_rows
+=============================================
+
+	Removes rows from loops where certain values are null.
+
+	Given a list of tagnames that are in a loop, remove any rows
+	from that loop for which all the values for the given tags
+	are either nonexistant or null (a single period).
+
+	If doing so removes the very last row from the loop, then
+	get rid of the entire loop too.  (Because of this feature,
+	this rule should not come before insert_loop_defaults in the
+	order of operations, as that might cause it to prematurely
+	delete the loop before the default rows are inserted.)
+
+	The mapping entry for this rule looks like this:
+	------------------------------------------------
+
+	    save_remove_null_loop_rows
+		loop_
+		    _key_tag
+		    _key_value
+		    loop_
+			_important_tagname
+
+		    "_Saveframe_category"  cat1
+			"_looptagA"
+			"_looptagB"
+			"_looptagC"
+		    stop_
+		stop_
+	    save_
+
+	An example using the above mapping dictionary:
+	----------------------------------------------
+
+	    # ---- BEFORE: ----
+	    save_test1
+		_Saveframe_category  cat1
+
+		loop_
+		    _looptagA
+		    _looptagB
+		    _looptagC
+		    _looptagD
+
+		    .     .     .     .
+		    .     .     .     D-val
+		    .     A-val .     .
+		stop_
+	    save_
+
+	    # ---- AFTER: ----
+	    save_test1
+		_Saveframe_category  cat1
+
+		loop_
+		    _looptagA
+		    _looptagB
+		    _looptagC
+		    _looptagD
+
+		    .     A-val .     .
+		stop_
+	    save_
+
+	Note that even though the second row of the loop had a non-null
+	value for _looptagD, it was deleted anyway because _looptagD
+	was not listed among the important tags in the mapping file.
+	
+	This rule will be put into the order of operations right
+	after insert_loop_defaults, but before _save_remove_null_tags.
+
+	(This new rule will not be labeled with a number, as the
+	numbering system used in the past for these rules has been
+	literally useless.)
+

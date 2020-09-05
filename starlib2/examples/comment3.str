@@ -1,0 +1,37 @@
+data_1 
+save_comment
+   _Saveframe_category  comment
+   loop_
+        _comment
+        _every_flag
+        _category
+
+        loop_
+            _tagname
+
+
+;
+#######################
+#  Entry information  #
+#######################
+
+
+;
+        N
+	"_Entry.Sf_category:entry_information" .
+        stop_
+
+
+;
+#############################
+#  Citation for this entry  #
+#############################
+
+
+;
+	N
+	entry_citation 	.
+        stop_
+
+  stop_
+save_

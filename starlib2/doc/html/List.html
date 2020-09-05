@@ -1,0 +1,454 @@
+<html><head><TITLE>List</TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A> template <class T>   class  List : private vector<T> </H2><BLOCKQUOTE>
+
+This is the generic list class that everything else is built
+on top of
+</BLOCKQUOTE>
+<hr>
+ <h2> Inheritance:</h2>
+<APPLET CODE="ClassGraph.class" WIDTH=600 HEIGHT=65>
+<param name=classes value="CList,MList.html,CASTlist,MASTlist.html">
+<param name=before value="M,M^_">
+<param name=after value="M,M">
+<param name=indent value="0,0">
+<param name=arrowdir value="up">
+</APPLET>
+<hr>
+
+<DL>
+<TABLE BORDER>
+<DT><h3>Public Fields</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.85.36"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.36">const_iterator</A> </TD><TD><B>const_iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.30"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  const  <!2><A HREF="List.html#DOC.85.28">value_type</A>* </TD><TD><B>const_pointer</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.32"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  const  <!2><A HREF="List.html#DOC.85.28">value_type</A>& </TD><TD><B>const_reference</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.38"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.38">const_reverse_iterator</A> </TD><TD><B>const_reverse_iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.34"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  size_t </TD><TD><B>difference_type</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.35"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.35">iterator</A> </TD><TD><B>iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.29"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!2><A HREF="List.html#DOC.85.28">value_type</A>* </TD><TD><B>pointer</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.31"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  <!2><A HREF="List.html#DOC.85.28">value_type</A>& </TD><TD><B>reference</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.37"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.37">reverse_iterator</A> </TD><TD><B>reverse_iterator</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.33"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  size_t </TD><TD><B>size_type</B> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.28"> <IMG BORDER=0 SRC=icon1.gif></A> typedef  T </TD><TD><B>value_type</B> <br>
+<I></I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public Methods</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.85.6"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>AddToEnd</B> (T k)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.9"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>AddToEnd</B> (<!2><A HREF="List.html#DOC.85.3">List</A><T> &appendMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.14"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>AlterCurrent</B> (T k)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.23"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>AtEnd</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.24"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>AtStart</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.25"> <IMG BORDER=0 SRC=icon1.gif></A> T </TD><TD><B>Current</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.12"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>FreeList</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.10"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>Insert</B> (<!2><A HREF="List.html#DOC.85.3">List</A><T> &appendMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.7"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>Insert</B> (T k)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.11"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>InsertAfter</B> (<!2><A HREF="List.html#DOC.85.3">List</A><T> &appendMe )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.8"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>InsertAfter</B> (T k)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.26"> <IMG BORDER=0 SRC=icon1.gif></A> T </TD><TD><B>Last</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.17"> <IMG BORDER=0 SRC=icon1.gif></A> int </TD><TD><B>Length</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.3"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>List</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.5"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>List</B> (const vector<T> & L)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.4"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B>List</B> (const <!2><A HREF="List.html#DOC.85.3">List</A><T> & L)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.18"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>Lookup</B> (T k)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.15"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>MemorizeCurrent</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.21"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>Next</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.27"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.3">List</A>& </TD><TD><B>operator = </B> (const <!2><A HREF="List.html#DOC.85.3">List</A><T> & dl)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.22"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>Prev</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.13"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>RemoveCurrent</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.20"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>Reset</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.16"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>RestoreCurrent</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.19"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>SeekTo</B> ( T obj )<br>
+<I></I>
+</TD></TR></TABLE><TABLE BORDER>
+<DT><h3>Public</h3><DD><TR><TD VALIGN=top><A HREF="#DOC.85.2"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.85.2.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I><font size=+1>
+All of the following are modified a bit to deal with
+the myCurrent() index, but to the outside world they look
+like the normal vector operations:
+</font></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.2"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.35">iterator</A> </TD><TD><B>insert</B> ( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos, const T& x )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.3"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>insert</B> ( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos, <!2><A HREF="List.html#DOC.85.35">iterator</A> first, <!2><A HREF="List.html#DOC.85.35">iterator</A> last )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.4"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>insert</B> ( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos, <!2><A HREF="List.html#DOC.85.33">size_type</A> n, const T& x)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.5"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>erase</B> ( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.6"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>erase</B> ( <!2><A HREF="List.html#DOC.85.35">iterator</A> first, <!2><A HREF="List.html#DOC.85.35">iterator</A> last )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.7"> <IMG BORDER=0 SRC=icon1.gif></A> void </TD><TD><B>reserve</B> ( size_t n )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.2.8"> <IMG BORDER=0 SRC=icon1.gif></A> size_t </TD><TD><B>capacity</B> ( void )<br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I></I>
+
+<TABLE BORDER>
+<TR><TD VALIGN=top><A HREF="#DOC.85.1.1"> <IMG BORDER=0 SRC=icon1.gif></A> </TD><TD><B></B> <br>
+<I><font size=+1>
+All of the following work exactly as they do in
+the regular STL vector class:
+</font></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.2"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.35">iterator</A> </TD><TD><B>begin</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.3"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.35">iterator</A> </TD><TD><B>end</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.4"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.37">reverse_iterator</A> </TD><TD><B>rbegin</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.5"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.37">reverse_iterator</A> </TD><TD><B>rend</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.6"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.36">const_iterator</A> </TD><TD><B>begin</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.7"> <IMG BORDER=0 SRC=icon1.gif></A> <!2><A HREF="List.html#DOC.85.36">const_iterator</A> </TD><TD><B>end</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.8"> <IMG BORDER=0 SRC=icon1.gif></A> size_t </TD><TD><B>size</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.9"> <IMG BORDER=0 SRC=icon1.gif></A> bool </TD><TD><B>empty</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.10"> <IMG BORDER=0 SRC=icon1.gif></A> T& </TD><TD><B>operator[]</B> ( <!2><A HREF="List.html#DOC.85.33">size_type</A> n )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.11"> <IMG BORDER=0 SRC=icon1.gif></A> const  T& </TD><TD><B>operator[]</B> ( <!2><A HREF="List.html#DOC.85.33">size_type</A> n) const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.12"> <IMG BORDER=0 SRC=icon1.gif></A> T& </TD><TD><B>front</B> ()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.13"> <IMG BORDER=0 SRC=icon1.gif></A> const  T& </TD><TD><B>back</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.14"> <IMG BORDER=0 SRC=icon1.gif></A> const  T& </TD><TD><B>front</B> () const <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><A HREF="#DOC.85.1.15"> <IMG BORDER=0 SRC=icon1.gif></A> T& </TD><TD><B>back</B> ()<br>
+<I></I>
+</TD></TR>
+</TABLE>
+</TD></TR></TABLE></DL>
+<A NAME="DOC.DOCU">
+<hr>
+ <h2> Documentation </h2>
+<BLOCKQUOTE>
+
+This is the generic list class that everything else is built
+on top of.  Originally this was a linked list implementation,
+but that became cumbersome, so now it is a STL vector with
+some interface functions to envelope this fact.  These interface
+functions are mostly there to just support backward compatability
+with older code that uses this class like it was a linked list.
+<p>
+<font size=+1>
+Any of the methods listed here should be considered
+<em>DEPRECIATED</em> and therefore not to be used by any
+new programs writted from scratch.
+</font>
+<p>
+For any new software written for this class, please restrict
+yourself to using this List class as if it were a STL vector
+class, and manipulate it that way.  
+
+</BLOCKQUOTE>
+<DL>
+
+<A NAME="List">
+<A NAME ="DOC.85.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  List()</B></TT>
+<DL></DL><P>
+<A NAME="List">
+<A NAME ="DOC.85.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  List(const <!2><A HREF="List.html#DOC.85.3">List</A><T> & L)</B></TT>
+<DL></DL><P>
+<A NAME="List">
+<A NAME ="DOC.85.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  List(const vector<T> & L)</B></TT>
+<DL></DL><P>
+<A NAME="AddToEnd">
+<A NAME ="DOC.85.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  AddToEnd(T k)</B></TT>
+<DL></DL><P>
+<A NAME="Insert">
+<A NAME ="DOC.85.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  Insert(T k)</B></TT>
+<DL></DL><P>
+<A NAME="InsertAfter">
+<A NAME ="DOC.85.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  InsertAfter(T k)</B></TT>
+<DL></DL><P>
+<A NAME="AddToEnd">
+<A NAME ="DOC.85.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  AddToEnd(<!2><A HREF="List.html#DOC.85.3">List</A><T> &appendMe )</B></TT>
+<DL></DL><P>
+<A NAME="Insert">
+<A NAME ="DOC.85.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  Insert(<!2><A HREF="List.html#DOC.85.3">List</A><T> &appendMe )</B></TT>
+<DL></DL><P>
+<A NAME="InsertAfter">
+<A NAME ="DOC.85.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  InsertAfter(<!2><A HREF="List.html#DOC.85.3">List</A><T> &appendMe )</B></TT>
+<DL></DL><P>
+<A NAME="FreeList">
+<A NAME ="DOC.85.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  FreeList()</B></TT>
+<DL></DL><P>
+<A NAME="RemoveCurrent">
+<A NAME ="DOC.85.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  RemoveCurrent()</B></TT>
+<DL></DL><P>
+<A NAME="AlterCurrent">
+<A NAME ="DOC.85.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  AlterCurrent(T k)</B></TT>
+<DL></DL><P>
+<A NAME="MemorizeCurrent">
+<A NAME ="DOC.85.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  MemorizeCurrent()</B></TT>
+<DL></DL><P>
+<A NAME="RestoreCurrent">
+<A NAME ="DOC.85.16">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  RestoreCurrent()</B></TT>
+<DL></DL><P>
+<A NAME="Length">
+<A NAME ="DOC.85.17">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> int  Length() const </B></TT>
+<DL></DL><P>
+<A NAME="Lookup">
+<A NAME ="DOC.85.18">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  Lookup(T k)</B></TT>
+<DL></DL><P>
+<A NAME="SeekTo">
+<A NAME ="DOC.85.19">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  SeekTo( T obj )</B></TT>
+<DL></DL><P>
+<A NAME="Reset">
+<A NAME ="DOC.85.20">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  Reset()</B></TT>
+<DL></DL><P>
+<A NAME="Next">
+<A NAME ="DOC.85.21">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  Next()</B></TT>
+<DL></DL><P>
+<A NAME="Prev">
+<A NAME ="DOC.85.22">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  Prev()</B></TT>
+<DL></DL><P>
+<A NAME="AtEnd">
+<A NAME ="DOC.85.23">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  AtEnd() const </B></TT>
+<DL></DL><P>
+<A NAME="AtStart">
+<A NAME ="DOC.85.24">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  AtStart() const </B></TT>
+<DL></DL><P>
+<A NAME="Current">
+<A NAME ="DOC.85.25">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> T  Current()</B></TT>
+<DL></DL><P>
+<A NAME="Last">
+<A NAME ="DOC.85.26">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> T  Last() const </B></TT>
+<DL></DL><P>
+<A NAME="operator = ">
+<A NAME ="DOC.85.27">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.3">List</A>&  operator = (const <!2><A HREF="List.html#DOC.85.3">List</A><T> & dl)</B></TT>
+<DL></DL><P>
+<A NAME="value_type">
+<A NAME ="DOC.85.28">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  T  value_type</B></TT>
+<DL></DL><P>
+<A NAME="pointer">
+<A NAME ="DOC.85.29">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!2><A HREF="List.html#DOC.85.28">value_type</A>*  pointer</B></TT>
+<DL></DL><P>
+<A NAME="const_pointer">
+<A NAME ="DOC.85.30">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  const  <!2><A HREF="List.html#DOC.85.28">value_type</A>*  const_pointer</B></TT>
+<DL></DL><P>
+<A NAME="reference">
+<A NAME ="DOC.85.31">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  <!2><A HREF="List.html#DOC.85.28">value_type</A>&  reference</B></TT>
+<DL></DL><P>
+<A NAME="const_reference">
+<A NAME ="DOC.85.32">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  const  <!2><A HREF="List.html#DOC.85.28">value_type</A>&  const_reference</B></TT>
+<DL></DL><P>
+<A NAME="size_type">
+<A NAME ="DOC.85.33">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  size_t  size_type</B></TT>
+<DL></DL><P>
+<A NAME="difference_type">
+<A NAME ="DOC.85.34">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  size_t  difference_type</B></TT>
+<DL></DL><P>
+<A NAME="iterator">
+<A NAME ="DOC.85.35">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.35">iterator</A>  iterator</B></TT>
+<DL></DL><P>
+<A NAME="const_iterator">
+<A NAME ="DOC.85.36">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.36">const_iterator</A>  const_iterator</B></TT>
+<DL></DL><P>
+<A NAME="reverse_iterator">
+<A NAME ="DOC.85.37">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.37">reverse_iterator</A>  reverse_iterator</B></TT>
+<DL></DL><P>
+<A NAME="const_reverse_iterator">
+<A NAME ="DOC.85.38">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> typedef  vector <T>   ::<!2><A HREF="List.html#DOC.85.38">const_reverse_iterator</A>  const_reverse_iterator</B></TT>
+<DL></DL><P>
+<A NAME="">
+<A NAME ="DOC.85.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="">
+<A NAME ="DOC.85.1.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD><font size=+1>
+All of the following work exactly as they do in
+the regular STL vector class:
+</font>
+<DL></DL><P>
+<A NAME="begin">
+<A NAME ="DOC.85.1.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.35">iterator</A>  begin()</B></TT>
+<DL></DL><P>
+<A NAME="end">
+<A NAME ="DOC.85.1.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.35">iterator</A>  end()</B></TT>
+<DL></DL><P>
+<A NAME="rbegin">
+<A NAME ="DOC.85.1.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.37">reverse_iterator</A>  rbegin()</B></TT>
+<DL></DL><P>
+<A NAME="rend">
+<A NAME ="DOC.85.1.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.37">reverse_iterator</A>  rend()</B></TT>
+<DL></DL><P>
+<A NAME="begin">
+<A NAME ="DOC.85.1.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.36">const_iterator</A>  begin() const </B></TT>
+<DL></DL><P>
+<A NAME="end">
+<A NAME ="DOC.85.1.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.36">const_iterator</A>  end() const </B></TT>
+<DL></DL><P>
+<A NAME="size">
+<A NAME ="DOC.85.1.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> size_t  size() const </B></TT>
+<DL></DL><P>
+<A NAME="empty">
+<A NAME ="DOC.85.1.9">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> bool  empty() const </B></TT>
+<DL></DL><P>
+<A NAME="operator[]">
+<A NAME ="DOC.85.1.10">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> T&  operator[]( <!2><A HREF="List.html#DOC.85.33">size_type</A> n )</B></TT>
+<DL></DL><P>
+<A NAME="operator[]">
+<A NAME ="DOC.85.1.11">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  T&  operator[]( <!2><A HREF="List.html#DOC.85.33">size_type</A> n) const </B></TT>
+<DL></DL><P>
+<A NAME="front">
+<A NAME ="DOC.85.1.12">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> T&  front()</B></TT>
+<DL></DL><P>
+<A NAME="back">
+<A NAME ="DOC.85.1.13">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  T&  back() const </B></TT>
+<DL></DL><P>
+<A NAME="front">
+<A NAME ="DOC.85.1.14">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> const  T&  front() const </B></TT>
+<DL></DL><P>
+<A NAME="back">
+<A NAME ="DOC.85.1.15">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> T&  back()</B></TT>
+<DL></DL><P></DL>
+
+<A NAME="">
+<A NAME ="DOC.85.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DL></DL><P><DL>
+
+<A NAME="">
+<A NAME ="DOC.85.2.1">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B>  </B></TT>
+<DD><font size=+1>
+All of the following are modified a bit to deal with
+the myCurrent() index, but to the outside world they look
+like the normal vector operations:
+</font>
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.85.2.2">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> <!2><A HREF="List.html#DOC.85.35">iterator</A>  insert( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos, const T& x )</B></TT>
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.85.2.3">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  insert( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos, <!2><A HREF="List.html#DOC.85.35">iterator</A> first, <!2><A HREF="List.html#DOC.85.35">iterator</A> last )</B></TT>
+<DL></DL><P>
+<A NAME="insert">
+<A NAME ="DOC.85.2.4">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  insert( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos, <!2><A HREF="List.html#DOC.85.33">size_type</A> n, const T& x)</B></TT>
+<DL></DL><P>
+<A NAME="erase">
+<A NAME ="DOC.85.2.5">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  erase( <!2><A HREF="List.html#DOC.85.35">iterator</A> pos )</B></TT>
+<DL></DL><P>
+<A NAME="erase">
+<A NAME ="DOC.85.2.6">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  erase( <!2><A HREF="List.html#DOC.85.35">iterator</A> first, <!2><A HREF="List.html#DOC.85.35">iterator</A> last )</B></TT>
+<DL></DL><P>
+<A NAME="reserve">
+<A NAME ="DOC.85.2.7">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> void  reserve( size_t n )</B></TT>
+<DL></DL><P>
+<A NAME="capacity">
+<A NAME ="DOC.85.2.8">
+<DT><IMG BORDER=0 SRC=icon2.gif><TT><B> size_t  capacity( void )</B></TT>
+<DL></DL><P></DL>
+</DL>
+<hr>
+<DL><DT><B>Direct child classes:
+</B><DD><A HREF="ASTlist.html"> ASTlist </A><br>
+</DL>
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

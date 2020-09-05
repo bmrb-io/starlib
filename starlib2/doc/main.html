@@ -1,0 +1,125 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: main.html</TITLE>
+    <LINK HREF=example1.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>Starlib: How to write your main program</H1>
+
+    These steps show how to write a main program using the starlib.
+    <P>
+    <HR WIDTH=50%>
+    <H3><CENTER>#includes</CENTER></H3>
+    Every module in a starlib-using program should contain the following
+    includes:
+    <PRE>
+	#include &lt;fstream.h&gt;
+	#include &lt;stdio.h&gt;
+        #include "ast.h"
+	#include "parser.h"
+	#include "scanner.h"
+    </PRE>
+    <H3><CENTER>Global variables</CENTER></H3>
+    There must exist the following two global variables in the program:<BR>
+    <PRE>
+        StarFileNode  *AST;   // StarFileNode is defined in "ast.h"
+	ofstream      *os;    // ofstream is in the standard libc++.
+    </PRE>
+    <H3><CENTER>Initialization</CENTER></H3>
+    The global variables mentioned above are used like this:
+    <UL>
+	<LI><CODE><B>*AST</B></CODE> is a pointer that will be filled
+	    by the parser when it reads a star file into memory.  Due
+	    to the limitations of lex/yacc parsers, such a global
+	    variable must be used.  If you wish to read more than one
+	    star file, you will need to read the first star file into
+	    the AST variable, then copy it to another StarFileNode using
+	    the StarFileNode's copy constructor, then read the next file
+	    into the AST variable.  Also note that since AST is a pointer,
+	    the it is up to you to delete the space (<CODE>delete AST;</CODE>)
+	    when done with it.
+
+	<LI><CODE><B>*os</B></CODE> is a pointer to a C++ output stream.
+	    This is used by the <CODE>Unparse()</CODE> function.
+	    <CODE>Unparse()</CODE> is a method that will write out
+	    the STAR file in memory (or just a portion of it) to a
+	    file.  Unparse() is hardwired to write its output to the
+	    stream called <CODE>(*os)</CODE>.  Therefore, to decide
+	    where the file is to be written to, you open the
+	    <CODE>*os</CODE> file yourself before calling <CODE>Unparse()
+	    </CODE>.  <B>NOTE</B>: One common mistake has been for
+	    people to forget to close the <CODE>(*os)</CODE> output stream,
+	    and therefore the last lines of output never flush into the
+	    file.
+
+	<LI><CODE><B>yyin</B></CODE> is not something that you need to
+	    put in your global variables section, but it is included
+	    as part of the parser.  The parser that reads in a STAR file
+	    will read it from the file <CODE>yyin</CODE>.  <CODE>yyin</CODE>
+	    is an Ansii C (<CODE>FILE *</CODE>) file.  You are expected
+	    to open this file before calling <CODE>yyparse()</CODE>, so
+	    that <CODE>yyparse()</CODE> knows what file to parse.
+    </UL>
+
+    <HR WIDTH=50%>
+    <H3>This is an example of code to illustrate all the above steps</H3>
+    <P>
+    This code will parse in a star file called "input.star", and write it
+    out under the name "output.star".  The example doesn't do anything
+    else, but you can use it as a skeleton from which to base your own
+    code.
+    <P>
+    Don't be overwhelmed if you don't understand everything here, but
+    you should be able to understand the use of <CODE>*os</CODE>, 
+    <CODE>*AST</CODE>, and <CODE>yyin</CODE>.
+    <PRE>
+
+#include &lt;fstream.h&gt;
+#include &lt;stdio.h&gt;
+#include "ast.h"
+#include "parser.h"
+#include "scanner.h"
+
+    StarFileNode  *AST;   // StarFileNode is defined in "ast.h"
+    ofstream      *os;    // ofstream is in the standard libc++.
+
+int main( void )
+{
+
+    yyin = fopen( "input.star", "r" );
+    if( yyin == NULL )
+    {   cerr &lt;&lt; "Error opening input.star\n";
+	return 2;
+    }
+
+    if( yyparse() == 0 )  // yyparse returns nonzero on error.
+    {
+	// It was successfully parsed, now *AST contains the
+	// file in memory.  For this simple example, we will
+	// just Unparse it right away and quit.
+	// -------------------------------------------------
+        os = new ofstream( "output.star" );
+	if( os == NULL )
+	{   cerr &lt;&lt; "Error opening output.star\n";
+	    return 1;
+	}
+	AST-&gt;Unparse(0); // Unparse takes 1 arg: the indent level:
+
+	delete os;   // C++ streams are closed by calling the delete
+	             // operator.  If you do not close it, it might
+		     // not flush the last line or two of the output.
+	delete AST;
+    }
+    else
+    {   cerr &lt;&lt; "Syntax error while parsing file.\n";
+	return 3;
+    }
+
+    return 0;
+}
+    </PRE>
+    <HR>
+    <A HREF=using_compile.html> - previous topic - </A>
+    <A HREF=classes.html> - next topic - </A>
+</BODY>

@@ -1,0 +1,13 @@
+data_test_formatnmrstr
+
+save_sf1
+   _Saveframe_category entry_citation
+save_
+
+save_sf2
+   _Entry.Sf_category entry_information
+save_
+
+save_sf3
+   _nothing a
+save_

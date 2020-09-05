@@ -1,0 +1,302 @@
+<html><head><TITLE></TITLE></head>
+<body>
+<H2><A HREF ="#DOC.DOCU" > <IMG BORDER=0 SRC=down.gif></A>    </H2>
+<TABLE>
+<TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=strCmpInsensitive.html><B>strCmpInsensitive</B></A> <br>
+<I>Performs a case-insensitive string compare</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=HeadingNode.html><B>HeadingNode</B></A> <br>
+<I>HeadingNode is a type that holds a simple header for one of the
+other types of nodes</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataValueNode.html><B>DataValueNode</B></A> <br>
+<I>This is the type that holds a single string value from the 
+star file, and the delimiter type that is used to quote it</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DVNWithPos.html><B>DVNWithPos</B></A> <br>
+<I>This is identical to DataValueNode, but with one exception</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataNode.html><B>DataNode</B></A> <br>
+<I> classes: DataItemNode, DataLoopNode, or SaveFrameNode.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarFileNode.html><B>StarFileNode</B></A> <br>
+<I>The Mother Of All Star Nodes (literally)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataListNode.html><B>DataListNode</B></A> <br>
+<I>Holds a list of the kinds of things that can be in a DataBlockNode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=BlockNode.html><B>BlockNode</B></A> <br>
+<I>A single block in the file - this can be either a
+data block or a global block - they are both handled
+the same way</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarListNode.html><B>StarListNode</B></A> <br>
+<I>This class holds a list of the nodes that can be inside a
+star file</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=GlobalBlockNode.html><B>GlobalBlockNode</B></A> <br>
+<I>A BlockNode speficly for holding the "global_" block</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataBlockNode.html><B>DataBlockNode</B></A> <br>
+<I>A data block of the form data_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataNameNode.html><B>DataNameNode</B></A> <br>
+<I>Holds a name of either a tag/value pair or a loop tag name</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataItemNode.html><B>DataItemNode</B></A> <br>
+<I>Holds a single tag name / tag value pair</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>LoopDefListNode</B><br>
+<I> DEPRECIATED name for LoopNameListNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopNameListNode.html><B>LoopNameListNode</B></A> <br>
+<I>A list of tag names representing one single nesting level
+of a loop's definition</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>DataLoopDefListNode</B><br>
+<I> Depreciated name for DataLoopNameListNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataLoopNameListNode.html><B>DataLoopNameListNode</B></A> <br>
+<I>This is a list of lists of names in a loop.  The first
+list of names is the list of names for the outermost loop.
+the second list of names is the list of names for the next
+nesting level in, and so on.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>IterNode</B><br>
+<I> DEPRECIATED name for LoopRowNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ValCache.html><B>ValCache</B></A> <br>
+<I>ValCache is a global class, with static members</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopRowNode.html><B>LoopRowNode</B></A> <br>
+<I>This class is a single row of values in a loop</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopTableNode.html><B>LoopTableNode</B></A> <br>
+<I>A LoopTableNode is a table of rows in a DataLoopNode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataLoopNode.html><B>DataLoopNode</B></A> <br>
+<I>A DataLoopNode is a list of tagnames and a list of values
+for those names</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=GlobalHeadingNode.html><B>GlobalHeadingNode</B></A> <br>
+<I>Contains nothing more than the name "global_" - this class
+exists more for orthagonoality more than utility</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataHeadingNode.html><B>DataHeadingNode</B></A> <br>
+<I>Contains nothing more than the name "data_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=SaveHeadingNode.html><B>SaveHeadingNode</B></A> <br>
+<I>Contains nothing more than the name "save_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=SaveFrameListNode.html><B>SaveFrameListNode</B></A> <br>
+<I>Contains the things that are inside of a saveframe</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=SaveFrameNode.html><B>SaveFrameNode</B></A> <br>
+<I>This is a save frame from the STAR file</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=formatNMRSTAR.html><B>formatNMRSTAR</B></A> <br>
+<I>This function formats the file according to the format
+defined in the formatTree passed in (which is a text
+file defining the commenting and loop spacing format
+for parts of the star file)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=strCmpInsensitive.2.html><B>strCmpInsensitive</B></A> <br>
+<I>Performs a case-insensitive string compare</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=HeadingNode.2.html><B>HeadingNode</B></A> <br>
+<I>HeadingNode is a type that holds a simple header for one of the
+other types of nodes</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataValueNode.2.html><B>DataValueNode</B></A> <br>
+<I>This is the type that holds a single string value from the 
+star file, and the delimiter type that is used to quote it</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DVNWithPos.2.html><B>DVNWithPos</B></A> <br>
+<I>This is identical to DataValueNode, but with one exception</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataNode.2.html><B>DataNode</B></A> <br>
+<I> classes: DataItemNode, DataLoopNode, or SaveFrameNode.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarFileNode.2.html><B>StarFileNode</B></A> <br>
+<I>The Mother Of All Star Nodes (literally)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataListNode.2.html><B>DataListNode</B></A> <br>
+<I>Holds a list of the kinds of things that can be in a DataBlockNode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=BlockNode.2.html><B>BlockNode</B></A> <br>
+<I>A single block in the file - this can be either a
+data block or a global block - they are both handled
+the same way</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarListNode.2.html><B>StarListNode</B></A> <br>
+<I>This class holds a list of the nodes that can be inside a
+star file</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=GlobalBlockNode.2.html><B>GlobalBlockNode</B></A> <br>
+<I>A BlockNode speficly for holding the "global_" block</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataBlockNode.2.html><B>DataBlockNode</B></A> <br>
+<I>A data block of the form data_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataNameNode.2.html><B>DataNameNode</B></A> <br>
+<I>Holds a name of either a tag/value pair or a loop tag name</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataItemNode.2.html><B>DataItemNode</B></A> <br>
+<I>Holds a single tag name / tag value pair</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>LoopDefListNode</B><br>
+<I> DEPRECIATED name for LoopNameListNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopNameListNode.2.html><B>LoopNameListNode</B></A> <br>
+<I>A list of tag names representing one single nesting level
+of a loop's definition</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>DataLoopDefListNode</B><br>
+<I> Depreciated name for DataLoopNameListNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataLoopNameListNode.2.html><B>DataLoopNameListNode</B></A> <br>
+<I>This is a list of lists of names in a loop.  The first
+list of names is the list of names for the outermost loop.
+the second list of names is the list of names for the next
+nesting level in, and so on.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>IterNode</B><br>
+<I> DEPRECIATED name for LoopRowNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ValCache.2.html><B>ValCache</B></A> <br>
+<I>ValCache is a global class, with static members</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopRowNode.2.html><B>LoopRowNode</B></A> <br>
+<I>This class is a single row of values in a loop</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopTableNode.2.html><B>LoopTableNode</B></A> <br>
+<I>A LoopTableNode is a table of rows in a DataLoopNode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataLoopNode.2.html><B>DataLoopNode</B></A> <br>
+<I>A DataLoopNode is a list of tagnames and a list of values
+for those names</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataValueNode.3.html><B>DataValueNode</B></A> <br>
+<I>This is the type that holds a single string value from the 
+star file, and the delimiter type that is used to quote it</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataNode.3.html><B>DataNode</B></A> <br>
+<I> classes: DataItemNode, DataLoopNode, or SaveFrameNode.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarFileNode.3.html><B>StarFileNode</B></A> <br>
+<I>The Mother Of All Star Nodes (literally)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataListNode.3.html><B>DataListNode</B></A> <br>
+<I>Holds a list of the kinds of things that can be in a DataBlockNode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=BlockNode.3.html><B>BlockNode</B></A> <br>
+<I>A single block in the file - this can be either a
+data block or a global block - they are both handled
+the same way</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarListNode.3.html><B>StarListNode</B></A> <br>
+<I>This class holds a list of the nodes that can be inside a
+star file</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=GlobalBlockNode.3.html><B>GlobalBlockNode</B></A> <br>
+<I>A BlockNode speficly for holding the "global_" block</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataBlockNode.3.html><B>DataBlockNode</B></A> <br>
+<I>A data block of the form data_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataNameNode.3.html><B>DataNameNode</B></A> <br>
+<I>Holds a name of either a tag/value pair or a loop tag name</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataItemNode.3.html><B>DataItemNode</B></A> <br>
+<I>Holds a single tag name / tag value pair</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>LoopDefListNode</B><br>
+<I> DEPRECIATED name for LoopNameListNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopNameListNode.3.html><B>LoopNameListNode</B></A> <br>
+<I>A list of tag names representing one single nesting level
+of a loop's definition</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>DataLoopDefListNode</B><br>
+<I> Depreciated name for DataLoopNameListNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataLoopNameListNode.3.html><B>DataLoopNameListNode</B></A> <br>
+<I>This is a list of lists of names in a loop.  The first
+list of names is the list of names for the outermost loop.
+the second list of names is the list of names for the next
+nesting level in, and so on.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>#define </TD><TD><B>IterNode</B><br>
+<I> DEPRECIATED name for LoopRowNode for backward compatability:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopRowNode.3.html><B>LoopRowNode</B></A> <br>
+<I>This class is a single row of values in a loop</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopTableNode.3.html><B>LoopTableNode</B></A> <br>
+<I>A LoopTableNode is a table of rows in a DataLoopNode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataLoopNode.3.html><B>DataLoopNode</B></A> <br>
+<I>A DataLoopNode is a list of tagnames and a list of values
+for those names</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=GlobalHeadingNode.2.html><B>GlobalHeadingNode</B></A> <br>
+<I>Contains nothing more than the name "global_" - this class
+exists more for orthagonoality more than utility</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=DataHeadingNode.2.html><B>DataHeadingNode</B></A> <br>
+<I>Contains nothing more than the name "data_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=SaveHeadingNode.2.html><B>SaveHeadingNode</B></A> <br>
+<I>Contains nothing more than the name "save_</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=SaveFrameListNode.2.html><B>SaveFrameListNode</B></A> <br>
+<I>Contains the things that are inside of a saveframe</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=SaveFrameNode.2.html><B>SaveFrameNode</B></A> <br>
+<I>This is a save frame from the STAR file</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTlist.html><B>ASTlist</B></A> <br>
+<I>
+The purpose of this type is to be a template class just like
+the base "List" is, but with the added caveat that it works
+on ASTnodes that are part of an AST star file tree</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTemptyString.html><B>ASTemptyString</B></A> <br>
+<I>
+<pre>
+RCS HISTORY:
+History:
+$Log: astnode</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=1.html><B>1</B></A> <br>
+<I>This struct is used internally to save some space
+in each node</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTnode.html><B>ASTnode</B></A> <br>
+<I>ASTnode class (base class for all other kinds of nodes)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTnodeWithPosBits.html><B>ASTnodeWithPosBits</B></A> <br>
+<I>This is used internally by those AST nodes which have line number
+and column information</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTemptyString.2.html><B>ASTemptyString</B></A> <br>
+<I>
+<pre>
+RCS HISTORY:
+History:
+$Log: astnode_working</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=1.2.html><B>1</B></A> <br>
+<I>This struct is used internally to save some space
+in each node</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTnode.2.html><B>ASTnode</B></A> <br>
+<I>ASTnode class (base class for all other kinds of nodes)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=ASTnodeWithPosBits.2.html><B>ASTnodeWithPosBits</B></A> <br>
+<I>This is used internally by those AST nodes which have line number
+and column information</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> class  </TD><TD><B>StarListNode</B><br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarFileNode.4.html><B>StarFileNode</B></A> <br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=List.html><B>List</B></A> <br>
+<I>
+This is the generic list class that everything else is built
+on top of</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=LoopVals.html><B>LoopVals</B></A> <br>
+<I> thing to do    -- Steve.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>scanner_error</B>(int linenum, int colnum, string mesg)<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>scanner_warning</B>(int linenum, int colnum, string mesg)<br>
+<I>scanner error fn</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>parser_error</B>(char *mesg)<br>
+<I>scanner warning fn</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>int  </TD><TD><B>yyparse</B>()<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>yyerror</B>(char *msg)<br>
+<I> the parse function</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>(cls,T,name) extern  FILE*  </TD><TD><B>yyin</B><br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>int  </TD><TD><B>yylex</B>()<br>
+<I> the file from which the scanner reads</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=TokenType.html><B>TokenType</B></A> <br>
+<I> The type of the value associated with each token</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarErrID.html><B>StarErrID</B></A> <br>
+<I> The ID number for the kinds of errors there are:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=StarErrEntry.html><B>StarErrEntry</B></A> <br>
+<I> The struct that holds a single error message from the parser:</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif> </TD><TD><A HREF=starErrReport.html><B>starErrReport</B></A> <br>
+<I>The collection of all the error messages that were built up in the parsing</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>extern  ofstream*  </TD><TD><B>errStream</B><br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>extern  <!1><A HREF="StarFileNode.3.html">StarFileNode</A>*  </TD><TD><B>AST</B><br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>extern  <!1><A HREF="StarFileNode.3.html">StarFileNode</A>*  </TD><TD><B>NMR</B><br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>extern  <!1><A HREF="StarFileNode.3.html">StarFileNode</A>*  </TD><TD><B>DIC</B><br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_remove_tag</B>( <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *input, <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *output, <!1><A HREF="BlockNode.html">BlockNode</A> *currDicDataBlock )<br>
+<I>This function does transform 5.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_renamed_tags</B>(<!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A>* currDicDataBlock)<br>
+<I>This function does transformation 1a). </I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_tag_to_framecode</B>(<!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A>* currDicDataBlock)<br>
+<I>This function does transformation 1b). </I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_keyed_renamed_tags</B>( <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A>* currDicDataBlock )<br>
+<I>This function does transformation 1c). </I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_all_tag_to_scope</B>(<!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A>* currDicDataBlock)<br>
+<I>This function does transformation 2</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_tag_to_value</B>(<!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A>* currDicDataBlock)<br>
+<I>This function does transformation 3a)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_value_to_loop</B>( <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *<!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *<!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A> *currDicDataBlock )<br>
+<I>This function does transformation 3b)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_keyed_tag_to_value</B>(<!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.99">AST</A>, <!1><A HREF="StarFileNode.3.html">StarFileNode</A>* <!2><A HREF="#DOC.100">NMR</A>, <!1><A HREF="BlockNode.html">BlockNode</A>* currDicDataBlock)<br>
+<I>This function does transformation 3c)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_order</B>( <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *input, <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *output, <!1><A HREF="BlockNode.html">BlockNode</A> *currDicDataBlock )<br>
+<I>This function does re-order transform II-1.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>save_loops</B>( <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *input, <!1><A HREF="StarFileNode.3.html">StarFileNode</A> *output, <!1><A HREF="BlockNode.html">BlockNode</A> *currDicDataBlock )<br>
+<I>This function does re-order transform II-2.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>string  </TD><TD><B>tagToVal</B>(string value)<br>
+<I>from the strings</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>string  </TD><TD><B>removeFirstChar</B>(string value)<br>
+<I>of the string</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>string  </TD><TD><B>convertToFramecode</B>(string value)<br>
+<I> a "$" to the string.)</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>string  </TD><TD><B>deSpacify</B>( string value )<br>
+<I> Returns the string with whitespace turned into underscores.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>void  </TD><TD><B>SplitStringByWidth</B>( string splitMe,  int width,  <!1><A HREF="List.html">List</A><string>* valList   )<br>
+<I></I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>char  </TD><TD><B>FindNeededQuoteStyle</B>( string searchMe )<br>
+<I>  either (") or (') or (;) or a space for 'none'.</I>
+</TD></TR><TR><TD VALIGN=top><IMG BORDER=0 SRC=icon1.gif>bool  </TD><TD><B>InsertNeededQuoteStyle</B>( string &changeMe )<br>
+<I>  no change was made.</I>
+</TD></TR>
+</TABLE>
+<A NAME="DOC.DOCU">
+<DL></DL><P><I><A HREF="aindex.html"> alphabetic index</A></I>  <I><A HREF="HIER.html"> hierarchy of classes</A></I><P><hr>
+<I><FONT SIZE=-1>Starlib is a creation of BioMagResBank:
+bmrb.wisc.edu</FONT></I>
+<IMG SRC="starlib_banner.gif" ALT="starlib banner">
+<BR>
+
+<P Align=right><I>generated by <A HREF="http://www.zib.de/Visual/software/doc++/index.html">doc++</A></I>
+</BODY>

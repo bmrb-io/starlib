@@ -1,0 +1,993 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: classes list</TITLE>
+</HEAD>
+<BODY>
+    <H1><CENTER>starlib: the classes</CENTER></H1>
+    This document explains the classes used in the starlib.
+    <P>
+    These classes very closely mirror the BNF grammar for
+    parsing STAR files.  There is almost a one-to-one mapping
+    of rules in the BNF grammar to classes in the library.
+    Therfore, each class represents a "piece" of the STAR file.
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="ASTnode"></A>
+    <H2><CODE>ASTnode.  (from "astnode.h")</CODE></H2>
+    <CODE>ASTnode</CODE> is a base class from which all other
+    classes are derived.  It is a pure virtual class, so you
+    cannot have an object of type <CODE>ASTnode</CODE>.  However,
+    you can have pointers to <CODE>ASTnode</CODE>s, and often
+    this is useful for keeping a reference to some item from
+    a STAR tree that you do not know what it is yet.  This is
+    often used throughout the starlib functions.
+    <P>
+    While <CODE>ASTnode</CODE> is not a final class, it contains
+    many functions that will be useful in their overridden forms
+    in other classes derived from <CODE>ASTnode</CODE>.  Any time
+    there is a function at the generic <CODE>ASTnode</CODE> level
+    to achieve a task, it is preferable to use that function
+    instead of using a more specialized function.
+    <P>
+    Here are the the important parts of <CODE>ASTnode</CODE>.  For
+    the full details, see the header file <CODE>"astnode.h"</CODE>.
+    This list attempts to describe what the methods can be used for,
+    rather than describing their exact prototypes.  In the future there
+    are plans to make use of a tool like
+    <A HREF=http://www.cs.virginia.edu/~nr/noweb/>noweb</A> to eliminate
+    the need for this split documentation.
+
+    <UL>
+	<LI><A NAME="ASTnode__ASTtype"></A>
+	    <B><CODE>ASTtype</CODE></B>: This is an enumerated type used
+  	    to help identify the different types of classes that are
+	    derived from ASTnode.  Each kind of class that is derived
+	    from ASTnode has an identifier in this enumerated type.
+	    Each ASTnode object has a member of this type that it
+	    uses to flag what kind of ASTnode it is.  There are
+	    various methods of <CODE>ASTnode</CODE> that use this
+	    type to communicate information to the caller.
+	    <P>
+
+	<LI><A NAME="ASTnode__constructors"></A>
+	    <B><CODE>constructors</CODE></B>: For all derived classes
+	    of <CODE>ASTnode</CODE>, there exist deep-copy constructors
+	    that will make copies of the entire STAR syntax tree from
+	    the point at which the constructor is called downward.
+	    To make a copy of a saveframe, simply use the copy constructor
+	    of <A HREF=#SaveFrameNode><CODE>SaveFrameNode</CODE></A>, to
+	    copy an entire STAR file, use the copy constructor of
+	    <A HREF=#StarFileNode><CODE>StarFileNode</CODE></A>, and so on.
+
+	<LI><A NAME="ASTnode__destructors"></A>
+	    <B><CODE>destructors</CODE></B>: For some derived classes of
+	    <CODE>ASTnode</CODE>, the destructors are laid out
+	    such that they will properly remove themselves from
+	    their parent node.  See <A HREF=example2.html>the deletion
+	    example</A> to see which classes can be deleted safely
+	    with this technique.
+	    <P>
+
+	<LI><A NAME="ASTnode__Unparse"></A>
+	    <B><CODE>Unparse()</CODE></B>: All <CODE>ASTnode</CODE>-derived
+	    classes have a method called <CODE>Unparse()</CODE> that will
+	    write out the node (and all things inside it) to an output
+	    file in legal STAR syntax.  This method takes one parameter,
+	    which is an indentation level determining how many spaces
+	    to indent the output (normally, it is just set to zero).
+	    The output file is determined by a global C++
+	    <CODE>ofstream</CODE> variable called <CODE>os</CODE>, meaning
+	    "output stream".  How to set up this variable is explained
+	    in the document about <A HREF=main.html>making a simple main
+	    program</A>.
+	    <P>
+
+	<LI><A NAME="ASTnode__myType"></A>
+	    <B><CODE>myType()</CODE></B>: This method simply returns a
+	    <A HREF="#ASTnode__ASTtype"><CODE>ASTtype</CODE></A> enum
+	    that tells exactly what kind of class this object is.
+	    This is useful if you have a generic pointer to an
+	    <CODE>ASTnode</CODE> and you want to know the type to
+	    which it should be casted.
+	    <P>
+
+	<LI><A NAME="ASTnode__myParent"></A>
+	    <B><CODE>myParent()</CODE></B>: This method gives a pointer
+	    to the parent object that this object is inside.  Repetative
+	    calls to this method in a loop can be used to "walk" up the
+	    tree, eventually reaching the <A HREF="ASTnode__StarFileNode">
+	    <CODE>StarFileNode</CODE></A> that this item is inside.
+	    If this object is not inside another object, this method
+	    returns <CODE>NULL</CODE>.  It is guarnateed that the
+	    "parent chain" will not loop.  Sucessive calls to
+	    <CODE>myParent()</CODE> should eventually reach a NULL.
+	    <P>
+
+	<LI><A NAME="ASTnode__isOfType"></A>
+	    <B><CODE>isOfType()</CODE></B>: This method is similar in
+	    purpose to <A HREF="#ASTnode__myType"><CODE>myType()</CODE></A>,
+	    except that it can make use of the class derivation
+	    hierarchy to determine if this object is of the type
+	    mentioned, by virtue of object inheritence.  For example, a
+	    <CODE>DataItemNode</CODE> is a kind of
+	    <CODE>DataNode</CODE>, which in turn is a kind of
+	    <CODE>ASTnode</CODE>.  If you had an object of type
+	    <CODE>DataItemNode</CODE>, and called its
+	    <CODE>isofType()</CODE> method with an argument of
+	    <CODE>ASTnode::DATANODE</CODE>, the result would be
+	    true.
+	    <P>
+
+	<LI><A NAME="ASTnode__searchByTag"></A>
+	    <B><CODE>searchByTag()</CODE></B>: This method allows the
+	    caller to search for a particular piece of STAR file by
+	    name.  It can be used to find any part of a STAR file.
+	    For example, you could search for a saveframe called
+	    <CODE>save_author_details</CODE>, or for a data item
+	    called <CODE>_author_first_name</CODE>.  Note that you must
+	    include the whole name of the tag, including the leading
+	    underscore, or other prefix (like "save_", or "data_")
+	    <P>
+	    To search in an entire STAR file, use the
+	    <CODE>StarFileNode</CODE>'s <CODE>searchByTag()</CODE>
+	    function.  To search just one saveframe, use that saveframe's
+	    <CODE>searchByTag()</CODE> method, and so on.
+	    <P>
+	    The result that is returned is a list of pointers to matching
+	    nodes.  To see the layout of the List class, see the explanation
+	    in the <A HREF=list.html>list documentation</A>.  The reason
+	    it is a list is that there can theoretically be more than
+	    one hit if searching an entire STAR file for a tag.  Even
+	    in places where it is known that there can only be one
+	    hit (such as searching a save frame for a tag), the method
+	    still returns a list, even though it should never have moreu
+	    than one thing in it.  This is to preserve consistency
+	    throughout all the <CODE>ASTnode</CODE> classes.  If you
+	    have a pointer to an <CODE>ASTnode</CODE>, you do not need
+	    to know what kind of <CODE>ASTnode</CODE> it is in order to
+	    call its <CODE>searchByTag()</CODE> function.
+	    <P>
+	    There are overloaded versions of this function to handle
+	    being called via a <CODE>char *</CODE> or a <CODE>string</CODE>.
+	    <P>
+
+	<LI><A NAME="ASTnode__searchByTagValue"></A>
+	    <B><CODE>searchByTagValue()</CODE></B>: This method is
+	    identical to <A HREF=#ASTnode__searchByTag>
+	    <CODE>searchByTag()</CODE></A> shown above, but with
+	    an extra parameter.  This method will only return a match
+	    if the given tag has a particular value.  For example,
+	    instead of just searching for "_some_tag", you can search
+	    for places where "_some_tag" has a value of "X".  This works
+	    for both <A HREF=#DataItemNode>
+	    <CODE>DataItemNode</CODE>s</A>, and loops.  In a loop,
+	    if any of the values for the tag are a match, then a match
+	    is returned.  For loops, the value from within the loop where
+	    the match occurred is what is returned.
+	    <P>
+	    There are overloaded versions of this function to handle
+	    being called via a <CODE>char *</CODE> or a <CODE>string</CODE>.
+	    <P>
+
+	<LI><A NAME="ASTnode__searchForTypeByTag"></A>
+	    <B><CODE>searchForTypeByTag()</CODE></B>: This method is
+	    identical to <A HREF=#ASTnode__searchByTag>
+	    <CODE>searchByTag</CODE></A> shown above, but with
+	    an extra parameter.  This method will return a match only
+	    if it is of the given type.  This method can be used to
+	    search only for saveframes, or only for loops, and so on.
+	    <P>
+	    If a match is not of the right type, this method will
+	    "walk up the parent list" until it finds one that is,
+	    or it hits NULL and gives up.  Thus, this method will
+	    return a parent of a match if the parent is of the right
+	    type.  Thus you can use this function to do things like
+	    <I>"search for the saveframe in which there is a tag
+	    named such-and-such."</I>
+	    <P>
+	    There are overloaded versions of this function to handle
+	    being called via a <CODE>char *</CODE> or a <CODE>string</CODE>.  <P>
+
+	<LI><A NAME="ASTnode__searchForTypeByTagValue"></A>
+	    <B><CODE>searchForTypeByTagValue()</CODE></B>: This method is
+	    identical to <A HREF=#ASTnode__searchByTagValue>
+	    <CODE>searchByTagValue()</CODE></A>, except that it
+	    searches only for specific types, and it walks up the
+	    "parent list", as describe above for
+	    <CODE>searchForTypeByTag()</CODE>.
+
+	<LI><A NAME="ASTnode__myParallelCopy"></A>
+	    <B><CODE>myParallelCopy()</CODE></B>: This method is
+	    used only when making use of a parallel-copy of a tree with
+	    peer links.  This is a rather unusual thing to do, and might
+	    not be useful to most users.  See <A HREF=parallel.html>the
+	    parallel-copy documentation</A> for an explanation.
+
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="StarFileNode"></A>
+    <H2><CODE>StarFileNode.  (from "ast.h")</CODE></H2>
+    <CODE>StarFileNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This is the mother of all ASTnode objects.  Literally.  Thinking
+    of the STAR file as a tree of nodes, this object is the root
+    parent of all the other objects in an in-memory STAR file.  If
+    you start with any object in the STAR file, and walk up the parent
+    chain long enough, your should eventually end up at the
+    <CODE>StarFileNode</CODE> that starts the tree.
+    <P>
+    <H3>Contains:</H3>
+    <CODE>StarFileNode</CODE>s contain a single
+    <A HREF=#StarFileListNode><CODE>StarFileListNode</CODE></A>,
+    which in turn contains the rest of the STAR file in memory.
+    <P>
+
+    <UL>
+	<LI><B><I>Antiquated</I></B>: The following have had their
+	    functionality antiquated by the generic re-usable functions
+	    in <A HREF=#ASTnode><CODE>ASTnode</CODE></A> and are kept
+	    only for historical reasons.  Don't rely on their continued
+	    existence in the future:
+	    <UL>
+		<LI><A NAME="StarFileNode__ReturnDataBlockNode"></A>
+		    <B><CODE>ReturnDataBlockNode</CODE></B> :
+		    Antiquated by <A HREF=#ASTnode__searchByTag>
+		    <CODE>searchByTag</CODE></A>.
+		<LI><A NAME="StarFileNode__RemoveSaveFrame"></A>
+		    <B><CODE>RemoveSaveFrame</CODE></B> :
+		    Antiquated by using <CODE>SaveFrameNode</CODE>s
+		    destructor instead.
+	    </UL>
+	    <P>
+
+	<LI><A NAME="StarFileNode__GiveMyDataBlockList"></A>
+	    <B><CODE>GiveMyDataBlockList</CODE></B>: This method
+	    returns the list of datablocks (and a globalblock if
+	    it exists) that make up the STAR file.  This list is
+	    directly manipulatable.  (You can use the
+	    <A HREF=list.html>list primitives</A> on it directly to
+	    add new blocks or iterate over the datablocks.)
+	    <P>
+
+	<LI><B><I>Used By Parser</I></B>: The following functions all
+	    similarly add things to the very end of a star file in
+	    memory.  Because of this limited use, of only being able
+	    to add things to the very end of the file, they probably
+	    aren't much use to most users of this library.  However,
+	    they are part of the parser, and as such you can rest
+	    asssured that they will always be there, and you may
+	    use them if you wish.
+	    <P>
+	    These functions are all adequetely explained in the
+	    header file <CODE>"ast.h"</CODE>:
+	    <UL>
+		<LI><A NAME="StarFileNode__AddSaveFrameToDataBlock"></A>
+		    <B><CODE>AddSaveFrameToDataBlock()</CODE></B>
+		<LI><A NAME="StarFileNode__AddDataBlock"></A>
+		    <B><CODE>AddDataBlock()</CODE></B>
+		<LI><A NAME="StarFileNode__AddSaveFrame"></A>
+		    <B><CODE>AddSaveFrame()</CODE></B>
+		<LI><A NAME="StarFileNode__AddSaveFrameDataItem"></A>
+		    <B><CODE>AddSaveFrameDataItem()</CODE></B>
+		<LI><A NAME="StarFileNode__AddSaveFrameLoop"></A>
+		    <B><CODE>AddSaveFrameLoop()</CODE></B>
+		<LI><A NAME="StarFileNode__AddSaveFrameLoopDataName"></A>
+		    <B><CODE>AddSaveFrameLoopDataName()</CODE></B>
+		<LI><A NAME="StarFileNode__AddSaveFrameLoopDataValue"></A>
+		    <B><CODE>AddSaveFrameLoopDataValue()</CODE></B>
+	    </UL>
+	    <P>
+
+    </UL>
+
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="HeadingNode"></A>
+    <H2><CODE>HeadingNode.  (from "ast.h")</CODE></H2>
+    <CODE>HeadingNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>.
+    <P>
+    <CODE>HeadingNode</CODE> is a type that holds a simple header for
+    one of the other types of nodes.  It has several subtypes depending
+    on what kind of heading it is.  Typically a heading is just a string.
+    <P>
+    <CODE>HeadingNode</CODE>s are typically used only for labelling
+    large things in the STAR syntax.  For example, if a saveframe
+    is named "save_example_frame", then the "save_example_frame" string
+    would be stored in a <CODE>HeadingNode</CODE> of some sort.
+    <UL>
+	<LI><A NAME="HeadingNode__myName"></A>
+	    <B><CODE>myName()</CODE></B>: This method returns the C++ string
+	    that is the name of this heading.
+
+	<LI><A NAME="HeadingNode__changeName"></A>
+	    <B><CODE>changeName()</CODE></B>: This method changes the name
+	    of this heading.
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="GlobalHeadingNode"></A>
+    <H2><CODE>GlobalHeadingNode.  (from "ast.h")</CODE></H2>
+    <CODE>GlobalHeadingNode</CODE> is derived from <A HREF=#HeadingNode>
+    <CODE>HeadingNode</CODE></A>.
+    <P>
+    This is just a special case of <A HREF=#HeadingNode><CODE>
+    HeadingNode</CODE></A>, used to label global_ blocks.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataHeadingNode"></A>
+    <H2><CODE>DataHeadingNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataHeadingNode</CODE> is derived from <A HREF=#HeadingNode>
+    <CODE>HeadingNode</CODE></A>.
+    <P>
+    This is just a special case of <A HREF=#HeadingNode><CODE>
+    HeadingNode</CODE></A>, used to label data_ blocks.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="SaveHeadingNode"></A>
+    <H2><CODE>SaveHeadingNode.  (from "ast.h")</CODE></H2>
+    <CODE>SaveHeadingNode</CODE> is derived from <A HREF=#HeadingNode>
+    <CODE>HeadingNode</CODE></A>.
+    <P>
+    This is just a special case of <A HREF=#HeadingNode><CODE>
+    HeadingNode</CODE></A>, used to label save frames.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataValueNode"></A>
+    <H2><CODE>DataValueNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataValueNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    <CODE>DataValueNode</CODE>s are used in any place where a value is
+    held in the STAR syntax.  This includes individual data items and
+    values in the bodies of loops.
+    <P>
+    <UL>
+	<LI><A NAME=DataValueNode__ValType></A>
+	    <B><CODE>ValType</CODE></B>: This enumerated type is used to
+	    keep track of what kind of delimiter this data value node
+	    uses when it is printed in a STAR file.  All kinds of
+	    values are represented by this one type.  Note that the
+	    delimiter is not a part of the actual value.  It is added
+	    when printing the valueto a file.
+	    <P>
+
+	<LI><A NAME=DataValueNode__myDelimType></A>
+	    <B><CODE>myDelimType()</CODE></B>: This method returns the
+	    delimiter type that this value will use when it is
+	    printed via <A HREF=#ASTnode__Unparse><CODE>Unparse</CODE></A>.
+	    <P>
+
+	<LI><A NAME=DataValueNode__setDelimType></A>
+	    <B><CODE>setDelimType()</CODE></B>: This method sets the
+	    delimiter type that this value will use when it is
+	    printed via <A HREF=#ASTnode__Unparse><CODE>Unparse</CODE></A>.
+	    BE CAREFUL!  There are no checks to ensure that this change
+	    is syntacticly correct in a STAR file.  For example, if you
+	    take a value that originally had multiple lines, and you
+	    change it from a semicolon-delimited string into a single-quote
+	    delimited string, that will produce a STAR file with invalid
+	    syntax when it is printed.  (Due to the line-breaks in the
+	    middle of the single-quote string.)
+	    <P>
+
+	<LI><A NAME=DataValueNode__myValue></A>
+	    <B><CODE>myValue()</CODE></B>: This method returns the string
+	    value stored in this object.  The delimiter characters are
+	    not part of this string.
+	    <P>
+	
+	<LI><A NAME=DataValueNode__setValue></A>
+	    <B><CODE>setValue()</CODE></B>: This method sets the string
+	    value stored in this object.  Do not include the delimiter
+	    characters in this string.  BE CAREFUL!  There are no checks
+	    to ensure that what you do is syntacticly correct.  For
+	    example, you could change the string of a single-quoted
+	    value to a multiple-line string without changing its
+	    delimiter type to a semicolon-delimited string, which will
+	    cause the output file to be invalid STAR syntax when you
+	    print it out.
+	    <P>
+
+	<LI><A NAME=DataValueNode__myName></A>
+	    <B><CODE>myName()</CODE></B>: This method is a duplicate
+	    of <CODE>myValue</CODE> kept mostly for historical reasons.
+	    <P>
+
+	<LI><A NAME="DataValueNode__=="></A>
+	    <B><CODE>operator ==</CODE></B>: The '==' operator has been
+	    overloaded for DataValueNode such that when you compare a
+	    DataValueNode to a string that has delimiters such as
+	    quotation marks or semicolons, the delimiters are ignored
+	    in the comparasin.
+	    <P>
+    </UL>
+    
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="BlockNode"></A>
+    <H2><CODE>BlockNode.  (from "ast.h")</CODE></H2>
+    <CODE>BlockNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This is a base class for holding "blocks" of "stuff".  It has two
+    derivations: <A HREF=#DataBlockNode><CODE>DataBlockNode</CODE></A>
+    and <A HREF=#GlobalBlockNode><CODE>GlobalBLockNode</CODE></A>.  Both
+    data blocks and global blocks are similar enough that they can be
+    handled the same way using this one class.
+    <P>
+    <H3>Contains:</H3>
+    A list of <A HREF=#DataNode><CODE>DataNode</CODE>s</A>
+    <P>
+
+    <UL>
+	<LI><B><I>Antiquated</I></B>: The following have had their
+	    functionality antiquated by the generic re-usable functions
+	    in <A HREF=#ASTnode><CODE>ASTnode</CODE></A> and are kept
+	    only for historical reasons.  Don't rely on their continued
+	    existence in the future:
+	    <UL>
+		<LI><A NAME="BlockNode__ReturnDataBlockDataNode"></A>
+		    <B><CODE>ReturnDataBlockDataNode</CODE></B> :
+		    Antiquated by <A HREF=#ASTnode__searchByTag>
+		    <CODE>searchByTag</CODE></A>.
+		<LI><A NAME="BlockNode__RemoveSaveFrame"></A>
+		    <B><CODE>RemoveSaveFrame</CODE></B> :
+		    Antiquated by using <CODE>SaveFrameNode</CODE>s
+		    destructor instead.
+	    </UL>
+	    <P>
+
+	<LI><A NAME="BlockNode__GiveMyDataList"></A>
+	    <B><CODE>GiveMyDataList()</CODE></B>: This method returns
+	    a list of the <A HREF=#Datanode><CODE>DataNode</CODE>s</A>
+	    in the block.  This list is directly manipulatable.
+	    You can use the <A HREF=list.html>list primitives</A> to
+	    directly add things to the block and iterate over its items.
+	    <P>
+
+	<LI><A NAME="BlockNode__myName"></A>
+	    <B><CODE>myName()</CODE></B>: This method returns the name
+	    of this data block:  for example,
+	    <CODE>"data_sample_values"</CODE>, or <CODE>"global_"</CODE>
+	    <P>
+	
+	<LI><B><I>Used By Parser</I></B>: The following functions all
+	    similarly add things to the very end of a data or global
+	    block in memory.  Because of this limited use, of only being
+	    able to add things to the very end of the block, they probably
+	    aren't much use to most users of this library.  However,
+	    they are part of the parser, and as such you can rest
+	    asssured that they will always be there, and you may
+	    use them if you wish.
+	    <P>
+	    These functions are all adequetely explained in the
+	    header file <CODE>"ast.h"</CODE>:
+	    <UL>
+		<LI><A NAME="BlockNode__AddSaveFrame"></A>
+		    <B><CODE>AddSaveFrame()</CODE></B>
+		<LI><A NAME="BlockNode__AddSaveFrameDataItem"></A>
+		    <B><CODE>AddSaveFrameDataItem()</CODE></B>
+		<LI><A NAME="BlockNode__AddSaveFrameLoop"></A>
+		    <B><CODE>AddSaveFrameLoop()</CODE></B>
+		<LI><A NAME="BlockNode__AddSaveFrameLoopDataName"></A>
+		    <B><CODE>AddSaveFrameLoopDataName()</CODE></B>
+		<LI><A NAME="BlockNode__AddSaveFrameLoopDataValue"></A>
+		    <B><CODE>AddSaveFrameLoopDataValue()</CODE></B>
+	    </UL>
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="StarListNode"></A>
+    <H2><CODE>StarListNode.  (from "ast.h")</CODE></H2>
+    <CODE>StarListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class holds the list of items in the STAR file.  You should
+    never have to use it directly.  You should be able to get everything
+    done using the methods in the <A HREF=#StarFileNode><CODE>StarFileNode
+    </CODE></A> that contains an object of this class.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="GlobalBlockNode"></A>
+    <H2><CODE>GlobalBlockNode.  (from "ast.h")</CODE></H2>
+    <CODE>GlobalBlockNode</CODE> is derived from <A HREF=#BlockNode>
+    <CODE>BlockNode</CODE></A>
+    <P>
+    This class is just a special case of <A HREF=#BlockNode><CODE>
+    BlockNode</CODE></A> that is used for global_ blocks as opposed
+    to data_ blocks.
+    <P>
+
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataBlockNode"></A>
+    <H2><CODE>DataBlockNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataBlockNode</CODE> is derived from <A HREF=#BlockNode>
+    <CODE>BlockNode</CODE></A>
+    <P>
+    This class is just a special case of <A HREF=#BlockNode><CODE>
+    BlockNode</CODE></A> that is used for data_ blocks as opposed
+    to global_ blocks.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataNameNode"></A>
+    <H2><CODE>DataNameNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataNameNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class is used to hold the tag name of some data.  It is used
+    by both single-item data tags and in loops.
+    <UL>
+	<LI><A NAME="DataNameNode__myName"></A>
+	    <B><CODE>myName()</CODE></B>: This method returns the string
+	    for this name.
+	<LI><A NAME="DataNameNode__setName"></A>
+	    <B><CODE>setName()</CODE></B>: This method sets the string
+	    for this name.  Be sure to make it a name that begins with
+	    an underscore, as all legal names should.  As of now, there
+	    is no check to verify that the name is syntacticly valid.
+	    This might change in the future.
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataItemNode"></A>
+    <H2><CODE>DataItemNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataItemNode</CODE> is derived from <A HREF=#DataNode>
+    <CODE>DataNode</CODE></A>
+    <P>
+    This class is used to store a single data item, such as this:
+    <PRE>
+            _tag_name  "value"
+    </PRE>
+    The tag/value pair is kept together in this class.
+    <P>
+    <H3>Contains:</H3>
+    This class contains one <A HREF=#DataNameNode><CODE>DataNameNode</CODE></A>
+    and one <A HREF=#DataValueNode><CODE>DataValueNode</CODE></A>.
+    <P>
+    <UL>
+	<LI><A NAME="DataItemNode__constructor"></A>
+	    <B><CODE>constructors</CODE></B>: There exist several
+	    constructors for <CODE>DataItemNode</CODE>s that will
+	    create a new data item given a string for the tag name
+	    and a string for the value, and the value's delimiter
+	    type.  If the value's delimiter type is left off, then
+	    a non-quoted string is assumed.
+	    <P>
+
+	<LI><A NAME="DataItemNode__myName"></A>
+	    <B><CODE>myName()</CODE></B>: This method will return
+	    the string name of the tag for this data item.
+	    <P>
+
+	<LI><A NAME="DataItemNode__setName"></A>
+	    <B><CODE>setName()</CODE></B>: This method will change
+	    the string name of the tag for this data item.  BE CAREFUL -
+	    make sure you use a value with a leading underscore.  There
+	    is no check to ensure that you do this at the moment.
+	    <P>
+
+	<LI><A NAME="DataItemNode__myValue"></A>
+	    <B><CODE>myValue()</CODE></B>: This method will return
+	    the string value of this data item.
+	    <P>
+	
+	<LI><A NAME="DataItemNode__setValue"></A>
+	    <B><CODE>setValue()</CODE></B>: This method will change
+	    the string value of this data item.  BE CAREFUL!  It is
+	    possible to change the string value such that the
+	    delimiter type is not correct anymore.  (For example,
+	    you could take a non-quoted value and change it to a
+	    string that has some spaces, and forget to change the
+	    delimiter type.)
+	    <P>
+	
+	<LI><A NAME="DataItemNode__myDelimType"></A>
+	    <B><CODE>myDelimType()</CODE></B>: This method will return
+	    the delimiter type of the value of this data item.  See
+	    <A HREF=#DataValueNode__ValType><CODE>DataValueNode::ValType
+	    </CODE></A> for more details about what this means.
+	    <P>
+	
+	<LI><A NAME="DataItemNode__setDelimType"></A>
+	    <B><CODE>setDelimType()</CODE></B>: This method will change
+	    the delimiter type of the value of this data item.  See
+	    <A HREF=#DataValueNode__ValType><CODE>DataValueNode::ValType
+	    </CODE></A> for more details about what this means. BE CAREFUL!
+	    There is no check to ensure that your changing of the delimiter
+	    type is syntacticly correct.  For example, you could take a
+	    quoted value with spaces in it and change it so it is no
+	    longer quoted, which will cause an invalid STAR file to be
+	    created if this is printed out.
+	    <P>
+	
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataLoopNode"></A>
+    <H2><CODE>DataLoopNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataLoopNode</CODE> is derived from <A HREF=#DataNode>
+    <CODE>DataNode</CODE></A>
+    <P>
+    This class holds a loop.  The interior of it is rather complex,
+    to handle the different kinds of nested loops that exist in STAR
+    files.  Most of the time, you should only need to use the methods
+    in this class, and not concern yourself with the classes inside
+    this class.
+    <P>
+    <H3>Contains:</H3>
+    An <A HREF=#LoopIter><CODE>IterNode</CODE></A>, and a
+    <A HREF=#DataLoopDefListNode><CODE>DataLoopDefListNode</CODE></A>.
+    <UL>
+	<LI><A NAME=DataLoopNode__myName></A>
+	    <B><CODE>myName()</CODE></B>: Although loops don't really
+	    have names, for the sake of having a consistent
+	    convention, all <CODE>DataNode</CODE>s need to have
+	    a method called <CODE>myName()</CODE>, and
+	    <CODE>DataLoopNode</CODE> is a <CODE>DataNode</CODE>.
+	    This method will actually return the name of the first
+	    tag inside the loop.
+	    <P>
+
+	<LI><A NAME=DataLoopNode__FlattenNestedLoop></A>
+	    <B><CODE>FlattenNestedLoop()</CODE></B>: This method
+	    returns two lists.  One is a list of of the tag names
+	    for this loop and one is the list of the data values.
+	    (This method only returns the singly-nested outermost
+	    loop.)  These two lists can be used to iterate over
+	    the values in the loop.  The value list is a flat
+	    list of all the elements of the loop in row-major
+	    order.  So to visit the values of the 3rd column of
+	    a loop that has 5 columns, you would first move to
+	    the 3rd element of the value list, then look at every
+	    fifth element of the list thereafter.
+	    <P>
+
+	<LI><A NAME=DataLoopNode__returnLoopValues></A>
+	    <B><CODE>returnLoopValues()</CODE></B>: This method
+	    returns a list of the values for a column of the
+	    loop, given the name of one of the tags of the loop.
+	    This method is only capable of getting values from
+	    the outermost singly-nested loop.  Example:  You have the
+	    following loop:
+	    <PRE>
+		   loop_
+			_tag1 _tag2 _tag3 _tag4
+			"A"   "B"   "C"   "D"
+			"E"   "F"   "G"   "H"
+			"I"   "J"   "K"   "L"
+		   stop_
+	    </PRE>
+	    In this case, if you call <CODE>returnLoopValues</CODE>
+	    with an argument of <CODE>"_tag2"</CODE>, you will get
+	    a list back containing "B", "F", and "J".
+	    <P>
+	    Note that this list contains the <EM>actual</EM> values
+	    in the loop, so you can change the values in the list,
+	    and it will cause the values in the loop to change.
+	    <P>
+
+	<LI><A NAME=DataLoopNode__tagPositionDeep></A>
+	    <B><CODE>tagPositionDeep()</CODE></B>: This method returns
+	    the position at which a tag name is located in the loop.
+	    It returns the nesting level, and the column of the tag.
+	    For example, if the tag being queried is at the 3rd column
+	    of the 2nd nested loop, the returned values will be
+	    nestLevel = 1, column = 2 (starts counting at zero).  If
+	    the tag name in question is not in the loop, negative values
+	    are returned.
+	    <P>
+
+	<LI><A NAME=DataLoopNode__RemoveColumn></A>
+	    <B><CODE>RemoveColumn()</CODE></B>: This method deletes
+	    a column from the outermost loop given the tagname.
+	    For example, if there was a loop like this...
+	    <PRE>
+		   loop_
+			_tag1 _tag2 _tag3 _tag4
+			"A"   "B"   "C"   "D"
+			"E"   "F"   "G"   "H"
+			"I"   "J"   "K"   "L"
+		   stop_
+	    </PRE>
+	    ...calling that loop's <CODE>RemoveColumn</CODE> method
+	    with a parameter of <CODE>"_tag3"</CODE> would result
+	    in a loop like this:
+	    <PRE>
+		   loop_
+			_tag1 _tag2 _tag4
+			"A"   "B"   "D"
+			"E"   "F"   "H"
+			"I"   "J"   "L"
+		   stop_
+	    </PRE>
+	    <P>
+
+	<LI><A NAME=DataLoopNode__ChangeName></A>
+	    <B><CODE>ChangeName()</CODE></B>: This method changes one
+	    of the tag names in the loop.  It takes two parameters:
+	    the original name, and the name to which it should be changed.
+	    <P>
+
+	<LI><A NAME=DataLoopNode__constructor></A>
+	    <B><CODE>constructors</CODE></B>: There is currently no
+	    way to make signifigant additions to a loop once it has
+	    been parsed into memory.  The only way to do so is to
+	    use the constructors to create a new loop from scratch.
+	    There are several forms of the constructor for doing
+	    this.  Improvements to this technique are planned in
+	    future versions of starlib.
+	    <P>
+    </UL>
+    The handling of loops is probably the area where <CODE>starlib</CODE>
+    could stand to use the most improvement.  Suggestions for
+    improvements to the API for DataLoopNode are welcome.
+    <P>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="SaveFrameNode"></A>
+    <H2><CODE>SaveFrameNode.  (from "ast.h")</CODE></H2>
+    <CODE>SaveFrameNode</CODE> is derived from <A HREF=#DataNode>
+    <CODE>DataNode</CODE></A>
+    <P>
+    <H3>Contains:</H3>
+    This class represents one save-frame.  It contains a mixed list of
+    <A HREF=#DataItemNode></CODE>DataItemNode</CODE>s</A> and
+    <A HREF=#DataLoopNode></CODE>DataLoopNode</CODE>s</A>.
+    <P>
+    <UL>
+	<LI><A NAME="SaveFrameNode__myName"></A>
+	    <B><CODE>myName()</CODE></B>: This method will return
+	    the string name of this save frame.
+	    <P>
+
+	<LI><A NAME="SaveFrameNode__changeName"></A>
+	    <B><CODE>setName()</CODE></B>: This method will change
+	    the string name of this save frame.  CAUTION! Be sure to
+	    use a string beginning with <CODE>"save_"</CODE>.
+	    <P>
+
+	<LI><A NAME="SaveFrameNode__AddItemToSaveFrame"></A>
+	    <B><CODE>AddItemToSaveFrame()</CODE></B>: Given a pointer
+	    to a newly created <A HREF=#DataNode><CODE>DataNode</CODE></A>
+	    object, this method adds that object to the end of the
+	    save frame.  Note: Do not delete the object after adding
+	    it - it is linked into the save frame, not copied.  This
+	    same method can be used to add either loops or data items.
+	    <P>
+
+	<LI><A NAME="SaveFrameNode__GiveMyDataList"></A>
+	    <B><CODE>GiveMyDataList()</CODE></B>: returns a list of
+	    the <A HREF=#DataNode><CODE>DataNode</CODE>s</A> that
+	    are in this save frame.  This is a directly manipulatable
+	    list.  Deleting, adding, or changing the items in this
+	    list will make changes to the actual save frame.
+	    <P>
+
+	<LI><A NAME="SaveFrameNode__ReturnLoopValues"></A>
+	    <B><CODE>ReturnLoopValues()</CODE></B>: Returns a list
+	    of values for a given tag, assuming that that tag is
+	    inside a loop in the saveframe somewhere.  See
+	    <A HREF=#DataLoopNode__ReturnLoopValues>
+	        <CODE>DataLoopNode::ReturnLoopValues()</CODE>
+	    </A>
+	    for more details.
+	    <P>
+
+	<LI><A NAME="SaveFrameNode__AddDataItem"></A>
+	    <B><CODE>AddDataItem()</CODE></B>: Adds a new data
+	    item to the end of the save frame, given its tag name,
+	    string value, and delimiter type.
+	    <P>
+
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataLoopDefListNode"></A>
+    <H2><CODE>DataLoopDefListNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataLoopDefListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class holds a list of the tag names that label a loop.  (Actually,
+    in order to handle nested loops, this class actually holds a list
+    of lists of tag names.)
+    <P>
+    <H3>Contains:</H3>
+    A list of <A HREF=#LoopDefListNode><CODE>LoopDefListNode</CODE>s</A>.
+    <P>
+    For the most part, you should not need to manipulate objects of this
+    class directly.  You should be able to achive the functionality you
+    need using the methods in the
+    <A HREF=#DataLoopNode><CODE>DataLoopNode</CODE></A> object that contains
+    this class.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="IterNode"></A>
+    <H2><CODE>IterNode.  (from "ast.h")</CODE></H2>
+    <CODE>IterNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class holds the values of one row of a loop, and if that
+    row has an inner loop 'hanging' off if it, it contains a pointer
+    to that loop.
+    <P>
+    <H3>Contains:</H3>
+    A list of <A HREF=#DataValueNode><CODE>DataValueNode</CODE>s</A>, and a
+    pointer to an innner loop (a <A HREF=#LoopIter><CODE>LoopIter</CODE></A>).
+    <P>
+    You should not need to manipulate this class directly.  You should
+    be able to get all the needed functionality out of the
+    <A HREF=#DataLoopNode><CODE>DataLoopNode</CODE></A> that contains
+    this object.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="LoopIter"></A>
+    <H2><CODE>LoopIter.  (from "ast.h")</CODE></H2>
+    <CODE>LoopIter</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class holds a list of <A HREF=#IterNode><CODE>IterNode</CODE>s</A>.
+    This class represents one "table" in a loop.  Each <CODE>IterNode</CODE>
+    is one row of the 'table'.  Each row of the table can also have
+    another <CODE>LoopIter</CODE> in it, representing another "table"
+    of values at a deeper nesting level.
+    <P>
+    You should not need to manipulate this class directly.  You should
+    be able to get all the needed functionality out of the
+    <A HREF=#DataLoopNode><CODE>DataLoopNode</CODE></A> that contains
+    this object.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="LoopDefListNode"></A>
+    <H2><CODE>LoopDefListNode.  (from "ast.h")</CODE></H2>
+    <CODE>LoopDefListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class holds the tag names associated with a loop.  In the
+    case of a nested loop, there will be a different one of these
+    for each level of nesting.
+    <P>
+    <H3>Contains:</H3>
+    A list of <A HREF=#DataNameNode><CODE>DataNameNode</CODE>s</A>.
+    <P>
+    You should not need to manipulate this class directly.  You should
+    be able to get at all needed functinality using the
+    <A HREF=#DataLoopDefListNode><CODE> DataLoopDefListNode</CODE></A>
+    that contains this object.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataLoopValListNode"></A>
+    <H2><CODE>DataLoopValListNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataLoopValListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class holds a list of values for the body of the loop.
+    <P>
+    NOTE: This class is only used when first building a new loop.
+    Once the loop has been constructed, this class is no longer
+    used.  (The loop transforms this format into its own internal
+    representation.)
+    <P>
+    The only thing in this class that you should need to know is that
+    there is an enumerated type that is used as a return value for
+    some of the methods in other classes:
+    <UL>
+	<LI><A NAME="DataLoopValListNode__Status"></A>
+	    <B><CODE>Status</CODE></B>: This enumerated type holds
+	    one of three values: END, STOP, or CONTINUE.  It is
+	    used in certain iteration functions that manipulate
+	    this class as a means of communicating what is left in
+	    the loop:
+	    <UL>
+		<LI>CONTINUE - means that there is still another
+		    value coming up after this one in the loop.
+		<LI>STOP - means that a <CODE>stop_</CODE> keyword
+		    was seen in the STAR file at this point, so
+		    the next values (if there are any) will be
+		    at one nesting level "further up".
+		<LI>END - means that the loop is finished.
+	    </UL>
+    </UL>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="LoopValListNode"></A>
+    <H2><CODE>LoopValListNode.  (from "ast.h")</CODE></H2>
+    <CODE>LoopValListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class is used internally by loops.  You should not need to
+    manipulate this class directly.
+    <P>
+    NOTE: This class is only used when first building a new loop.
+    Once the loop has been constructed, this class is no longer
+    used.  (The loop transforms this format into its own internal
+    representation.)
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataListNode"></A>
+    <H2><CODE>DataListNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This generic class contains a list of data.  It is used inside of
+    several other classes and you will probably never need to deal
+    directly with it.
+    <P>
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="DataNode"></A>
+    <H2><CODE>DataNode.  (from "ast.h")</CODE></H2>
+    <CODE>DataNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This is not a complete class. it is a pure virtual class
+    that serves only as a stub placeholder for
+    <A HREF=#DataItemNode><CODE>DataItemNode</CODE></A>, and
+    <A HREF=#DataLoopNode><CODE>DataLoopNode</CODE></A>, and
+    <A HREF=#SaveFrameNode><CODE>SaveFrameNode</CODE></A>.
+
+    <P>
+    <!-- ------------------------------------------------------------------>
+    <HR WIDTH=60%>
+    <A NAME="SaveFrameListNode"></A>
+    <H2><CODE>SaveFrameListNode.  (from "ast.h")</CODE></H2>
+    <CODE>SaveFrameListNode</CODE> is derived from <A HREF=#ASTnode>
+    <CODE>ASTnode</CODE></A>
+    <P>
+    This class contains a list of the things that can be allowed in
+    a save-frame (Data Items and Data Loops).  It is used inside of
+    <A HREF=#SaveFramenode><CODE>SaveFrameNode</CODE></A> and you
+    will probably never need to deal directly with it.
+    <P>
+
+    <HR>
+    <A HREF=main.html> - previous topic - </A>
+    <A HREF=list.html> - next topic - </A>
+
+</BODY>

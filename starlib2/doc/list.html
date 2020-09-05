@@ -1,0 +1,155 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: list.html</TITLE>
+</HEAD>
+<BODY>
+    <H1>Starlib: How the list primitives work.</H1>
+    (The methods explained here are detailed in <CODE>list.h</CODE>
+    and <CODE>astlist.h</CODE> .)
+    <P>
+    Throughout <CODE>starlib</CODE>, there are many places where
+    a linked list is used.  In every one of those cases, the
+    following primitive methods can be used on that list.  There
+    are really two different classes that use lists.  There is
+    the <CODE>List&lt;&gt;</CODE> class and the
+    <CODE>ASTlist&lt;&gt;</CODE> class.  <CODE>ASTlist</CODE> is a
+    class derived from the base class <CODE>List</CODE>.  Both
+    classes are template classes.
+    <P>
+    The main difference between <CODE>ASTlist</CODE> and
+    <CODE>List</CODE> are are so minor that as a user of this
+    library, you can ignore the differences.  The <CODE>ASTlist</CODE>
+    was developed to keep track of some extra information that is
+    needed when handling lists of nodes in a the STAR tree, but the
+    differences do not show on the surface, and you can behave as
+    if the two classes act the same way:
+    <P>
+    A list has a concept of its "current" position.  Each list can
+    only have one such "current" position.
+    <P>
+    <B>(Throughout the following list, "T" refers to the type that the
+    instantiation of <CODE>List&lt;&gt;</CODE> or
+    <CODE>ASTlist&lt;&gt;</CODE> was created to hold.)</B>
+    <UL>
+	<LI><A NAME="List__constructor"></A>
+	    <B><CODE>constructors</CODE></B><BR>
+	    The default constructor
+	    for a <CODE>List</CODE> creates an empty list.  There is
+	    also a copy constructor that copies the contents of one
+	    <CODE>List</CODE> into a new one.
+	    <P>
+	
+	<LI><A NAME="List__AddToEnd"></A>
+	    <B><CODE>void AddToEnd(T addme)</CODE></B><BR>
+	    <B><CODE>void AddToEnd(const List<T> &addme)</CODE></B><BR>
+	    This method adds a new object to the end of the list.  There
+	    is an overloaded version that will accept another
+	    <CODE>List</CODE> as the parameter - this copies the entire
+	    contents of the passed list onto the end of this list.
+	    <P>
+	    Currently there is no provision for adding things to the
+	    middle of the list, only at the end.
+	    <P>
+
+	<LI><A NAME="List__FreeList"></A>
+	    <B><CODE>void FreeList()</CODE></B><BR>
+	    Removes the <EM>contents</EM> of the list, but not
+	    the list itself.  (In other words, it
+	    resets the list back to being empty.)
+	    <P>
+	
+	<LI><A NAME="List__RemoveCurrent"></A>
+	    <B><CODE>void RemoveCurrent()</CODE></B><BR>
+	    Removes the current
+	    node from the list.  The 'current' pointer moves to the
+	    next object in the list after the deleted one.
+	    <P>
+	
+	<LI><A NAME="List__AlterCurrent"></A>
+	    <B><CODE>void AlterCurrent(T setToMe)</CODE></B><BR>
+	    Replaces the current node of the list with the given
+	    value.
+	    <P>
+	
+	<LI><A NAME="List__MemorizeCurrent"></A>
+	    <B><CODE>void MemorizeCurrent()</CODE></B><BR>
+	    This method tells the object to remember where its
+	    current pointer is, so it can be restored to that
+	    position later.  Each object of type <CODE>List</CODE>
+	    can only remember one such value at a time.
+	    <P>
+
+	<LI><A NAME="List__RestoreCurrent"></A>
+	    <B><CODE>void RestoreCurrent()</CODE></B><BR>
+	    Restores a list to the position it was at when
+	    <CODE>MemorizeCurrent()</CODE> was called. (see above).
+	    <P>
+
+	
+	<LI><A NAME="List__Length"></A>
+	    <B><CODE>int Length() const</CODE></B><BR>
+	    Returns the number of nodes in the list.
+	    <P>
+	
+	<LI><A NAME="List__Lookup"></A>
+	    <B><CODE>bool Lookup(T findMe)</CODE></B><BR>
+	    Searches for an object that is equal to the object
+	    passed (If the class passed has had its '==' operator
+	    redifined, then the redefined version will be used for
+	    this check.)  If the object is found in the list,
+	    <CODE>true</CODE> is returned.
+	    <P>
+	
+	<LI><A NAME="List__SeekTo"></A>
+	    <B><CODE>bool SeekTo(T findMe)</CODE></B><BR>
+	    Like <A HREF=List__Lookup><CODE>Lookup()</CODE></A>, but
+	    it also moves the current pointer to the location
+	    given.
+	    <P>
+	
+	<LI><A NAME="List__Reset"></A>
+	    <B><CODE>void Reset()</CODE></B><BR>
+	    Moves the current to the start of the list.
+	    <P>
+	
+	<LI><A NAME="List__Next"></A>
+	    <A NAME="List__Prev"></A>
+	    <B><CODE>void Next()</CODE></B><BR>
+	    <B><CODE>void Prev()</CODE></B><BR>
+	    These methods move the current to the
+	    next or previous node in the list.
+	    <P>
+	
+	<LI><A NAME="List__AtEnd"></A>
+	    <A NAME="List__AtStart"></A>
+	    <B><CODE>bool AtEnd()</CODE></B><BR>,
+	    <B><CODE>bool AtStart()</CODE></B><BR>
+	    Returns <CODE>true</CODE> if the current has
+	    passed the end of the list for <CODE>AtEnd()</CODE>, or
+	    is at the start of the list for <CODE>AtStart()</CODE>
+	    <P>
+	
+	<LI><A NAME="List__Current"></A>
+	    <B><CODE>T Current() const</CODE></B><BR>
+	    Returns a copy of the contents of the current node of the list.
+	    <P>
+	
+	<LI><A NAME="List__Last"></A>
+	    <B><CODE>T Last() const</CODE></B><BR>
+	    Returns a copy of the last element of the list.
+	    <P>
+	
+	<LI><A NAME="List__operator"></A>
+	    <B><CODE>operator ==</CODE></B><BR>
+	    The '==' operator is overridden so that it is possible
+	    to compare two lists and ask "Do these lists have the
+	    same contents?"
+	    <P>
+	
+    </UL>
+
+    <HR>
+    <A HREF=classes.html> - previous topic - </A>
+    <A HREF=example1.html> - next topic - </A>
+</BODY>

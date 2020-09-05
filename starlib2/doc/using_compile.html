@@ -1,0 +1,104 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>Compiling starlib into your code.</TITLE>
+    <LINK HREF=main.html REL=NEXT REV=PREV>
+</HEAD>
+<BODY>
+    <H1>Using starlib - how to compile in your code.</H1>
+
+    <P>
+    Currently, starlib does not install itself into any standard
+    system library directories, although you are certainly free to
+    do so if you chose, and have root access, by copying libstar.a
+    into <CODE>/usr/local/lib</CODE> and copying the header files
+    into <CODE>/usr/local/include</CODE>.)  The most likely way that
+    this first version of starlib will be used is on only one or two
+    programs, and not installed into the general Unix library
+    heirarchy.  These instructions will assume that this is how you
+    are using starlib.
+    <P>
+    <P>
+    After running the instructions in the the <A HREF=install.html>
+    install page</A>, you will have a collection of <CODE>*.h</CODE>
+    files and a single <CODE>libstar.a</CODE> file, and several *.o
+    files, one of which is called <CODE>template.o</CODE>.  Once the
+    compile is finished, you can delete all the *.o files, except for
+    the one called <CODE>template.o</CODE> - that one is needed for
+    linking with programs that use starlib.
+    <P>
+    In general, to make use of starlib in your program, you must
+    include the <CODE>"ast.h"</CODE> file from this starlib directory.
+    It will weave its way through all the other header files such that
+    you should only need to include <CODE>"ast.h"</CODE> in your code.
+    <P>
+    In general, when compiling an executable using starlib, you must
+    remember to add <CODE>"-lstar -ll"</CODE> to the end of the final
+    link command.  (The <CODE>-ll</CODE> is needed to make the
+    star file parser work.  It brings in a library used by the
+    "lex" routines.)  Also, you need to link in the <CODE>template.o</CODE>
+    file with your final link.  The reason for linking the template.o
+    file is that the method used by the compiler to resolve C++ template
+    instantiations on SGI fails to notice the templates when they are
+    contained in a library .a file.  Other compilers might not have this
+    problem, and if you are using this on a different compiler, the
+    inclusion of <CODE>template.o</CODE> on the final link might not
+    be needed.
+    <P>
+    To implement the above, assuming you are using a Makefile in your
+    project, and that you made the files in a directory called
+    "starlib", make these changes yo your Makefile:
+
+    Add these lines near the top: <BR>
+    <UL><LI>
+    <PRE>
+        # The directory the star library exists for you.  Change this
+	# to whatever is appropriate for where you installed it:
+	STARLIBDIR = ~/starlib
+	
+	# The flags to give the compiler:
+	STARFLAGS = -L$(STARLIBDIR) -I$(STARLIBDIR)
+	STARLIBS = $(STARLIBDIR)/template.o -lstar -ll
+    </PRE>
+    </UL>
+
+    Insert this change to every compile statement in your Makefile:
+    If it used to say something like this: <BR>
+    <UL><LI>
+    <PRE>
+	# (This is a compile to an object file (no executable link):
+	$(CC) -c ...stuff...
+    </PRE>
+    </UL>
+    <BR>make it say this instead:<BR>
+    <UL><LI>
+    <PRE>
+	$(CC) $(STARFLAGS) ...stuff...
+    </PRE>
+    </UL>
+    On the other hand, If it used to say something like this: <BR>
+    <UL><LI>
+    <PRE>
+	# (This is a compile to executable file (does the final link):
+	$(CC) ...stuff...
+    </PRE>
+    </UL>
+    <BR>make it say this instead:<BR>
+    <UL><LI>
+    <PRE>
+	$(CC) $(STARFLAGS) ...stuff... $(STARLIBS)
+    </PRE>
+    </UL>
+
+    <P>
+    These instructions are crude, but they get you the idea.  They give
+    you a solution that is not clean, but works.  You can of course
+    make your Makefile nicer once you understand what the above
+    instructions are doing.
+    <P>
+    <A HREF=main.html>Go on to the next topic</A>, how to write your
+    main program to make use of starlib.
+    <HR>
+    <A HREF=install.html> - previous topic - </A>
+    <A HREF=main.html> - next topic - </A>
+</BODY>

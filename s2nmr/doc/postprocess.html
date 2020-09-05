@@ -1,0 +1,398 @@
+<html>
+<HEAD>
+    <TITLE>post process ADIT-NMR mapping file document</TITLE>
+    <META NAME='generator'
+          VALUE='Vim 6.01'>
+    <META NAME='author'
+          VALUE='Steve Mading'>
+</HEAD>
+<BODY BGCOLOR='white' TEXT='black' LINK='blue' VLINK='magenta'>
+<H2><CENTER>post process ADIT-NMR mapping file document</CENTER></H2>
+<H4><CENTER>Steve Mading</CENTER></H4>
+
+
+This is a detailed description of everything being done in the postprocessing script
+that is run as the first step of annotation on an ADIT-NMR entry.  Steps are taken
+in the order they are shown:
+
+<p>
+
+<OL>
+<li>
+  <h3>insert_chemshift_refs</h3>
+  Inserts the following lines if the default reference flag for them is set:
+
+   <pre>
+   loop_
+      _Chem_shift_ref.Sf_ID
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.Indirect_shift_ratio_Cit_ID
+      _Chem_shift_ref.Indirect_shift_ratio_Cit_label
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Correction_val_Citation_ID
+      _Chem_shift_ref.Correction_val_Cit_label
+
+
+  # Inserts the following if '_Chem_shift_reference.IUPAC_default_1H' starts with 'Y' or 'y'
+	0 . . DSS  H  1  "'methyl protons'"   ppm   0.0  internal  direct  .  .  .  1.0 . . . . . .
+  # Inserts the following if '_Chem_shift_reference.IUPAC_default_13C' starts with 'Y' or 'y'
+        0 . . DSS  C  13  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.251449530 . . . . . .
+  # Inserts the following if '_Chem_shift_reference.IUPAC_default_15N' starts with 'Y' or 'y'
+        0 . . DSS  N  15  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.101329118 . . . . . .
+  # Inserts the following if '_Chem_shift_reference.IUPAC_default_31P' starts with 'Y' or 'y'
+        0 . . DSS  P  31  "'methyl protons'"   ppm   0.0  .  indirect  .  .  .  0.404808636 . . . . . .
+   </pre>
+</li>
+
+<li> <h3>remove_chemshift_ref_def_tags</h3>
+    Removes the trigger tags mentioned in the previous rule:<br>
+	"_Chem_shift_reference.IUPAC_default_1H"   <br>
+	"_Chem_shift_reference.IUPAC_default_13C"  <br>
+	"_Chem_shift_reference.IUPAC_default_15N"  <br>
+	"_Chem_shift_reference.IUPAC_default_31P"  <br>
+</li>
+
+<li> <h3>split_sequence_to_loop</h3>
+  Splits the author-supplied one-letter-code string into the mol residue sequence loop.
+</li>
+
+<li> <h3>make_submission_date</h3>
+  Sets the submission date to be whatever today's date and time is, "today" being the day the
+  converter program is being run, which is typically whenever hongyang sets up the directory
+  in subedit/Third.Ed for it, after seeing the e-mail notice from ADIT-NMR.
+</li>
+
+<li> <h3>create_id_tags</h3>
+  For each label tag defined in the rule (there's a big list), populate the _ID tag alongside
+  it by looking for the saveframe that matches the label and copying the ID field out of that
+  saveframe.
+</li>
+
+<li> <h3>rename_id_tags</h3>
+  Do the following two renames if tags matching these names are found:<br>
+  "_Chem_comp_common_name.Chem_comp_ID"  ----&gt; "_Chem_comp_common_name.Comp_ID"<br>
+  "_Chem_comp_systematic_name.Chem_comp_ID" ----&gt; "_Chem_comp_systematic_name.Comp_ID"<br>
+  I believe this rule was there to take care of a dictionary discrepency at one point.
+</li>
+
+<li><h3>hardcoded_tags</h3>
+  Insert the following hardcoded tags:
+
+    <pre>
+    save_hardcoded_tags
+	_Saveframe_category  make_new_tag
+
+	loop_
+	   _key_tag    # In all the saveframes where this tag is seen, in which
+	   _key_value  # it has this particular value,
+	   _new_tag    # insert this new tag
+	   _new_value  # with this value.
+
+	   # NOTE:  It won't insert this if the tag is already there.
+	   # So the NMR_STAR_version will only be hardcoded like this if the
+	   # dictionary default is missing and thus it isn't already in the file.
+	   "_Entry.Sf_category"	"entry_information"	"_Entry.NMR_STAR_version"	"3.0"
+
+
+	   # This is a cheap way to make the enumeration mapping for polymer_type:
+	   "_Entity.Polymer_common_type"  "protein"       "_Entity.Polymer_type"  "polypeptide(L)"
+	   "_Entity.Polymer_common_type"  "RNA"           "_Entity.Polymer_type"  "polysaccharide(D or L - TODO)"
+	   "_Entity.Polymer_common_type"  "DNA"           "_Entity.Polymer_type"  "polyribonucleotide"
+	   "_Entity.Polymer_common_type"  "carbohydrate"  "_Entity.Polymer_type"  "polydexyribonucleotide"
+	   
+	stop_
+    save_
+    </pre>
+
+
+</li>
+
+<li><h3>make_framecodes_agree</h3>
+   In the cases where the saveframe's label tag and the saveframe name don't match, rename the saveframe to match the value
+   for the tag.
+</li>
+
+<li><h3>default_if_not_exist</h3>
+  More values to hardcode if they don't exist already with a nonnull or nonquestion value:
+<pre>
+    save_v30_default_if_nulls
+	_Saveframe_category  default_if_not_exist
+
+	loop_
+	    _key_tag
+	    _key_value
+	    _tag_to_change
+	    _new_value
+
+	    "_Sample_component.Concentration_val_units"	.	"_Sample_component.Concentration_val_units"	mM
+	    "_Sample_component.Concentration_val_units"	?	"_Sample_component.Concentration_val_units"	mM
+	    "_Entry.Version_type"				.	"_Entry.Version_type"				new
+	    "_Entry.Version_type"				?	"_Entry.Version_type"				new
+	    "_Entry.Origination"				.	"_Entry.Origination"				author
+	    "_Entry.Origination"				?	"_Entry.Origination"				author
+	stop_
+    save_
+</pre>
+
+</li>
+
+<li><h3>name_id_move_to_loop</h3>
+  Move some of the free tags into the data loops (making copies of them over and
+  over on each row):
+   <pre>
+    save_name_id_move_to_loop
+	_Saveframe_category     insert_column
+
+	loop_
+	    _key_tag         # In the saveframes where this tag exists
+	    _key_value       # and has this value,
+	    _key_loop_tag    # find the loop containing this tag (loops don't have names, so this is the way to pick a loop)
+	    _new_tag_name    # and insert a new column for this new tag into the loop,
+	    _new_tag_value   # Use this value as the value for the new column for all the rows.  If this
+	                     # begins with the special string: &lt;&lt; then it means to take the value from
+			     # that tag in the same saveframe.
+
+	    '_Assigned_chem_shift_list.Sf_category'
+	    assigned_chemical_shifts
+	    "_Atom_chem_shift.Chem_shift_val"
+	    "_Atom_chem_shift.Entity_assembly_ID"
+	    '&lt;&lt;_Assigned_chem_shift_list.temp_mol_sys_comp_name_id_match'
+
+	    '_Assigned_chem_shift_list.Sf_category'
+	    assigned_chemical_shifts
+	    "_Atom_chem_shift.Chem_shift_val"
+	    "_Atom_chem_shift.Entity_ID"
+	    '&lt;&lt;_Assigned_chem_shift_list.temp_entity_id_match'
+
+
+	    '_Heteronucl_T1_list.Sf_category'
+	    heteronucl_T1_relaxation
+	    "_T1.Sf_ID"
+	    "_T1.Entity_assembly_ID"
+	    '&lt;&lt;_Heteronucl_T1_list.temp_mol_sys_comp_name_id_match'
+
+	    '_Heteronucl_T1_list.Sf_category'
+	    heteronucl_T1_relaxation
+	    "_T1.Sf_ID"
+	    "_T1.Entity_ID"
+	    '&lt;&lt;_Heteronucl_T1_list.temp_entity_id_match'
+
+	    '_Heteronucl_T2_list.Sf_category'
+	    heteronucl_T2_relax
+	    "_T2.Sf_ID"
+	    "_T2.Entity_assembly_ID"
+	    '&lt;&lt;_Heteronucl_T2_list.temp_mol_sys_comp_name_id_match'
+
+	    '_Heteronucl_T2_list.Sf_category'
+	    heteronucl_T2_relax
+	    "_T2.Sf_ID"
+	    "_T2.Entity_ID"
+	    '&lt;&lt;_Heteronucl_T2_list.temp_entity_id_match'
+
+	    '_Coupling_constant_list.Sf_category'
+	    coupling_constants
+	    "_Coupling_constant.Sf_ID"
+	    "_Coupling_constant.Entity_assembly_ID_1"
+	    '&lt;&lt;_Coupling_constant_list.temp_mol_sys_comp_name_id_match'
+
+	    '_Coupling_constant_list.Sf_category'
+	    coupling_constants
+	    "_Coupling_constant.Sf_ID"
+	    "_Coupling_constant.Entity_ID_1"
+	    '&lt;&lt;_Coupling_constant_list.temp_entity_id_match'
+
+	    '_Coupling_constant_list.Sf_category'
+	    coupling_constants
+	    "_Coupling_constant.Sf_ID"
+	    "_Coupling_constant.Entity_assembly_ID_2"
+	    '&lt;&lt;_Coupling_constant_list.temp_mol_sys_comp_name_id_match'
+
+	    '_Coupling_constant_list.Sf_category'
+	    coupling_constants
+	    "_Coupling_constant.Sf_ID"
+	    "_Coupling_constant.Entity_ID_2"
+	    '&lt;&lt;_Coupling_constant_list.temp_entity_id_match'
+
+	    '_RDC_list.Sf_category'
+	    RDCs
+	    "_RDC.Sf_ID"
+	    "_RDC.Entity_assembly_ID_1"
+	    '&lt;&lt;_RDC_list.temp_mol_sys_comp_name_id_match'
+
+	    '_RDC_list.Sf_category'
+	    RDCs
+	    "_RDC.Sf_ID"
+	    "_RDC.Entity_ID_1"
+	    '&lt;&lt;_RDC_list.temp_entity_id_match'
+
+	    '_RDC_list.Sf_category'
+	    RDCs
+	    "_RDC.Sf_ID"
+	    "_RDC.Entity_assembly_ID_2"
+	    '&lt;&lt;_RDC_list.temp_mol_sys_comp_name_id_match'
+
+	    '_RDC_list.Sf_category'
+	    RDCs
+	    "_RDC.Sf_ID"
+	    "_RDC.Entity_ID_2"
+	    '&lt;&lt;_RDC_list.temp_entity_id_match'
+
+	    '_Order_parameter_list.Sf_category'
+	    order_parameters
+	    "_Order_param.Sf_ID"
+	    "_Order_param.Entity_assembly_ID"
+	    '&lt;&lt;_Order_parameter_list.temp_mol_sys_comp_name_id_match'
+
+	    '_Order_parameter_list.Sf_category'
+	    order_parameters
+	    "_Order_param.Sf_ID"
+	    "_Order_param.Entity_ID"
+	    '&lt;&lt;_Order_parameter_list.temp_entity_id_match'
+
+	    '_H_exch_rate_list.Sf_category'
+	    H_exch_rates
+	    "_H_exch_rate.Sf_ID"
+	    "_H_exch_rate.Entity_assembly_ID"
+	    '&lt;&lt;_H_exch_rate_list.temp_mol_sys_comp_name_id_match'
+
+	    '_H_exch_rate_list.Sf_category'
+	    H_exch_rates
+	    "_H_exch_rate.Sf_ID"
+	    "_H_exch_rate.Entity_ID"
+	    '&lt;&lt;_H_exch_rate_list.temp_entity_id_match'
+
+	    '_H_exch_protection_factor_list.Sf_category'
+	    H_exch_protection_factors
+	    "_H_exch_protection_factor.Sf_ID"
+	    "_H_exch_protection_factor.Entity_assembly_ID"
+	    '&lt;&lt;_H_exch_protection_factor_list.temp_mol_sys_comp_name_id_match'
+
+	    '_H_exch_protection_factor_list.Sf_category'
+	    H_exch_protection_factors
+	    "_H_exch_protection_factor.Sf_ID"
+	    "_H_exch_protection_factor.Entity_ID"
+	    '&lt;&lt;_H_exch_protection_factor_list.temp_entity_id_match'
+
+	    '_PH_titration_list.Sf_category'
+	    PH_titration
+	    "_PH_titr_result.Sf_ID"
+	    "_PH_titr_result.Atom_titrated_entity_assembly_ID"
+	    '&lt;&lt;_PH_titration_list.temp_mol_sys_comp_name_id_match'
+
+	    '_PH_titration_list.Sf_category'
+	    PH_titration
+	    "_PH_titr_result.Sf_ID"
+	    "_PH_titr_result.Atom_titrated_entity_ID"
+	    '&lt;&lt;_PH_titration_list.temp_entity_id_match'
+
+	    '_PH_titration_list.Sf_category'
+	    PH_titration
+	    "_PH_titr_result.Sf_ID"
+	    "_PH_titr_result.Atom_observed_entity_assembly_ID"
+	    '&lt;&lt;_PH_titration_list.temp_mol_sys_comp_name_id_match'
+
+	    '_PH_titration_list.Sf_category'
+	    PH_titration
+	    "_PH_titr_result.Sf_ID"
+	    "_PH_titr_result.Atom_observed_entity_ID"
+	    '&lt;&lt;_PH_titration_list.temp_entity_id_match'
+
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Entity_assembly_ID_1"
+	    '&lt;&lt;_Heteronucl_NOE_list.temp_1_mol_sys_comp_name_id_match'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Entity_ID_1"
+	    '&lt;&lt;_Heteronucl_NOE_list.temp_1_entity_id_match'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Entity_assembly_ID_2"
+	    '&lt;&lt;_Heteronucl_NOE_list.temp_2_mol_sys_comp_name_id_match'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Entity_ID_2"
+	    '&lt;&lt;_Heteronucl_NOE_list.temp_2_entity_id_match'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Comp_ID_1"
+	    '&lt;&lt;_Heteronucl_NOE_list.tmp_comp_ID_1'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Comp_ID_2"
+	    '&lt;&lt;_Heteronucl_NOE_list.tmp_comp_ID_2'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Atom_ID_1"
+	    '&lt;&lt;_Heteronucl_NOE_list.temp_Atom_ID_1'
+
+	    '_Heteronucl_NOE_list.Sf_category'
+	    heteronucl_NOE_list
+	    "_Heteronucl_NOE.Sf_ID"
+	    "_Heteronucl_NOE.Atom_ID_2"
+	    '&lt;&lt;_Heteronucl_NOE_list.temp_Atom_ID_2'
+
+	    stop_
+	    
+    save_
+  </pre>
+
+</li>
+
+<li> <h3>delete_invalid_tag_syntax</h3>
+  Delete tags who's names are not valid syntax characters (i.e. they have spaces or
+  tabs or control characters, etc).
+
+  No, I have no idea why this rule was there.  It hasn't been activated since there
+  were no such tags.
+
+  It also leaves behind a comment in the file warning you if it had to remove something.
+  (But that comment is likely to be stripped in the process because of the 
+  remove_comments rule later).
+</li>
+
+<li> <h3> remove_empty_sfs</h3>
+  Remove any saveframe where the saveframe has no contents.
+
+</li>
+
+<li><h3>order_mapping</h3>
+  Re-arrange the fields in the order of the dictionary.
+</li>
+
+<li><h3>remove comments</h3>
+  Remove any comments that were created as warning or informational messages during the above steps.
+</li>
+
+</OL>
+
+</BODY>
+</html>

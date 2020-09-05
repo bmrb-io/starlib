@@ -1,0 +1,44 @@
+<HEAD>
+<!-- This file is copyright (c) 2001 Board of Regents, University of Wisconsin.
+All Rights Reserved.  -->
+    <TITLE>starlib: bugs</TITLE>
+</HEAD>
+<BODY>
+    <H1>Starlib: Known Bugs</H1>
+
+    This is a list of some of the known bugs and "features" of
+    starlib.  Please check here before e-mailing any bug reports
+    to the starlib maintainer (that would be me).
+    <HR WIDTH=60%>
+    <H3>Bug List</H3>
+    <UL>
+	<LI>
+	    <I>global_</I>: The handling of the <CODE>global_</CODE> keyword
+	    is not correct when more than one <CODE>global_</CODE> keyword
+	    exists in the file.  As of right now, there is no relationship
+	    between saveframes and datablocks and the global tags that
+	    were in effect when they were read in.  The starlib in-memory
+	    representation of a global_ block only allows one such block
+	    to exist for an entire file.  If more than one global_ block
+	    is encountered, then both are concatenated into one global_
+	    block in memory, with no record of which global_ parameters
+	    were in effect at what point in the file.
+	    <P>
+	<LI>
+	    <I>duplicate names</I>: Right now there is no double-checking
+	    to ensure that the STAR file has no duplicatated names.  For
+	    example, it is possible to have two tags with the same name
+	    in the same saveframe.  It is also possible to have two
+	    saveframes with the same name, and two datablocks with the
+	    same name.  Putting this check in place would greatly slow
+	    down the insertion of new nodes to the star tree, since each
+	    insertion would require that there be a check for duplicate
+	    names, and each time a tag is renamed, a similar check would
+	    be needed.
+	    <P>
+    </UL>
+
+    <HR>
+    <A HREF=parallel.html> - previous topic - </A>
+    <A HREF=credits.html> - next topic - </A>
+</BODY>
