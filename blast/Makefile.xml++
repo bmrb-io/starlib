@@ -1,0 +1,39 @@
+#
+# use GNU make
+#
+SIGC_H = -I/usr/lib/sigc++-2.0/include -I/usr/include/sigc++-2.0
+GLIB_H = -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include
+GLIBMM_H = -I/usr/include/glibmm-2.4 -I/usr/lib/glibmm-2.4/include
+XMLPP_H = -I/usr/include/libxml2 -I/usr/include/libxml++-2.6 -I/usr/lib/libxml++-2.6/include
+
+STARLIBDIR = ./starlib2
+STAR_H = -I$(STARLIBDIR)
+
+# FC8 doesn't ship static libs for these
+LIBXML_LIB = -L./libxml++-2.20.0/libxml++/.libs -lxml++-2.6
+GLIBMM_LIB = -L./glibmm-2.14.2/glib/glibmm/.libs -lglibmm-2.4
+SIGC_LIB = -L./libsigc++-2.0.18/sigc++/.libs -lsigc-2.0
+
+CXX = g++
+LD = g++
+CXXFLAGS = -Wall -Wno-deprecated -I. $(SIGC_H) $(GLIB_H) $(GLIBMM_H) $(XMLPP_H) $(STAR_H) -DIS_GCC 
+#-DDEBUG
+LDFLAGS = 
+LIBS = -L/usr/lib -L$(STARLIBDIR) $(STARLIBDIR)/template.o -lstar -ll 
+
+OBJECTS := $(patsubst %.cc,%.o,$(wildcard *.cc))
+
+all: update-entry
+
+update-entry: $(OBJECTS)
+	$(LD) $(LDFLAGS) -o update-entry $(OBJECTS) $(LIBS) -lxml++-2.6
+
+static: $(OBJECTS)
+	$(LD) -static $(LDFLAGS) -o test $(OBJECTS) $(LIBS) $(LIBXML_LIB) $(GLIBMM_LIB) $(SIGC_LIB) -lxml2 -lglib-2.0 -lz -lpthread -lc
+
+.PHONY: clean
+clean:
+	rm *.o test
+
+%.o : %.cc %.h
+	$(CXX) -c $(CXXFLAGS) -o $@ $<

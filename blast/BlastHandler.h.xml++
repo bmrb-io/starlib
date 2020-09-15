@@ -1,0 +1,76 @@
+
+#ifndef _BLAST_HANDLER_H_
+#define _BLAST_HANDLER_H_
+
+#include <iostream>
+#include <string>
+#include <libxml++/libxml++.h>
+
+#include "HitDef.h"
+#include "HitList.h"
+
+class HitDef;
+class HitList;
+
+class BlastHandler : public xmlpp::SaxParser {
+    public:
+	static const std::string TAG_ITNUM;
+        static const std::string TAG_ITQDEF;
+        static const std::string TAG_QRYLEN;
+        static const std::string TAG_HIT;
+        static const std::string TAG_HITNUM;
+        static const std::string TAG_HITID;
+        static const std::string TAG_HITDEF;
+        static const std::string TAG_HITACC;
+        static const std::string TAG_HITLEN;
+        static const std::string TAG_BITSCORE;
+        static const std::string TAG_HSPSCORE;
+        static const std::string TAG_EXPVAL;
+        static const std::string TAG_HITFROM;
+        static const std::string TAG_HITTO;
+        static const std::string TAG_QRYFROM;
+        static const std::string TAG_QRYTO;
+        static const std::string TAG_IDENT;
+        static const std::string TAG_POS;
+        static const std::string TAG_ALEN;
+
+//	BlastHandler( HitList * hits = NULL ) : fBuf( "" ), fHits( hits ), fHit( new HitDef() ), fFirstHit( true ) {};
+//	virtual ~BlastHandler() { delete fHit; }
+	BlastHandler( HitList * hits = NULL );
+	virtual ~BlastHandler();
+
+    protected:
+	virtual void on_start_document() {}
+	virtual void on_end_document() {}
+	virtual void on_start_element( const Glib::ustring & name, const AttributeList & attributes ) {}
+	virtual void on_end_element( const Glib::ustring & name );
+	virtual void on_characters( const Glib::ustring & characters ) {
+	    fBuf.append( characters );
+	}
+	virtual void on_comment( const Glib::ustring & text ) {}
+	virtual void on_warning( const Glib::ustring & text ) {
+	    std::cerr << "parser warning " << text << std::endl; 
+	}
+	virtual void on_error( const Glib::ustring & text ) {
+	    std::cerr << "parser error " << text << std::endl; 
+	}
+	virtual void on_fatal_error( const Glib::ustring & text ) {
+	    std::cerr << "fatal error " << text << std::endl; 
+	}	
+	std::string trim( const std::string & str ) {
+            std::string rc = str;
+	    std::string::size_type start = str.find_first_not_of( "\n \t" );
+	    if( start != std::string::npos ) rc = str.substr( start );
+	    start = rc.find_last_not_of( "\n \t" );
+	    if( start < rc.size() ) rc.erase( start + 1, rc.size() );
+    	    return rc;
+	}
+
+    private:
+	std::string fBuf;
+	HitList * fHits;
+	HitDef * fHit;
+	bool fFirstHit;
+};
+
+#endif

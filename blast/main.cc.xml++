@@ -1,0 +1,315 @@
+#include <iosfwd>
+#include <iomanip>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <cstdio>
+#include <unistd.h>
+#include <vector>
+#include <time.h>
+
+#include "BlastHandler.h"
+#include "HitList.h"
+
+#include "portability.h"
+#include "ast.h"
+#include "parser.h"
+
+StarFileNode * AST;
+ostream * os;
+
+bool get_entity_ids( std::vector<std::string> &, StarFileNode * );
+void trim_blast_hits( std::vector<HitDef> &, HitList &, const std::string & );
+bool update_savefame( StarFileNode *, const std::string &, const std::vector<HitDef> & );
+
+
+int main( int argc, char **argv ) {
+
+    std::string infile;
+    std::string xmlfile;
+    std::string commentfile;
+    std::string outfile;
+    
+    int opt;
+    while( (opt = getopt( argc, argv, "b:i:c:o:" )) != -1 ) {
+	switch( opt ) {
+	    case 'b' : 
+		xmlfile = optarg;
+		break;
+	    case 'i' : 
+		infile = optarg;
+		break;
+	    case 'c' : 
+		commentfile = optarg;
+		break;
+	    case 'o' : 
+		outfile = optarg;
+		break;
+	    default :
+		std::cerr << "Usage: " << argv[0] << " -i infile -b blastfile -c commentfile -o outfile" << std::endl;
+		exit( 1 );
+	}
+    }
+    if( (infile == "") || (xmlfile == "") ) {
+	std::cerr << "Missing parameter" << std::endl;
+	exit( 2 );
+    }
+
+    HitList hits;
+    try {
+        BlastHandler parser( &hits );
+        parser.set_substitute_entities( true );
+        parser.parse_file( xmlfile );
+#ifdef DEBUG
+std::cout << hits << std::endl;
+#endif
+    }
+    catch( const xmlpp::exception& ex ) {
+        std::cout << "libxml++ exception: " << ex.what() << std::endl;
+        exit( 3 );
+    }
+
+    StarFileNode * star;
+    if( (yyin = fopen( infile.c_str(), "r" )) == NULL ) 
+	exit( 4 );
+    if( yyparse() != 0 )
+	exit( 5 );
+    fclose( yyin );
+    star = AST;
+
+    StarFileNode * comment = NULL;
+    if( commentfile != "" ) {
+	if( (yyin = fopen( commentfile.c_str(), "r" )) == NULL ) 
+	    exit( 6 );
+	if( yyparse() != 0 )
+	    exit( 7 );
+	fclose( yyin );
+	comment = AST;
+    }
+    if( comment != NULL ) {
+	formatNMRSTAR( star, comment );
+	delete comment;
+    }
+
+    std::vector<std::string> file_entities;
+    if( ! get_entity_ids( file_entities, star ) ) {
+	std::cerr << "No entities in " << infile << std::endl;
+	delete star;
+	exit( 8 );
+    }
+    
+//std::cout << "Found " << file_entities.size() << " entity ids in the entry" << std::endl;
+    std::vector<std::string> blast_entities;
+    if( ! hits.getEntityIds( blast_entities ) ) {
+	std::cerr << "No entities in BLAST result " << std::endl;
+	delete star;
+	exit( 9 );
+    }
+//std::cout << "Found " << blast_entities.size() << " entity ids in BLAST result" << std::endl;
+
+    for( std::vector<std::string>::iterator fe = file_entities.begin(); fe != file_entities.end(); fe++ ) {
+	for( std::vector<std::string>::iterator be = blast_entities.begin(); be != blast_entities.end(); be++ ) {
+//std::cout << "Cmp " << (*fe) << " with " << (*be) << std::endl;
+	    if( (*fe) == (*be) ) {
+//std::cout << "* match" << std::endl;
+		std::vector<HitDef> entity_hits;
+		trim_blast_hits( entity_hits, hits, (*fe) );
+//std::cout << entity_hits.size() << " hits for entity " << *fe << std::endl;
+		if( entity_hits.size() > 0 ) {
+		    update_savefame( star, *fe, entity_hits );
+/*
+		    if( ! update_savefame( star, *fe, entity_hits ) ) {
+			std::cerr << "Saveframe " << (*fe) << " not updated" << std::endl;
+			exit( 10 );
+		    }
+*/
+		}
+	    }
+	}
+    }
+    
+    std::ofstream out;
+    if( outfile == "" ) os = &std::cout;
+    else {
+        out.open( outfile.c_str() );
+        if( ! out.is_open() ) {
+	    std::cerr << "Cannot open " << outfile << " for writing" << std::endl;
+	    exit( 11 );
+	}
+	os = &out;
+    }
+    star->Unparse( 0 );
+    if( out.is_open() ) out.close();
+    delete star;
+    return 0;
+}
+
+bool get_entity_ids( std::vector<std::string> & eids, StarFileNode * entry ) {
+
+    List<ASTnode *> * result = entry->searchForTypeByTagValue( ASTnode::SAVEFRAMENODE,
+		 					      "_Saveframe_category",
+		 					      "monomeric_polymer" );
+    if( result->size() < 1 ) return false;
+    SaveFrameNode * frame;
+    for( List<ASTnode*>::iterator i = result->begin(); i != result->end(); i++ ) {
+	frame = (SaveFrameNode *)(*i);
+	eids.push_back( frame->myName().substr( 5 ) );
+    }
+    return true;
+}
+
+void trim_blast_hits( std::vector<HitDef> & result, HitList & hits, const std::string & eid ) {
+    std::string db;
+    int count = 0;
+    for( std::set<HitDef>::iterator i = hits.getHits().begin(); i != hits.getHits().end(); i++ ) {
+	if( i->queryDbSubid() != eid ) continue;
+// rules: keep all BMRB & PDB hits, top 5 of every other DB (hits are already sorted)
+	if( (i->hitDbName() == "BMRB") || (i->hitDbName() == "PDB") )
+	    result.push_back( *i );
+	else {
+	    if( (db == "") || (db != i->hitDbName()) ) {
+		db = i->hitDbName();
+		result.push_back( *i );
+		count = 1;
+	    }
+	    else {
+		if( count < 5 ) {
+		    result.push_back( *i );
+		    count++;
+		}
+	    }
+	}
+    }
+}
+
+bool update_savefame( StarFileNode * entry, const std::string & name, const std::vector<HitDef> & hits ) {
+    std::string str = "save_" + name;
+    List<ASTnode *> * result = entry->searchForTypeByTag( ASTnode::SAVEFRAMENODE, str );
+    if( result->size() != 1 ) {
+	delete result;
+	return false;
+    }
+    SaveFrameNode * sfn = (SaveFrameNode *)((*result)[0]);
+    time_t tp = time( NULL );
+    struct tm *ts = localtime( &tp );
+    char now[11];
+    now[10] = 0;
+    strftime( now, 11, "%Y-%m-%d", ts );
+//std::cerr << "Date: " << now << std::endl;
+//
+// last elements in sf are query date, revised date, and db link loop, in that order
+//
+    std::ostringstream strbuf;
+    DataItemNode * qdate = new DataItemNode( "_Sequence_homology_query_date", now );
+    DataItemNode * rdate = new DataItemNode( "_Sequence_homology_query_revised_last_date", now );
+    DataLoopNode * loop = new DataLoopNode( "tabulate" );
+    DataLoopNameListNode * namelist = loop->getNamesPtr();
+    LoopNameListNode * names = new LoopNameListNode();
+    namelist->insert( namelist->end(), names );
+    names->insert( names->end(), new DataNameNode( "_Database_name" ) );
+    names->insert( names->end(), new DataNameNode( "_Database_accession_code" ) );
+    names->insert( names->end(), new DataNameNode( "_Database_entry_mol_name" ) );
+    names->insert( names->end(), new DataNameNode( "_Sequence_query_to_submitted_percentage" ) );
+    names->insert( names->end(), new DataNameNode( "_Sequence_subject_length" ) );
+    names->insert( names->end(), new DataNameNode( "_Sequence_identity" ) );
+    names->insert( names->end(), new DataNameNode( "_Sequence_positive" ) );
+    names->insert( names->end(), new DataNameNode( "_Sequence_homology_expectation_value" ) );
+    LoopTableNode * vals = loop->getValsPtr();
+    for( std::vector<HitDef>::const_iterator i = hits.begin(); i != hits.end(); i++ ) {
+	LoopRowNode * row = new LoopRowNode( true );
+	row->insert( row->end(), new DataValueNode( i->hitDbName(), DataValueNode::findAppropriateDelimiterType( i->hitDbName() ) ) );
+	row->insert( row->end(), new DataValueNode( i->hitDbId(), DataValueNode::findAppropriateDelimiterType( i->hitDbId() ) ) );
+	if( i->hitDescription() == "" ) row->insert( row->end(), new DataValueNode( "." ) );
+	else row->insert( row->end(), new DataValueNode( i->hitDescription(), DataValueNode::findAppropriateDelimiterType( i->hitDescription() ) ) );
+	strbuf.str( "" );
+	strbuf << std::fixed << std::setprecision( 2 ) << i->queryToSubPercent();
+	row->insert( row->end(), new DataValueNode( strbuf.str() ) );
+	strbuf.str( "" );
+	strbuf << std::dec << i->hitLength();
+	row->insert( row->end(), new DataValueNode( strbuf.str() ) );
+	strbuf.str( "" );
+	strbuf << std::fixed << std::setprecision( 2 ) << i->pctIdentities();
+	row->insert( row->end(), new DataValueNode( strbuf.str() ) );
+	strbuf.str( "" );
+	strbuf << std::fixed << std::setprecision( 2 ) << i->pctPositives();
+	row->insert( row->end(), new DataValueNode( strbuf.str() ) );
+	strbuf.str( "" );
+	strbuf << std::scientific << std::setprecision( 2 ) << i->expVal();
+	row->insert( row->end(), new DataValueNode( strbuf.str() ) );
+	vals->insert( vals->end(), row );
+    }
+#ifdef DEBUG
+    std::cerr << "New loop:" << std::endl;
+    os = &std::cout;
+    loop->Unparse( 0 );
+#endif
+
+    bool update = false;
+    result = sfn->searchForTypeByTag( ASTnode::DATALOOPNODE, "_Database_name" );
+    if( result->size() < 1 )
+	update = true;
+    else {
+	DataLoopNode * oldloop = (DataLoopNode *) ((* result)[0]);
+	LoopTableNode * oldvals = oldloop->getValsPtr();
+	if( oldvals->size() != hits.size() )
+	    update = true;
+	else {
+// compare hits. both lists are sorted 
+	    DataValueNode * val;
+	    int j = 0;
+	    for( std::vector<HitDef>::const_iterator i = hits.begin(); i != hits.end(); i++, j++ ) {
+		val = (*(*oldvals)[j])[0];
+		if( val->myValue() != i->hitDbName() ) {
+		    update = true;
+		    break;
+		}
+		val = (*(*oldvals)[j])[1];
+		if( val->myValue() != i->hitDbId() ) {
+		    update = true;
+		    break;
+		}
+		val = (*(*oldvals)[j])[2];
+		if( val->myValue() != i->hitDbSubid() ) {
+		    update = true;
+		    break;
+		}
+	    }
+	}
+	if( update ) {
+	    for( result->Reset(); ! result->AtEnd(); result->Next() )
+		delete result->Current();
+	}
+    }
+    delete result;
+    if( update ) {
+	result = sfn->searchForTypeByTag( ASTnode::DATAITEMNODE, "_Sequence_homology_query_date" );
+	if( result->size() > 0 ) {
+	    for( result->Reset(); ! result->AtEnd(); result->Next() )
+		delete result->Current();
+	}
+	delete result;
+	result = sfn->searchForTypeByTag( ASTnode::DATAITEMNODE, "_Sequence_homology_query_revised_last_date" );
+	if( result->size() > 0 ) {
+	    for( result->Reset(); ! result->AtEnd(); result->Next() )
+		delete result->Current();
+	}
+	delete result;
+	sfn->GiveMyDataList()->insert( sfn->GiveMyDataList()->end(), qdate );
+	sfn->GiveMyDataList()->insert( sfn->GiveMyDataList()->end(), rdate );
+	sfn->GiveMyDataList()->insert( sfn->GiveMyDataList()->end(), loop );
+	return true;
+    }
+    else {
+	result = sfn->searchForTypeByTag( ASTnode::DATAITEMNODE, "_Sequence_homology_query_date" );
+	if( result->size() == 1 ) {
+	    ((DataItemNode *)(*result)[0])->setValue( now );
+	    delete result;
+	}
+	else {
+	    std::cerr << result->size() << "_Sequence_homology_query_date tags in " << name <<  std::endl;
+	    delete result;
+	    exit( 10 );
+	}
+    }
+    return false;
+}

@@ -1,0 +1,75 @@
+#include <fstream>
+#include <iostream>
+#include <cstdlib>
+
+#include "BlastHandler.h"
+
+const std::string BlastHandler::TAG_ITNUM = "Iteration_iter-num";
+const std::string BlastHandler::TAG_ITQDEF = "Iteration_query-def";
+const std::string BlastHandler::TAG_QRYLEN = "Iteration_query-len";
+const std::string BlastHandler::TAG_HIT = "Hit";
+const std::string BlastHandler::TAG_HITNUM = "Hit_num";
+const std::string BlastHandler::TAG_HITID = "Hit_id";
+const std::string BlastHandler::TAG_HITDEF = "Hit_def";
+const std::string BlastHandler::TAG_HITACC = "Hit_accession";
+const std::string BlastHandler::TAG_HITLEN = "Hit_len";
+const std::string BlastHandler::TAG_BITSCORE = "Hsp_bit-score";
+const std::string BlastHandler::TAG_HSPSCORE = "Hsp_score";
+const std::string BlastHandler::TAG_EXPVAL = "Hsp_evalue";
+const std::string BlastHandler::TAG_HITFROM = "Hsp_hit-from";
+const std::string BlastHandler::TAG_HITTO = "Hsp_hit-to";
+const std::string BlastHandler::TAG_QRYFROM = "Hsp_query-from";
+const std::string BlastHandler::TAG_QRYTO = "Hsp_query-to";
+const std::string BlastHandler::TAG_IDENT = "Hsp_identity";
+const std::string BlastHandler::TAG_POS = "Hsp_positive";
+const std::string BlastHandler::TAG_ALEN = "Hsp_align-len";
+
+BlastHandler::BlastHandler( HitList * hits ) {
+    fBuf = "";
+    fHits = hits;
+    fHit = new HitDef();
+    fFirstHit = true;
+}
+
+BlastHandler::~BlastHandler() { 
+    delete fHit; 
+}
+                
+
+void BlastHandler::on_end_element( const Glib::ustring & name ) {
+
+    std::string tmp = trim( fBuf );
+
+    if( name == TAG_ITNUM )  {
+//	if( fHit == NULL ) fHit = new HitDef();
+//std::cerr << "Parser: new iteration " << tmp << std::endl;
+    }
+    if( name == TAG_ITQDEF ) fHit->setQueryId( tmp );
+    if( name == TAG_QRYLEN ) fHit->fQueryLength = atoi( tmp.c_str() );
+    if( name == TAG_HIT ) {
+	fHits->add( *fHit );
+	if( fFirstHit ) fFirstHit = false;
+	else {
+	    fHit->reset();
+	    fFirstHit = false;
+	}
+    }
+//    if( name == TAG_HITNUM )
+//std::cerr << "Parser: new hit " << tmp << std::endl;
+    if( name == TAG_HITID )  fHit->setHitDbName( tmp );
+    if( name == TAG_HITDEF ) fHit->setHitDescription( tmp ); //fHitMolName = tmp;
+    if( name == TAG_HITACC ) fHit->setHitDbId( tmp );
+    if( name == TAG_HITLEN ) fHit->fHitLength = atoi( tmp.c_str() );
+    if( name == TAG_BITSCORE ) fHit->fBitScore = atof( tmp.c_str() );
+    if( name == TAG_HSPSCORE ) fHit->fHspScore = atoi( tmp.c_str() );
+    if( name == TAG_EXPVAL ) fHit->fExp = strtod( tmp.c_str(), (char **) NULL );
+    if( name == TAG_HITFROM ) fHit->fHitFrom = atoi( tmp.c_str() );
+    if( name == TAG_HITTO ) fHit->fHitTo = atoi( tmp.c_str() );
+    if( name == TAG_QRYFROM ) fHit->fQueryFrom = atoi( tmp.c_str() );
+    if( name == TAG_QRYTO ) fHit->fQueryTo = atoi( tmp.c_str() );
+    if( name == TAG_IDENT ) fHit->fIdent = atoi( tmp.c_str() );
+    if( name == TAG_POS ) fHit->fPosit = atoi( tmp.c_str() );
+    if( name == TAG_ALEN ) fHit->fAlignLength = atoi( tmp.c_str() );
+
+    fBuf = "";
+}
